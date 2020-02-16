@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Aide de jeu pour Joan of Arc">
+  <meta name="author" content="Denis Wings">
+
+  <title>Guerre de Cent ans</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- <link href="css/datatables.min.css" rel="stylesheet"> -->
+  <!-- Custom styles for this template -->
+  <link href="css/scrolling-nav.css" rel="stylesheet">
+  <link href="css/dateline.css" rel="stylesheet">
+  <link href="css/select2.min.css" rel="stylesheet">
+  <link href="css/page.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="https://www.mythicgames.net/time-of-legends-joan-of-fr/">Joan of Arc</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#chrono">Chronologie</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#troupes">Troupes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#persos">Personnages</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#compare">Combat</a>
+            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/comment.html">Commentaires</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="text-white">
+    <div class="w-screen mx-0 px-0 text-center">
+      <h1>Personnages et batailles historiques</h1>
+      <p class="lead">Un outil pour le jeu de figurines Times of Legend: Joan of Arc</p>
+    </div>
+  </header>
+
+  <section id="chrono">
+    <div class="container">
+      <div class="row">
+        <div class="p0 m0 w-100">
+          <h2>Chronologie de la guerre</h2>
+          <p class="lead text-muted">Le contexte historique de la Guerre de 100 ans. 
+          </p>
+          <div>Cette frise chronologique replace les événements de la guerre de 100 ans, et permet de situer les personnages historiques de Joan of Arc, vous aidant à créer vos propres scénarios Joan of Arc !</div>
+          <div>Vous pouvez sélectionner une bataille pour la voir sur la frise. En sélectionnant un personnage, la frise se calera sur le premier événement contemporain à sa période d'activité, et les évenements mis en rouge correspondent à cette période. En cliquant sur un événement, la victoire, la guerre à laquelle il appartient et les personnages contemporains sont affichés ainsi qu'un petit résumé de l'événement.</div>
+<div>
+            Les scénarios de Joan of Arc sont marqués d'une à 3 étoiles en fonction de la difficulté du scénario et peuvent être listés en cherchant '*'.</div>
+          <div class="mb-1">
+            <select style="width:48%" class="finddate form-control" name="date" onchange="dl.find(this.value)"></select>
+            <select style="width:48%" class="findperso form-control" name="date" onchange="temporaliseperso(this.value)"></select>
+          </div>
+          <div id="dl" class="mb-6"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="troupes" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="p0 m0">
+          <h2>Troupes historiques et mythiques de Joan of Arc</h2>
+          <p class="lead text-muted">Caractéristiques de combat des unités de Joan of Arc.
+          </p>
+          <p>La description des traits a été réécrite pour être plus compacte. Les notations sont les suivantes:
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+              Aide
+          </button></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <table id="tabletroupes" class="compact troupes table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th class="th-sm">Nom</th>
+                <th class="th-sm"></th>
+                <th class="th-sm"></th>
+                <th class="th-sm">&nbsp;&nbsp;&nbsp;Attaque&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th class="th-sm">&nbsp;&nbsp;&nbsp;Defense&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th class="th-sm"></th>
+                <th class="th-sm"></th>
+                <th class="th-sm">Traits</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="persos">
+    <div class="container">
+      <div class="row">
+        <div class="p0 m0">
+          <h2>Personnages historiques et mythiques</h2>
+          <p class="lead text-muted">Caractéristiques de jeu et historiques des personnages de Joan of Arc.</p>
+          <p>Pour chaque personnage, la liste reprend ses caractéristiques, ses dates historiques d'activité, son blason historique s'il est connu. Les dates fournissent un lien vers la page concernant le personnage.</p>
+          <p>La description des traits a été réécrite pour être plus compacte. Les notations sont les suivantes:
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+              Aide
+          </button></p>
+
+          <!-- The Modal -->
+          <div class="modal" id="myModal">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Aide sur les notations</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div>
+                  <table class="compact troupes  table table-striped table-bordered">
+                    <tr><td><span class="turn type"></span></td><td>une fois par tour</td></tr>
+                    <tr><td><span class="tap type"></span></td><td>une fois par round. Les cartes sont tournées, et sont remises droites à chaque début de round</td></tr>
+                    <tr><td><span class="hereandthere type"></span> / <span class="there type"></span></td><td>dans la zone ou une zone adjacente / juste dans les zones adjacentes</td></tr>
+                    <tr><td><b>action bonus</b></td><td>une action bonus nécessitant l'activation de l'unité</td></tr>
+                    <tr><td><b>action activation</b></td><td>une action au début ou à la fin de l'activation d'une unité</td></tr>
+                    <tr><td><b>entretien</b></td><td>pendant l'entretien des unités, au début du round</td></tr>
+                    <tr><td>légendaire</td><td>réduit le coût des cartes légendaires de 1</td></tr>
+                    <tr><td><span class="poursuiteaprescombat type"></span></td><td>poursuite après combat</td></tr>
+                    <tr><td><span class="troupe type"></span> / <span class="personnage type"></span></td><td>troupe / personnage</td></tr>
+                    <tr><td><span class="melee type"></span><span class="cavalerie combat-cond"></span> / <span class="melee type"></span><span class="blason mal combat-cond"></span> </td><td>attaque de mélée sur une unité de cavalerie / sur une unité du mal</td></tr>
+                    <tr><td><span class="rallie type"></span><span class="troupe combat-cond"></span><span class='here combat-cond'></span></td><td>rallie une troupe dans la zone de l'unité</td></tr>
+                    <tr><td><span class="actionbleue type"></span><span class="here combat-cond"></span></td><td>un ordre d'opportunisme joué sur la zone de l'unité</td></tr>
+
+                  </table>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <table id="tablepersos" class="compact troupes  table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;Personnage&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th></th>
+                <th></th>
+                <th>&nbsp;&nbsp;&nbsp;Attaque&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th>&nbsp;&nbsp;&nbsp;Defense&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th></th>
+                <th></th>
+                <th>Traits simplifiés</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>         
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="compare" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2>Combat</h2>
+          <p class="lead">Statistiques de combat des unités</p>
+          <p>Il s'agit d'un mini-simulateur de combat. Choisissez un attaquant et un défenseur, l'attaquant attaque une fois (comme avec un ordre <span class='actiongrise type'></span>) le défenseur. Les terrains de chaque unité peuvent être changés. Les chiffres indiqués sont des probabilités, d'être encore dans l'hexagone et avec combien de points de vie en moyenne, d'être à l'hopital <span class='facenoir touche'></span>, d'être mort <span class='facenoir mort'></span> ou d'avoir subi un recul <span class='facenoir recul'></span>. La riposte et autres effets similaires sont pris en compte, l'attaquant peut aussi avoir les mêmes probabilités. Le nombre de troupes sans camp peut être ajusté entre 1 et 3.
+          </p>
+          <p>Les attaques gratuites après poursuites après combat ne sont pas implémentées.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 border-right">
+          <div class="lead">Attaquant</div>
+          <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
+            <a class="blason-large neutre list-group-item list-group-item-action active" id="list-neutre-list" data-toggle="list" href="#list-neutre" role="tab" aria-controls="list-neutre"></a>
+            <a class="blason-large francais list-group-item list-group-item-action" id="list-francais-list" data-toggle="list" href="#list-francais" role="tab" aria-controls="list-francais"></a>
+            <a class="blason-large anglais list-group-item list-group-item-action" id="list-anglais-list" data-toggle="list" href="#list-anglais" role="tab" aria-controls="list-anglais"></a>
+            <a class="blason-large bourguignon list-group-item list-group-item-action" id="list-bourguignon-list" data-toggle="list" href="#list-bourguignon" role="tab" aria-controls="list-bourguignon"></a>
+            <a class="blason-large ecossais list-group-item list-group-item-action" id="list-ecossais-list" data-toggle="list" href="#list-ecossais" role="tab" aria-controls="list-ecossais"></a>
+            <a class="blason-large ottoman list-group-item list-group-item-action" id="list-ottoman-list" data-toggle="list" href="#list-ottoman" role="tab" aria-controls="list-ottoman"></a>
+            <a class="blason-large valaque list-group-item list-group-item-action" id="list-valaque-list" data-toggle="list" href="#list-valaque" role="tab" aria-controls="list-valaque"></a>
+            <a class="blason-large mercenaire list-group-item list-group-item-action" id="list-mercenaire-list" data-toggle="list" href="#list-mercenaire" role="tab" aria-controls="list-mercenaire"></a>
+            <a class="blason-large mal list-group-item list-group-item-action" id="list-mal-list" data-toggle="list" href="#list-mal" role="tab" aria-controls="list-mal"></a>
+            <a class="blason-large bien list-group-item list-group-item-action" id="list-bien-list" data-toggle="list" href="#list-bien" role="tab" aria-controls="list-bien"></a>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="lead">Défenseur</div>
+          <div class="list-group list-group-horizontal" id="list-tab2" role="tablist">
+            <a class="blason-large neutre list-group-item list-group-item-action active" id="list-neutre-list2" data-toggle="list" href="#list-neutre2" role="tab" aria-controls="list-neutre2"></a>
+            <a class="blason-large francais list-group-item list-group-item-action" id="list-francais-list2" data-toggle="list" href="#list-francais2" role="tab" aria-controls="list-francais2"></a>
+            <a class="blason-large anglais list-group-item list-group-item-action" id="list-anglais-list2" data-toggle="list" href="#list-anglais2" role="tab" aria-controls="list-anglais2"></a>
+            <a class="blason-large bourguignon list-group-item list-group-item-action" id="list-bourguignon-list2" data-toggle="list" href="#list-bourguignon2" role="tab" aria-controls="list-bourguignon2"></a>
+            <a class="blason-large ecossais list-group-item list-group-item-action" id="list-ecossais-list2" data-toggle="list" href="#list-ecossais2" role="tab" aria-controls="list-ecossais2"></a>
+            <a class="blason-large ottoman list-group-item list-group-item-action" id="list-ottoman-list2" data-toggle="list" href="#list-ottoman2" role="tab" aria-controls="list-ottoman2"></a>
+            <a class="blason-large valaque list-group-item list-group-item-action" id="list-valaque-list2" data-toggle="list" href="#list-valaque2" role="tab" aria-controls="list-valaque2"></a>
+            <a class="blason-large mercenaire list-group-item list-group-item-action" id="list-mercenaire-list2" data-toggle="list" href="#list-mercenaire2" role="tab" aria-controls="list-mercenaire2"></a>
+            <a class="blason-large mal list-group-item list-group-item-action" id="list-mal-list2" data-toggle="list" href="#list-mal2" role="tab" aria-controls="list-mal2"></a>
+            <a class="blason-large bien list-group-item list-group-item-action" id="list-bien-list2" data-toggle="list" href="#list-bien2" role="tab" aria-controls="list-bien2"></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 border-right">
+          <div class="tab-content" id="nav-tabContent1">
+            <div class="tab-pane fade show active" id="list-neutre" role="tabpanel" aria-labelledby="list-neutre-list">
+              <select id="number1" style="width:10%"  onchange="trouveperso(1)" class="nbtroupe">
+                <option label="1">1</option>
+                <option label="2">2</option>
+                <option label="3">3</option>
+              </select>
+              <select style="width:85%" id="neutre1" class="trouveperso neutre form-control" onchange="trouveperso(1)">
+                <option label="placeholder"></option>
+              </select>
+            </div>
+            <div class="tab-pane fade show" id="list-francais" role="tabpanel" aria-labelledby="list-francais-list">
+              <select style="width:100%" class="trouveperso francais form-control" onchange="trouveperso(1)">
+                <option label="placeholder"></option>
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-anglais" role="tabpanel" aria-labelledby="list-anglais-list">
+              <select style="width:100%" class="trouveperso anglais form-control" onchange="trouveperso(1)">
+                <option label="placeholder"></option>
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-bourguignon" role="tabpanel" aria-labelledby="list-bourguignon-list">
+              <select style="width:100%" class="trouveperso bourguignon form-control" onchange="trouveperso(1)">
+                <option label="placeholder"></option>
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-ecossais" role="tabpanel" aria-labelledby="list-ecossais-list">
+              <select style="width:100%" class="trouveperso ecossais form-control" onchange="trouveperso(1)">
+                <option label="placeholder"></option>
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-ottoman" role="tabpanel" aria-labelledby="list-ottoman-list">
+              <select style="width:100%" class="trouveperso ottoman form-control" onchange="trouveperso(1)">
+                <option label="placeholder"></option>
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-valaque" role="tabpanel" aria-labelledby="list-valaque-list">
+              <select style="width:100%" class="trouveperso valaque form-control" onchange="trouveperso(1)">
+                <option label="placeholder"></option>
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-mercenaire" role="tabpanel" aria-labelledby="list-mercenaire-list">
+              <select style="width:100%" class="trouveperso mercenaire form-control" onchange="trouveperso(1)">
+                <option label="placeholder"></option>
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-mal" role="tabpanel" aria-labelledby="list-mal-list">
+              <select style="width:100%" class="trouveperso mal form-control" onchange="trouveperso(1)">
+                <option label="placeholder"></option>
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-bien" role="tabpanel" aria-labelledby="list-bien-list">
+              <select style="width:100%" class="trouveperso bien form-control" onchange="trouveperso(1)">
+                <option label="placeholder"></option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="tab-content" id="nav-tabContent2">
+            <div class="tab-pane fade show active" id="list-neutre2" role="tabpanel" aria-labelledby="list-neutre-list2">
+              <select id="number2" style="width:10%" class="nbtroupe" onchange="trouveperso(document.querySelector('#neutre2').value,2)">
+                <option label="1">1</option>
+                <option label="2">2</option>
+                <option label="3">3</option>
+              </select>
+              <select style="width:85%" id="neutre2" class="trouveperso neutre form-control" onchange="trouveperso(2)">
+                <option label="placeholder"></option>
+
+              </select>
+            </div>
+            <div class="tab-pane fade show" id="list-francais2" role="tabpanel" aria-labelledby="list-francais-list2">
+              <select style="width:100%" class="trouveperso francais form-control" onchange="trouveperso(2)">
+                                <option label="placeholder"></option>
+
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-anglais2" role="tabpanel" aria-labelledby="list-anglais-list2">
+              <select style="width:100%" class="trouveperso anglais form-control" onchange="trouveperso(2)">
+                                <option label="placeholder"></option>
+
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-bourguignon2" role="tabpanel" aria-labelledby="list-bourguignon-list2">
+              <select style="width:100%" class="trouveperso bourguignon form-control" onchange="trouveperso(2)">
+                                <option label="placeholder"></option>
+
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-ecossais2" role="tabpanel" aria-labelledby="list-ecossais-list2">
+              <select style="width:100%" class="trouveperso ecossais form-control" onchange="trouveperso(2)">
+                                <option label="placeholder"></option>
+
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-ottoman2" role="tabpanel" aria-labelledby="list-ottoman-list2">
+              <select style="width:100%" class="trouveperso ottoman form-control" onchange="trouveperso(2)">
+                                <option label="placeholder"></option>
+
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-valaque2" role="tabpanel" aria-labelledby="list-valaque-list2">
+              <select style="width:100%" class="trouveperso valaque form-control" onchange="trouveperso(2)">
+                                <option label="placeholder"></option>
+
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-mercenaire2" role="tabpanel" aria-labelledby="list-mercenaire-list2">
+              <select style="width:100%" class="trouveperso mercenaire form-control" onchange="trouveperso(2)">
+                                <option label="placeholder"></option>
+
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-mal2" role="tabpanel" aria-labelledby="list-mal-list2">
+              <select style="width:100%" class="trouveperso mal form-control" onchange="trouveperso(2)">
+                                <option label="placeholder"></option>
+
+              </select>
+            </div>
+            <div class="tab-pane fade" id="list-bien2" role="tabpanel" aria-labelledby="list-bien-list2">
+              <select style="width:100%" class="trouveperso bien form-control" onchange="trouveperso(2)">
+                                <option label="placeholder"></option>
+
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-6 border-right">
+          <table id="attaque"  class="display compact table table-sm"></table>
+        </div>
+        <div class="col-6">
+          <table id="defense"  class="display compact table table-sm"></table>
+        </div>
+      </div>
+    </div>
+    <div class="row terrain">
+      <div class="col-1"></div>
+      <figure class="col-1">
+        <img class="img-circle plain" src="images/plain.jpg" />
+        <figcaption>Plaine</figcaption>
+      </figure>
+      <figure class="col-1">
+        <img class="img-circle forest" src="images/forest.jpg" />
+        <figcaption>Forêt</figcaption>
+      </figure>
+      <figure class="col-1">
+        <img class="img-circle swamp" src="images/swamp.jpg" />
+        <figcaption>Marais</figcaption>
+      </figure>
+      <figure class="col-1">
+        <img class="img-circle forest" src="images/pave.jpg" />
+        <figcaption>Village</figcaption>
+      </figure>
+      <figure class="col-1 border-right">
+        <img class="img-circle rock" src="images/rock.jpg" />
+        <figcaption>Rocher</figcaption>
+      </figure>
+      <figure class="col-1">
+        <img class="img-circle2 plain" src="images/plain.jpg" />
+        <figcaption>Plaine</figcaption>
+      </figure>
+       <figure class="col-1">
+         <img class="img-circle2 forest" src="images/forest.jpg" />
+         <figcaption>Forêt</figcaption>
+        </figure>
+       <figure class="col-1">
+         <img class="img-circle2 swamp" src="images/swamp.jpg" />
+         <figcaption>Marais</figcaption>
+       </figure>
+      <figure class="col-1">
+         <img class="img-circle2 forest" src="images/pave.jpg" />
+         <figcaption>Village</figcaption>
+      </figure>
+      <figure class="col-1">
+        <img class="img-circle2 rock" src="images/rock.jpg" />
+         <figcaption>Rocher</figcaption>
+      </figure>
+      <div class="col-1"></div>
+
+    </div>
+
+  <div class="container">
+    <svg class="hexagons">
+      <defs>
+        <pattern id="plain" width="1" height="1" x="0" y="0">
+          <image xlink:href="images/plain.jpg" width="400" height="400" />
+        </pattern>
+        <pattern id="pave" width="1" height="1" x="0" y="0">
+          <image xlink:href="images/pave.jpg" width="400" height="400" />
+        </pattern>
+        <pattern id="swamp" width="1" height="1" x="0" y="0">
+          <image xlink:href="images/swamp.jpg" width="400" height="400" />
+        </pattern>
+        <pattern id="forest" width="1" height="1" x="0" y="0">
+          <image xlink:href="images/forest.jpg" width="400" height="400" />
+        </pattern>
+        <pattern id="rock" width="1" height="1" x="0" y="0">
+          <image xlink:href="images/rock.jpg" width="400" height="400" />
+        </pattern>
+      </defs>
+      <g class='hexa'>
+      </g>
+      <foreignObject x="40" y="190" width="260" height="220">
+        <!--
+            Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
+            être omis, mais il est obligatoire dans le contexte d'un document SVG
+          -->
+        <div xmlns="http://www.w3.org/1999/xhtml" id="hex1">
+        </div>
+      </foreignObject>
+      <foreignObject x="400" y="190" width="260" height="220">
+        <!--
+            Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
+            être omis, mais il est obligatoire dans le contexte d'un document SVG
+          -->
+        <div xmlns="http://www.w3.org/1999/xhtml" id="hex2">
+        </div>
+      </foreignObject>
+      <foreignObject x="800" y="190" width="260" height="220">
+        <!--
+            Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
+            être omis, mais il est obligatoire dans le contexte d'un document SVG
+          -->
+        <div xmlns="http://www.w3.org/1999/xhtml" id="hex3">
+        </div>
+      </foreignObject>
+    </svg>
+  </div> 
+  </section>
+
+
+
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Denis Wings 2019</p>
+      <p>Tous droits réservés pour le jeu Joan of Arc pour Mythic Games</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script> -->
+  <!--  <script src="js/underscore-min.js"></script> -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- <script src="js/datatables.min.js"></script> -->
+  <script src="js/jquery.dataTables.min.js"></script>
+  <!--  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+  <!--  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> -->
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Plugin JavaScript -->
+  <script  src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!--  <script src="vendor/jquery-ui-1.12.1/jquery-ui.min.js"></script> -->
+  <!-- Custom JavaScript for this theme -->
+  <script src="js/scrolling-nav.js"></script>
+  <script src="js/dateline.org.js"></script>
+  <script src="js/select2.min.js"></script>
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script src="//d3js.org/topojson.v1.min.js"></script>
+
+  <script src="troupes.js"></script>
+  <script src="evenements.js"></script>
+  <script src="proba.js"></script>
+  <script src="hexa.js"></script>
+</body>
+
+</html>
