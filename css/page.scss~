@@ -1,0 +1,413 @@
+
+.img-circle,.img-circle2 {
+   border-radius: 50%;
+}
+.img-circle.selected, .img-circle2.selected{
+    border: solid 3px #FF0000;
+}
+.hexa {
+  fill: url(#plain);
+  pointer-events: all;
+  path {
+      -webkit-transition: fill 250ms linear;
+      transition: fill 250ms linear;
+  }
+  .fill {
+      fill: black;
+      fill-opacity:0.25;
+  }
+}
+.mesh {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+  pointer-events: none;
+}
+.border {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2px;
+  pointer-events: none;
+}
+.hexagon {
+  position: relative;
+  width: 300px; 
+  height: 173.21px;
+  margin: 86.60px 0;
+  background-image:  radial-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5)),url("../images/pave.jpg");
+  background-size: auto 334.8632px;
+  background-position: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  border-left: solid 5px #333333;
+  border-right: solid 5px #333333;
+  display:inline-block;
+  background-color:black;
+  table {
+      filter: drop-shadow(1px 1px 1px #000);
+  }
+  h4, h6 {
+      margin:0;
+  }
+  h4 {
+      height: 3em;
+      overflow:auto;
+  }
+  .recul::after,.mort::after,.touche::after,.rallie::after,.retarde::after {
+      filter:invert(1);
+  }
+  img {
+      width:4em;
+      height:4em;
+  }
+  span {
+      position:relative;
+      top:0;
+      left:0;
+      z-index:3;
+      text-align:center;
+      color:white;
+  }
+}
+.outhex {
+    display:inline-block;
+}
+.xtra {
+    font-size:10ex;
+    margin-left:-10px;
+}
+.hex {
+    display:inline-block;
+}
+.table-borderless td,
+.table-borderless th {
+    border: 0;
+}
+
+.hexTop,
+.hexBottom {
+  position: absolute;
+  z-index: 1;
+  width: 212.13px;
+  height: 212.13px;
+  overflow: hidden;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background: inherit;
+  left: 38.93px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+/*counter transform the bg image on the caps*/
+.hexTop:after,
+.hexBottom:after {
+  content: "";
+  position: absolute;
+  width: 290.0000px;
+  height: 167.4315780649915px;
+  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-83.7158px);
+  -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-83.7158px);
+  transform:          rotate(45deg) scaleY(1.7321) translateY(-83.7158px);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  background: inherit;
+}
+
+.hexTop {
+  top: -106.0660px;
+  border-top: solid 7.0711px #333333;
+  border-right: solid 7.0711px #333333;
+}
+
+.hexTop:before {
+  background-position: center top;
+}
+
+.hexBottom {
+  bottom: -106.0660px;
+  border-bottom: solid 7.0711px #333333;
+  border-left: solid 7.0711px #333333;
+}
+
+.hexBottom:before {
+  background-position: center bottom;
+}
+
+.hexagon:before {
+  content: "";
+  position: absolute;
+  top: 2.8868px;
+  left: 0;
+  width: 290.0000px;
+  height: 167.4316px;
+  z-index: 2;
+  background: inherit;
+}
+
+header {
+    background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/Bataille_de_Castillon.jpg");
+    background-size:cover;
+    background-position: center;
+}
+
+.blason::after {
+    content:"";
+    background-size:90%;
+    width:2ex;
+    height:2ex;
+    display:inline-block;
+    background-repeat:no-repeat;
+    background-position:center;
+    padding-bottom: 5px;
+    margin-bottom: -5px;
+}
+.blason-large {
+    text-align:center;
+}
+.blason-large::after {
+    content:"";
+    background-size:90%;
+    width:3ex;
+    height:3ex;
+    display:inline-block;
+    background-repeat:no-repeat;
+    background-position:center;
+    padding-bottom: 7px;
+    margin-bottom: -7px;
+    padding-left: 5px;
+    margin-left: -5px;
+}
+
+.red {
+    background-color:#ff6666;
+    color:#ff6666;
+}
+.pdv {
+    background-color:darkred;
+    border-radius:50%;
+    color:white;
+    display:inline-block;
+    width:1.3em;
+    text-align:center;
+}
+.subfaction {
+    position:relative;
+    top:-35px;
+    right:-10px;
+}
+.combat-cond::after{
+    content:"";
+    background-size:90%;
+    width:2ex;
+    height:2ex;
+    display:inline-block;
+    background-repeat:no-repeat;
+    background-position:center;
+    padding-bottom: 7px;
+    margin-bottom: -7px;
+    padding-left: 5px;
+    margin-left: -5px;
+    position:relative;
+    top:-12px;
+    right:3px;
+}
+.cond {
+    width:7ex;
+    height:2ex;
+    display:inline-block;
+    background-repeat:no-repeat;
+    background-position:center;
+    padding-bottom: 7px;
+    margin-bottom: -7px;
+    padding-left: 5px;
+    margin-left: -5px;
+    position:relative;
+    top:-12px;
+    right:3px;
+    font-size:x-small;
+}
+.commandement {
+    background-image:url("../images/commandementhexa.png");
+    background-size:90%;
+    width:6ex;
+    height:5ex;
+    display:inline-block;
+    background-repeat:no-repeat;
+    background-position:center;
+    margin-bottom: -6px;
+    margin-left: -11px;
+    padding-top:10px;
+    padding-left:12px;
+    color:whitesmoke;
+    font-size:small;
+    text-shadow: 1px 1px grey;
+}
+
+$icons: ("francais", "anglais","bourguignon", "ecossais","mercenaire","ottoman","valaque","mal","neutre","bien","cartelegende","actiongrise","actionbleue","actionjaune","actionverte","jetonlegende","jetonxp","jetonrumeur","jetonscenario","jetonincendie","jetonblessure","tue","touche","rallie","recul","mort","retarde","bouclier","melee","defense","tircloche0","tircloche1","tircloche2","tircloche3","tirtendu0","tirtendu1","tirtendu2","tirtendu3","artillerie","infanterie","cavalerie","volant","tirtendu","tircloche","tour","round","montour","tontour","here","hereandthere","hereandthere2","hereandtherehexa","poursuiteaprescombat","niveau1","niveau2","troupe","personnage","carteriviere","touttype","no","ralliement","move","touttypeennemi","touttypeallie","there","herehexa","tap","turn","actionblanche","game");
+
+
+@each $name in $icons {
+    .#{$name}::after {
+        background-image:url("../images/"+$name+".png");
+       
+    }
+}
+.here::after,.hereandthere::after,.hereandthere2::after,hereandtherehexa::after,herehexa::after,.there::after,.therehexa::after {
+    border:1px solid black;
+    border-radius:50%;
+}
+.hereandthere2::after {
+    width:2.5ex;
+    height:2.5ex;
+}
+
+.rallie::after,.carte::after,.action::after,.jeton::after,.mort::after,.retarde::after,.vierge::after,.bouclier::after,.tue::after,.touche::after,.recul::after,.combat::after,.dejaune::after,.derouge::after,.deblanc::after,.denoir::after,.type::after {
+    content:"";
+    background-size:90%;
+    width:3ex;
+    height:3ex;
+    display:inline-block;
+    background-repeat:no-repeat;
+    background-position:center;
+    padding-bottom: 7px;
+    margin-bottom: -7px;
+    padding-left: 5px;
+    margin-left: -5px;
+}
+.no::after {
+    content:"";
+    background-size:90%;
+    width:3ex;
+    height:3ex;
+    display:inline-block;
+    background-repeat:no-repeat;
+    background-position:center;
+    padding-bottom: 7px;
+    margin-bottom: -7px;
+    padding-left: 5px;
+    margin-left: -5px;
+}
+.facejaune,.facerouge,.facenoir,.faceblanc {
+    border: 4px solid #888;
+}
+.facejaune::after {
+    background-color:#d8ae55;
+}
+.facerouge::after {
+    background-color:#23B5C9; /*dc4a36;*/
+    filter:invert(100%);
+}
+.facenoir::after {
+    background-color:#CACAC7;/*#353538;*/
+    filter:invert(100%);
+}
+.faceblanc::after {
+    background-color:#eeeeff;
+}
+
+.dejaune::after {
+    background-image:url("../images/De_Jaune.png");
+}
+.derouge::after {
+    background-image:url("../images/De_Rouge.png");
+}
+.deblanc::after {
+    background-image:url("../images/De_Blanc.png");
+}
+.denoir::after {
+    background-image:url("../images/De_Noir.png");
+}
+#troupes .list-group-item.active{
+    background-color:#d2cabb;
+    color:#d2cabb;
+}
+.beige {
+    background-color:#d2cabb;
+}
+section {
+    padding: 6ex 0;
+}
+img {
+    padding:0;
+    width:90%;
+}
+.card img {
+    width:16px;
+}   
+.list-group-item {
+    padding:2px;
+    width:100%;
+}
+.card-columns {
+    column-count: 4;
+}
+.coat {
+    background: url('sprites.png') no-repeat;
+    display: inline-block;
+    width:32px;
+    height:31px;
+    float:left;
+}
+.coat.coat-Amaury-de-Craon { background-position: 0px 0px; }
+.coat.coat-Amaury-de-Severac { background-position: -32px 0px; }
+.coat.coat-Ambroise-de-Lore { background-position: -64px 0px; }
+.coat.coat-Arnaud-Amanieu-d-Albret { background-position: -96px 0px; }
+.coat.coat-Arnaud-de-Cervole { background-position: -128px 0px; }
+.coat.coat-Arthur-de-Richemont { background-position: -160px 0px; }
+.coat.coat-Bertrand-du-Guesclin { background-position: -192px 0px; }
+.coat.coat-Boucicaut { background-position: -224px 0px; }
+.coat.coat-Captal-de-Buch { background-position: -256px 0px; }
+.coat.coat-Charles-II-le-Magnanime { background-position: 0px -31px; }
+.coat.coat-Charles-d-Albret { background-position: -32px -31px; }
+.coat.coat-Charles-de-Bourbon { background-position: -64px -31px; }
+.coat.coat-Claude-de-Chastellux { background-position: -96px -31px; }
+.coat.coat-Comte-d-Arundel { background-position: -128px -31px; }
+.coat.coat-Comte-d-Auxerre { background-position: -160px -31px; }
+.coat.coat-Comte-d-Oxford { background-position: -192px -31px; }
+.coat.coat-Comte-de-Northampton { background-position: -224px -31px; }
+.coat.coat-Comte-de-Salisbury { background-position: -256px -31px; }
+.coat.coat-Comte-de-Suffolk { background-position: 0px -62px; }
+.coat.coat-Comte-de-Warwick { background-position: -32px -62px; }
+.coat.coat-Edmond-de-Somerset { background-position: -64px -62px; }
+.coat.coat-Edouard-III { background-position: -96px -62px; }
+.coat.coat-Edouard-d-York { background-position: -128px -62px; }
+.coat.coat-Gautier-VI-de-Brienne { background-position: -160px -62px; }
+.coat.coat-Gilles-de-Rais { background-position: -192px -62px; }
+.coat.coat-Henry-V { background-position: -224px -62px; }
+.coat.coat-Jacques-de-Bourbon { background-position: -256px -62px; }
+.coat.coat-Jean-1er-de-Luxembourg { background-position: 0px -93px; }
+.coat.coat-Jean-II-Le-Bon { background-position: -32px -93px; }
+.coat.coat-Jean-II-de-Luxembourg { background-position: -64px -93px; }
+.coat.coat-Jean-Stuart-de-Buchan { background-position: -96px -93px; }
+.coat.coat-Jean-Stuart-de-Derneley { background-position: -128px -93px; }
+.coat.coat-Jean-de-Bourbon { background-position: -160px -93px; }
+.coat.coat-Jean-de-Croy { background-position: -192px -93px; }
+.coat.coat-Jean-de-Dunois { background-position: -224px -93px; }
+.coat.coat-Jean-de-Lancastre { background-position: -256px -93px; }
+.coat.coat-Jean-de-Metz { background-position: 0px -124px; }
+.coat.coat-Jean-de-Toulongeon { background-position: -32px -124px; }
+.coat.coat-Jean-de-Vienne { background-position: -64px -124px; }
+.coat.coat-Jean-fils-du-Roi { background-position: -96px -124px; }
+.coat.coat-Jeanne-d-Arc { background-position: -128px -124px; }
+.coat.coat-John-Chandos { background-position: -160px -124px; }
+.coat.coat-John-Hawkwood { background-position: -192px -124px; }
+.coat.coat-John-Talbot { background-position: -224px -124px; }
+.coat.coat-John-de-la-Pole { background-position: -256px -124px; }
+.coat.coat-La-Hire { background-position: 0px -155px; }
+.coat.coat-Le-Prince-Noir { background-position: -32px -155px; }
+.coat.coat-Marechal-Arnoul-d-Audrehem { background-position: -64px -155px; }
+.coat.coat-Marechal-Jean-de-Clermont { background-position: -96px -155px; }
+.coat.coat-Philippe-VI-de-Valois { background-position: -128px -155px; }
+.coat.coat-Philippe-d-Orleans { background-position: -160px -155px; }
+.coat.coat-Philippe-le-Hardi { background-position: -192px -155px; }
+.coat.coat-Poton-de-Xaintrailles { background-position: -224px -155px; }
+.coat.coat-Prigent-de-Coetivy { background-position: -256px -155px; }
+.coat.coat-Radu-III-le-Beau { background-position: 0px -186px; }
+.coat.coat-Robert-Knolles { background-position: -32px -186px; }
+.coat.coat-Thomas-Kyriell { background-position: -64px -186px; }
+.coat.coat-Thomas-Montaigu { background-position: -96px -186px; }
+.coat.coat-Thomas-de-Scales { background-position: -128px -186px; }
+.coat.coat-William-Glasdale { background-position: -160px -186px; }
+.coat.coat-William-Wallace { background-position: -192px -186px; }
+.coat.coat-William-de-la-Pole { background-position: -224px -186px; }

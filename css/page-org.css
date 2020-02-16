@@ -1,0 +1,332 @@
+tbody td {
+    text-align:justify;
+}
+.img-circle,.img-circle2 {
+   border-radius: 50%;
+}
+.img-circle.selected, .img-circle2.selected{
+    border: solid 3px #FF0000;
+}
+#hex1 {
+    background-image:url("../images/archer.png");
+    background-size: 50px 50px;
+    background-position:center;
+}
+.hexagon {
+  position: relative;
+  width: 300px; 
+  height: 173.21px;
+  margin: 86.60px 0;
+  background-image:  radial-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5)),url("../images/pave.jpg");
+  background-size: auto 334.8632px;
+  background-position: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  border-left: solid 5px #333333;
+  border-right: solid 5px #333333;
+  display:inline-block;
+  background-color:black;
+}
+.hexagon table {
+filter: drop-shadow(1px 1px 1px #000);
+}
+.hexagon h4, .hexagon h6 {
+    margin:0;
+}
+.hexagon h4 {
+    height: 3em;
+    overflow:auto;
+}
+.outhex {
+    display:inline-block;
+}
+.xtra {
+    font-size:10ex;
+    margin-left:-10px;
+}
+.hex {
+    display:inline-block;
+}
+.table-borderless td,
+.table-borderless th {
+    border: 0;
+}
+.hexagon .recul::after,.hexagon .mort::after,.hexagon .touche::after,.rallie::after {
+    filter:invert(1);
+}
+.hexagon img {
+    width:4em;
+    height:4em;
+}
+.hexTop,
+.hexBottom {
+  position: absolute;
+  z-index: 1;
+  width: 212.13px;
+  height: 212.13px;
+  overflow: hidden;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background: inherit;
+  left: 38.93px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+/*counter transform the bg image on the caps*/
+.hexTop:after,
+.hexBottom:after {
+  content: "";
+  position: absolute;
+  width: 290.0000px;
+  height: 167.4315780649915px;
+  -webkit-transform:  rotate(45deg) scaleY(1.7321) translateY(-83.7158px);
+  -ms-transform:      rotate(45deg) scaleY(1.7321) translateY(-83.7158px);
+  transform:          rotate(45deg) scaleY(1.7321) translateY(-83.7158px);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  background: inherit;
+}
+
+.hexTop {
+  top: -106.0660px;
+  border-top: solid 7.0711px #333333;
+  border-right: solid 7.0711px #333333;
+}
+
+.hexTop:after {
+  background-position: center top;
+}
+
+.hexBottom {
+  bottom: -106.0660px;
+  border-bottom: solid 7.0711px #333333;
+  border-left: solid 7.0711px #333333;
+}
+
+.hexBottom:after {
+  background-position: center bottom;
+}
+
+.hexagon:after {
+  content: "";
+  position: absolute;
+  top: 2.8868px;
+  left: 0;
+  width: 290.0000px;
+  height: 167.4316px;
+  z-index: 2;
+  background: inherit;
+}
+.hexagon span {
+    position:relative;
+    top:0;
+    left:0;
+    z-index:3;
+    text-align:center;
+    color:white;
+}
+header {
+    background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/Bataille_de_Castillon.jpg");
+    background-size:cover;
+    background-position: center;
+}
+.blason {
+    width:4ex;
+    height:4ex;
+}
+#canvas {
+  width: 600px;
+  height: 400px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.red {
+    background-color:#ff6666;
+    color:#ff6666;
+}
+.blasonneutre::after,.blasonfrancais::after,.blasonanglais::after,.blasonbourguignon::after,.blasonecossais::after,.blasonmercenaire::after,.blasonottoman::after,.blasonvalaque::after,.blasonmal::after,.blasonbien::after {
+    content:"";
+    background-size:90%;
+    width:2ex;
+    height:2ex;
+    display:inline-block;
+    background-repeat:no-repeat;
+    background-position:center;
+    padding-bottom: 5px;
+    margin-bottom: -5px;
+}
+.Blasonfrancais,.Blasonanglais,.Blasonbourguignon,.Blasonecossais,.Blasonmercenaire,.Blasonottoman,.Blasonvalaque,.Blasonmal,.Blasonneutre,.Blasonbien {
+    text-align:center
+}                                                
+.rallie::after,.actiongrise::after,.jetonrumeur::after,.jetonmystique::after,.jetonxp,.mort::after,.vierge::after,.bouclier::after,.tue::after,.touche::after,.recul::after,.Blasonfrancais::after,.Blasonanglais::after,.Blasonbourguignon::after,.Blasonecossais::after,.Blasonmercenaire::after,.Blasonottoman::after,.Blasonvalaque::after,.Blasonmal::after,.Blasonneutre::after,.Blasonbien::after,.melee::after,.defense::after,.tirtendu0::after,.tirtendu1::after,.tirtendu2::after,.tirtendu3::after,.tircloche0::after,.tircloche1::after,.tircloche2::after,.tircloche3::after,.dejaune::after,.derouge::after,.deblanc::after,.denoir::after,.cavalerie::after,.infanterie::after,.volant::after,.artillerie::after {
+    content:"";
+    background-size:90%;
+    width:3ex;
+    height:3ex;
+    display:inline-block;
+    background-repeat:no-repeat;
+    background-position:center;
+    padding-bottom: 7px;
+    margin-bottom: -7px;
+    padding-left: 5px;
+    margin-left: -5px;
+}
+.actiongrise::after {
+    background-image:url('../images/Cube_Action2.png');
+}
+.jetonmystique::after {
+    background-image:url('../images/Jeton_Mystique.png');
+}
+.jetonmystique::after {
+    background-image:url('../images/Jeton_XP.png');
+}
+.jetonrumeur::after {
+    background-image:url('../images/Jeton_Rumeur.png');
+}
+.facejaune,.facerouge,.facenoir,.faceblanc {
+    border: 4px solid #888;
+}
+.facejaune::after {
+    background-color:#d8ae55;
+}
+.facerouge::after {
+    background-color:#23B5C9; /*dc4a36;*/
+    filter:invert(100%);
+}
+.facenoir::after {
+    background-color:#CACAC7;/*#353538;*/
+    filter:invert(100%);
+}
+.faceblanc::after {
+    background-color:#eeeeff;
+}
+.tue::after {
+    background-image:url("../images/tue.png");
+}
+.touche::after {
+    background-image:url("../images/touche.png");
+}
+.rallie::after {
+    background-image:url("../images/rallie.png");
+}
+.recul::after {
+    background-image:url("../images/recul.png");
+}
+.mort::after {
+    background-image:url("../images/Mort.png");
+}
+.bouclier::after {
+    background-image:url("../images/bouclier.png");
+}
+.melee::after {
+    background-image:url("../images/Melee.png");
+}
+.defense::after {
+    background-image:url("../images/Defense.png");
+}
+.tircloche0::after {
+    background-image:url("../images/DistantA.png");
+}
+.tircloche1::after {
+    background-image:url("../images/Distant1.png");
+}
+.tircloche2::after {
+    background-image:url("../images/Distant2.png");
+}
+.tircloche3::after {
+    background-image:url("../images/Distant3.png");
+}
+.tirtendu0::after {
+    background-image:url("../images/DirectA.png");
+}
+.tirtendu1::after {
+    background-image:url("../images/Direct1.png");
+}
+.tirtendu2::after {
+    background-image:url("../images/Direct2.png");
+}
+.tirtendu3::after {
+    background-image:url("../images/Direct3.png");
+}
+.dejaune::after {
+    background-image:url("../images/De_Jaune.png");
+}
+.derouge::after {
+    background-image:url("../images/De_Rouge.png");
+}
+.deblanc::after {
+    background-image:url("../images/De_Blanc.png");
+}
+.denoir::after {
+    background-image:url("../images/De_Noir.png");
+}
+.infanterie::after {
+    background-image:url("../images/Infanterie.png");
+}
+.cavalerie::after {
+    background-image:url("../images/Cavalerie.png");
+}
+.artillerie::after {
+    background-image:url("../images/Engin.png");
+}
+.volant::after {
+    background-image:url("../images/Aile.png");
+}
+.blasonfrancais::after,.Blasonfrancais::after {
+    background-image:url("../images/Francais.png");
+}
+.blasonanglais::after,.Blasonanglais::after {
+    background-image:url("../images/Anglais.png");
+}
+.blasonbourguignon::after,.Blasonbourguignon::after {
+    background-image:url("../images/Bourguignon.png");
+}
+.blasonecossais::after,.Blasonecossais::after {
+    background-image:url("../images/Ecossais.png");
+}
+.blasonmal::after,.Blasonmal::after {
+    background-image:url("../images/Mal.png");
+}
+.blasonbien::after,.Blasonbien::after {
+    background-image:url("../images/Bien.png");
+}
+.blasonmercenaire::after,.Blasonmercenaire::after {
+    background-image:url("../images/Mercenaire.png");
+}
+.blasonvalaque::after,.Blasonvalaque::after {
+    background-image:url("../images/Valaque.png");
+}
+.blasonottoman::after,.Blasonottoman::after {
+    background-image:url("../images/Ottoman.png");
+}
+.blasonneutre::after,.Blasonneutre::after {
+    background-image:url("../images/Neutre.png");
+}
+#troupes .list-group-item.active{
+    background-color:#d2cabb;
+    color:#d2cabb;
+}
+.beige {
+    background-color:#d2cabb;
+}
+section {
+    padding: 6ex 0;
+}
+img {
+    padding:0;
+    width:90%;
+}
+.card img {
+    width:16px;
+}   
+.list-group-item {
+    padding:2px;
+    width:100%;
+}
+.card-columns {
+    column-count: 4;
+}
