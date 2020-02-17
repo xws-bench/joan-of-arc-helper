@@ -709,14 +709,14 @@ $( document ).ready(function() {
         $(this).addClass("selected");
         let img=$(this).attr("src").split('.')[0];
         trouveperso(1);
-        $(".hexa .hex8").css("fill","url(#"+img.substr(7)+")");
+        $(".hexa .hex8").css("fill","url(#"+img.substr(3)+")");
     });
     $(".img-circle2").click(function() {
         $(".img-circle2").removeClass("selected");
         $(this).addClass("selected");
         let img=$(this).attr("src").split('.')[0];
         trouveperso(2);
-        $(".hexa .hex9").css("fill","url(#"+img.substr(7)+")");
+        $(".hexa .hex9").css("fill","url(#"+img.substr(3)+")");
     });
 
 });
