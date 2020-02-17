@@ -13,7 +13,7 @@
     fill: url(#plain); }
   .hexa .fill {
     fill: black;
-    fill-opacity: 0.25; }
+    fill-opacity: 0.35; }
 
 .mesh {
   fill: none;
@@ -32,7 +32,7 @@
   width: 300px;
   height: 173.21px;
   margin: 86.60px 0;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url("../images/pave.jpg");
+  background-image: radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url("pave.jpg");
   background-size: auto 334.8632px;
   background-position: center;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
@@ -133,7 +133,7 @@
   background: inherit; }
 
 header {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/Bataille_de_Castillon.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Bataille_de_Castillon.jpg");
   background-size: cover;
   background-position: center; }
 
@@ -213,7 +213,7 @@ header {
   font-size: x-small; }
 
 .commandement {
-  background-image: url("../images/commandementhexa.png");
+  background-image: url("../images/icon/commandementhexa.png");
   background-size: 90%;
   width: 6ex;
   height: 5ex;
@@ -229,214 +229,214 @@ header {
   text-shadow: 1px 1px grey; }
 
 .francais::after {
-  background-image: url("../images/francais.png"); }
+  background-image: url("../images/icon/francais.png"); }
 
 .anglais::after {
-  background-image: url("../images/anglais.png"); }
+  background-image: url("../images/icon/anglais.png"); }
 
 .bourguignon::after {
-  background-image: url("../images/bourguignon.png"); }
+  background-image: url("../images/icon/bourguignon.png"); }
 
 .ecossais::after {
-  background-image: url("../images/ecossais.png"); }
+  background-image: url("../images/icon/ecossais.png"); }
 
 .mercenaire::after {
-  background-image: url("../images/mercenaire.png"); }
+  background-image: url("../images/icon/mercenaire.png"); }
 
 .ottoman::after {
-  background-image: url("../images/ottoman.png"); }
+  background-image: url("../images/icon/ottoman.png"); }
 
 .valaque::after {
-  background-image: url("../images/valaque.png"); }
+  background-image: url("../images/icon/valaque.png"); }
 
 .mal::after {
-  background-image: url("../images/mal.png"); }
+  background-image: url("../images/icon/mal.png"); }
 
 .neutre::after {
-  background-image: url("../images/neutre.png"); }
+  background-image: url("../images/icon/neutre.png"); }
 
 .bien::after {
-  background-image: url("../images/bien.png"); }
+  background-image: url("../images/icon/bien.png"); }
 
 .cartelegende::after {
-  background-image: url("../images/cartelegende.png"); }
+  background-image: url("../images/icon/cartelegende.png"); }
 
 .actiongrise::after {
-  background-image: url("../images/actiongrise.png"); }
+  background-image: url("../images/icon/actiongrise.png"); }
 
 .actionbleue::after {
-  background-image: url("../images/actionbleue.png"); }
+  background-image: url("../images/icon/actionbleue.png"); }
 
 .actionjaune::after {
-  background-image: url("../images/actionjaune.png"); }
+  background-image: url("../images/icon/actionjaune.png"); }
 
 .actionverte::after {
-  background-image: url("../images/actionverte.png"); }
+  background-image: url("../images/icon/actionverte.png"); }
 
 .jetonlegende::after {
-  background-image: url("../images/jetonlegende.png"); }
+  background-image: url("../images/icon/jetonlegende.png"); }
 
 .jetonxp::after {
-  background-image: url("../images/jetonxp.png"); }
+  background-image: url("../images/icon/jetonxp.png"); }
 
 .jetonrumeur::after {
-  background-image: url("../images/jetonrumeur.png"); }
+  background-image: url("../images/icon/jetonrumeur.png"); }
 
 .jetonscenario::after {
-  background-image: url("../images/jetonscenario.png"); }
+  background-image: url("../images/icon/jetonscenario.png"); }
 
 .jetonincendie::after {
-  background-image: url("../images/jetonincendie.png"); }
+  background-image: url("../images/icon/jetonincendie.png"); }
 
 .jetonblessure::after {
-  background-image: url("../images/jetonblessure.png"); }
+  background-image: url("../images/icon/jetonblessure.png"); }
 
 .tue::after {
-  background-image: url("../images/tue.png"); }
+  background-image: url("../images/icon/tue.png"); }
 
 .touche::after {
-  background-image: url("../images/touche.png"); }
+  background-image: url("../images/icon/touche.png"); }
 
 .rallie::after {
-  background-image: url("../images/rallie.png"); }
+  background-image: url("../images/icon/rallie.png"); }
 
 .recul::after {
-  background-image: url("../images/recul.png"); }
+  background-image: url("../images/icon/recul.png"); }
 
 .mort::after {
-  background-image: url("../images/mort.png"); }
+  background-image: url("../images/icon/mort.png"); }
 
 .retarde::after {
-  background-image: url("../images/retarde.png"); }
+  background-image: url("../images/icon/retarde.png"); }
 
 .bouclier::after {
-  background-image: url("../images/bouclier.png"); }
+  background-image: url("../images/icon/bouclier.png"); }
 
 .melee::after {
-  background-image: url("../images/melee.png"); }
+  background-image: url("../images/icon/melee.png"); }
 
 .defense::after {
-  background-image: url("../images/defense.png"); }
+  background-image: url("../images/icon/defense.png"); }
 
 .tircloche0::after {
-  background-image: url("../images/tircloche0.png"); }
+  background-image: url("../images/icon/tircloche0.png"); }
 
 .tircloche1::after {
-  background-image: url("../images/tircloche1.png"); }
+  background-image: url("../images/icon/tircloche1.png"); }
 
 .tircloche2::after {
-  background-image: url("../images/tircloche2.png"); }
+  background-image: url("../images/icon/tircloche2.png"); }
 
 .tircloche3::after {
-  background-image: url("../images/tircloche3.png"); }
+  background-image: url("../images/icon/tircloche3.png"); }
 
 .tirtendu0::after {
-  background-image: url("../images/tirtendu0.png"); }
+  background-image: url("../images/icon/tirtendu0.png"); }
 
 .tirtendu1::after {
-  background-image: url("../images/tirtendu1.png"); }
+  background-image: url("../images/icon/tirtendu1.png"); }
 
 .tirtendu2::after {
-  background-image: url("../images/tirtendu2.png"); }
+  background-image: url("../images/icon/tirtendu2.png"); }
 
 .tirtendu3::after {
-  background-image: url("../images/tirtendu3.png"); }
+  background-image: url("../images/icon/tirtendu3.png"); }
 
 .artillerie::after {
-  background-image: url("../images/artillerie.png"); }
+  background-image: url("../images/icon/artillerie.png"); }
 
 .infanterie::after {
-  background-image: url("../images/infanterie.png"); }
+  background-image: url("../images/icon/infanterie.png"); }
 
 .cavalerie::after {
-  background-image: url("../images/cavalerie.png"); }
+  background-image: url("../images/icon/cavalerie.png"); }
 
 .volant::after {
-  background-image: url("../images/volant.png"); }
+  background-image: url("../images/icon/volant.png"); }
 
 .tirtendu::after {
-  background-image: url("../images/tirtendu.png"); }
+  background-image: url("../images/icon/tirtendu.png"); }
 
 .tircloche::after {
-  background-image: url("../images/tircloche.png"); }
+  background-image: url("../images/icon/tircloche.png"); }
 
 .tour::after {
-  background-image: url("../images/tour.png"); }
+  background-image: url("../images/icon/tour.png"); }
 
 .round::after {
-  background-image: url("../images/round.png"); }
+  background-image: url("../images/icon/round.png"); }
 
 .montour::after {
-  background-image: url("../images/montour.png"); }
+  background-image: url("../images/icon/montour.png"); }
 
 .tontour::after {
-  background-image: url("../images/tontour.png"); }
+  background-image: url("../images/icon/tontour.png"); }
 
 .here::after {
-  background-image: url("../images/here.png"); }
+  background-image: url("../images/icon/here.png"); }
 
 .hereandthere::after {
-  background-image: url("../images/hereandthere.png"); }
+  background-image: url("../images/icon/hereandthere.png"); }
 
 .hereandthere2::after {
-  background-image: url("../images/hereandthere2.png"); }
+  background-image: url("../images/icon/hereandthere2.png"); }
 
 .hereandtherehexa::after {
-  background-image: url("../images/hereandtherehexa.png"); }
+  background-image: url("../images/icon/hereandtherehexa.png"); }
 
 .poursuiteaprescombat::after {
-  background-image: url("../images/poursuiteaprescombat.png"); }
+  background-image: url("../images/icon/poursuiteaprescombat.png"); }
 
 .niveau1::after {
-  background-image: url("../images/niveau1.png"); }
+  background-image: url("../images/icon/niveau1.png"); }
 
 .niveau2::after {
-  background-image: url("../images/niveau2.png"); }
+  background-image: url("../images/icon/niveau2.png"); }
 
 .troupe::after {
-  background-image: url("../images/troupe.png"); }
+  background-image: url("../images/icon/troupe.png"); }
 
 .personnage::after {
-  background-image: url("../images/personnage.png"); }
+  background-image: url("../images/icon/personnage.png"); }
 
 .carteriviere::after {
-  background-image: url("../images/carteriviere.png"); }
+  background-image: url("../images/icon/carteriviere.png"); }
 
 .touttype::after {
-  background-image: url("../images/touttype.png"); }
+  background-image: url("../images/icon/touttype.png"); }
 
 .no::after {
-  background-image: url("../images/no.png"); }
+  background-image: url("../images/icon/no.png"); }
 
 .ralliement::after {
-  background-image: url("../images/ralliement.png"); }
+  background-image: url("../images/icon/ralliement.png"); }
 
 .move::after {
-  background-image: url("../images/move.png"); }
+  background-image: url("../images/icon/move.png"); }
 
 .touttypeennemi::after {
-  background-image: url("../images/touttypeennemi.png"); }
+  background-image: url("../images/icon/touttypeennemi.png"); }
 
 .touttypeallie::after {
-  background-image: url("../images/touttypeallie.png"); }
+  background-image: url("../images/icon/touttypeallie.png"); }
 
 .there::after {
-  background-image: url("../images/there.png"); }
+  background-image: url("../images/icon/there.png"); }
 
 .herehexa::after {
-  background-image: url("../images/herehexa.png"); }
+  background-image: url("../images/icon/herehexa.png"); }
 
 .tap::after {
-  background-image: url("../images/tap.png"); }
+  background-image: url("../images/icon/tap.png"); }
 
 .turn::after {
-  background-image: url("../images/turn.png"); }
+  background-image: url("../images/icon/turn.png"); }
 
 .actionblanche::after {
-  background-image: url("../images/actionblanche.png"); }
+  background-image: url("../images/icon/actionblanche.png"); }
 
 .game::after {
-  background-image: url("../images/game.png"); }
+  background-image: url("../images/icon/game.png"); }
 
 .here::after, .hereandthere::after, .hereandthere2::after, hereandtherehexa::after, herehexa::after, .there::after, .therehexa::after {
   border: 1px solid black;
@@ -492,16 +492,16 @@ header {
   background-color: #eeeeff; }
 
 .dejaune::after {
-  background-image: url("../images/De_Jaune.png"); }
+  background-image: url("../images/icon/De_Jaune.png"); }
 
 .derouge::after {
-  background-image: url("../images/De_Rouge.png"); }
+  background-image: url("../images/icon/De_Rouge.png"); }
 
 .deblanc::after {
-  background-image: url("../images/De_Blanc.png"); }
+  background-image: url("../images/icon/De_Blanc.png"); }
 
 .denoir::after {
-  background-image: url("../images/De_Noir.png"); }
+  background-image: url("../images/icon/De_Noir.png"); }
 
 #troupes .list-group-item.active {
   background-color: #d2cabb;
@@ -528,7 +528,7 @@ img {
   column-count: 4; }
 
 .coat {
-  background: url("sprites.png") no-repeat;
+  background: url("blasons.png") no-repeat;
   display: inline-block;
   width: 32px;
   height: 31px;
