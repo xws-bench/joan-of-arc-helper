@@ -134,9 +134,20 @@ function bouclier(dices,parade) {
     res.bouclier=pr;
     return res;
 }
+function untouchetue(p,h,k) {
+    if (h>0) { k=k+1; h=h-1; }
+    return [p,h,k];
+}
+function touchetuerecul(p,h,k) {
+    return [p+h+k,0,0];
+}
 function annule1recul(p,h,k) {
     if (p>0) p=p-1;
     return [p,h,k];
+}
+function doubleblessure(p,h) {
+    if (h>0) h++;
+    return [p,h]
 }
 function annule2recul(p,h,k) {
     if (p>0) p=p-1;
@@ -185,10 +196,9 @@ function attaque(dices,mod,group1,group2,feinte) {
 	for (h=0; h<=n-p; h++)
 	    for (k=0; k<=n-h-p; k++) {// peut etre pourfendeur
 		i=p+10*h+100*k;
-                if (typeof mod=="function") {
-                  [recul,touche,tue]=mod(p,h,k);
-                  } else [recul,touche,tue]=[p,h,k];
-                  res[tue*100+touche*10+recul]+=pr[i];
+                if (typeof group1.bonusattaque=="function") [p,h,k]=group1.bonusattaque(p,h,k);
+                if (typeof mod=="function") [p,h,k]=mod(p,h,k);
+                res[k*100+h*10+p]+=pr[i];
             }
     //for (i=0;i<=n;i++) $(".main").append("<p>"+i+":"+res[i]+"</p>");
     return res;
@@ -272,8 +282,17 @@ function combat_a(a,na,bouclier,nd,coef,group1,group2,res) {
                             if (kk>0) 
                                 res.tue+=val;
                             else res.hdc+=val;
+                        } else if (kk+hh>0) {
+                            console.log("non lethal attack "+(kk+hh)+" "+k+"/"+h+"/"+p+"/"+b);
+                            if (typeof group1.postattaque=="function") {
+                                console.log("  "+group1.postattaque(pp,kk+hh)[1]+"/"+group2.pdv);
+
+                                [pp,kk]=group1.postattaque(pp,kk+hh)
+                                if (kk>=group2.pdv) {
+                                    res.hdc+=val;
+                                } else res.blessure[kk]+=val;
+                            } else res.blessure[kk]+=val;
                         } else if (pp>0) res.recul+=val;
-                        else res.blessure[kk+hh]+=val;
                     } else res.blessure[0]+=val;
                 }
             }

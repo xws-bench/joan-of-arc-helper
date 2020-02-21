@@ -15,7 +15,7 @@
   }
   .fill {
       fill: black;
-      fill-opacity:0.25;
+      fill-opacity:0.35;
   }
 }
 .mesh {
@@ -35,7 +35,7 @@
   width: 300px; 
   height: 173.21px;
   margin: 86.60px 0;
-  background-image:  radial-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5)),url("../images/pave.jpg");
+  background-image:  radial-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5)),url("pave.png");
   background-size: auto 334.8632px;
   background-position: center;
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
@@ -152,7 +152,7 @@
 }
 
 header {
-    background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../images/Bataille_de_Castillon.jpg");
+    background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("Bataille_de_Castillon.jpg");
     background-size:cover;
     background-position: center;
 }
@@ -234,7 +234,7 @@ header {
     font-size:x-small;
 }
 .commandement {
-    background-image:url("../images/commandementhexa.png");
+    background-image:url("../images/icon/commandementhexa.png");
     background-size:90%;
     width:6ex;
     height:5ex;
@@ -255,7 +255,7 @@ $icons: ("francais", "anglais","bourguignon", "ecossais","mercenaire","ottoman",
 
 @each $name in $icons {
     .#{$name}::after {
-        background-image:url("../images/"+$name+".png");
+        background-image:url("../images/icon/"+$name+".png");
        
     }
 }
@@ -313,16 +313,16 @@ $icons: ("francais", "anglais","bourguignon", "ecossais","mercenaire","ottoman",
 }
 
 .dejaune::after {
-    background-image:url("../images/De_Jaune.png");
+    background-image:url("../images/icon/De_Jaune.png");
 }
 .derouge::after {
-    background-image:url("../images/De_Rouge.png");
+    background-image:url("../images/icon/De_Rouge.png");
 }
 .deblanc::after {
-    background-image:url("../images/De_Blanc.png");
+    background-image:url("../images/icon/De_Blanc.png");
 }
 .denoir::after {
-    background-image:url("../images/De_Noir.png");
+    background-image:url("../images/icon/De_Noir.png");
 }
 #troupes .list-group-item.active{
     background-color:#d2cabb;
@@ -349,7 +349,7 @@ img {
     column-count: 4;
 }
 .coat {
-    background: url('sprites.png') no-repeat;
+    background: url('blasons.png') no-repeat;
     display: inline-block;
     width:32px;
     height:31px;
