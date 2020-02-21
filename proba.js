@@ -194,13 +194,17 @@ function attaque(dices,mod,group1,group2,feinte) {
     }
     for (p=0; p<=n; p++) 
 	for (h=0; h<=n-p; h++)
-	    for (k=0; k<=n-h-p; k++) {// peut etre pourfendeur
+	    for (k=0; k<=n-h-p; k++) {
+                let p2,h2,k2;
+                p2=p;k2=k;h2=h;
 		i=p+10*h+100*k;
-                if (typeof group1.bonusattaque=="function") [p,h,k]=group1.bonusattaque(p,h,k);
-                if (typeof mod=="function") [p,h,k]=mod(p,h,k);
-                res[k*100+h*10+p]+=pr[i];
+                if (typeof group1.bonusattaque=="function") [p2,h2,k2]=group1.bonusattaque(p2,h2,k2);
+                if (typeof mod=="function") {
+                    [p2,h2,k2]=mod(p2,h2,k2);
+                }
+                res[k2*100+h2*10+p2]+=pr[i];
             }
-    //for (i=0;i<=n;i++) $(".main").append("<p>"+i+":"+res[i]+"</p>");
+    //for (i=0;i<=n*100;i++) console.log(i+":"+res[i]);
     return res;
 }
 function compose(res1,res2) {
@@ -283,10 +287,7 @@ function combat_a(a,na,bouclier,nd,coef,group1,group2,res) {
                                 res.tue+=val;
                             else res.hdc+=val;
                         } else if (kk+hh>0) {
-                            console.log("non lethal attack "+(kk+hh)+" "+k+"/"+h+"/"+p+"/"+b);
                             if (typeof group1.postattaque=="function") {
-                                console.log("  "+group1.postattaque(pp,kk+hh)[1]+"/"+group2.pdv);
-
                                 [pp,kk]=group1.postattaque(pp,kk+hh)
                                 if (kk>=group2.pdv) {
                                     res.hdc+=val;
@@ -311,6 +312,9 @@ function combat(group1,group2,islogged) {
     let d,dd,nd,h,p,b,ret;
     if (group2.defense) {
         dd=group2.defense;
+        if (group1.enleve1d&&dd[0]!=unbouclier) {
+            dd=dd.splice(0, 1);
+        }
         let parade=group2.parade;
         if ($(".img-circle2.forest.selected").length>0) {
             parade=true;
