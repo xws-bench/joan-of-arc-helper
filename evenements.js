@@ -3,27 +3,27 @@ const COULEUR_BATAILLES=["col-blue","col-yellow","col-red","col-green","col-red"
 
 class Evenement {
     static el() {
-        return [{start:"1297-09-11",text:"Bataille du Pont de Stirling", victoire:ECOSSAIS,desc:"La bataille du pont de Stirling constitue une des batailles des guerres d’indépendance de l’Écosse. Le 11 septembre 1297, les armées d'Andrew de Moray et de William Wallace affrontent celles de John de Warenne, 6e comte de Surrey, leur infligeant une défaite.",flag:[ECOSSAIS,ANGLAIS],commandants:["Wallace"]},
-                {start:"1298-07",text:"Bataille de Falkirk", flag:[ECOSSAIS,ANGLAIS],desc:"La bataille de Falkirk, qui eut lieu en juillet 1298, marqua la fin de l'épopée de William Wallace lors de la Première Guerre d'indépendance de l'Écosse.",victoire:ANGLAIS,commandants:["Wallace"]},
+        return [{start:"1297-09-11",text:"Bataille du Pont de Stirling", victoire:ECOSSAIS,desc:"La bataille du pont de Stirling constitue une des batailles des guerres d’indépendance de l’Écosse. Le 11 septembre 1297, les armées d'Andrew de Moray et de William Wallace affrontent celles de John de Warenne, 6e comte de Surrey, leur infligeant une défaite.",flag:[ECOSSAIS,ANGLAIS],commandants:["Wallace"],source:"https://fr.wikipedia.org/wiki/Bataille_du_pont_de_Stirling",campagne:"Guerre d'indépendance de l'Ecosse"},
+                {start:"1298-07",text:"Bataille de Falkirk", flag:[ECOSSAIS,ANGLAIS],desc:"La bataille de Falkirk, qui eut lieu en juillet 1298, marqua la fin de l'épopée de William Wallace lors de la Première Guerre d'indépendance de l'Écosse.",victoire:ANGLAIS,commandants:["Wallace"],campagne:"Guerre d'indépendance de l'Ecosse",source:"https://fr.wikipedia.org/wiki/Bataille_de_Falkirk_(1298)"},
                 {start:"1327-01-25",text:"Début du règne d'Edouard III",flag:[ANGLAIS]},
                 {start:"1339-10",stop:"1339-11",text:"Siège de Cambrai",flag:[FRANCAIS,ANGLAIS],commandants:["Edouard III"],desc:"Cambrai résiste à tous les assauts des Anglais pendant 2 semaines. Les forces anglaises se retirent quand l'armée de soutien de Philippe IV arrive.",source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Cambrai_(1339)",campagne:"Chevauchée d'Edouard III"},
                 {start:"1340-05-24",text:"Bataille de l'Ecluse",flag:[FRANCAIS,ANGLAIS],desc:"Une bataille navale où la flotte anglaise écrase la flotte française.",victoire:ANGLAIS,source:"https://fr.wikipedia.org/wiki/Bataille_de_L%27%C3%89cluse_(1340)",campagne:"Chevauchée d'Edouard III"},
                 {start:"1340-07-23",stop:"1340-09-25",text:"Siège de Tournai", flag:[FRANCAIS,ANGLAIS],commandants:["Edouard III","Philippe VI de Valois"],desc:"Edouard III assiège Tournai, Philippe VI approche avec une puissante armée. Jeanne de Valois, la belle-mère d'Edouard et soeur de Philippe, négocie une trève et chacun retourne en son pays.",source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Tournai_(1340)",campagne:"Chevauchée d'Edouard III"},
                 {start:"1340-07-26",text:"Bataille de Saint-Omer", flag:[FRANCAIS,ANGLAIS],victoire:FRANCAIS,campagne:"Chevauchée d'Edouard III",desc:"L'arrière garde et les bagages de l'armée anglo-flamande est massacrée devant Saint-Omer par les Français.",source:"https://fr.wikipedia.org/wiki/Bataille_de_Saint-Omer_(1340)"},
-                {start:"1341-10-14",text:"Bataille de Champtoceaux", flag:[FRANCAIS,ANGLAIS],campagne:"Guerre de succession de Bretagne",victoire:FRANCAIS,desc:"La bataille inaugure le conflit dynastique en Bretagne, opposant Charles de Blois à Jean de Montfort, soutenu par les Anglais. Les deux rivaux s'opposent pendant 2 jours près d'une ferme et finalement Jean de Montfort s'enfuie à Nantes.",commandants:["Brienne"]},
+                {start:"1341-10-14",text:"Bataille de Champtoceaux", flag:[FRANCAIS,ANGLAIS],campagne:"Guerre de succession de Bretagne",victoire:FRANCAIS,desc:"La bataille inaugure le conflit dynastique en Bretagne, opposant Charles de Blois à Jean de Montfort, soutenu par les Anglais. Les deux rivaux s'opposent pendant 2 jours près d'une ferme et finalement Jean de Montfort s'enfuie à Nantes.",commandants:["Brienne"],source:"https://fr.wikipedia.org/wiki/Bataille_de_Champtoceaux"},
                 {start:"1342-04",text:"Bataille de Quimperlé", flag:[FRANCAIS,ANGLAIS],campagne:"Guerre de succession de Bretagne",victoire:ANGLAIS,desc:"Louis de la Cerda , commandant de l'armée de Charles de Blois de 6000 hommes, rencontre 3000 archers anglais. Les premiers finissent par fuir.",source:"https://fr.wikipedia.org/wiki/Bataille_de_Quimperl%C3%A9"},
                 {start:"1342-05",start:"1342-06",text:"Siège d'Hennebont", flag:[FRANCAIS,ANGLAIS],campagne:"Guerre de succession de Bretagne",victoire:ANGLAIS,source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_d%27Hennebont",desc:"Les troupes montfortistes font le siège d'Hennebont, dans laquelle est Jeanne de Flandre, mère de Jean de Montfort. Grace à des ruses, Jeanne parvient à sortir de la ville et revient avec des renforts. Le siège est levé par la suite."},
                 {start:"1342-12-05",stop:"1343-01-19",text:"Siège de Vannes", flag:[FRANCAIS,ANGLAIS,BIEN],victoire:BIEN,campagne:"Guerre de succession de Bretagne",commandants:["Edouard III","Salisbury"],desc:"Quatre sièges successifs et la ville sera remise aux légats du pape, après intervention du pape Clément VI",source:"https://fr.wikipedia.org/wiki/Si%C3%A8ges_de_Vannes_(1342)"},
                 {start:"1342-09-19",text:"Bataille de Morlaix", flag:[FRANCAIS,ANGLAIS],campagne:"Guerre de succession de Bretagne",victoire:FRANCAIS,commandants:["Northampton"],source:"https://fr.wikipedia.org/wiki/Bataille_de_Morlaix",desc:"Northampton, assiegeant Morlaix, intercepte l'armée Francaise-Bretonne de Charles de Blois qui vient libérer la ville"},
-                {start:"1345-06-17",text:"Bataille de Cadoret", campagne:"Guerre de succession de Bretagne",flag:[FRANCAIS,ANGLAIS],victoire:ANGLAIS,desc:"Charles de Blois combat Thomas Dagworth toute une après-midi. Pris sous une pluie de flèches, l'armée de Charles de Blois subit de nombreuses pertes."},
-                {start:"1345-08",text:"Bataille de Bergerac", flag:[FRANCAIS,ANGLAIS],victoire:ANGLAIS,desc:"Les armées anglo-gasconnes commandées par le comte de Derby combatent les Français autour du pont de Bergerac qui est sur la frontière de la Gascogne (anglaise) et devant les murs, avant la prise de la ville."},
-                {start:"1345-10-21",text:"Bataille d'Auberoche", flag:[FRANCAIS,ANGLAIS],victoire:ANGLAIS,desc:"Les anglo-gascons commandés par le comte de Derby, en infériorité numérique attaquent les Français pendant le déjeuner. Déroute totale des Français.",victoire:ANGLAIS},
+                {start:"1345-06-17",text:"Bataille de Cadoret", campagne:"Guerre de succession de Bretagne",source:"https://fr.wikipedia.org/wiki/Bataille_de_Cadoret",flag:[FRANCAIS,ANGLAIS],victoire:ANGLAIS,desc:"Charles de Blois combat Thomas Dagworth toute une après-midi. Pris sous une pluie de flèches, l'armée de Charles de Blois subit de nombreuses pertes."},
+                {start:"1345-08",text:"Bataille de Bergerac", flag:[FRANCAIS,ANGLAIS],victoire:ANGLAIS,desc:"Les armées anglo-gasconnes commandées par le comte de Derby combattent les Français autour du pont de Bergerac qui est sur la frontière de la Gascogne (anglaise) et devant les murs, avant la prise de la ville.",source:"https://fr.wikipedia.org/wiki/Bataille_de_Bergerac"},
+                {start:"1345-10-21",text:"Bataille d'Auberoche", flag:[FRANCAIS,ANGLAIS],victoire:ANGLAIS,desc:"Les anglo-gascons commandés par le comte de Derby, en infériorité numérique attaquent les Français pendant le déjeuner. Déroute totale des Français.",victoire:ANGLAIS,source:"https://fr.wikipedia.org/wiki/Bataille_d%27Auberoche"},
                 {start:"1346-06-09",text:"Bataille de Saint-Pol-de-Léon", flag:[FRANCAIS,ANGLAIS],campagne:"Guerre de succession de Bretagne",victoire:ANGLAIS,desc:"Charles de Blois lance des multiples assauts frontaux de fantassins contre des archers anglais retranchés. Il ne peut remporter la victoire et du retourner dans ses bastions.",source:"https://fr.wikipedia.org/wiki/Bataille_de_Saint-Pol-de-L%C3%A9on"},
-                {start:"1346-07-02",stop:"1347-10-12",text:"Chevauchée d'Édouard III", flag:[FRANCAIS,ANGLAIS]},
-                {start:"1346-07-26",text:"Siège de Caen", flag:[FRANCAIS,ANGLAIS],campagne:"Chevauchée d'Edouard III, le retour",victoire:ANGLAIS,commandants:["Edouard III","Le Prince Noir","Warwick","Northampton"],source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Caen_(1346)",desc:"Prise de la ville française, peu défendue et pillage."},
-                {start:"1346-08-24",text:"Bataille du gué de Blanquetaque",campagne:"Chevauchée d'Edouard III, le retour",victoire:ANGLAIS,commandants:["Edouard III","Le Prince Noir","Warwick","Northampton"], flag:[FRANCAIS,ANGLAIS],desc:"La bataille se déroule au milieu du gué de la Somme.",source:"https://fr.wikipedia.org/wiki/Bataille_du_gu%C3%A9_de_Blanquetaque",desc:"L'armée anglaise se retrouve sur un gué devant la Somme, avec une armée française sur la rive opposée. Quelques Anglais traversent et les Français se précipitent à leur rencontre dans le fleuve.",commandant:["Edouard III"]},
-                {start:"1346-08-26",type:BATAILLE,scenario:true,campagne:"Chevauchée d'Edouard III, le retour",victoire:ANGLAIS,commandants:["Edouard III","Le Prince Noir","Northampton","Philippe VI le Valois","Chandos","Jean 1er de Luxembourg","Arundel","Charles II"],text:"La bataille de Crécy",joueurs:[2],stars:2,flag:[FRANCAIS,ANGLAIS],desc:"Sur le chemin de retour de sa chevauchée, Edouard III obtient une victoire écrasante face à l'armée de Philippe VI, pourtant supérieure numériquement."},
-                {start:"1346-09-04",stop:"1347-08-03",type:SIEGE,scenario:true,text:"Siège de Calais", joueurs:[2],stars:2,flag:[FRANCAIS,ANGLAIS],commandants:["Jean de Vienne","Edouard III"],victoire:ANGLAIS,desc:"6 bourgeois de Calais, la corde au cou, pieds nus et en chemise, se rendent à Edouard III pour épargner la ville.",source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Calais_(1346-1347)"},/* Jean de Vienne a 5 ans */
+                {start:"1346-07-02",stop:"1347-10-12",text:"Chevauchée d'Édouard III", flag:[FRANCAIS,ANGLAIS],source:"https://fr.wikipedia.org/wiki/Chevauch%C3%A9e_d%27%C3%89douard_III_(1346)",campagne:"Chevauchée d'Edouard III (1346)",commandants:["Edouard III","Prince Noir","Warwick","Northampton","Chandos","Jean 1er de Luxembourg","Arundel"]},
+                {start:"1346-07-26",text:"Siège de Caen", flag:[FRANCAIS,ANGLAIS],campagne:"Chevauchée d'Edouard III (1346)",victoire:ANGLAIS,commandants:["Edouard III","Le Prince Noir","Warwick","Northampton"],source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Caen_(1346)",desc:"Prise de la ville française, peu défendue et pillage."},
+                {start:"1346-08-24",text:"Bataille du gué de Blanquetaque",campagne:"Chevauchée d'Edouard III (1346)",victoire:ANGLAIS,commandants:["Edouard III","Le Prince Noir","Warwick","Northampton"], flag:[FRANCAIS,ANGLAIS],desc:"La bataille se déroule au milieu du gué de la Somme.",source:"https://fr.wikipedia.org/wiki/Bataille_du_gu%C3%A9_de_Blanquetaque",desc:"L'armée anglaise se retrouve sur un gué devant la Somme, avec une armée française sur la rive opposée. Quelques Anglais traversent et les Français se précipitent à leur rencontre dans le fleuve.",commandant:["Edouard III"]},
+                {start:"1346-08-26",type:BATAILLE,scenario:true,campagne:"Chevauchée d'Edouard III (1346)",victoire:ANGLAIS,commandants:["Edouard III","Le Prince Noir","Northampton","Philippe VI le Valois","Chandos","Jean 1er de Luxembourg","Arundel","Charles II"],text:"La bataille de Crécy",joueurs:[2],stars:2,flag:[FRANCAIS,ANGLAIS],desc:"Sur le chemin de retour de sa chevauchée, Edouard III obtient une victoire écrasante face à l'armée de Philippe VI, pourtant supérieure numériquement."},
+                {start:"1346-09-04",stop:"1347-08-03",type:SIEGE,scenario:true,text:"Siège de Calais", campagne:"Chevauchée d'Edouard III (1346)",joueurs:[2],stars:2,flag:[FRANCAIS,ANGLAIS],commandants:["Jean de Vienne","Edouard III"],victoire:ANGLAIS,desc:"6 bourgeois de Calais, la corde au cou, pieds nus et en chemise, se rendent à Edouard III pour épargner la ville.",source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Calais_(1346-1347)"},/* Jean de Vienne a 5 ans */
                 {start:"1346-10-17",text:"Bataille de Neville's Cross", victoire:ANGLAIS,flag:[ECOSSAIS,ANGLAIS],source:"https://fr.wikipedia.org/wiki/Bataille_de_Neville%27s_Cross",desc:"Espérant vaincre les Anglais alors concentrés en France, les Ecossais avec le roi David II envahissent le nord de l'Angleterre. Ils se heurtent à une force bien retranchée qui les bat et capture le roi.",},
                 {start:"1347-06-18",text:"Bataille de La Roche-Derrien", flag:[FRANCAIS,ANGLAIS],victoire:ANGLAIS,campagne:"Guerre de succession de Bretagne",source:"https://fr.wikipedia.org/wiki/Bataille_de_La_Roche-Derrien",desc:"Les anglo-monfortistes commandés par Thomas Dagworth gagnent contre les Bretons de Charles de Blois. Celui-ci est fait prisonnier."},
                 {start:"1348-02",type:BATAILLE,scenario:true,text:"La Peste",flag:[BIEN,MAL]},
@@ -38,22 +38,22 @@ class Evenement {
                 {start:"1355-10-10",stop:"1355-12-09",text:"Chevauchée du Prince noir", commandants:["Prince Noir"],flag:[FRANCAIS,ANGLAIS]},
                 {start:"1356-08-04",stop:"1356-09-19",scenario:true,type:CHEVAUCHEE,type:CHEVAUCHEE,text:"La Chevauchée du Prince Noir",flag:[FRANCAIS,ANGLAIS],commandants:["Prince Noir"],joueurs:[2,4],stars:3}, /* TODO: Boucicaut n'est pas la */
                 {start:"1356-09-19",scenario:true,type:BATAILLE,text:"La bataille de Poitiers", joueurs:[2,6],stars:3,flag:[FRANCAIS,ANGLAIS],victoire:ANGLAIS,commandants:["Jean II","Le Prince Noir","Salisbury","Philippe d'Orléans","Andrehem","Gautier VI","Clermont","Chandos","Warwick","Captal"],source:"https://fr.wikipedia.org/wiki/Bataille_de_Poitiers_(1356)",desc:"Déroute francaise, Jean II est capturé."},
-                {start:"1356-10-03",stop:"1357-06-30",text:"Siège de Rennes",flag:[ANGLAIS,FRANCAIS]},
+                {start:"1356-10-03",stop:"1357-06-30",text:"Siège de Rennes",flag:[ANGLAIS,FRANCAIS],source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Rennes_(1356-1357)",victoire:ANGLAIS,campagne:"Guerre de succession de Bretagne",commandants:["Guesclin"],desc:"Les Anglais ont pour stratégie d'affamer la ville mais les défenseurs usent de ruse. Les Anglais font paitre devant les portes des troupeaux de porc, pour attirer les Rennais hors de la ville. Le capitaine de la ville fait suspendre une truie qui par ses cris attirent les cochons dans la ville! Enfin Du Gueslin entre dans la ville avec des charettes de vivre par ruse, en faisant croire à des mercenaires allemands. La ville paie une rançon finalement."},
                 {start:"1356-12",type:BATAILLE,scenario:true, text:"Du Guesclin au siège de Rennes",joueurs:[2],stars:1,flag:[ANGLAIS,FRANCAIS],commandants:["Guesclin"]}, /* TODO: Un an plus tot que le scenario*/
-                {start:"1358-04-18",stop:"1358-08-02",text:"Siège de Paris", flag:[FRANCAIS,AUTRE]},
-                {start:"1358-06-09",text:"Siège de Meaux", flag:[FRANCAIS,AUTRE]},
-                {start:"1358-08-01",stop:"1359-04-29",text:"Siège de Saint-Valery", flag:[FRANCAIS,ANGLAIS]},
-                {start:"1358-09-16",text:"Bataille d'Amiens", flag:[FRANCAIS,ANGLAIS]},
+                {start:"1358-04-18",stop:"1358-08-02",text:"Siège de Paris", flag:[FRANCAIS,AUTRE],desc:"Charles le Dauphin reprend Paris à Etienne Marcel et Charles le Mauvais",victoire:FRANCAIS,source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Paris_(1358)",campagne:"Grande Jacquerie"},
+                {start:"1358-06-09",text:"Siège de Meaux", flag:[FRANCAIS,AUTRE],source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Meaux_(1358)",campagne:"Grande Jacquerie",victoire:FRANCAIS,commandants:["Buch"],desc:"Des paysans révoltés font le siège du marché de Meaux, où sont les princesses dont la femme du Dauphin. Le comte de Foix et Captal de Buch délivrent les princesses"},
+                {start:"1358-08-01",stop:"1359-04-29",text:"Siège de Saint-Valery", flag:[FRANCAIS,ANGLAIS],victoire:FRANCAIS,source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Saint-Valery",desc:"Les Français assiègent et prennent la ville des mains du roi de Navarre, Charles le Mauvais"},
+                {start:"1358-09-16",text:"Bataille d'Amiens", flag:[FRANCAIS,ANGLAIS],victoire:FRANCAIS,source:"https://fr.wikipedia.org/wiki/Bataille_d%27Amiens_(1358)"},
                 {start:"1359-10-28",stop:"1360-05-08",text:"Chevauchée d'Edouard III", flag:[FRANCAIS,ANGLAIS]},
-                {start:"1359-12-20",stop:"1360-01-11",text:"Siège de Reims",commandants:["Edouard III"],campagne:"Chevauchée d'Edouard III",flag:[FRANCAIS,ANGLAIS],desc:"Le siège est abandonné, faute de matériel de siège."},
+                {start:"1359-12-20",stop:"1360-01-11",text:"Siège de Reims",commandants:["Edouard III"],campagne:"Chevauchée d'Edouard III",flag:[FRANCAIS,ANGLAIS],desc:"Le siège est abandonné, faute de matériel de siège.",source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Reims",victoire:FRANCAIS},
                 {start:"1360-03-12",text:"Attaque de Winchelsea", flag:[FRANCAIS,ANGLAIS],victoire:FRANCAIS,desc:"Un raid francais en Angleterre pour libérer Jean II, supposé être à Winchelsea."},
-                {start:"1360-03-31",stop:"1360-04-12",text:"Siège de Paris", flag:[FRANCAIS,ANGLAIS],commandants:["Edouard III"],campagne:"Chevauchée d'Edouard III"},
+                {start:"1360-03-31",stop:"1360-04-12",text:"Siège de Paris", flag:[FRANCAIS,ANGLAIS],commandants:["Edouard III"],campagne:"Chevauchée d'Edouard III",victoire:FRANCAIS,source:"https://fr.wikipedia.org/wiki/Si%C3%A8ge_de_Paris_(1360)",desc:"Les Anglais campent dans les faubourgs. Charles le Dauphin refuse le combat. Les Anglais doivent lever le siège."},
                 {start:"1360-03-31",text:"Siège de l'église fortifiée de Chastres",flag:[FRANCAIS,ANGLAIS],commandants:["Edouard III"],campagne:"Chevauchée d'Edouard III",victoire:ANGLAIS,desc:"Les Anglais passent le temps autour d'une église fortifiée."},
-                {start:"1360-04-13",text:"Lundi noir", victoire:BIEN,flag:[ANGLAIS,BIEN],commandants:["Edouard III","Le Prince Noir","Warwick"],campagne:"Chevauchée d'Edouard III",desc:"Un orage décime les troupes anglaises, et conclue la chevauchée d'Edouard III"},
+                {start:"1360-04-13",text:"Lundi noir", victoire:BIEN,flag:[ANGLAIS,BIEN],commandants:["Edouard III","Le Prince Noir","Warwick"],campagne:"Chevauchée d'Edouard III",victoire:FRANCAIS,desc:"Un orage décime les troupes anglaises, et conclue la chevauchée d'Edouard III",source:"https://fr.wikipedia.org/wiki/Lundi_noir_(1360)"},
                 {start:"1360-05",text:"Traité de Brétigny",flag:[FRANCAIS,ANGLAIS]},
                 {start:"1361-04",text:"Bataille de Briouze", flag:[FRANCAIS,ANGLAIS],commandants:["Guesclin"],victoire:FRANCAIS,campagne:"Campagne contre les grandes compagnies",desc:"La flatterie fut l'élément essentiel qu'utilisèrent les Anglais pour que Du Guesclin les laisse se déployer en rase campagne afin qu'ils puissent utiliser toutes leurs forces"},
                 {start:"1362-04",text:"Bataille de Mortain",flag:[FRANCAIS,ANGLAIS],commandants:["Guesclin"],victoire:FRANCAIS,campagne:"Campagne contre les grandes compagnies"},
-                {start:"1362-04",text:"Bataille de Livarot", flag:[FRANCAIS,ANGLAIS],commandants:["Jouel","Guesclin"],victoire:FRANCAIS,campagne:"Campagne contre les grandes compagnies"},
+                {start:"1362-04",text:"Bataille de Livarot", flag:[FRANCAIS,ANGLAIS],commandants:["Jouel","Guesclin"],victoire:FRANCAIS,campagne:"Campagne contre les grandes compagnies",source:"Combats_Franco_Anglais.pdf#page=223"},
                 {start:"1362-04-06",scenario:true,type:BATAILLE,text:"La bataille de Brignais", joueurs:[2,3,4],stars:3,flag:[FRANCAIS,MERCENAIRE],victoire:MERCENAIRE,commandants:["Seguin","Meschin","Jacques de Bourbon"],campagne:"Campagne contre les grandes compagnies"},
                 {start:"1362-04",text:"Bataille de Saint-Martin-de-Seez", flag:[FRANCAIS,ANGLAIS,MERCENAIRE],victoire:FRANCAIS,commandants:["Guesclin"],campagne:"Campagne contre les grandes compagnies"},
                 {start:"1364-03",stop:"1364-04-09",text:"Siège de Rolleboise", flag:[FRANCAIS,ANGLAIS],commandants:["Guesclin","Auxerre"],victoire:FRANCAIS,campagne:"Campagne contre les grandes compagnies"},
@@ -223,31 +223,35 @@ class Evenement {
         if (!withdate) return t;
         if (this.joueurs) t+=" [p"+this.joueurs.join(", p")+"]";
         return $("<span>"+t+"</span>");
-    }/*
-    info(persolist) {
+    }
+    info() {
         let i,s=[],s1="",s2="",ss,p="";
         for (i=0;i<persolist.length;i++) {
-            let p=persolist[i];
+            let pl=persolist[i];
             let es=this.start.getFullYear();
-            if (p.dates[0]<=es&&p.dates[1]>=es) s.push(p);
-            if (p.dates[2]<=es&&p.dates[3]>=es) s.push(p);
+            if (pl.dates[0]<=es&&pl.dates[1]>=es) s.push(pl);
+            if (pl.dates[2]<=es&&pl.dates[3]>=es) s.push(pl);
         }
         s.sort((a,b)=>(a.faction<b.faction));
         ss=s.filter((x)=>this.flag.includes(x.faction))
-            .map((x)=>"<span class='blason"+NOM_FACTION[x.faction]+"'>"+x.text+"</span><br/>");
+            .map((x)=>"<span class='blason "+NOM_FACTION[x.faction]+"'>"+x.text+"</span><br/>");
         for (i=0;i<=Math.floor(ss.length/2);i++) {
             s1+=ss[i];
             if (i+1+Math.floor(ss.length/2)<ss.length)
                 s2+=ss[i+1+Math.floor(ss.length/2)];
         }
-        p="<h5>"+this.text+"</h5>";
+        let t="<h5>"+this.text;
+        if (this.source) t+=" <a href='"+this.source+"'><img src='css/wikipedia.png' style='width:1ex'/></a>";
+        t+="</h5>";
+        p+=t;
+        if (this.campagne) p+="<div class='text-muted'>"+this.campagne+"</div>";
+        if (this.victoire) p+="<div class='text-muted blason "+NOM_FACTION[this.victoire]+"'>Victoire </div>";
         if (this.desc) p+=this.desc+"<br/>";
-        if (this.victoire) p+="<b class='text-muted blason"+NOM_FACTION[this.victoire]+"'>Victoire :</b><br/>";
-        p+="<p class='text-muted'><b>Liste des personnages vivants cette année</b></p><div class='row'><div class='col-6'>"+s1
+        p+="<div class='text-muted'>Liste des personnages vivants cette année</div><div class='row'><div class='col-6'>"+s1
             +"</div>"
             +"<div class='col-6'>"+s2+"</div></div>";
-        return p;        
-    }*/
+        return p;
+    }
 }
 
 var evenements=Evenement.liste();

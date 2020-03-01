@@ -98,7 +98,7 @@
           <h2>Troupes historiques et mythiques de Joan of Arc</h2>
           <p class="lead text-muted">Caractéristiques de combat des unités de Joan of Arc.
           </p>
-          <p>La description des traits a été réécrite pour être plus compacte. Les notations sont les suivantes:
+          <p>La description des traits a été réécrite pour être plus compacte. Les troupes de la v1.5 qui ont été dévoilées ont été intégrées. Les descriptions prennent en compte les correctifs de la version 1.5. Les notations sont décrites dans l'aide: 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
               Aide
           </button></p>
@@ -156,12 +156,13 @@
                     <tr><td><span class='game type'></span><td>une fois par partie</td></tr>
                     <tr><td><span class="hereandthere type"></span> / <span class="there type"></span></td><td>dans la zone ou une zone adjacente / juste dans les zones adjacentes</td></tr>
                     <tr><td><b>action bonus</b></td><td>une action bonus nécessitant l'activation de l'unité</td></tr>
-                    <tr><td><b>action activation</b></td><td>une action au début ou à la fin de l'activation d'une unité</td></tr>
+                    <tr><td><b>action joueur</b></td><td>une action d'un joueur</td></tr>
                     <tr><td><b>entretien</b></td><td>pendant l'entretien des unités, au début du round</td></tr>
                     <tr><td>légendaire</td><td>réduit le coût des cartes légendaires de 1</td></tr>
                     <tr><td><span class="poursuiteaprescombat type"></span></td><td>poursuite après combat</td></tr>
                     <tr><td><span class="troupe type"></span> / <span class="personnage type"></span></td><td>troupe / personnage</td></tr>
                     <tr><td><span class="melee type"></span><span class="cavalerie combat-cond"></span> / <span class="melee type"></span><span class="blason mal combat-cond"></span> </td><td>attaque de mélée sur une unité de cavalerie / sur une unité du mal</td></tr>
+                    <tr><td><span class="melee type"></span><span class="plaine combat-cond"></span> / <span class="melee type"></span><span class="ble combat-cond"></span> </td><td>attaque de mélée à partie d'une plaine / d'un champ</td></tr>
                     <tr><td><span class="rallie type"></span><span class="troupe combat-cond"></span><span class='here combat-cond'></span></td><td>rallie une troupe dans la zone de l'unité</td></tr>
                     <tr><td><span class="actionbleue type"></span><span class="here combat-cond"></span></td><td>un ordre d'opportunisme joué sur la zone de l'unité</td></tr>
 
@@ -209,7 +210,7 @@
         <div class="col-12">
           <h2>Combat</h2>
           <p class="lead">Statistiques de combat des unités</p>
-          <p>Il s'agit d'un mini-simulateur de combat. Choisissez un attaquant et un défenseur, l'attaquant attaque une fois (comme avec un ordre <span class='actiongrise type'></span>) le défenseur. Les terrains de chaque unité peuvent être changés. Les chiffres indiqués sont des probabilités, d'être encore dans l'hexagone et avec combien de points de vie en moyenne, d'être à l'hopital <span class='facenoir touche'></span>, d'être mort <span class='facenoir mort'></span> ou d'avoir subi un recul <span class='facenoir recul'></span>. La riposte et autres effets similaires sont pris en compte, l'attaquant peut aussi avoir les mêmes probabilités. Le nombre de troupes sans camp peut être ajusté entre 1 et 3.
+          <p>Il s'agit d'un mini-simulateur de combat. Choisissez un attaquant et un défenseur, l'attaquant attaque une fois (comme avec un ordre <span class='actiongrise type'></span>) le défenseur. Les terrains de chaque unité peuvent être changés. Les chiffres indiqués sont des probabilités, d'être encore dans l'hexagone et avec combien de points de vie en moyenne, d'être à l'hopital <span class='facenoir touche'></span>, d'être mort <span class='facenoir mort'></span> ou d'avoir subi un recul <span class='facenoir recul'></span>. La riposte et autres effets similaires sont pris en compte, l'attaquant peut aussi avoir les mêmes probabilités, s'il y a riposte par exemple. Le nombre de troupes sans faction peut être ajusté entre 1 et 3.
           </p>
           <p>Les attaques gratuites après poursuites après combat ne sont pas implémentées.</p>
         </div>
@@ -310,7 +311,7 @@
         <div class="col-6">
           <div class="tab-content" id="nav-tabContent2">
             <div class="tab-pane fade show active" id="list-neutre2" role="tabpanel" aria-labelledby="list-neutre-list2">
-              <select id="number2" style="width:10%" class="nbtroupe" onchange="trouveperso(document.querySelector('#neutre2').value,2)">
+              <select id="number2" style="width:10%" class="nbtroupe" onchange="trouveperso(2)">
                 <option label="1">1</option>
                 <option label="2">2</option>
                 <option label="3">3</option>
@@ -388,20 +389,23 @@
       </div>
     </div>
     <div class="row terrain">
-      <div class="col-1"></div>
-      <figure class="col-1">
+      <figure  class="col-1">
         <img class="img-circle plain" src="css/plain.png" />
         <figcaption>Plaine</figcaption>
       </figure>
-      <figure class="col-1">
+      <figure  class="col-1">
+        <img class="img-circle plain" src="css/ble.png" />
+        <figcaption>Champ</figcaption>
+      </figure>
+      <figure  class="col-1">
         <img class="img-circle forest" src="css/forest.png" />
         <figcaption>Forêt</figcaption>
       </figure>
-      <figure class="col-1">
+      <figure  class="col-1">
         <img class="img-circle swamp" src="css/swamp.png" />
         <figcaption>Marais</figcaption>
       </figure>
-      <figure class="col-1">
+      <figure  class="col-1">
         <img class="img-circle forest" src="css/pave.png" />
         <figcaption>Village</figcaption>
       </figure>
@@ -409,28 +413,30 @@
         <img class="img-circle rock" src="css/rock.png" />
         <figcaption>Rocher</figcaption>
       </figure>
-      <figure class="col-1">
+      <figure  class="col-1" >
         <img class="img-circle2 plain" src="css/plain.png" />
         <figcaption>Plaine</figcaption>
       </figure>
-       <figure class="col-1">
+      <figure  class="col-1" >
+        <img class="img-circle2 plain" src="css/ble.png" />
+        <figcaption>Champ</figcaption>
+      </figure>
+       <figure  class="col-1" >
          <img class="img-circle2 forest" src="css/forest.png" />
          <figcaption>Forêt</figcaption>
         </figure>
-       <figure class="col-1">
+       <figure  class="col-1" >
          <img class="img-circle2 swamp" src="css/swamp.png" />
          <figcaption>Marais</figcaption>
        </figure>
-      <figure class="col-1">
+      <figure  class="col-1" >
          <img class="img-circle2 forest" src="css/pave.png" />
          <figcaption>Village</figcaption>
       </figure>
-      <figure class="col-1">
+      <figure  class="col-1" >
         <img class="img-circle2 rock" src="css/rock.png" />
          <figcaption>Rocher</figcaption>
       </figure>
-      <div class="col-1"></div>
-
     </div>
 
   <div class="container">
@@ -438,6 +444,9 @@
       <defs>
         <pattern id="plain" width="1" height="1" x="0" y="0">
           <image xlink:href="css/plain.png" width="400" height="400" />
+        </pattern>
+        <pattern id="ble" width="1" height="1" x="0" y="0">
+          <image xlink:href="css/ble.png" width="400" height="400" />
         </pattern>
         <pattern id="pave" width="1" height="1" x="0" y="0">
           <image xlink:href="css/pave.png" width="400" height="400" />
@@ -490,6 +499,7 @@
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Denis Wings 2019</p>
       <p class="m-0 text-center text-white">Tous droits réservés pour le jeu Joan of Arc pour Mythic Games</p>
+      <p class="m-0 text-center text-white">Dernière maj: 01/03/2020</p>
     </div>
     <!-- /.container -->
   </footer>

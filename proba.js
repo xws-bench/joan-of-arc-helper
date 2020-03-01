@@ -315,7 +315,8 @@ function combat(group1,group2,islogged) {
         if (group1.enleve1d&&dd[0]!=unbouclier) {
             dd=dd.splice(0, 1);
         }
-        let parade=group2.parade;
+        let parade=false;
+        if (typeof group2.parade=="function") parade=group2.parade(group1);
         if ($(".img-circle2.forest.selected").length>0) {
             parade=true;
         }
@@ -508,31 +509,6 @@ function unique(value, index, self) {
     return index==self.length-1||self[index].nom!=self[index+1].nom;
 }
 
-function infoEvenement(event) {
-    let i,s=[],s1="",s2="",ss,p="";
-    for (i=0;i<persolist.length;i++) {
-        let pl=persolist[i];
-        let es=event.start.getFullYear();
-        if (pl.dates[0]<=es&&pl.dates[1]>=es) s.push(pl);
-        if (pl.dates[2]<=es&&pl.dates[3]>=es) s.push(pl);
-    }
-    s.sort((a,b)=>(a.faction<b.faction));
-    ss=s.filter((x)=>event.flag.includes(x.faction))
-        .map((x)=>"<span class='blason "+NOM_FACTION[x.faction]+"'>"+x.text+"</span><br/>");
-    for (i=0;i<=Math.floor(ss.length/2);i++) {
-        s1+=ss[i];
-        if (i+1+Math.floor(ss.length/2)<ss.length)
-            s2+=ss[i+1+Math.floor(ss.length/2)];
-    }
-    p="<h5>"+event.text+"</h5>";
-    if (event.campagne) p+="<div class='text-muted'>"+event.campagne+"</div>";
-    if (event.victoire) p+="<div class='text-muted blason "+NOM_FACTION[event.victoire]+"'>Victoire </div>";
-    if (event.desc) p+=event.desc+"<br/>";
-    p+="<div class='text-muted'>Liste des personnages vivants cette année</div><div class='row'><div class='col-6'>"+s1
-        +"</div>"
-        +"<div class='col-6'>"+s2+"</div></div>";
-    return p;
-}
 function temporaliseperso(x) {
     let p=troupes[x];
     let d1=p.dates[0],d2=p.dates[1];
@@ -626,7 +602,8 @@ function trouveperso(n) {
         let nn=$("#number2").children("option:selected").val();
         if (nn>1&&t.troupe==true) 
             perso2=new Unite(t,nn);
-        else perso2=t;
+         else perso2=t;
+         console.log("perso2: "+perso2.defense.length);
         perso2.d=perso2.toHTML()[4];
      }
     if (perso1) $("#hex1").html(tableStat(perso1,perso1.a,[perso1.pdv,1],0,0,0,0));
@@ -654,7 +631,7 @@ $( document ).ready(function() {
         start:"1297-09-10",
         end:"1475-08",
         url:"top",
-        info:infoEvenement,
+        info:(e=>e.info()),
         cursor:"1429-02-01",
         loading:"<i class=\"far fa-spinner fa-spin fa-lg\"></i>&nbsp;&hellip;",
         locale:"fr-FR",

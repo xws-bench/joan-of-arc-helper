@@ -1,6 +1,9 @@
 
 .img-circle,.img-circle2 {
-   border-radius: 50%;
+    border-radius: 50%;
+}
+figure {
+    text-align:center;
 }
 .img-circle.selected, .img-circle2.selected{
     border: solid 3px #FF0000;
@@ -250,7 +253,7 @@ header {
     text-shadow: 1px 1px grey;
 }
 
-$icons: ("francais", "anglais","bourguignon", "ecossais","mercenaire","ottoman","valaque","mal","neutre","bien","cartelegende","actiongrise","actionbleue","actionjaune","actionverte","jetonlegende","jetonxp","jetonrumeur","jetonscenario","jetonincendie","jetonblessure","tue","touche","rallie","recul","mort","retarde","bouclier","melee","defense","tircloche0","tircloche1","tircloche2","tircloche3","tirtendu0","tirtendu1","tirtendu2","tirtendu3","artillerie","infanterie","cavalerie","volant","tirtendu","tircloche","tour","round","montour","tontour","here","hereandthere","hereandthere2","hereandtherehexa","poursuiteaprescombat","niveau1","niveau2","troupe","personnage","carteriviere","touttype","no","ralliement","move","touttypeennemi","touttypeallie","there","herehexa","tap","turn","actionblanche","game");
+$icons: ("francais", "anglais","bourguignon", "ecossais","mercenaire","ottoman","valaque","mal","neutre","bien","cartelegende","actiongrise","actionbleue","actionjaune","actionverte","jetonlegende","jetonxp","jetonrumeur","jetonscenario","jetonincendie","jetonblessure","tue","touche","rallie","recul","mort","retarde","bouclier","melee","defense","tircloche0","tircloche1","tircloche2","tircloche3","tirtendu0","tirtendu1","tirtendu2","tirtendu3","artillerie","infanterie","cavalerie","volant","tirtendu","tircloche","tour","round","montour","tontour","here","hereandthere","hereandthere2","hereandtherehexa","poursuiteaprescombat","niveau1","niveau2","troupe","personnage","carteriviere","touttype","no","ralliement","move","touttypeennemi","touttypeallie","there","herehexa","tap","turn","actionblanche","game","ble","plaine","foret");
 
 
 @each $name in $icons {
@@ -269,19 +272,6 @@ $icons: ("francais", "anglais","bourguignon", "ecossais","mercenaire","ottoman",
 }
 
 .rallie::after,.carte::after,.action::after,.jeton::after,.mort::after,.retarde::after,.vierge::after,.bouclier::after,.tue::after,.touche::after,.recul::after,.combat::after,.dejaune::after,.derouge::after,.deblanc::after,.denoir::after,.type::after {
-    content:"";
-    background-size:90%;
-    width:3ex;
-    height:3ex;
-    display:inline-block;
-    background-repeat:no-repeat;
-    background-position:center;
-    padding-bottom: 7px;
-    margin-bottom: -7px;
-    padding-left: 5px;
-    margin-left: -5px;
-}
-.no::after {
     content:"";
     background-size:90%;
     width:3ex;

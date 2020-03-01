@@ -4,17 +4,19 @@ const TENDU=0,CLOCHE=1;
 const AA=0;
 const NOM_FACTION=["bien","mal","francais","ecossais","ottoman","anglais","bourguignon","valaque","mercenaire","neutre"];
 const NOM_TYPE=["infanterie","cavalerie","volant","artillerie"];
-const NOM_CAPACITE=["ignifugé",null,null,null,null,null,null,null,null,null,null,"grand","soin","soin </span> <span class='hereandthere combat-cond'></span>","cruel","relance","garde du corps","pourfendeur","charge",null,"prière",null,null,"esquive",null,"feinte","charisme","ralliement","impétueux","survie","génie","parade","immortel","mercenaire","visée","masse","cohésion","transport",null,"immunisé aux ripostes",null,"immunisé à la terreur",null,null,null,null,"légendaire","<span class='melee combat'></span>: -1 <span class='deblanc'></span><span class='defense combat-cond'></span>"];
+const NOM_CAPACITE=["ignifugé",null,null,null,null,null,null,null,null,null,null,"grand","soin","soin </span> <span class='hereandthere combat-cond'></span>","cruel","relance","garde du corps","pourfendeur","charge",null,"prière",null,null,"esquive",null,"feinte","charisme","ralliement","impétueux","survie","génie",null,"immortel","mercenaire","visée","masse","cohésion","transport",null,"immunisé aux ripostes",null,"immunisé à la terreur",null,null,null,null,"légendaire","<span class='melee combat'></span>: -1 <span class='deblanc'></span><span class='defense combat-cond'></span>"];
 
 const LISTE_CAPACITES=["ignifuge","tir","melee","type","faction","typetir","portee","defense","pdv","maj","commandement","grand","soin","soinbienthere","cruel","relance","gardeducorps","pourfendeur","charge","celerite","priere","riposte","terreur","esquive","saut","feinte","charisme","ralliement","impetueux","survie","genie","parade","immortel","mercenaire","visee","masse","cohesion","transport","recultue","noriposte","contrecoup","noterreur","modattaque","source","dates","civil","legendaire","enleve1d"];
 /* bonusmelee: blancsimal,rougesiinfanterie,blancsiinfanterie,blancsicavalerie,blanctouchesicavalerie, riposte et contrecoup: sicavalerie ou ftrue.  */
 
 const blancsimal=(d,a)=>(a.faction==MAL?d.concat([blanc]):d);
 const rougesiinfanterie=(d,a)=>(a.type==INFANTERIE?d.concat([rouge]):d);
+const rougesicharge=(d,a)=>(d); // TODO: rouge si charge
 const blancsiinfanterie=(d,a)=>(a.type==INFANTERIE?d.concat([blanc]):d);
 const blancsicavalerie=(d,a)=>(a.type==CAVALERIE?d.concat([blanc]):d);
 const blanctouchesicavalerie=(d,a)=>(a.type==CAVALERIE?[blanc_blanctouche]:d);
 const sicavalerie=(a)=>(a.type==CAVALERIE?true:false);
+const siinfanterie=(a)=>(a.type==INFANTERIE?true:false);
 const ftrue=()=>true;
 
 function uniquecapa(value, index, self) { 
@@ -45,6 +47,7 @@ let noir = new De(0,2/6,1/6,3/6);
 let noir_toucherecule = new De(2/6,0,1/6,3/6);
 let noir_bouclierrecule = new De(1/2,2/6,1/6,0);
 let noir_boucliertouche = new De(0,5/6,1/6,0);
+let noir_tuebouclier = new De(0,2/6,0,4/6);
 
 let blanc = new De(1/6,2/6,0,2/6);
 let blanc_blancbouclier = new De(1/6,2/6,0,3/6);
@@ -68,6 +71,7 @@ rouge.couleur=rouge_recultouche.couleur
 noir.couleur=noir_toucherecule.couleur
     =noir_bouclierrecule.couleur
     =noir_boucliertouche.couleur
+    =noir_tuebouclier.couleur
     ="noir";
 blanc.couleur=blanc_blancbouclier.couleur
     =blanc_bouclierrecule.couleur
@@ -82,6 +86,7 @@ let blanctouche=function(t) { return "<span class='combat "+t+"'></span> : <span
 let blanctue=function(t) { return "<span class='combat "+t+"'></span> : <span class='vierge face"+this.couleur+"'></span>&rarr;<span class='tue face"+this.couleur+"'></span>";}
 let blancrecule=function(t) { return "<span class='combat "+t+"'></span> : <span class='vierge face"+this.couleur+"'></span>&rarr;<span class='recul face"+this.couleur+"'></span>"; }
 let blancbouclier=function(t) { return "<span class='combat "+t+"'></span> : <span class='vierge face"+this.couleur+"'></span>&rarr;<span class='bouclier face"+this.couleur+"'></span>"; }
+let tuebouclier=function(t) { return "<span class='combat "+t+"'></span> : <span class='tue face"+this.couleur+"'></span>&rarr;<span class='bouclier face"+this.couleur+"'></span>"; }
 let recultouche=function(t) { return "<span class='combat "+t+"'></span> : <span class='recul face"+this.couleur+"'></span>&rarr;<span class='touche face"+this.couleur+"'></span>";}
 let toucherecule=function(t) { return "<span class='combat "+t+"'></span> : <span class='touche face"+this.couleur+"'></span>&rarr;<span class='recul face"+this.couleur+"'></span>";}
 
@@ -100,22 +105,31 @@ rouge_bouclierrecule.capacite=bouclierrecule;
 noir_toucherecule.capacite=toucherecule;
 noir_bouclierrecule.capacite=bouclierrecule;
 noir_boucliertouche.capacite=boucliertouche;
+noir_tuebouclier.capacite=tuebouclier;
 blanc_blancbouclier.capacite=blancbouclier;
 blanc_bouclierrecule.capacite=bouclierrecule;
 blanc_blanctouche.capacite=blanctouche;
 blanc_blanctue.capacite=blanctue;
 blanc_parade.capacite=(()=>"parade <span class='faceblanc'></span>");
 
-/* bonusmelee: blancsimal,rougesiinfanterie,blancsiinfanterie,blancsicavalerie,blanctouchesicavalerie, riposte et contrecoup: sicavalerie ou ftrue.  */
+/* bonusmelee: blancsimal,rougesiinfanterie,rougesicharge,blancsiinfanterie,blancsicavalerie,blanctouchesicavalerie, riposte et contrecoup: sicavalerie, siinfanterie ou ftrue.  */
 
 
 
 class Unite {
     static tps() { return [
-        {nom:"Archers Tatars légers montés",type:CAVALERIE,tir:[noir,jaune],portee:1,typetir:TENDU,defense:[blanc]},
-        {nom:"Arbalétriers montés",type:CAVALERIE,tir:[rouge,jaune],portee:1,typetir:TENDU,defense:[blanc],celerite:2},
-        {nom:"Lanciers montés",melee:[jaune,jaune,jaune],type:CAVALERIE,defense:[jaune]},
-        {nom:"Coureurs des bois",melee:[jaune],portee:1,typetir:TENDU,tir:[jaune,jaune],type:INFANTERIE,defense:[jaune],esquive:true,celerite:2},
+        {nom:"Chariot de guerre",pdv:5,type:ARTILLERIE,grand:true,tir:[rouge,blanc,blanc],portee:1,typetir:TENDU,defense:[noir,noir],desc:"%DEFENSE%: %TOUCHE%%HERE%, %TUE%%HERE% peuvent être alloués à %THIS%%BR%%THIS% ne peut pas subir de résultats %RECUL%%BR%Pour effectuer un déplacement, %THIS% utilise l'action de %INFANTERIE%%HERE% en plus de la sienne",v15:true},
+        {nom:"Sergents Teutoniques",type:INFANTERIE,melee:[rouge],riposte:ftrue,defense:[noir,blanc],v15:true},
+        {nom:"Chevaliers Teutoniques",type:INFANTERIE,melee:[rouge,noir],charge:true,impetueux:true,priere:true,defense:[noir_tuebouclier],v15:true},
+        {nom:"Chevaliers Teutoniques Montés",type:CAVALERIE,melee:[rouge,noir],charge:true,impetueux:true,priere:true,defense:[noir],bonusmelee:blancsiinfanterie,v15:true},
+        {nom:"Cavaliers Polonais",type:CAVALERIE,melee:[rouge,blanc],charge:true,defense:[blanc],bonusmelee:rougesicharge,v15:true},
+        {nom:"Cavalerie Lourde Lituanienne",type:CAVALERIE,melee:[rouge,rouge],charge:true,feinte:true,defense:[noir,blanc],modattaque:annule1recul,v15:true},
+        {nom:"Archers Tatars",type:CAVALERIE,tir:[noir,jaune],portee:1,typetir:TENDU,defense:[blanc],v15:true},
+        {nom:"Arbalétriers montés",type:CAVALERIE,tir:[rouge,jaune],portee:1,typetir:TENDU,defense:[blanc],celerite:2,desc:"%MELEE%%PLAINE%: %RECUL% &rarr; %TOUCHE%",v15:true},
+        {nom:"Lanciers montés",melee:[jaune,jaune,jaune],celerite:2,esquive:true,type:CAVALERIE,defense:[jaune],v15:true},
+        {nom:"Piquiers avec pavois",melee:[blanc_bouclierrecule],masse:true,type:INFANTERIE,defense:[noir],riposte:sicavalerie,v15:true},
+        {nom:"Fantassins d'infanterie légère",melee:[blanc,jaune],type:INFANTERIE,defense:[jaune],v15:true,riposte:siinfanterie,parade:siinfanterie},
+        {nom:"Coureurs des bois",melee:[jaune],portee:1,typetir:TENDU,tir:[jaune,jaune],type:INFANTERIE,defense:[jaune],esquive:true,celerite:2,v15:true,desc:"%MELEEONLY%%FORET%: <span class='facejaune recul'></span> &rarr; <span class='facejaune recul'></span><span class='facejaune recul'></span>"},
         {nom:"Adeptes",melee:[rouge],defense:[noir],type:INFANTERIE,faction:MAL,desc:"quand ils sont dans une zone de marais, %THIS% ignorent les effets de terrain liés aux marais et peuvent réaliser un mouvement vers n'importe quelle autre zone de marais du plateau de jeu"},
         {nom:"Almograves",melee:[blanc],defense:[jaune],type:INFANTERIE,esquive:true,noriposte:true,moral:1,cout:65},
         {nom:"Ange",melee:[rouge,blanc],bonusmelee:blancsimal,defense:[noir,noir],type:VOLANT,faction:BIEN,saut:2,transport:true,faction:BIEN,priere:true}, 
@@ -123,8 +137,8 @@ class Unite {
         {nom:"Arbalétriers Génois",typetir:TENDU,portee:1,tir:[rouge],defense:[noir],type:INFANTERIE,cout:80,moral:1,desc:"%ACTIVATED%: en fin ou début d'activation, %THIS% peut être remplacée par les Arbalétriers Génois retranchés"},
         {nom:"Arbalétriers",typetir:TENDU,portee:1,tir:[rouge_bouclierrelance],defense:[blanc],type:INFANTERIE,cout:80,moral:1},
         {nom:"Archers Arc Court",tir:[noir, noir],defense:[blanc],type:INFANTERIE,typetir:TENDU,portee:1,desc:"pendant le tour adverse %ROUNDCOND%: +1 %TIRTENDU%",moral:1,cout:125},
-        {nom:"Archers Azab",tir:[jaune,jaune],defense:[jaune],faction:OTTOMAN,type:INFANTERIE,typetir:TENDU,portee:1,esquive:true,celerite:2,desc:"au début du jeu: recevez une haie de pieux%BR%Vous pouvez placer 1 haie de pieux dans la zone des Archers pour une action bonus"},
-        {nom:"Archers bourguignons",typetir:TENDU,portee:1,tir:[noir,noir],defense:[blanc],type:INFANTERIE,masse:true,desc:"%MOVEENNEMI%%THERE% %TOURCOND%: +1 %TIRTENDU%"},
+        {nom:"Archers Azab",tir:[jaune,jaune],defense:[jaune],faction:OTTOMAN,type:INFANTERIE,typetir:TENDU,portee:1,esquive:true,celerite:2,desc:"%ACTIVATED%: %THIS% peut placer 1 haie de pieux issue de la réserve sur une frontière libre de sa zone"},
+        {nom:"Archers bourguignons",typetir:TENDU,portee:1,tir:[noir,noir],defense:[blanc],type:INFANTERIE,masse:true,desc:"%TOURCOND%: %MOVEENNEMI%%THERE% &rarr; +1 %TIRTENDU%"},
         {nom:"Archers",prenom:"derrière les pieux",tir:[jaune_boucliertouche,jaune_boucliertouche],defense:[blanc,blanc],type:INFANTERIE,typetir:CLOCHE,portee:2},
         {nom:"Archers montés",tir:[blanc,blanc],typetir:CLOCHE,portee:2,defense:[noir],type:CAVALERIE,celerite:2, cout:130,moral:1},
         {nom:"Archers",tir:[jaune_boucliertouche,jaune_boucliertouche],defense:[blanc],type:INFANTERIE,typetir:CLOCHE,portee:2,desc:"%ACTIVATED%: %THIS% peut placer 1 haie de pieux issue de la réserve sur une frontière libre de sa zone",cout:125,moral:1},
@@ -145,7 +159,7 @@ class Unite {
         {nom:"Démons Volants",tir:[rouge,jaune],defense:[noir],type:VOLANT,saut:2,immortel:true,typetir:TENDU,portee:1,faction:MAL,desc:"%MELEE%: <span class='vierge facejaune'></span> &rarr; %LEGENDE%"},
         {nom:"Fantômes",type:INFANTERIE,melee:[blanc,blanc,blanc],defense:[blanc,blanc,blanc],immortel:true,faction:MAL,desc:"%ACTIVATED%%TOURCOND% %LEGENDE%: + %SAUT% 2%BR%%THIS% n'est pas affectée par les effets de terrain"},
         {nom:"Flagellants",melee:[blanc],defense:[],type:INFANTERIE,survie:true,faction:BIEN,desc:"%MELEE% Pénitents%HERE%: +1 <span class='deblanc'></span>"},
-        {nom:"Guisarmiers",melee:[blanc_blanctouche],defense:[blanc_parade],type:INFANTERIE,parade:true,cohesion:true,moral:1,cout:75},
+        {nom:"Guisarmiers",melee:[blanc_blanctouche],defense:[blanc_parade],type:INFANTERIE,parade:ftrue,cohesion:true,moral:1,cout:75},
         {nom:"Hacquebutiers",tir:[jaune_blanctue],defense:[noir],type:INFANTERIE,terreur:1,typetir:TENDU,portee:1,cout:100,moral:1},
         {nom:"Hallebardiers",bonusmelee:blancsiinfanterie,melee:[blanc],defense:[rouge,blanc],type:INFANTERIE,riposte:ftrue,moral:2,cout:110},
         {nom:"Hérétiques",melee:[noir,jaune],defense:[jaune],type:INFANTERIE,cout:90,moral:1,desc:"%MELEE%<span class='niveau2 combat-cond'></span>: <span class='recul'></span> &rarr; <span class='niveau1 combat'></span>%BR%%DEFENSE%: <span class='facejaune vierge'></span> &rarr; %LEGENDE%"},
@@ -153,7 +167,7 @@ class Unite {
         {nom:"Janissaires",melee:[noir],defense:[blanc],esquive:true,charge:true,masse:true,faction:OTTOMAN,type:INFANTERIE,desc:"%MELEE% %XP%: <span class='facenoir bouclier'></span> &rarr; <span class='touche facenoir'></span>"},
         {nom:"Loups",melee:[blanc,jaune],defense:[jaune],celerite:2,type:INFANTERIE,esquive:true,faction:MAL},
         {nom:"Milice Bourgeoise",melee:[blanc], defense:[jaune],type:INFANTERIE,moral:1,cout:35},
-        {nom:"Milice Paysanne",melee:[blanc], defense:[],type:INFANTERIE,masse:true,desc:"%MELEE%: zone de champ%HERE% &rarr; + %FEINTE%",cout:25,moral:1},
+        {nom:"Milice Paysanne",melee:[blanc], defense:[],type:INFANTERIE,masse:true,desc:"%MELEE%%CHAMP%: + %FEINTE%",cout:25,moral:1},
         {nom:"Milice d'Archers",tir:[noir],defense:[jaune],typetir:TENDU,portee:1,type:INFANTERIE,esquive:true,cout:65,moral:1},
         {nom:"Montreur d'ours",melee:[rouge,jaune,blanc], defense:[noir],type:INFANTERIE,riposte:ftrue,terreur:1,desc:"%POURSUITE% %ROUNDCOND%: +1 %MELEE%"},
         {nom:"Okchu",tir:[jaune_boucliertouche],defense:[jaune],type:INFANTERIE,faction:OTTOMAN,typetir:CLOCHE,portee:2,celerite:2},
@@ -188,7 +202,7 @@ class Unite {
         {nom:"Musicien",defense:[blanc],melee:[blanc],type:INFANTERIE,terreur:1,commandement:[3,1],cout:170,moral:2,desc:"%TOUTTYPE%%HERE% %MELEE% / %DEFENSE%: +1 <span class='deblanc'></span>%BR%%CAMP%: <span class='touche'></span> &rarr; <span class='rallie'></span>"},
         {nom:"Porte-étendard",defense:[blanc],type:INFANTERIE,esquive:true,ralliement:true,commandement:[3,1],modattaque:annule2touche,moral:4,cout:260,desc:"%CAMP%: <span class='touche'></span> &rarr; <span class='rallie'></span>"},
         {nom:"Pavoisiers",defense:[noir,blanc],type:INFANTERIE,desc:"%TOUTTYPE%%HERE%, %DEFENSE%:  + %PARADE%",moral:1,cout:110},
-        {nom:"Prêtre",civil:true,type:INFANTERIE,priere:true,soinbienthere:true,commandement:[1,2],faction:BIEN,desc:"%THIS% ne peut commander que <span class='blason-large bien'></span>"},
+        {nom:"Prêtre",civil:true,type:INFANTERIE,priere:true,soinbienthere:true,commandement:[1,2],commandefaction:BIEN,faction:BIEN},
         {nom:"Marchande",civil:true,type:INFANTERIE,desc:"%ACTIVATED%%TOURCOND%: +1 %RUMEUR%"},
         {nom:"Fermier",civil:true,type:INFANTERIE},
         {nom:"Forgeron",civil:true,type:INFANTERIE,melee:[jaune],cout:160,moral:2,desc:"Paysans%HERE%: + %RIPOSTE%, <span class='melee'></span> +1 <span class='dejaune'></span>"},
@@ -201,7 +215,7 @@ class Unite {
         {nom:"Guide",civil:true,type:INFANTERIE,defense:[blanc],modattaque:annule1recul,desc:"%ACTIVATED% %XP%%XP%%ROUNDCOND%: %MOVE% %TOUTTYPE%%HERE%"},
         {nom:"Devin",civil:true,type:INFANTERIE,defense:[unbouclier],desc:"%ACTIVATED% %XP%%XP%%XP%: %CHOOSE% %CARTELEGENDE%"},
         {nom:"Monsieur Quirk",civil:true,type:INFANTERIE,immortel:true,desc:"%ACTIVATED% %MONTOUR%: un unité ennemie%THERE% &rarr; +1 %RUMEUR%"},
-        {nom:"Léo l'aubergiste",civil:true,type:INFANTERIE,terreur:2,soin:true,desc:"%ACTIVATED%%ROUNDCOND%: %PERSONNAGE%%HERE%  + <span class='commandement'>1</span>"},
+        {nom:"Léo l'aubergiste",civil:true,type:INFANTERIE,terreur:2,soin:true,desc:"%ACTIVATED%%ROUNDCOND%: %PERSONNAGE%%HERE%  + <span class='commandement' style='color:black'>1</span>"},
         {nom:"Jacques le troubadour",civil:true,type:INFANTERIE,terreur:1,desc:"%DEFENSE%: 'Le Bon Endroit'%HEREANDTHERE% &rarr;  annulez tous les %RECUL%"},
         {nom:"Rebouteuse",civil:true,type:INFANTERIE,desc:"%CAMP%, %REROLL% une fois le dé du Destin pour deux unités alliés %TOUCHE%"},
     ];
@@ -217,7 +231,7 @@ class Unite {
         {nom:"Maréchal Jean de Clermont",niv:2,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[noir,rouge],charge:true,impetueux:true,riposte:ftrue,legendaire:true,pdv:3,commandement:[1,2],dates:[1352,1356],source:"https://fr.wikipedia.org/wiki/Jean_de_Clermont",blason:true,desc:"%TROUPE%%HERE%: + %COHESION%"},
         {nom:"Jean II Le Bon",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[noir],charge:true,impetueux:true,pdv:3,commandement:[1,2],maj:3,dates:[1350,1364],source:"https://fr.wikipedia.org/wiki/Jean_II_le_Bon",blason:true,desc:"%MONTOUR%: +1 %VERT%"},
         {nom:"Jean II Le Bon",niv:2,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge,blanc],defense:[rouge],charge:true,impetueux:true,riposte:ftrue,pdv:4,commandement:[1,3],dates:[1350,1364],source:"https://fr.wikipedia.org/wiki/Jean_II_le_Bon",blason:true,desc:"%MONTOUR%: +1 %VERT% / %JAUNE%%BR%%CONSEIL%: -1 %XP%"},
-        {nom:"Philippe le Hardi",faction:FRANCAIS,type:INFANTERIE,defense:[noir,blanc],charge:true,parade:true,feinte:true,dates:[1352,1404],source:"https://fr.wikipedia.org/wiki/Philippe_II_de_Bourgogne",blason:true,cout:225,moral:3 , desc:"%PERSONNAGE%%HERE% : + %PARADE%%BR%Les unités dans sa zone ne peuvent subir d'attaque de tir"},
+        {nom:"Philippe le Hardi",faction:FRANCAIS,type:INFANTERIE,defense:[noir,blanc],charge:true,parade:ftrue,feinte:true,dates:[1352,1404],source:"https://fr.wikipedia.org/wiki/Philippe_II_de_Bourgogne",blason:true,cout:225,moral:3 , desc:"%PERSONNAGE%%HERE% : + %PARADE%%BR%Les unités dans sa zone ne peuvent subir d'attaque de tir"},
         {nom:"Maréchal Arnoul d'Audrehem",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[noir],charge:true,impetueux:true,modattaque:annule2recul,pourfendeur:true,pdv:2,commandement:[2,1],maj:4,dates:[1351,1370],source:"https://fr.wikipedia.org/wiki/Arnoul_d%27Audrehem",blason:true},
         {nom:"Maréchal Arnoul d'Audrehem",niv:2,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[noir],charge:true,impetueux:true,riposte:ftrue,pdv:3,commandement:[2,2],dates:[1351,1370],source:"https://fr.wikipedia.org/wiki/Arnoul_d%27Audrehem",blason:true,desc:"%ACTIVATED%%TOURCOND% %XP%: %GRIS% &rarr; %VERT%%BR%%PERSONNAGE%%HERE%: + %PARADE%"},
         {nom:"Philippe d'Orléans",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,blanc],defense:[noir],charge:true,ralliement:true,charisme:true,pdv:2,commandement:[1,2],maj:4,dates:[1352,1356],source:"https://fr.wikipedia.org/wiki/Philippe_d%27Orl%C3%A9ans_(1336-1375)",blason:true,desc:"X %BLESSURE% &rarr; %MELEE%: +X %RECUL%%BR%%THIS% compte comme n'importe quelle troupe lors du décompte pour le trait %MASSE%"},
@@ -240,17 +254,17 @@ class Unite {
         {nom:"Bertrand du Guesclin",niv:2,subfaction:BIEN,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,noir,jaune],defense:[rouge,blanc],pdv:5,charge:true,riposte:ftrue,pourfendeur:true,commandement:[1,1],dates:[1337,1380],source:"https://fr.wikipedia.org/wiki/Bertrand_du_Guesclin",blason:true,moral:6,desc:"%CAMP%: %RALLIE%<span class='troupe combat-cond'></span>%BR%%ACTIVATED%%ROUNDCOND%: +1 %BLEU%"},
         {nom:"Amaury de Sévérac",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[blanc,blanc],defense:[rouge,rouge],pdv:2,mercenaire:true,riposte:ftrue,commandement:[1,2],maj:3,dates:[1385,1427],source:"https://fr.wikipedia.org/wiki/Amaury_de_S%C3%A9v%C3%A9rac",blason:true,desc:"%BLESSURE% &rarr; %XP%"},
         {nom:"Amaury de Sévérac",niv:2,faction:FRANCAIS,type:INFANTERIE,melee:[blanc,blanc,jaune],defense:[rouge,rouge],pdv:3,pourfendeur:true,riposte:ftrue,commandement:[1,2],dates:[1385,1427],source:"https://fr.wikipedia.org/wiki/Amaury_de_S%C3%A9v%C3%A9rac",blason:true,desc:"%BLESSURE% &rarr; %XP%"},
-        {nom:"Jeanne d'Arc",acheval:true,niv:1,faction:FRANCAIS,type:CAVALERIE,defense:[blanc],pdv:2,celerite:2,priere:true,parade:true,commandement:[AA,2],maj:4,dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,cout:325,desc:"%ACTIVATED%%ROUNDCOND%: +1 %JAUNE%"},
+        {nom:"Jeanne d'Arc",acheval:true,niv:1,faction:FRANCAIS,type:CAVALERIE,defense:[blanc],pdv:2,celerite:2,priere:true,parade:ftrue,commandement:[AA,2],maj:4,dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,cout:325,desc:"%ACTIVATED%%ROUNDCOND%: +1 %JAUNE%"},
         {nom:"Jeanne d'Arc",acheval:true,niv:2,subfaction:MAL,faction:FRANCAIS,type:CAVALERIE,melee:[rouge,blanc],defense:[rouge,jaune],pdv:4,celerite:2,riposte:ftrue,terreur:2,commandement:[2,2],dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,legendaire:true,desc:"%MELEE% / %DEFENSE%: <span class='faceblanc vierge'></span> &rarr; %LEGENDE% / %CARTELEGENDE%"},
         {nom:"Jeanne d'Arc",acheval:true,niv:2,subfaction:BIEN,faction:FRANCAIS,type:CAVALERIE,pdv:3,celerite:2,priere:true,ralliement:true,commandement:[3,2],dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,desc:"%ACTIVATED%%ROUNDCOND%: +1 %JAUNE% et jouez cet ordre immédiatement dans n'importe quelle zone alliée%BR%%ACTIVATED% %ROLL% le dé du Destin: %RALLIE% &rarr; %TOUTTYPE%%RALLIE%"},
         {nom:"Héros",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge],defense:[noir],priere:true,feinte:true,commandement:[AA,1],maj:3,cout:160,moral:3},
-        {nom:"Héros",niv:2,subfaction:BIEN,faction:FRANCAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:2,priere:true,parade:true,commandement:[1,1],moral:3},
+        {nom:"Héros",niv:2,subfaction:BIEN,faction:FRANCAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:2,priere:true,parade:ftrue,commandement:[1,1],moral:3},
         {nom:"Héros",niv:2,subfaction:MAL,faction:FRANCAIS,type:INFANTERIE,melee:[blanc_blanctouche,jaune_blanctouche],defense:[blanc,blanc],pdv:2,priere:true,terreur:1,commandement:[AA,2],moral:3},
         {nom:"Héros",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],priere:true,feinte:true,commandement:[AA,1],maj:3,moral:3,cout:160},
-        {nom:"Héros",niv:2,subfaction:BIEN,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:2,priere:true,parade:true,commandement:[1,1],cout:160,moral:3},
+        {nom:"Héros",niv:2,subfaction:BIEN,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:2,priere:true,parade:ftrue,commandement:[1,1],cout:160,moral:3},
         {nom:"Héros",niv:2,subfaction:MAL,faction:ANGLAIS,type:INFANTERIE,melee:[blanc_blanctouche,jaune_blanctouche],defense:[blanc,blanc],pdv:2,priere:true,terreur:1,commandement:[AA,2],moral:3},
         {nom:"Boucicaut",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,jaune],defense:[noir,noir],pdv:3,ralliement:true,commandement:[2,2],maj:4,modattaque:annule2recul,dates:[1340,1415],source:"https://fr.wikipedia.org/wiki/Jean_II_Le_Meingre",blason:true,moral:5,cout:405,desc:"%ACTIVATED% %XP%%XP%%XP% %ROUNDCOND%: +1 %BLEU%"},
-        {nom:"Boucicaut",niv:2,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge,blanc],defense:[noir,noir],pdv:3,ralliement:true,celerite:2,commandement:[3,2],dates:[1340,1415],source:"https://fr.wikipedia.org/wiki/Jean_II_Le_Meingre",blason:true,desc:"%BLEU%%HERE%%ROUNDCOND%: vous pouvez jouer %BLEU%%HERE% après celui-ci%BR%%ACTIVATED%%TOURCOND% %XP%%XP%%XP%: +1 %BLEU%"},
+        {nom:"Boucicaut",niv:2,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge,blanc],defense:[noir,noir],pdv:3,ralliement:true,celerite:2,commandement:[3,2],dates:[1340,1415],source:"https://fr.wikipedia.org/wiki/Jean_II_Le_Meingre",blason:true,desc:"%BLEU%%HERE%%ROUNDCOND%: vous pouvez jouer un %BLEU%%HERE% après celui-ci%BR%%ACTIVATED%%TOURCOND% %XP%%XP%%XP%: +1 %BLEU%"},
         {nom:"Poton de Xaintrailles",niv:2,subfaction:MAL,faction:FRANCAIS,type:CAVALERIE,melee:[noir,noir],defense:[noir],pourfendeur:true,pdv:3,commandement:[1,2],dates:[1423,1450],source:"https://fr.wikipedia.org/wiki/Jean_Poton_de_Xaintrailles",blason:true,moral:4,desc:"%BLEU%%HERE%%ROUNDCOND%: vous pouvez jouer  %BLEU%%HERE% à la suite%BR%une zone adjacente ennemie vient de recevoir un ordre %ROUNDCOND%: +1 %MELEE%"},
         {nom:"Poton de Xaintrailles",niv:2,subfaction:BIEN,faction:FRANCAIS,type:CAVALERIE,melee:[noir,noir],defense:[noir],celerite:2,survie:true,pdv:3,commandement:[1,2],dates:[1423,1450],source:"https://fr.wikipedia.org/wiki/Jean_Poton_de_Xaintrailles",blason:true,moral:4,cout:260,desc:"%BLEU%%HERE%%ROUNDCOND%: vous pouvez jouer  %BLEU%%HERE% à la suite%BR%une zone adjacente ennemie vient de recevoir un ordre %ROUNDCOND%: +1 %MELEE%"},
         {nom:"Poton de Xaintrailles",niv:1,faction:FRANCAIS,type:CAVALERIE,melee:[noir,jaune],defense:[noir],survie:true,pdv:2,maj:3,dates:[1423,1450],source:"https://fr.wikipedia.org/wiki/Jean_Poton_de_Xaintrailles",blason:true,desc:"%XP% %MELEE%: %REROLL% <span class='denoir'></span>%BR%La Hire%HEREANDTHERE% %DEFENSE% +1 <span class='denoir'></span>"},
@@ -259,7 +273,7 @@ class Unite {
         {nom:"La Hire",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge,blanc],defense:[rouge,rouge],pdv:3,riposte:ftrue,charge:true,maj:4,dates:[1418,1443],source:"https://fr.wikipedia.org/wiki/%C3%89tienne_de_Vignolles",blason:true,cout:375,moral:5,desc:"X %BLESSURE% &rarr; %MELEE%: +X <span class='deblanc'></span>%BR%%MELEE%: %MORT% &rarr; %XP%"},
         {nom:"La Hire",niv:2,subfaction:BIEN,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge,rouge],defense:[rouge,rouge],pdv:4,riposte:ftrue,charge:true,commandement:[AA,2],dates:[1418,1443],source:"https://fr.wikipedia.org/wiki/%C3%89tienne_de_Vignolles",blason:true,moral:5,desc:"X %BLESSURE% &rarr; %MELEE%: +X <span class='denoir'></span>%BR%quand %THIS% charge, + %PARADE%"},
         {nom:"La Hire",niv:2,subfaction:MAL,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge,blanc,blanc],defense:[rouge,blanc],pdv:4,terreur:2,dates:[1418,1443],source:"https://fr.wikipedia.org/wiki/%C3%89tienne_de_Vignolles",blason:true,moral:5,desc:"X %BLESSURE% &rarr; %MELEE%: +X <span class='derouge'></span>%BR%%MELEE%: %MORT% &rarr; %XP%%XP%"},
-        {nom:"Jean de Dunois",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,jaune,blanc],defense:[noir,noir],pdv:2,parade:true,celerite:2,maj:4,commandement:[AA,1],dates:[1422,1468],source:"https://fr.wikipedia.org/wiki/Jean_de_Dunois",blason:true,cout:410,enleve1d:true,moral:5,desc:"%ONCEINGAME%: %GRIS% &rarr; %BLEU%"},
+        {nom:"Jean de Dunois",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,jaune,blanc],defense:[noir,noir],pdv:2,parade:ftrue,celerite:2,maj:4,commandement:[AA,1],dates:[1422,1468],source:"https://fr.wikipedia.org/wiki/Jean_de_Dunois",blason:true,cout:410,enleve1d:true,moral:5,desc:"%ONCEINGAME%: %GRIS% &rarr; %BLEU%"},
         {nom:"Jean de Dunois",niv:2,subfaction:BIEN,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,jaune,noir],defense:[noir,noir],pdv:3,relance:true,survie:true,commandement:[1,2],dates:[1422,1468],source:"https://fr.wikipedia.org/wiki/Jean_de_Dunois",blason:true,moral:5,desc:"%ACTIVATED% %LEGENDE%%ROUNDCOND% : %GRIS% &rarr; %BLEU%%BR%%ACTIVATED%%ROUNDCOND%: %MOVE% 1 %RALLIEMENT%"},
         {nom:"Jean de Dunois",niv:2,subfaction:MAL,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,noir,blanc],defense:[noir],pdv:3,priere:true,cruel:true,commandement:[AA,1],dates:[1422,1468],source:"https://fr.wikipedia.org/wiki/Jean_de_Dunois",blason:true,moral:5,desc:"%ACTIVATED%%TOURCOND% 1 %TROUPE%%THERE%%MELEE%: +1 <span class='denoir'></span>%BR%%DEFENSE%: %LEGENDE%%LEGENDE% &rarr; %REROLL% <span class='deblanc'></span><span class='melee combat-cond'></span>"},
         {nom:"Jacques de Bourbon",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:2,maj:4,commandement:[AA,2],dates:[1342,1362],source:"https://fr.wikipedia.org/wiki/Jacques_Ier_de_Bourbon-La_Marche",blason:true},
@@ -284,7 +298,7 @@ class Unite {
         {nom:"Jean de Metz",faction:FRANCAIS,type:INFANTERIE,melee:[rouge],defense:[rouge],pdv:2,riposte:ftrue,impetueux:true,dates:[1428,1456],source:"https://fr.wikipedia.org/wiki/Jean_de_Metz",blason:true,cout:155,moral:3,desc:"%LEGENDE% %DEFENSE%: <span class='facerouge tue'></span> &rarr; <span class='facerouge bouclier'></span>%BR%%MELEE%: %MORT% &rarr; %XP%"},
         {nom:"Arthur de Richemont",niv:1,faction:FRANCAIS,type:CAVALERIE,melee:[rouge,jaune],pdv:2,priere:true,cruel:true,commandement:[AA,2],maj:5,dates:[1414,1458],source:"https://fr.wikipedia.org/wiki/Arthur_III_de_Bretagne",blason:true,desc:"%ACTIVATED%%TOURCOND% %LEGENDE%: %MOVE% %THIS%%BR%%TOUTTYPE%%HERE%: - Impetueux"},
         {nom:"Arthur de Richemont",niv:2,faction:FRANCAIS,type:CAVALERIE,melee:[rouge,rouge,blanc],pdv:3,priere:true,relance:true,commandement:[1,3],dates:[1414,1458],source:"https://fr.wikipedia.org/wiki/Arthur_III_de_Bretagne",blason:true,desc:"%ACTIVATED%%TOURCOND% %LEGENDE%%LEGENDE%: %CHOOSE% 1 %CARTELEGENDE%%BR%%CONSEIL%: %ROLL% <span class='denoir'></span>: <span class='facenoir touche'></span> &rarr; -1 %GRIS% / %VERT% / %BLEU% / %JAUNE% %ADVERSAIRE%"},
-        {nom:"Jean 1er de Luxembourg",faction:FRANCAIS,type:CAVALERIE,melee:[rouge,rouge,noir],defense:[rouge],pdv:2,parade:true,impetueux:true,dates:[1310,1346],source:"https://fr.wikipedia.org/wiki/Jean_Ier_de_Boh%C3%AAme",blason:true,desc:"%ACTIVATED% %ROLL% <span class='denoir'></span>: <span class='facenoir tue'></span> &rarr; un adversaire joue %THIS% pendant cette activation"},
+        {nom:"Jean 1er de Luxembourg",faction:FRANCAIS,type:CAVALERIE,melee:[rouge,rouge,noir],defense:[rouge],pdv:2,parade:ftrue,impetueux:true,dates:[1310,1346],source:"https://fr.wikipedia.org/wiki/Jean_Ier_de_Boh%C3%AAme",blason:true,desc:"%ACTIVATED% %ROLL% <span class='denoir'></span>: <span class='facenoir tue'></span> &rarr; un adversaire joue %THIS% pendant cette activation"},
         {nom:"Erwan de Romorantin",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge],defense:[noir,noir],pdv:2,commandement:[1,1],maj:3,dates:[1356,1356],cout:240,moral:3,desc:"Paysans%HERE%, Milice bourgeoise%HERE%, %MELEE% +1 <span class='deblanc'></span>"},
         {nom:"Erwan de Romorantin",niv:2,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[noir,noir],pdv:3,commandement:[1,2],dates:[1356,1356],moral:3,desc:"Paysans%HERE%, Milice bourgeoise%HERE%, %MELEE% +1 <span class='dejaune'></span>"},
         {nom:"Jean de Vienne",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[jaune,jaune],defense:[noir],priere:true,pdv:3,modattaque:annule1touche,maj:3,dates:[1347,1347,1358,1396],source:"https://fr.wikipedia.org/wiki/Jean_de_Vienne",blason:true,cout:255,moral:3,desc:"%ACTIVATED%%ROUNDCOND%: %ROLL% 1 <span class='denoir'></span>, <span class='facenoir touche'></span> &rarr; -1 %LEGENDE% %ADVERSAIRE%"},
@@ -305,15 +319,15 @@ class Unite {
         {nom:"William Glasdale",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[jaune,blanc],riposte:ftrue,visee:true,pdv:2,maj:3,modattaque: transformetoucherecul,commandement:[1,2],dates:[1409,1429],source:"https://fr.wikipedia.org/wiki/William_Glasdale",blason:true},
         {nom:"William Glasdale",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[blanc,blanc],riposte:ftrue/*,feinte:true*/,pdv:3,modattaque:annule1touche,commandement:[1,3],dates:[1409,1429],source:"https://fr.wikipedia.org/wiki/William_Glasdale",blason:true},
         {nom:"Guillaume de Molins",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],priere:true,feinte:true,pdv:2,maj:3,commandement:[AA,1],dates:[1429,1429],source:"https://www.persee.fr/docAsPDF/bec_0373-6237_1847_num_8_1_452089.pdf"},
-        {nom:"Guillaume de Molins",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],priere:true,feinte:true,parade:true,pdv:3,commandement:[1,1],dates:[1429,1429],source:"https://www.persee.fr/docAsPDF/bec_0373-6237_1847_num_8_1_452089.pdf"},
-        {nom:"Comte de Northampton",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[blanc,blanc],parade:true,pdv:2,maj:3,commandement:[1,1],dates:[1339,1360],source:"https://fr.wikipedia.org/wiki/Guillaume_de_Bohun",blason:true,moral:3,cout:290,desc:"%MELEE%: %INFANTERIE%%INFANTERIE%<span class='troupe combat-cond'></span>%HERE% &rarr; +1 <span class='dejaune'></span>%BR%%TROUPE%%HERE%: + %MASSE%"},
+        {nom:"Guillaume de Molins",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],priere:true,feinte:true,parade:ftrue,pdv:3,commandement:[1,1],dates:[1429,1429],source:"https://www.persee.fr/docAsPDF/bec_0373-6237_1847_num_8_1_452089.pdf"},
+        {nom:"Comte de Northampton",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[blanc,blanc],parade:ftrue,pdv:2,maj:3,commandement:[1,1],dates:[1339,1360],source:"https://fr.wikipedia.org/wiki/Guillaume_de_Bohun",blason:true,moral:3,cout:290,desc:"%MELEE%: %INFANTERIE%%INFANTERIE%<span class='troupe combat-cond'></span>%HERE% &rarr; +1 <span class='dejaune'></span>%BR%%TROUPE%%HERE%: + %MASSE%"},
         {nom:"Comte de Northampton",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,noir],defense:[noir],priere:true,pdv:2,commandement:[1,2],dates:[1339,1360],source:"https://fr.wikipedia.org/wiki/Guillaume_de_Bohun",blason:true,cout:290,moral:3,desc:"%DEFENSE%: %INFANTERIE%%INFANTERIE%<span class='troupe combat-cond'></span>%HERE% &rarr; +1 <span class='dejaune'></span>%BR%%TROUPE%%HERE%: + %MASSE%"},
         {nom:"Jean de Lancastre",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[blanc],defense:[jaune,jaune,blanc_blancbouclier],riposte:ftrue,pdv:2,commandement:[AA,1],maj:4,dates:[1403,1435],source:"https://fr.wikipedia.org/wiki/Jean_de_Lancastre",blason:true,cout:270,moral:3,desc:"+X %CARTELEGENDE% &rarr; +1 %CARTELEGENDE%"},
         {nom:"Jean de Lancastre",niv:2,subfaction:BIEN,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,blanc],defense:[jaune,jaune,blanc_blancbouclier],ralliement:true,riposte:ftrue,pdv:2,commandement:[1,1],dates:[1403,1435],source:"https://fr.wikipedia.org/wiki/Jean_de_Lancastre",blason:true, desc:"%MONTOUR%: %GRIS%/%VERT%/%BLEU%/%JAUNE% &rarr; %GRIS%/%VERT%/%BLEU%/%JAUNE%"},
         {nom:"Jean de Lancastre",niv:2,subfaction:MAL,faction:ANGLAIS,type:INFANTERIE,melee:[noir,jaune,jaune],defense:[noir,noir],pdv:2,ralliement:true,modattaque:annule1touche,riposte:ftrue,commandement:[1,2],dates:[1403,1435],source:"https://fr.wikipedia.org/wiki/Jean_de_Lancastre",blason:true,moral:3,desc:"%MELEE%: <span class='facenoir bouclier'></span> / <span class='facejaune vierge'></span> &rarr; %LEGENDE%"},
         {nom:"Sir John Jouel",faction:ANGLAIS,type:INFANTERIE,melee:[blanc_blanctouche,blanc_blanctouche],defense:[blanc,noir],gardeducorps:true,pdv:2,commandement:[AA,1],dates:[1353,1374],source:"https://fr.wikipedia.org/wiki/Bataille_de_Cocherel",cout:205,moral:3},
         {nom:"John Talbot",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,noir],defense:[noir],charge:true,feinte:true,pdv:2,commandement:[1,1],maj:3,dates:[1404,1453],source:"https://fr.wikipedia.org/wiki/John_Talbot_(1er_comte_de_Shrewsbury)",blason:true,cout:330,moral:3,desc:"%TROUPE%%HERE%: + %CHARGE%"},
-        {nom:"John Talbot",niv:2,subfaction:BIEN,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[noir],feinte:true,parade:true,charge:true,pdv:4,commandement:[1,3],dates:[1404,1453],source:"https://fr.wikipedia.org/wiki/John_Talbot_(1er_comte_de_Shrewsbury)",blason:true,moral:3,desc:"%MONTOUR%: +1 %GRIS%"},
+        {nom:"John Talbot",niv:2,subfaction:BIEN,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[noir],feinte:true,parade:ftrue,charge:true,pdv:4,commandement:[1,3],dates:[1404,1453],source:"https://fr.wikipedia.org/wiki/John_Talbot_(1er_comte_de_Shrewsbury)",blason:true,moral:3,desc:"%MONTOUR%: +1 %GRIS%"},
         {nom:"John Talbot",niv:2,subfaction:MAL,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[noir],charge:true,terreur:1,pdv:3,commandement:[1,2],dates:[1404,1453],source:"https://fr.wikipedia.org/wiki/John_Talbot_(1er_comte_de_Shrewsbury)",blason:true,moral:3,desc:"%ONCEINGAME%: +2 Chiens de guerre%HERE%%BR% Chiens de guerre%HERE%: + %CHARGE%"},
         {nom:"Comte de Suffolk",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,jaune],defense:[blanc,blanc],ralliement:true,pdv:2,maj:3,commandement:[AA,1],dates:[1337,1369],source:"https://fr.wikipedia.org/wiki/Robert_d%27Ufford",blason:true,cout:260,moral:3, desc:"%ACTIVATED%%XP% %TOURCOND%: %RALLIE% %TROUPE%%HERE%"},
         {nom:"Comte de Suffolk",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[blanc,blanc],survie:true,pdv:2,commandement:[1,2],dates:[1337,1369],source:"https://fr.wikipedia.org/wiki/Robert_d%27Ufford", blason:true,moral:3,desc:"%TROUPE%%HERE%: + %COHESION%"},
@@ -324,13 +338,13 @@ class Unite {
         {nom:"Comte d'Oxford",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[noir,jaune],defense:[blanc,rouge],charge:true,riposte:ftrue,pdv:3,maj:4,commandement:[1,2],dates:[1331,1360,1400,1417],source:"http://www.luminarium.org/encyclopedia/devere7.htm https://fr.wikipedia.org/wiki/Richard_de_Vere",blason:true,desc:"%MELEE%: %INFANTERIE%%INFANTERIE%%INFANTERIE%<span class='troupe combat-cond'></span>%HERE% &rarr; +1 <span class='deblanc'></span>"},
         {nom:"Comte d'Oxford",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[noir,jaune],defense:[rouge,blanc,blanc],charge:true,riposte:ftrue,terreur:1,pdv:3,commandement:[1,2],dates:[1331,1360,1400,1417],source:"http://www.luminarium.org/encyclopedia/devere7.htm https://fr.wikipedia.org/wiki/Richard_de_Vere",blason:true,desc:"%MELEE%: %INFANTERIE%%INFANTERIE%%INFANTERIE%<span class='troupe combat-cond'></span>%HERE% &rarr; +1 <span class='derouge'></span>%BR%%DEFENSE%, %NOPLAIN%: %TOUCHE% &rarr; %RECUL%" },
         {nom:"Comte de Warwick",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,noir],defense:[noir],charge:true,pourfendeur:true,pdv:3,maj:4,commandement:[1,2],dates:[1329,1369],source:"https://fr.wikipedia.org/wiki/Thomas_Beauchamp_(11e_comte_de_Warwick)",blason:true,desc:"%ACTIVATED%%TOURCOND% %XP%: %INFANTERIE%<span class='troupe combat-cond'></span>%HERE% + %CELERITE% 2"},
-        {nom:"Comte de Warwick",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,noir,blanc],defense:[rouge,noir],charge:true,parade:true,gardeducorps:true,pdv:4,commandement:[1,3],dates:[1329,1369],source:"https://fr.wikipedia.org/wiki/Thomas_Beauchamp_(11e_comte_de_Warwick)",blason:true,desc:"%ACTIVATED%%TOURCOND% %XP%: %INFANTERIE%<span class='troupe combat-cond'></span>%HERE% + %CELERITE% 2%BR%%MONTOUR% %LEGENDE%: + <span class='commandement'>&nbsp;&nbsp;&nbsp; 1</span>" },
+        {nom:"Comte de Warwick",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,noir,blanc],defense:[rouge,noir],charge:true,parade:ftrue,gardeducorps:true,pdv:4,commandement:[1,3],dates:[1329,1369],source:"https://fr.wikipedia.org/wiki/Thomas_Beauchamp_(11e_comte_de_Warwick)",blason:true,desc:"%ACTIVATED%%TOURCOND% %XP%: %INFANTERIE%<span class='troupe combat-cond'></span>%HERE% + %CELERITE% 2%BR%%MONTOUR% %LEGENDE%: + <span class='commandement'>&nbsp;&nbsp;&nbsp; 1</span>" },
         {nom:"John de la Pôle",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,jaune],defense:[blanc,noir],genie:true,pdv:2,maj:3,commandement:[AA,1],dates:[1423,1428],source:"https://fr.wikipedia.org/wiki/Bataille_de_la_Brossini%C3%A8re#John_de_la_Pole",blason:true,moral:3,cout:275,modattaque:transformetoucherecul},/* TODO: n'existe pas ?*/
         {nom:"John de la Pôle",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,noir],defense:[blanc,jaune],ralliement:true,pdv:3,commandement:[1,1],dates:[1423,1428],source:"https://fr.wikipedia.org/wiki/Bataille_de_la_Brossini%C3%A8re#John_de_la_Pole",blason:true,moral:3,desc:"%MELEE%: %BOUCLIER% &rarr; %LEGENDE% %CARTELEGENDE%"},
         {nom:"William de la Pôle",niv:1,faction:ANGLAIS,type:CAVALERIE,melee:[rouge,jaune],defense:[noir],charge:true,maj:3,commandement:[AA,1],dates:[1415,1450],source:"https://fr.wikipedia.org/wiki/William_de_la_Pole",blason:true,modattaque:transformetoucherecul},
         {nom:"William de la Pôle",niv:2,faction:ANGLAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],charge:true,pdv:2,commandement:[1,1],dates:[1415,1450],source:"https://fr.wikipedia.org/wiki/William_de_la_Pole",blason:true,desc:"1 Archers dans cet hexagone %TIRCLOCHE%: +1 <span class='derouge'></span>"},
         {nom:"Le Prince Noir",niv:2,subfaction:BIEN,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[noir],charge:true,terreur:1,pdv:3,commandement:[1,2],dates:[1346,1376],source:"https://fr.wikipedia.org/wiki/%C3%89douard_de_Woodstock",blason:true,moral:4,desc:"%MONTOUR%: +1 %BLEU%%BR%%ACTIVATED%: %MOVE% 1 %RALLIEMENT%"},
-        {nom:"Le Prince Noir",niv:2,subfaction:MAL,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,rouge,rouge],defense:[noir],cruel:true,terreur:2,pdv:3,commandement:[1,2],dates:[1346,1376],source:"https://fr.wikipedia.org/wiki/%C3%89douard_de_Woodstock",blason:true,moral:4,desc:"%MONTOUR%, %ROLL% 1 <span class='denoir'></span>: <span class='facenoir touche'></span> &rarr; -1 %LEGENDE% %ADVERSAIRE%%BR%%ACTIVATED% %XP%%XP%: +2 %CARTELEGENDE%"},
+        {nom:"Le Prince Noir",niv:2,subfaction:MAL,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,rouge,rouge],defense:[noir],cruel:true,terreur:2,pdv:3,commandement:[1,2],dates:[1346,1376],source:"https://fr.wikipedia.org/wiki/%C3%89douard_de_Woodstock",blason:true,moral:4,desc:"au début de votre tour, %ROLL% 1 <span class='denoir'></span>: <span class='facenoir touche'></span> &rarr; -1 %LEGENDE% %ADVERSAIRE%%BR%%ACTIVATED% %XP%%XP%: +2 %CARTELEGENDE%"},
         {nom:"Le Prince Noir",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[noir],charisme:true,terreur:1,pdv:2,commandement:[1,1],maj:5,dates:[1346,1376],source:"https://fr.wikipedia.org/wiki/%C3%89douard_de_Woodstock",blason:true,moral:4,cout:300,desc:"%CAVALERIE%<span class='troupe combat-cond'></span>%HERE%: + %CELERITE% 2%BR%%ACTIVATED%: %MOVE% %RALLIEMENT%"},
         {nom:"Thomas de Scales",niv:1,faction:ANGLAIS,type:CAVALERIE,melee:[rouge],defense:[noir],relance:true,gardeducorps:true,pdv:2,maj:3,dates:[1419,1460],source:"https://fr.wikipedia.org/wiki/Thomas_de_Scales",blason:true,cout:210,moral:3,desc:"%PERSONNAGE%%HERE%: + %ESQUIVE%"},
         {nom:"Thomas de Scales",niv:2,faction:ANGLAIS,type:CAVALERIE,melee:[rouge],defense:[noir,noir],pourfendeur:true,riposte:ftrue,pdv:3,commandement:[1,1],dates:[1419,1460],source:"https://fr.wikipedia.org/wiki/Thomas_de_Scales",blason:true,desc:"une fois pendant votre tour, %POURSUITE%: +1 %MELEE%"},
@@ -342,7 +356,7 @@ class Unite {
         // Le meme que le francais
         {nom:"Héros monté",niv:1,faction:ANGLAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],pdv:3,charge:true,commandement:[AA,1],maj:3},    
         {nom:"Héros monté",niv:2,faction:ANGLAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],pdv:3,charge:true,commandement:[1,1]},    
-        {nom:"Espion",faction:ANGLAIS,type:INFANTERIE,melee:[blanc,blanc],defense:[noir,jaune],pdv:2,esquive:true,parade:true,desc:"%THIS% peut emprunter un Passage secret sans dépenser de jeton"},    
+        {nom:"Espion",faction:ANGLAIS,type:INFANTERIE,melee:[blanc,blanc],defense:[noir,jaune],pdv:2,esquive:true,parade:ftrue,desc:"%THIS% peut emprunter un Passage secret sans dépenser de jeton"},    
         {nom:"Assassin",faction:ANGLAIS,type:INFANTERIE,melee:[rouge,blanc],defense:[noir],pdv:2,riposte:ftrue,feinte:true, enleve1d:true,desc:"%REVEALED%, %MELEE%: +1 <span class='derouge'></span>"},
         {nom:"Jean II de Luxembourg",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[noir,blanc],defense:[blanc],mercenaire:true,charisme:true,pdv:2,maj:3,commandement:[AA,1],dates:[1414,1441],source:"https://fr.wikipedia.org/wiki/Jean_II_de_Luxembourg-Ligny",blason:true,desc:"%DEFENSE%: pas d'unité%HERE% &rarr; +1 <span class='deblanc'></span>"},
         {nom:"Jean II de Luxembourg",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[noir,blanc],defense:[blanc,jaune],charisme:true,mercenaire:true,pdv:2,commandement:[AA,1],dates:[1414,1441],source:"https://fr.wikipedia.org/wiki/Jean_II_de_Luxembourg-Ligny",blason:true,desc:"%DEFENSE%:  si %THIS% ne peut se déplacer dans une zone adjacente à la suite d'un %RECUL%, annulez ce %RECUL%"},
@@ -359,9 +373,9 @@ class Unite {
         {nom:"John Chandos",niv:2,subfaction:MAL,faction:ANGLAIS,type:INFANTERIE,melee:[noir,noir,noir],defense:[noir],pdv:4,pourfendeur:true,gardeducorps:true,commandement:[AA,3],dates:[1339,1370],source:"https://fr.wikipedia.org/wiki/John_Chandos",bonusattaque:untouchetue,blason:true,moral:3,desc:"%MONTOUR%: +1 %GRIS%%BR%%MELEE%: 1 <span class='facenoir touche'></span> &rarr; 1 <span class='facenoir tue'></span>"},
         {nom:"John Chandos",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[noir,jaune],defense:[rouge],pdv:2,riposte:ftrue,mercenaire:true,commandement:[AA,1],maj:2,dates:[1339,1370],source:"https://fr.wikipedia.org/wiki/John_Chandos",blason:true,moral:3,cout:290,desc:"%CONSEIL%: +1 %CARTELEGENDE%"},
         {nom:"Simon Morhier",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:2,genie:true,maj:2,dates:[1422,1429],source:"https://fr.wikipedia.org/wiki/Simon_Morhier",cout:195,moral:3,desc:"%INFANTERIE%<span class='troupe combat-cond'></span>%HERE%%MELEE%: +1 <span class='deblanc'></span>"},    
-        {nom:"Simon Morhier",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir,noir],pdv:2,genie:true,parade:true,commandement:[AA,1],dates:[1422,1429],source:"https://fr.wikipedia.org/wiki/Simon_Morhier",desc:"%INFANTERIE%%INFANTERIE%<span class='troupe combat-cond'></span>%HERE%%MELEE%: +1 <span class='deblanc'></span>"},    
+        {nom:"Simon Morhier",niv:2,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir,noir],pdv:2,genie:true,parade:ftrue,commandement:[AA,1],dates:[1422,1429],source:"https://fr.wikipedia.org/wiki/Simon_Morhier",desc:"%INFANTERIE%%INFANTERIE%<span class='troupe combat-cond'></span>%HERE%%MELEE%: +1 <span class='deblanc'></span>"},    
         {nom:"John Fastolf",niv:2,subfaction:BIEN,faction:ANGLAIS,type:INFANTERIE,melee:[rouge_recultouche,rouge_recultouche],defense:[noir],pdv:2,riposte:ftrue,charge:true,commandement:[1,2],dates:[1410,1459],source:"https://fr.wikipedia.org/wiki/John_Fastolf",blason:true,desc:"%ACTIVATED% %XP%: %MOVE% 1 %CAVALERIE% alliée d'une zone"},    
-        {nom:"John Fastolf",niv:2,subfaction:MAL,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:3,cruel:true,parade:true,commandement:[2,1],dates:[1410,1459],source:"https://fr.wikipedia.org/wiki/John_Fastolf",blason:true,desc:"%DEFENSE%: %TOUCHE% &rarr; %RECUL%, vous pouvez l'affecter à une autre de vos unités%HEREANDTHERE%"},
+        {nom:"John Fastolf",niv:2,subfaction:MAL,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:3,cruel:true,parade:ftrue,commandement:[2,1],dates:[1410,1459],source:"https://fr.wikipedia.org/wiki/John_Fastolf",blason:true,desc:"%DEFENSE%: %TOUCHE% &rarr; %RECUL%, vous pouvez l'affecter à une autre de vos unités%HEREANDTHERE%"},
         {nom:"John Fastolf",niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[noir,jaune],defense:[jaune,jaune],pdv:2,riposte:ftrue,esquive:true,commandement:[AA,1],maj:3,dates:[1410,1459],source:"https://fr.wikipedia.org/wiki/John_Fastolf",blason:true,desc:"%DEFENSE%: %RECUL% &rarr; vous pouvez déplacer %THIS% jusqu'à 2 zones"},
         {nom:"Jean Stuart de Derneley",niv:1,faction:ECOSSAIS,type:INFANTERIE,melee:[noir,noir],defense:[noir],pdv:2,impetueux:true,charge:true,feinte:true,maj:2,commandement:[AA,1],dates:[1421,1429],source:"https://fr.wikipedia.org/wiki/John_Stuart_de_Darnley",blason:true,cout:320,moral:4,desc:"%MELEE%: %MORT% &rarr; reprenez le jeton de relance si vous ne l'avez plus"},
         {nom:"Jean Stuart de Derneley",niv:2,faction:ECOSSAIS,type:INFANTERIE,melee:[rouge,noir],defense:[noir],pdv:3,feinte:true,charge:true,modattaque:annule1recul,commandement:[AA,2],dates:[1421,1429],source:"https://fr.wikipedia.org/wiki/John_Stuart_de_Darnley",blason:true,moral:4,desc:"%MELEE%: %MORT% &rarr; reprenez le jeton de relance si vous ne l'avez plus%BR%%POURSUITE%: +1 %LEGENDE%"},    
@@ -370,10 +384,10 @@ class Unite {
         {nom:"William Wallace",niv:2,subfaction:MAL,faction:ECOSSAIS,type:INFANTERIE,melee:[noir],defense:[rouge,noir],pdv:2,charge:true,impetueux:true,commandement:[AA,2],dates:[1296,1305],source:"https://fr.wikipedia.org/wiki/William_Wallace",blason:true,cout:250,desc:"%POURSUITE%%ROUNDCOND%: +1 %MELEE%%BR%%MELEE%: <span class='facenoir bouclier'></span> &rarr; %BONUSMOVE% / %XP%"},
         {nom:"Jean Stuart de Buchan",niv:1,faction:ECOSSAIS,type:INFANTERIE,melee:[rouge,blanc],defense:[noir],commandement:[AA,1],pdv:2,feinte:true,charge:true,maj:4,dates:[1404,1424],source:"https://fr.wikipedia.org/wiki/John_Stuart_(3e_comte_de_Buchan)",blason:true,cout:300,moral:3,desc:"%TROUPE%%TROUPE%<span class='combat-cond tirtendu'></span><span class='combat-cond tircloche'></span>%HERE%: +1 <span class='dejaune'></span>"},    
         {nom:"Jean Stuart de Buchan",niv:2,faction:ECOSSAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[noir],pdv:3,charge:true,genie:true,ralliement:true,modattaque:annule1recul,commandement:[1,2],dates:[1404,1424],source:"https://fr.wikipedia.org/wiki/John_Stuart_(3e_comte_de_Buchan)",blason:true,moral:3,desc:"%TROUPE%%TROUPE%<span class='combat-cond tirtendu'></span><span class='combat-cond tircloche'>%HERE%: +1 <span class='dejaune'></span>"},    
-        {nom:"Arnaud Amanieu d'Albret",faction:MERCENAIRE,type:INFANTERIE,melee:[noir,jaune],defense:[noir],pdv:2,mercenaire:true,ralliement:true,parade:true,commandement:[1,1],dates:[1351,1401],source:"https://fr.wikipedia.org/wiki/Arnaud-Amanieu_d%27Albret",blason:true,desc:"%MELEE%: %BOUCLIER% &rarr; %BONUSMOVE%%BR%%LEGENDE% %ACTIVATED%%ROUNDCOND%: + <span class='commandement'>&nbsp;&nbsp;&nbsp; 1</span>"}, 
+        {nom:"Arnaud Amanieu d'Albret",faction:MERCENAIRE,type:INFANTERIE,melee:[noir,jaune],defense:[noir],pdv:2,mercenaire:true,ralliement:true,parade:ftrue,commandement:[1,1],dates:[1351,1401],source:"https://fr.wikipedia.org/wiki/Arnaud-Amanieu_d%27Albret",blason:true,desc:"%MELEE%: %BOUCLIER% &rarr; %BONUSMOVE%%BR%%LEGENDE% %ACTIVATED%%ROUNDCOND%: + <span class='commandement'>&nbsp;&nbsp;&nbsp; 1</span>"}, 
         {nom:"Arnaud de Cervole",faction:MERCENAIRE,type:INFANTERIE,melee:[rouge,blanc],defense:[noir,rouge],pdv:3,mercenaire:true,charge:true,riposte:ftrue,priere:true,commandement:[1,2],dates:[1351,1366],source:"https://fr.wikipedia.org/wiki/Arnaud_de_Cervole",blason:true,desc:"aucun %BLEU% ne peut être joué par un adversaire dans une zone adjacente à %THIS%"}, 
         {nom:"John Hawkwood",faction:MERCENAIRE,type:INFANTERIE,melee:[noir_bouclierrecule],defense:[blanc],pdv:2,mercenaire:true,feinte:true,commandement:[1,2],dates:[1342,1394],source:"https://fr.wikipedia.org/wiki/John_Hawkwood",blason:true,desc:"%ACTIVATED%%ROUNDCOND% %XP%: +1 %BLEU%"}, 
-        {nom:"Seguin de Badefol",faction:MERCENAIRE,type:INFANTERIE,melee:[noir,blanc],defense:[blanc],pdv:3,mercenaire:true,cruel:true,genie:true,parade:true,commandement:[AA,1],dates:[1350,1366],source:"https://fr.wikipedia.org/wiki/Seguin_de_Badefol",desc:"%ACTIVATED% %LEGENDE%%ROUNDCOND%: +2 %CARTELEGENDE%, %DEFAUSSEZEN% 1%BR%%ACTIVATED%%TOURCOND%:  réduisez le coût d'une %CARTELEGENDE%"}, 
+        {nom:"Seguin de Badefol",faction:MERCENAIRE,type:INFANTERIE,melee:[noir,blanc],defense:[blanc],pdv:3,mercenaire:true,cruel:true,genie:true,parade:ftrue,commandement:[AA,1],dates:[1350,1366],source:"https://fr.wikipedia.org/wiki/Seguin_de_Badefol",desc:"%ACTIVATED% %LEGENDE%%ROUNDCOND%: +2 %CARTELEGENDE%, %DEFAUSSEZEN% 1%BR%%ACTIVATED%%TOURCOND%:  réduisez le coût d'une %CARTELEGENDE%"}, 
         {nom:"Robert Knolles",faction:MERCENAIRE,type:INFANTERIE,melee:[rouge,jaune],defense:[noir,blanc],pdv:3,mercenaire:true,cruel:true,charge:true,commandement:[1,1],dates:[1351,1407],source:"https://fr.wikipedia.org/wiki/Robert_Knolles",blason:true,desc:"%MELEE%:%MORT% &rarr; %XP%"},
         {nom:"Petit Meschin",faction:MERCENAIRE,type:INFANTERIE,melee:[rouge_bouclierrecule,blanc_bouclierrecule],defense:[noir,rouge],pdv:3,mercenaire:true,riposte:ftrue,charge:true,gardeducorps:true,commandement:[1,2],dates:[1362,1369],source:"https://fr.wikipedia.org/wiki/Chefs_routiers_c%C3%A9l%C3%A8bres#Le_Petit_Meschin",desc:"%ACTIVATED%%TOURCOND%:  réduisez le coût d'une %CARTELEGENDE%"},
         {nom:"Claude de Chastellux",faction:BOURGUIGNON,type:INFANTERIE,melee:[noir,blanc],defense:[noir,jaune],pdv:2,immortel:true,esquive:true,commandement:[1,1],dates:[1409,1453],source:"https://fr.wikipedia.org/wiki/Claude_de_Chastellux",blason:true,desc:"%DEFENSE%: <span class='facenoir vierge'></span> / <span class='facejaune vierge'></span>&rarr; %LEGENDE%"},
@@ -391,8 +405,8 @@ class Unite {
         {nom:"Mehmet le Conquérant",faction:OTTOMAN,type:VOLANT,melee:[rouge,noir,jaune,jaune],defense:[noir,noir],grand:true,celerite:2,terreur:2,ignifuge:true,pdv:6,commandement:[2,2],dates:[1453,1481],source:"https://fr.wikipedia.org/wiki/Mehmed_II", desc:"%MELEE%: <span class='facerouge vierge'></span> / <span class='facenoir vierge'></span> / <span class='facejaune vierge'></span> &rarr; %INCENDIE%<span class='melee combat-cond'></span>"},
         {nom:"Radu III le Beau",niv:1,faction:VALAQUE,type:INFANTERIE,melee:[blanc],defense:[blanc],charisme:true,pdv:2,commandement:[1,1],maj:2,dates:[1462,1475],source:"https://fr.wikipedia.org/wiki/Radu_III_le_Beau",blason:true,desc:"%MELEE%: 1+ %BOUCLIER% &rarr; %BONUSMOVE%"},
         {nom:"Radu III le Beau",niv:2,faction:VALAQUE,type:INFANTERIE,melee:[blanc,blanc],defense:[noir],charisme:true,feinte:true,pdv:2,commandement:[1,1],dates:[1462,1475],source:"https://fr.wikipedia.org/wiki/Radu_III_le_Beau",blason:true,desc:"%ACTIVATED% %XP%: %MOVE% une unité ennemie d'une zone"},
-        {nom:"Vlad Tepes",niv:1,faction:VALAQUE,type:INFANTERIE,melee:[rouge],defense:[rouge,noir],celerite:2,feinte:true,parade:true,terreur:1,pdv:2,commandement:[1,1],modattaque:annule2recul,maj:4,dates:[1448,1476],source:"https://fr.wikipedia.org/wiki/Vlad_III_l%27Empaleur",desc:"%MELEE%: un des %RECUL% ne peut être annulé par %BOUCLIER%"},
-        {nom:"Vlad Tepes",niv:2,faction:VALAQUE,type:INFANTERIE,melee:[rouge,noir],defense:[noir,blanc],celerite:2,terreur:1,feinte:true,parade:true,pdv:3,commandement:[3,2],dates:[1448,1476],source:"https://fr.wikipedia.org/wiki/Vlad_III_l%27Empaleur",desc:"%MELEE%: un des %RECUL% ne peut être annulé par %BOUCLIER%%BR%%ACTIVATED%%TOURCOND% %XP%: %MOVE% 1 %RALLIEMENT%"},
+        {nom:"Vlad Tepes",niv:1,faction:VALAQUE,type:INFANTERIE,melee:[rouge],defense:[rouge,noir],celerite:2,feinte:true,parade:ftrue,terreur:1,pdv:2,commandement:[1,1],modattaque:annule2recul,maj:4,dates:[1448,1476],source:"https://fr.wikipedia.org/wiki/Vlad_III_l%27Empaleur",desc:"%MELEE%: un des %RECUL% ne peut être annulé par %BOUCLIER%"},
+        {nom:"Vlad Tepes",niv:2,faction:VALAQUE,type:INFANTERIE,melee:[rouge,noir],defense:[noir,blanc],celerite:2,terreur:1,feinte:true,parade:ftrue,pdv:3,commandement:[3,2],dates:[1448,1476],source:"https://fr.wikipedia.org/wiki/Vlad_III_l%27Empaleur",desc:"%MELEE%: un des %RECUL% ne peut être annulé par %BOUCLIER%%BR%%ACTIVATED%%TOURCOND% %XP%: %MOVE% 1 %RALLIEMENT%"},
         {nom:"Sorcière des marais",niv:1,faction:MAL,type:INFANTERIE,melee:[blanc],defense:[noir,rouge],pdv:2,commandement:[1,1],maj:2,desc:"quand elle est dans une zone de marais, %THIS% ignore les effets de terrains liés aux marais et peut réaliser une action de mouvement vers n'importe quelle autre zone de marais du plateau de jeu%BR%%ACTIVATED%%TOURCOND% %LEGENDE%%LEGENDE%: posez ou déplacez un jeton Marais sur une zone qui n'est pas une zone de village"},
         {nom:"Sorcière des marais",niv:2,faction:MAL,type:INFANTERIE,melee:[blanc],defense:[noir,noir],pdv:3,commandement:[1,1],desc:"quand elle est dans une zone de marais, %THIS% ignore les effets de terrains liés aux marais et peut réaliser une action de mouvement vers n'importe quelle autre zone de marais du plateau de jeu%BR%%ACTIVATED%%TOURCOND% %LEGENDE%%LEGENDE%: posez ou déplacez un jeton Marais sur une zone qui n'est pas une zone de village"},
         {nom:"Sorcière",niv:1,faction:MAL,type:INFANTERIE,melee:[jaune],defense:[jaune],esquive:true,commandement:[AA,1],maj:4,cout:145,moral:3,desc:"%MONTOUR%: +1 %CARTELEGENDE%"},
@@ -406,7 +420,7 @@ class Unite {
         {nom:"La Cocatrix",faction:MAL,type:VOLANT,tir:[jaune_blanctouche,jaune_blanctouche,blanc_blanctouche],defense:[blanc,blanc],portee:1,typetir:TENDU,pdv:5,grand:true,visee:true,terreur:1,desc:"%CONSEIL%: +1 %LEGENDE%"},
         {nom:"Dracula",niv:1,faction:MAL,type:INFANTERIE,melee:[rouge,rouge],defense:[rouge,noir],pdv:3,saut:2,terreur:1,commandement:[2,1],maj:5,desc:"%ACTIVATED% %LEGENDE% %ROUNDCOND%: + <span class='commandement'>&nbsp;&nbsp;&nbsp; 1</span>%BR%+1 %BLESSURE% &rarr; %LEGENDE% / %XP%"},
         {nom:"Dracula",niv:2,faction:MAL,type:INFANTERIE,melee:[rouge,rouge,rouge],defense:[noir,noir],pdv:4,saut:3,terreur:2,commandement:[3,1], desc:"%MELEE%: %MORT% &rarr; -1 %BLESSURE% à %THIS%%BR% %LEGENDE% %MELEE%: <span class='facerouge bouclier'></span>&rarr;<span class='facerouge tue'></span>"},
-        {nom:"La Licorne",faction:BIEN,type:INFANTERIE,melee:[blanc,blanc],defense:[blanc,blanc],parade:true,pdv:5,soin:true,celerite:2,legendaire:true,desc:"%MELEE% / %DEFENSE%: 1 <span class='faceblanc vierge'></span> &rarr;  <span class='faceblanc touche'></span>  / <span class='faceblanc bouclier'></span>  / <span class='faceblanc recul'></span>"},
+        {nom:"La Licorne",faction:BIEN,type:INFANTERIE,melee:[blanc,blanc],defense:[blanc,blanc],parade:ftrue,pdv:5,soin:true,celerite:2,legendaire:true,desc:"%MELEE% / %DEFENSE%: 1 <span class='faceblanc vierge'></span> &rarr;  <span class='faceblanc touche'></span>  / <span class='faceblanc bouclier'></span>  / <span class='faceblanc recul'></span>"},
         {nom:"L'Inquisiteur",faction:BIEN,type:INFANTERIE,defense:[noir],pdv:2,priere:true,commandement:[2,1],desc:"%MONTOUR%: %ROLL% <span class='denoir'></span>: <span class='facenoir bouclier'></span> &rarr; prenez 1 %XP% / %LEGENDE% %ADVERSAIRE%%BR%%ACTIVATED% %LEGENDE%%LEGENDE%: +1 %RUMEUR%%BR%%THIS% peut seulement commander le Bourreau"},
         {nom:"Le Griffon",faction:BIEN,type:VOLANT,melee:[noir_bouclierrecule,jaune_bouclierrecule,blanc_bouclierrecule],defense:[blanc,blanc],pdv:4,grand:true,saut:2,feinte:true,pourfendeur:true,charge:true,desc:"%THIS% peut utiliser le trait charge à partir d'un hexagone de ciel"},
         {nom:"Archange Gabriel",niv:1,faction:BIEN,type:VOLANT,melee:[rouge,rouge,rouge],defense:[noir,noir],pdv:6,saut:2,gardeducorps:true,commandement:[1,1],maj:4,desc:"%MELEE%: %BOUCLIER% &rarr; %BONUSMOVE%"},
@@ -451,6 +465,10 @@ class Unite {
             if (n>2) this.defense=this.defense.concat(u.defense);
             if (this.cohesion==true&&n>2) this.defense.push(blanc);
             this.defense.sort((a,b)=>b[3]-a[3]);
+        }
+        if (this.bonusmelee) {
+            if (n>1) this.bonusmelee=((x,y)=>u.bonusmelee(u.bonusmelee(x,y),y))
+            if (n>2) this.bonusmelee=((x,y)=>u.bonusmelee(u.bonusmelee(u.bonusmelee(x,y),y),y))
         }
     }    
     static troupes() {
@@ -515,7 +533,7 @@ class Unite {
         if (this.niv==2) n+=" **";
         if (da!="")
             n+="<br/><small class='text-muted' >"+da+"</small>";
-        
+        if (this.v15) n+="<br/><span class='badge badge-secondary'>v1.5</span>";
         let subfaction="";
         if (this.subfaction==MAL) {
             subfaction="<span class='subfaction blason mal'></span>";
@@ -563,6 +581,8 @@ class Unite {
             c.push("<span class='melee combat'></span><span class='combat-cond mal'></span>: +1 <span class='deblanc'></span>");
         else if (this.bonusmelee==rougesiinfanterie)
             c.push("<span class='melee combat'></span><span class='infanterie combat-cond'></span>: +1 <span class='derouge'></span>");
+        else if (this.bonusmelee==rougesicharge)
+            c.push("<span class='melee combat'></span><span class='actionverte combat-cond'></span>: +1 <span class='derouge'></span>");
         else if (this.bonusmelee==blancsiinfanterie)
             c.push("<span class='melee combat'></span><span class='infanterie combat-cond'></span>: +1 <span class='deblanc'></span>");
         else if (this.bonusmelee==blancsicavalerie)
@@ -571,6 +591,9 @@ class Unite {
             c.push("<span class='melee combat'></span><span class='cavalerie combat-cond'></span> : <span class='vierge faceblanc'></span> &rarr; <span class='faceblanc touche'></span>");
         if (this.riposte==ftrue) c.push("riposte");
         else if (this.riposte==sicavalerie) c.push("riposte <span class='cavalerie combat-cond'></span>");
+        else if (this.riposte==siinfanterie) c.push("riposte <span class='infanterie combat-cond'></span>");
+        if (this.parade==ftrue) c.push("parade");
+        else if (this.parade==siinfanterie) c.push("parade <span class='infanterie combat-cond'></span>");
         if (this.modattaque==annule1recul)
             c.push("<br/><span class='defense combat'></span>: -1 <span class='recul'></span>");
         else if (this.modattaque==annule2recul)
@@ -604,6 +627,7 @@ class Unite {
             dd=this.desc.replace(/%LEGENDE%/g,"<span class='jetonlegende jeton'></span>")
                 .replace(/%MELEE%/g,attaque.join(' / '))
                 .replace(/%BR%/g,"<br/>")
+                .replace(/%MELEEONLY%/g,"<span class='melee combat'></span>")
                 .replace(/%POURSUITE%/g,"<span class='poursuiteaprescombat combat'></span>")  
                 .replace(/%HERE%/g,"<span class='here combat-cond'></span>")
                 .replace(/%HEREHEXA%/g,"<span class='herehexa combat-cond'></span>")
@@ -614,7 +638,7 @@ class Unite {
                 .replace(/%ROUND%/g,"<b>1/round</b><span style='display:none'>tap</span>")
                 .replace(/%ROUNDCOND%/g," <span class='tap combat'></span>")
                 .replace(/%TOURCOND%/g," <span class='turn combat'></span>")
-                .replace(/%MONTOUR%/g,"<b>à votre tour</b>")
+                .replace(/%MONTOUR%/g,"à votre tour")
                 .replace(/%MOVEENNEMI%/g,"une unité ennemie vient d'entrer ou déclare une action de mouvement pour sortir d'une zone")
                 .replace(/%TIRTENDU%/g,"<span class='tirtendu combat'></span>")
                 .replace(/%TIRCLOCHE%/g,"<span class='tircloche combat'></span>")
@@ -660,6 +684,9 @@ class Unite {
                 .replace(/%PERSONNAGE%/g,"<span class='type personnage'></span>")
                 .replace(/%RALLIEMENT%/g,"<span class='jeton ralliement'></span>")
                 .replace(/%MOVE%/g,"vous pouvez déplacez")
+                .replace(/%CHAMP%/g,"<span class='ble combat-cond'></span>")
+                .replace(/%PLAINE%/g,"<span class='plaine combat-cond'></span>")
+                .replace(/%FORET%/g,"<span class='foret combat-cond'></span>")
                 .replace(/%ZONELIBREHEXA%/g,"sur une zone libre d'un hexagone")
                 .replace(/%2ACTIVATION%/g,"vous pouvez jouer à la suite")
                 .replace(/%ROLL%/g,"lancez")
@@ -674,7 +701,7 @@ class Unite {
                 .replace(/%ACTIVATED%/g,"<b>action bonus</b>")
                 .replace(/%SPECIAL%/g,"<b>action spéciale</b>")
                 .replace(/%BONUSMOVE%/g,"peut effectuer une action bonus de déplacement")
-                .replace(/%ACTIONPLAYER%/g,"<b>actino de joueur</b>")
+                .replace(/%ACTIONPLAYER%/g,"<b>action de joueur</b>")
                 .replace(/%REVEALED%/g,"quand cette unité est révélée")
                 .replace(/%DEFAUSSEZEN%/g,"défaussez en")
                 .replace(/%CHOOSERECUL%/g,"choisissez où cette unité est repoussée");
@@ -699,7 +726,11 @@ class Unite {
     toString() {
         let j=this.toHTML();
         let command="";
-        if (j[7]) command="<span class='commandement'><span style='color:black;text-shadow:1px 1px;'>"+j[7][0]+"</span>&nbsp; "+j[7][1]+"</span>";
+        if (j[7]) {
+            if (typeof this.commandefaction!="undefined") command+="<span class='commandement combat-cond "+NOM_FACTION[this.commandefaction]+"'>";
+            else command+="<span class='commandement'>";
+            command+="<span style='color:black;text-shadow:1px 1px;'>"+j[7][0]+"</span>&nbsp; "+j[7][1]+"</span>";
+        }
         return "<tr><td>"+j[0]+"</td><td>"+j[1]+"</td><td>"+j[2]+"</td><td>"+j[3]+"</td><td>"+j[4]+"</td><td>"+command+"</td><td><span class='pdv'>"+j[5]+"</span></td><td>"+j[6]+"</td></tr>";
     }
     
