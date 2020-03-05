@@ -1,4 +1,9 @@
-
+embed .toolbar {
+    display:none;
+}
+#card .modal-lg {
+    max-width: 380px;
+}
 .img-circle,.img-circle2 {
     width:2em;
 }

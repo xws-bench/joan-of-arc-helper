@@ -1,5 +1,5 @@
 
-var width = 960,
+var width = 900,
     height = 500,
     radius = 200;
 
@@ -11,7 +11,7 @@ var path = d3.geo.path()
     .projection(projection);
 
 var svg = d3.select(".hexagons")
-    .attr("width", width)
+    .attr("width", "100%")
     .attr("height", height);
 var num=0;
 
