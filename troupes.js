@@ -515,6 +515,7 @@ class Unite {
         let f="",m="",d="",c=[],mod="";
         let lcapa=["ignifuge","grand","soin","cruel","relance","gardeducorps","pourfendeur","charge","celerite","priere","riposte","terreur","esquive","saut","feinte","charisme","ralliement","impetueux","survie","genie","parade","immortel","mercenaire","visee","masse","cohesion","transport","recultue","noriposte","noterreur"];
         let nn=this.nom.replace(/ /g,"_").replace(/'/g,"_").replace(/,/g,"_");
+        if (this.acheval) nn+="_à_cheval";
         if (this.niv==0) nn+="__";
         if (this.niv==1) nn+="_*";
         if (this.niv==2) nn+="_**";
