@@ -1,6 +1,23 @@
 
 .img-circle,.img-circle2 {
-    border-radius: 50%;
+    width:2em;
+}
+.cc2 {
+    column-count:2;
+}
+vg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 figure {
     text-align:center;
@@ -32,6 +49,12 @@ figure {
   stroke: #000;
   stroke-width: 2px;
   pointer-events: none;
+}
+#tablepersos,#tabletroupes {
+    td,th {
+        font-size:smaller;
+        padding:0.25rem;
+    }
 }
 .hexagon {
   position: relative;

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr" style='height:100%'>
+  <head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Aide de jeu pour Joan of Arc">
+  <meta name="author" content="Denis Wings">
+   <meta name="keywords" content="Joan of Arc, guerre de cent ans, batailles, comparateur">
+  <title>Guerre de Cent ans</title>
+
+  </head>
+<body style='width:100%;height:100%'>
+  <script>
+    var page=0;
+    var $_GET = {};
+    if (document.location.toString().indexOf('?') !== -1) {
+      var query = document.location
+                   .toString()
+                   // get the query string
+                   .replace(/^.*?\?/, '')
+                   // and remove any existing hash string (thanks, @vrijdenker)
+                   .replace(/#.*$/, '')
+                   .split('&');
+
+      for(var i=0, l=query.length; i<l; i++) {
+         var aux = decodeURIComponent(query[i]).split('=');
+         page = aux[1];
+                                        }
+                                        console.log("page="+page);
+                                        }
+                                        var element = document.createElement("embed");
+                                        element.setAttribute("src","https://xws-bench.github.io/joan-of-arc-helper/Combats_Franco_anglais.pdf#page="+page);
+                                        element.setAttribute("width","100%");
+                                        element.setAttribute("height","100%");
+                                        element.setAttribute("type","application/pdf");
+                                        document.body.appendChild(element);
+</script>
+
+</body>

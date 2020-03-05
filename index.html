@@ -71,9 +71,9 @@
   </header>
 
   <section id="chrono">
-    <div class="container">
-      <div class="row">
-        <div class="p0 m0 w-100">
+    <div class="container-fluid p-2">
+      <div class="row no-gutters">
+        <div class="text-justify">
           <h2>Chronologie de la guerre</h2>
           <p class="lead text-muted">Le contexte historique de la Guerre de 100 ans. 
           </p>
@@ -92,9 +92,9 @@
   </section>
 
   <section id="troupes" class="bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="p0 m0">
+    <div class="container-fluid p-2">
+      <div class="row no-gutters">
+        <div class="text-justify">
           <h2>Troupes historiques et mythiques de Joan of Arc</h2>
           <p class="lead text-muted">Caractéristiques de combat des unités de Joan of Arc.
           </p>
@@ -104,8 +104,8 @@
           </button></p>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
+      <div class="row no-gutters">
+        <div class="col-12 p-0 mx-0">
           <table id="tabletroupes" class="compact troupes table table-striped table-bordered">
             <thead>
               <tr>
@@ -127,9 +127,9 @@
   </section>
 
   <section id="persos">
-    <div class="container">
-      <div class="row">
-        <div class="p0 m0">
+    <div class="container-fluid">
+      <div class="row no-gutters">
+        <div class="text-justify">
           <h2>Personnages historiques et mythiques</h2>
           <p class="lead text-muted">Caractéristiques de jeu et historiques des personnages de Joan of Arc.</p>
           <p>Pour chaque personnage, la liste reprend ses caractéristiques, ses dates historiques d'activité, son blason historique s'il est connu. Les dates fournissent un lien vers la page concernant le personnage.</p>
@@ -180,7 +180,7 @@
   
         </div>
       </div>
-      <div class="row">
+      <div class="row no-gutters">
         <div class="col-12">
           <table id="tablepersos" class="compact troupes  table table-striped table-bordered">
             <thead>
@@ -205,9 +205,9 @@
   </section>
 
   <section id="compare" class="bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
+    <div class="container-fluid">
+      <div class="row no-gutters">
+        <div class="col-12 text-justify">
           <h2>Combat</h2>
           <p class="lead">Statistiques de combat des unités</p>
           <p>Il s'agit d'un mini-simulateur de combat. Choisissez un attaquant et un défenseur, l'attaquant attaque une fois (comme avec un ordre <span class='actiongrise type'></span>) le défenseur. Les terrains de chaque unité peuvent être changés. Les chiffres indiqués sont des probabilités, d'être encore dans l'hexagone et avec combien de points de vie en moyenne, d'être à l'hopital <span class='facenoir touche'></span>, d'être mort <span class='facenoir mort'></span> ou d'avoir subi un recul <span class='facenoir recul'></span>. La riposte et autres effets similaires sont pris en compte, l'attaquant peut aussi avoir les mêmes probabilités, s'il y a riposte par exemple. Le nombre de troupes sans faction peut être ajusté entre 1 et 3.
@@ -215,7 +215,7 @@
           <p>Les attaques gratuites après poursuites après combat ne sont pas implémentées.</p>
         </div>
       </div>
-      <div class="row">
+      <div class="row no-gutters">
         <div class="col-6 border-right">
           <div class="lead">Attaquant</div>
           <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
@@ -247,7 +247,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row no-gutters">
         <div class="col-6 border-right">
           <div class="tab-content" id="nav-tabContent1">
             <div class="tab-pane fade show active" id="list-neutre" role="tabpanel" aria-labelledby="list-neutre-list">
@@ -359,27 +359,24 @@
             </div>
             <div class="tab-pane fade" id="list-mercenaire2" role="tabpanel" aria-labelledby="list-mercenaire-list2">
               <select style="width:100%" class="trouveperso mercenaire form-control" onchange="trouveperso(2)">
-                                <option label="placeholder"></option>
-
+                <option label="placeholder"></option>
               </select>
             </div>
             <div class="tab-pane fade" id="list-mal2" role="tabpanel" aria-labelledby="list-mal-list2">
               <select style="width:100%" class="trouveperso mal form-control" onchange="trouveperso(2)">
-                                <option label="placeholder"></option>
-
+                <option label="placeholder"></option>
               </select>
             </div>
             <div class="tab-pane fade" id="list-bien2" role="tabpanel" aria-labelledby="list-bien-list2">
               <select style="width:100%" class="trouveperso bien form-control" onchange="trouveperso(2)">
-                                <option label="placeholder"></option>
-
+                <option label="placeholder"></option>
               </select>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="row">
+      <div class="row no-gutters">
         <div class="col-6 border-right">
           <table id="attaque"  class="display compact table table-sm"></table>
         </div>
@@ -387,108 +384,70 @@
           <table id="defense"  class="display compact table table-sm"></table>
         </div>
       </div>
+      <div class="row">
+        <div class="col-6 terrain1 border-right">
+          <div class="lead">Terrain de l'attaquant</div>
+          <select  style="width:100%" class="form-control trouveterrain" onchange="trouveterrain(1)">
+         </select>
+        </div>
+        <div class="col-6 terrain2">
+          <div class="lead">Terrain du défenseur</div>
+          <select style="width:100%" class="form-control trouveterrain" onchange="trouveterrain(2)">
+          </select>
+        </div>
+      </div>
     </div>
-    <div class="row terrain">
-      <figure  class="col-1">
-        <img class="img-circle plain" src="css/plain.png" />
-        <figcaption>Plaine</figcaption>
-      </figure>
-      <figure  class="col-1">
-        <img class="img-circle plain" src="css/ble.png" />
-        <figcaption>Champ</figcaption>
-      </figure>
-      <figure  class="col-1">
-        <img class="img-circle forest" src="css/forest.png" />
-        <figcaption>Forêt</figcaption>
-      </figure>
-      <figure  class="col-1">
-        <img class="img-circle swamp" src="css/swamp.png" />
-        <figcaption>Marais</figcaption>
-      </figure>
-      <figure  class="col-1">
-        <img class="img-circle forest" src="css/pave.png" />
-        <figcaption>Village</figcaption>
-      </figure>
-      <figure class="col-1 border-right">
-        <img class="img-circle rock" src="css/rock.png" />
-        <figcaption>Rocher</figcaption>
-      </figure>
-      <figure  class="col-1" >
-        <img class="img-circle2 plain" src="css/plain.png" />
-        <figcaption>Plaine</figcaption>
-      </figure>
-      <figure  class="col-1" >
-        <img class="img-circle2 plain" src="css/ble.png" />
-        <figcaption>Champ</figcaption>
-      </figure>
-       <figure  class="col-1" >
-         <img class="img-circle2 forest" src="css/forest.png" />
-         <figcaption>Forêt</figcaption>
-        </figure>
-       <figure  class="col-1" >
-         <img class="img-circle2 swamp" src="css/swamp.png" />
-         <figcaption>Marais</figcaption>
-       </figure>
-      <figure  class="col-1" >
-         <img class="img-circle2 forest" src="css/pave.png" />
-         <figcaption>Village</figcaption>
-      </figure>
-      <figure  class="col-1" >
-        <img class="img-circle2 rock" src="css/rock.png" />
-         <figcaption>Rocher</figcaption>
-      </figure>
-    </div>
-
-  <div class="container">
-    <svg class="hexagons">
-      <defs>
-        <pattern id="plain" width="1" height="1" x="0" y="0">
-          <image xlink:href="css/plain.png" width="400" height="400" />
-        </pattern>
-        <pattern id="ble" width="1" height="1" x="0" y="0">
-          <image xlink:href="css/ble.png" width="400" height="400" />
-        </pattern>
-        <pattern id="pave" width="1" height="1" x="0" y="0">
-          <image xlink:href="css/pave.png" width="400" height="400" />
-        </pattern>
-        <pattern id="swamp" width="1" height="1" x="0" y="0">
-          <image xlink:href="css/swamp.png" width="400" height="400" />
-        </pattern>
-        <pattern id="forest" width="1" height="1" x="0" y="0">
-          <image xlink:href="css/forest.png" width="400" height="400" />
-        </pattern>
-        <pattern id="rock" width="1" height="1" x="0" y="0">
-          <image xlink:href="css/rock.png" width="400" height="400" />
-        </pattern>
-      </defs>
-      <g class='hexa'>
-      </g>
-      <foreignObject x="40" y="190" width="260" height="220">
-        <!--
-            Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
-            être omis, mais il est obligatoire dans le contexte d'un document SVG
-          -->
-        <div xmlns="http://www.w3.org/1999/xhtml" id="hex1">
-        </div>
-      </foreignObject>
-      <foreignObject x="400" y="190" width="260" height="220">
-        <!--
-            Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
-            être omis, mais il est obligatoire dans le contexte d'un document SVG
-          -->
-        <div xmlns="http://www.w3.org/1999/xhtml" id="hex2">
-        </div>
-      </foreignObject>
-      <foreignObject x="800" y="190" width="260" height="220">
-        <!--
-            Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
-            être omis, mais il est obligatoire dans le contexte d'un document SVG
-          -->
-        <div xmlns="http://www.w3.org/1999/xhtml" id="hex3" class="text-white">
-        </div>
-      </foreignObject>
-    </svg>
-  </div> 
+    
+    <div class="container-fluid">
+      <svg class="hexagons">
+        <defs>
+          <pattern id="plain" width="1" height="1" x="0" y="0">
+            <image xlink:href="css/plain.png" width="400" height="400" />
+          </pattern>
+          <pattern id="ble" width="1" height="1" x="0" y="0">
+            <image xlink:href="css/ble.png" width="400" height="400" />
+          </pattern>
+          <pattern id="pave" width="1" height="1" x="0" y="0">
+            <image xlink:href="css/pave.png" width="400" height="400" />
+          </pattern>
+          <pattern id="swamp" width="1" height="1" x="0" y="0">
+            <image xlink:href="css/swamp.png" width="400" height="400" />
+          </pattern>
+          <pattern id="forest" width="1" height="1" x="0" y="0">
+            <image xlink:href="css/forest.png" width="400" height="400" />
+          </pattern>
+          <pattern id="rock" width="1" height="1" x="0" y="0">
+            <image xlink:href="css/rock.png" width="400" height="400" />
+          </pattern>
+        </defs>
+        <g class='hexa'>
+        </g>
+        <foreignObject x="40" y="190" width="260" height="220">
+          <!--
+              Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
+              être omis, mais il est obligatoire dans le contexte d'un document SVG
+            -->
+          <div xmlns="http://www.w3.org/1999/xhtml" id="hex1">
+          </div>
+        </foreignObject>
+        <foreignObject x="400" y="190" width="260" height="220">
+          <!--
+              Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
+              être omis, mais il est obligatoire dans le contexte d'un document SVG
+            -->
+          <div xmlns="http://www.w3.org/1999/xhtml" id="hex2">
+          </div>
+        </foreignObject>
+        <foreignObject x="800" y="190" width="260" height="220">
+          <!--
+              Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
+              être omis, mais il est obligatoire dans le contexte d'un document SVG
+            -->
+          <div xmlns="http://www.w3.org/1999/xhtml" id="hex3" class="text-white">
+          </div>
+        </foreignObject>
+      </svg>
+    </div> 
   </section>
 
 
@@ -499,6 +458,7 @@
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Denis Wings 2019-2020</p>
       <p class="m-0 text-center text-white">Tous droits réservés pour le jeu Joan of Arc pour Mythic Games</p>
+      <p class="m-0 text-center text-white">Contenu Wikipedia soumis à <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">la licence CC-BY-SA</a></p>
       <p class="m-0 text-center text-white">Dernière maj: 01/03/2020</p>
     </div>
     <!-- /.container -->

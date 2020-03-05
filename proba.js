@@ -251,7 +251,7 @@ function grouper(list) {
 function combat_a(a,na,bouclier,nd,coef,group1,group2,res) {
     let h,k,p,b;
     let boucliermalus=false;
-    if ($(".img-circle2.swamp.selected").length>0) {
+    if (group1.terrain=="marais") {
         boucliermalus=true;
     }
     for (h=0;h<=na;h++)
@@ -317,7 +317,7 @@ function combat(group1,group2,islogged) {
         }
         let parade=false;
         if (typeof group2.parade=="function") parade=group2.parade(group1);
-        if ($(".img-circle2.forest.selected").length>0) {
+        if (group2.terrain=="forest") {
             parade=true;
         }
         d=bouclier(dd,parade);
@@ -370,7 +370,7 @@ function combat(group1,group2,islogged) {
     let hasriposte,rispote,haslimited;
     hasriposte=group2.riposte&&group2.riposte(group1);
     riposte=group2.defense;
-    haslimited=($(".img-circle2.rock.selected").length>0);
+    haslimited=(group2.terrain=="rock");
     if (islogged) {
         console.log(" dégat sans terreur("+terreur+"):"+(res.blessure[1]-hdcterreur)+" "+res.blessure[2]+" "+res.blessure[3]+" "+res.blessure[4]);
         console.log(" recul sans terreur ("+terreur+"):"+(res.recul[1]-reculterreur)+" "+res.recul[2]+" "+res.recul[3]+" "+res.recul[4]);
@@ -586,11 +586,21 @@ function drawValues(c1,c2,a,d,p1,p2,p3,d1,d2,b1,b2,e) {
     $("#hex1").html(tableStat(c1,a,p1,d1,b1,0,0));
     $("#hex2").html(tableStat(c2,d,p2,d2,b2,p3[1],e));
 }
+
+function trouveterrain(n) {  
+    //if ($("select.trouveterrain option:selected").length==0) return; 
+    let x=$(".terrain"+n+" select.trouveterrain option:selected").val();
+    trouveperso(n);
+    $(".hexa .hex"+(7+n)).css("fill","url(#"+x+")");
+}
+
 function trouveperso(n) {
-    if ($("#nav-tabContent"+n+" div.active select.trouveperso option:selected").length==0) return; 
     let x=$("#nav-tabContent"+n+" div.active select.trouveperso option:selected").val();
+    if (x=="") return;
+    let ter=$(".terrain"+n+" select.trouveterrain option:selected").val();
     $("#nav-tabContent"+n+" div:not(.active) select.trouveperso option").prop("selected", false);
     let t=troupes[x];
+    t.terrain=ter;
     if (typeof t=="undefined") return;
     if (n==1) {
         let nn=$("#number1").children("option:selected").val();
@@ -603,7 +613,6 @@ function trouveperso(n) {
         if (nn>1&&t.troupe==true) 
             perso2=new Unite(t,nn);
          else perso2=t;
-         console.log("perso2: "+perso2.defense.length);
         perso2.d=perso2.toHTML()[4];
      }
     if (perso1) $("#hex1").html(tableStat(perso1,perso1.a,[perso1.pdv,1],0,0,0,0));
@@ -631,7 +640,7 @@ $( document ).ready(function() {
         start:"1297-09-10",
         end:"1475-08",
         url:"top",
-        info:(e=>e.info()),
+        info:(e=>e.info(persolist)),
         cursor:"1429-02-01",
         loading:"<i class=\"far fa-spinner fa-spin fa-lg\"></i>&nbsp;&hellip;",
         locale:"fr-FR",
@@ -646,7 +655,9 @@ $( document ).ready(function() {
 
     $(".findperso").select2({placeholder:'Choisissez une unité',data:persolist,templateResult:(e)=>(new Unite(e)).format(true)});
     $(".finddate").select2({placeholder:'Choisissez un événement',data:evenements,templateResult:(e)=>(new Evenement(e)).format(true)});
-
+    let terrains=[{id:"plain",text:"plaine",selected:true},{id:"ble",text:"champs"},{id:"forest",text:"forêt"},{id:"swamp",text:"marais"},{id:"pave",text:"village"},{id:"rock",text:"rocher"}];
+    
+    $(".trouveterrain").select2({data:terrains,templateResult:(e)=>$("<span><img class='img-circle "+e.id+"' src='css/"+e.id+".png'/>"+e.text+"</span>")});
     for (i in NOM_FACTION) {
         let n=NOM_FACTION[i];
         if (n=="neutre") {
@@ -668,6 +679,7 @@ $( document ).ready(function() {
         "paging":         true,
         /*ordering:true,
           order: [[ 3, "asc" ]],*/
+        responsive:true,
         "columnDefs": [
             { "width": "20%", "targets": 0 }
         ],
@@ -693,6 +705,7 @@ $( document ).ready(function() {
         "columnDefs": [
             { "width": "20%", "targets": 0 }
         ],
+        responsive:true,
         "columns": [
             {"width": "15%"},
             {"width":"3%"},
@@ -703,20 +716,6 @@ $( document ).ready(function() {
             {"width":"5%"},
             {"width": "40%"},
         ]
-    });
-    $(".img-circle").click(function() {
-        $(".img-circle").removeClass("selected");
-        $(this).addClass("selected");
-        let img=$(this).attr("src").split('.')[0];
-        trouveperso(1);
-        $(".hexa .hex8").css("fill","url(#"+img.substr(4)+")");
-    });
-    $(".img-circle2").click(function() {
-        $(".img-circle2").removeClass("selected");
-        $(this).addClass("selected");
-        let img=$(this).attr("src").split('.')[0];
-        trouveperso(2);
-        $(".hexa .hex9").css("fill","url(#"+img.substr(4)+")");
     });
 
 });
