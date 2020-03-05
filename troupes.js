@@ -526,7 +526,7 @@ class Unite {
 
         let n=this.nom;
         if (this.pdf) n="<a href='#card' data-toggle='modal' data-target='#card' onclick=\"document.getElementById('mycard').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+this.nom+"</a>";
-        if (this.pdf) n="<a href='#card-troop' data-toggle='modal' data-target='#card-troop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+this.nom+"</a>";
+        if (this.troupe) n="<a href='#card-troop' data-toggle='modal' data-target='#card-troop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+this.nom+"</a>";
 
         if (this.source) {
             urla=this.source.split(" ");
