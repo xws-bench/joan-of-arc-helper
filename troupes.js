@@ -189,7 +189,7 @@ class Unite {
         {nom:"Squelettes",pdf:true,prenom:"Démoniaques",melee:[jaune],defense:[],charge:true,type:INFANTERIE,masse:true,faction:MAL,modattaque:annule1recul,desc:"%MELEE%: Squelettes%HERE% &rarr; +1 <span class='dejaune'></span>",cout:75,moral:1},
         {nom:"Squelettes",pdf:true,melee:[jaune],defense:[],type:INFANTERIE,faction:MAL,modattaque:annule1recul,desc:"%MELEE%: Squelettes%HERE% &rarr; +1 <span class='dejaune'></span>",moral:1,cout:55},
         {nom:"Vougiers",pdf:true,bonusmelee:blanctouchesicavalerie,melee:[blanc],defense:[rouge,blanc],riposte:ftrue,type:INFANTERIE,cohesion:true,cout:115},
-        {nom:"Yerli Kurlu",pdf:true,melee:[jaune_blancrecule],defense:[jaune],esquive:true,faction:OTTOMAN,type:INFANTERIE,masse:true},
+        {nom:"Yerli Kulu",pdf:true,melee:[jaune_blancrecule],defense:[jaune],esquive:true,faction:OTTOMAN,type:INFANTERIE,masse:true},
         {nom:"Canon",tir:[rouge,rouge],defense:[blanc],type:ARTILLERIE,typetir:CLOCHE,portee:3,pdv:2,faction:OTTOMAN},
         {nom:"Bombarde",tir: [rouge,rouge,blanc_blanctue],defense:[blanc],type:ARTILLERIE,typetir:CLOCHE,portee:2,pdv:2,cout:220,moral:3},
         {nom:"Couleuvrine",pdf:true,tir:[jaune_blancrecule,jaune_blancrecule,jaune_blancrecule],defense:[noir],visee:true,typetir:TENDU,portee:2,type:ARTILLERIE,cout:155,moral:2},
