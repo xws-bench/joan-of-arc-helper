@@ -414,7 +414,7 @@ class Unite {
         {nom:"La Tarasque",pdf:true,niv:1,faction:MAL,type:INFANTERIE,melee:[rouge,rouge,rouge],defense:[noir,noir],pdv:8,grand:true,riposte:ftrue,maj:4,dates:[1382,1382],source:"https://fr.wikipedia.org/wiki/Tarasque",desc:"%MELEE%: %BLESSURE% &rarr; +1 %BLESSURE%"},
         {nom:"La Tarasque",pdf:true,niv:2,postattaque:doubleblessure,faction:MAL,type:INFANTERIE,melee:[rouge,rouge,rouge],defense:[noir,noir],pdv:10,grand:true,terreur:1,dates:[1382,1382],source:"https://fr.wikipedia.org/wiki/Tarasque",desc:"%MELEE%: %BLESSURE% &rarr; +1 %BLESSURE%"},
         {nom:"Loup-garou",pdf:true,niv:1,faction:MAL,type:INFANTERIE,melee:[jaune,jaune],defense:[noir],maj:4,desc:"%MONTOUR%: +1 %GRIS%"},
-        {nom:"Loup-garou",pdf:true,niv:2,faction:MAL,type:INFANTERIE,melee:[noir,blanc],defense:[noir],celerite:2,pourfendeur:true,pdv:2,commandement:[1,1],dates:[1383,1383],desc:"%THIS% passe niveau 2: +1 Loups%HERE%"},
+        {nom:"Loup-garou",pdf:true,niv:2,faction:MAL,type:INFANTERIE,melee:[noir,blanc],defense:[noir],celerite:2,pourfendeur:true,pdv:2,commandement:[1,1],desc:"%THIS% passe niveau 2: +1 Loups%HERE%"},
         {nom:"Magog",faction:MAL,type:INFANTERIE,melee:[rouge,rouge,noir,blanc],defense:[noir,noir,blanc],pdv:7,charge:true,grand:true,gardeducorps:true,pourfendeur:true,desc:"%ACTIVATED%%ROUNDCOND% %LEGENDE%:  1 unité ennemie%THERE% ne se déplace pas%BR%%CHOOSE% %PERSONNAGE%%THERE% %ROUNDCOND%: ce personnage n'attaque pas %THIS% durant le round &rarr; -1 %LEGENDE% / %XP%"},
         {nom:"Gog",faction:MAL,type:INFANTERIE,melee:[jaune,jaune,blanc],defense:[noir,jaune,blanc],pdv:5,grand:true,soin:true,cruel:true,legendaire:true,relance:true,desc:"%TOUTTYPE% ennemie à 1 hexagone: -1 <span class='deblanc'></span><span class='melee combat-cond'></span>"},
         {nom:"La Cocatrix",pdf:true,faction:MAL,type:VOLANT,tir:[jaune_blanctouche,jaune_blanctouche,blanc_blanctouche],defense:[blanc,blanc],portee:1,typetir:TENDU,pdv:5,grand:true,visee:true,terreur:1,desc:"%CONSEIL%: +1 %LEGENDE%"},
@@ -514,7 +514,9 @@ class Unite {
         let da="",urls="",urla=[];
         let f="",m="",d="",c=[],mod="";
         let lcapa=["ignifuge","grand","soin","cruel","relance","gardeducorps","pourfendeur","charge","celerite","priere","riposte","terreur","esquive","saut","feinte","charisme","ralliement","impetueux","survie","genie","parade","immortel","mercenaire","visee","masse","cohesion","transport","recultue","noriposte","noterreur"];
-        let nn=this.nom.replace(/ /g,"_").replace(/'/g,"_").replace(/,/g,"_");
+        let nn=this.nom;
+        if (this.prenom) nn+=this.prenom;
+        nn=nn.replace(/ /g,"_").replace(/'/g,"_").replace(/,/g,"_").replace(/&/g,"");
         if (this.acheval) nn+="_à_cheval";
         if (this.niv==0) nn+="__";
         if (this.niv==1) nn+="_*";
@@ -524,6 +526,7 @@ class Unite {
 
         let n=this.nom;
         if (this.pdf) n="<a href='#card' data-toggle='modal' data-target='#card' onclick=\"document.getElementById('mycard').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+this.nom+"</a>";
+        if (this.pdf) n="<a href='#card-troop' data-toggle='modal' data-target='#card-troop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+this.nom+"</a>";
 
         if (this.source) {
             urla=this.source.split(" ");
