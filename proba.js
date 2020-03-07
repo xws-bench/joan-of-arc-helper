@@ -631,6 +631,116 @@ function trouveperso(n) {
     }
 }
 
+function resetgroup(group,min,max) {
+    let i;
+    for (i=min;i<max;i++)
+        $("input[name=g"+group+"_"+i+"]").prop("checked",false);
+    computeArmy();
+}
+function changeArmee() {
+    let k;
+    let army={};
+    for (k=1;k<=4;k++) {
+        let at=$("select.trouvearmee"+k+" option:selected").val();
+        let groups=[];
+        let i,first=-1;
+        let atfaction=-1;
+        for (i=0;i<LISTE_ARMEES.length;i++) {
+            let l=LISTE_ARMEES[i];
+            if (l.id==at) { atfaction=l.blason; break; }
+        }
+        console.log("faction:"+atfaction+" at:"+at+" "+k);
+        if (atfaction==-1||at=="_") continue;
+
+        army[at]={g:[],f:"<span class='blason-large "+NOM_FACTION[atfaction]+"'></span>"};
+        let liste=troupes
+            .filter((x)=>(typeof x[at]!="undefined"))
+            .sort((a,b)=>(a[at][2]-b[at][2]));
+        let ggid=liste[0][at][2];
+        let g=[];
+        for (i=0;i<liste.length;i++) {
+            let gid=liste[i][at][2];
+            if (gid==ggid) g.push(liste[i]);
+            else {
+                if (first==-1&&ggid>0) army[at].g.push([]);
+                first=ggid;
+                army[at].g.push(g);
+                g=[liste[i]];
+                ggid=liste[i][at][2];
+            }
+        }
+        army[at].g.push(g);
+    }
+    let s="";
+    let nbarmee=0;
+    let button="";
+    for (at in army) {
+        if (at!="pb"&&at!="pm") nbarmee++;
+        groups=army[at].g;
+        for (i=1;i<groups.length;i++) {
+            groups[i].sort((a,b)=>b[at][0]-a[at][0]);
+            let gid=groups[i][0];
+            let l=groups[i].length;
+            let type="";
+            let min=gid[at][3],max=gid[at][4];
+            //let interval=" ["+min+"-"+max+"]";
+            //if (gid[at].length>6) interval=" ["+(min+gid[at][5]*l)+"-"+(max+gid[at][5]*l+gid[at][6]*l)+"]"; 
+            button="";
+            if (groups[i].some((x)=>x[at][4]>x[at][3])) button="<button class='btn btn-sm btn-outline-light' onclick='resetgroup("+gid[at][2]+","+min+","+max+")'>&#x21ba;</button>";
+            if (gid[at][2]>0&&gid[at][2]!=SOUTIEN) {
+                type="&nbsp;<span class='"+NOM_TYPE[gid.type]+" type'></span>";
+                if (gid.melee) type+="&nbsp;<span class='melee combat'></span>";
+                else if (gid.tir&&gid.typetir==TENDU) type+="&nbsp;<span class='tirtendu combat'></span>";
+                else if (gid.tir&&gid.typetir==CLOCHE) type+="&nbsp;<span class='tircloche combat'></span>";
+            }
+            s+="<div class='card shadow'><div class='card-header p-1'>"+button+" <b>"+LISTE_CATEGORIES[gid[at][2]]+"</b><span style='float:right'>"+type+"&nbsp;"+army[at].f+"</span></div><div class='card-body p-0 m-0'><table class='armee w-100'>"; //<tr><th>#</th><th>Unité</th><th>C</th><th>M</th></tr>";
+            for (j=0;j<groups[i].length;j++) {
+                let g=groups[i][j];
+                s+=g.toArmy(at);
+            }
+            s+="</table></div></div>";
+        }
+    }
+    let card="";
+    if (army[at].g[0].length>0) {
+        let head="<div class='card shadow'><div class='card-header p-1'><b>"+LISTE_CATEGORIES[PERSONNAGE]+"</b><span style='float:right'>";
+        let min=1,max=2;
+        if (nbarmee==2) max=4;
+        if (nbarmee==3) { min=2; max=6; }
+        for (at in army) {
+            groups=army[at].g;
+            groups[0].sort((a,b)=>b[at][0]-a[at][0]);
+            head+=army[at].f;
+            for (j=0;j<groups[0].length;j++) {
+                let g=groups[0][j];
+                card+=g.toArmy(at,min,max);
+            }
+        }
+        card=head+"</div><div class='card-body p-0 m-0'><table class='armee w-100'>"+card+"</table></div></div>";
+    }
+    $("#deck").html(card+s);
+    if (nbarmee==1) $(".total").html("1500");
+    if (nbarmee==2) $(".total").html("2500");
+    if (nbarmee==3) $(".total").html("4000");
+    
+    computeArmy();
+    $("input[data-pts]").click(computeArmy);
+}
+function computeArmy() {
+    let s=0,m=0;
+    $("input:radio[data-mini]").prop("disabled",false);
+    $("input:radio[data-mini]:checked").each(function() {
+        let mini=$(this).attr("data-mini");
+        let name=$(this).attr("name");
+        $("input:radio[data-mini="+mini+"]:not(:checked)").each(function() {
+            if ($(this).attr("name")!=name) $(this).prop("disabled",true);
+        });
+    })
+    $("input[data-pts]:checked").each(function() { s+=parseInt($(this).data("pts"),10); m+=parseInt($(this).data("moral"),10); });
+    $(".sum").html(s);
+    $(".moral").html(Math.ceil(2*m/3));
+}
+
 $( document ).ready(function() {
     troupes=Unite.troupes();
 
@@ -684,14 +794,14 @@ $( document ).ready(function() {
             { "width": "20%", "targets": 0 }
         ],
         "columns": [
-            {"width": "15%"},
+            {"width": "20%"},
             {"width":"3%"},
             {"width":"3%"},
             {"width":"10%"},
             {"width":"10%"},
             {"width":"3%"},
             {"width":"5%"},
-            {"width": "45%"},
+            {"width": "40%"},
         ]
     });
 
@@ -705,9 +815,10 @@ $( document ).ready(function() {
         "columnDefs": [
             { "width": "20%", "targets": 0 }
         ],
+        order: [[2, 'asc']],
         responsive:true,
         "columns": [
-            {"width": "15%"},
+            {"width": "20%"},
             {"width":"3%"},
             {"width":"3%"},
             {"width":"10%"},
@@ -717,5 +828,17 @@ $( document ).ready(function() {
             {"width": "40%"},
         ]
     });
+    $(".trouvearmee1").select2({placeholder:'1ère liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
+    $(".trouvearmee2").select2({placeholder:'2ème liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
+    $(".trouvearmee3").select2({placeholder:'3ème liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
+    $(".trouvearmee4").select2({placeholder:"Apocalypse",data:[LISTE_ARMEES[0],LISTE_ARMEES[17],LISTE_ARMEES[18]],templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
 
+    //changeArmee();
+    /*$("a[data-toggle]").hover(function() {
+        let modalId = $(this).data("target");
+        let modalEmbed = $(this).data("embed");
+        let modalName = $(this).data("name");
+        $(modalEmbed).attr("src","https://xws-bench.github.io/joan-of-arc-helper/cards/"+modalName+".pdf#toolbar=0");
+        $(modalId).modal('show');
+    });*/
 });

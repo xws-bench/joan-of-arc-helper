@@ -1,3 +1,15 @@
+.card {
+    display: inline-block;
+}
+.table-striped tbody tr:nth-of-type(2n+1),.armee tr:nth-child(even) {
+background-color:#edeae4;
+}
+a, a:hover {
+    color:#73664d;//#dbd5ca;
+}
+.card-header {
+    background-color:#dbd5ca;
+}
 embed .toolbar {
     display:none;
 }
@@ -17,6 +29,9 @@ vg-container {
     padding-bottom: 100%;
     vertical-align: top;
     overflow: hidden;
+}
+.reverse {
+    background-color:#d2cabb;
 }
 .svg-content {
     display: inline-block;
@@ -54,6 +69,9 @@ figure {
   stroke: #000;
   stroke-width: 2px;
   pointer-events: none;
+}
+.card {
+    font-size:smaller;
 }
 #tablepersos,#tabletroupes {
     td,th {
@@ -281,7 +299,7 @@ header {
     text-shadow: 1px 1px grey;
 }
 
-$icons: ("francais", "anglais","bourguignon", "ecossais","mercenaire","ottoman","valaque","mal","neutre","bien","cartelegende","actiongrise","actionbleue","actionjaune","actionverte","jetonlegende","jetonxp","jetonrumeur","jetonscenario","jetonincendie","jetonblessure","tue","touche","rallie","recul","mort","retarde","bouclier","melee","defense","tircloche0","tircloche1","tircloche2","tircloche3","tirtendu0","tirtendu1","tirtendu2","tirtendu3","artillerie","infanterie","cavalerie","volant","tirtendu","tircloche","tour","round","montour","tontour","here","hereandthere","hereandthere2","hereandtherehexa","poursuiteaprescombat","niveau1","niveau2","troupe","personnage","carteriviere","touttype","no","ralliement","move","touttypeennemi","touttypeallie","there","herehexa","tap","turn","actionblanche","game","ble","plaine","foret");
+$icons: ("francais", "anglais","bourguignon", "ecossais","mercenaire","ottoman","valaque","mal","neutre","bien","cartelegende","actiongrise","actionbleue","actionjaune","actionverte","jetonlegende","jetonxp","jetondetruit","jetonrumeur","jetonscenario","jetonincendie","jetonblessure","tue","touche","rallie","recul","mort","retarde","bouclier","melee","defense","tircloche0","tircloche1","tircloche2","tircloche3","tirtendu0","tirtendu1","tirtendu2","tirtendu3","artillerie","infanterie","cavalerie","volant","tirtendu","tircloche","tour","round","montour","tontour","here","hereandthere","hereandthere2","hereandtherehexa","poursuiteaprescombat","niveau1","niveau2","troupe","personnage","carteriviere","touttype","no","ralliement","move","touttypeennemi","touttypeallie","there","herehexa","tap","turn","actionblanche","game","ble","plaine","foret");
 
 
 @each $name in $icons {
@@ -362,9 +380,6 @@ img {
 .list-group-item {
     padding:2px;
     width:100%;
-}
-.card-columns {
-    column-count: 4;
 }
 .coat {
     background: url('blasons.png') no-repeat;

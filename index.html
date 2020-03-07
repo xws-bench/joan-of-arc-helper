@@ -50,12 +50,12 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#persos">Personnages</a>
           </li>
+         <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#armee">Armée</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#compare">Combat</a>
             
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="comment.html">Commentaires</a>
           </li>
         </ul>
       </div>
@@ -213,7 +213,7 @@
                 <th>&nbsp;&nbsp;&nbsp;Defense&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                 <th></th>
                 <th></th>
-                <th>Traits simplifiés</th>
+                <th>Traits</th>
               </tr>
             </thead>
             <tbody>
@@ -224,6 +224,56 @@
       </div>
     </div>
   </section>
+
+
+  <section id="armee" class="bg-light">
+    <div class="container-fluid p-2">
+      <div class="row no-gutters">
+        <div class="text-justify">
+          <h2>Armée</h2>
+          <p class="lead text-muted">Pour construire son armée avec les règles JoA.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">Petite Bataille (1500 points)</div>
+        <select class="col-3 m-1 form-control trouvearmee1" onchange="changeArmee()">
+          <option label="placeholder"></option>
+        </select>
+        <div class="col-2">Apocalypse</div>
+        <select class="col-2 m-1 form-control trouvearmee4" onchange="changeArmee()">          <option label="placeholder"></option>
+        </select>
+        <div class="col-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-1"></div>      
+        <div class="col-3">Bataille Moyenne (2500 points)</div>
+         <select class="col-3 m-1 form-control trouvearmee2" onchange="changeArmee()">          <option label="placeholder"></option>
+         </select>
+         <div class="col-5"></div>
+      </div>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">Grande Bataille (4000 points)</div>
+        <select class="col-3 m-1 form-control trouvearmee3" onchange="changeArmee()">          <option label="placeholder"></option>
+        </select>
+        <div class="col-5"></div>
+      </div>
+
+      <div class="row no-gutters">
+        <div class="col-6 font-weight-bold reverse">ARMEE : <span class='sum'></span> / <span class='total'></span> points</div>
+        <div class="col-6 font-weight-bold reverse">Seuil de déroute : <span class='moral'></span></div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-12">
+          <div class="card-columns armee" id="deck"></div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
 
   <section id="compare" class="bg-light">
     <div class="container-fluid">
@@ -488,14 +538,15 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/rowgroup/1.1.1/js/dataTables.rowGroup.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Plugin JavaScript -->
   <script  src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="js/scrolling-nav.js"></script>
   <script src="js/dateline.org.js"></script>
   <script src="js/select2.min.js"></script>
-  <script src="//d3js.org/d3.v3.min.js"></script>
-  <script src="//d3js.org/topojson.v1.min.js"></script>
+  <script src="js/d3.v3.min.js"></script>
+  <script src="js/topojson.min.js"></script>
 
   <script src="troupes.js"></script>
   <script src="evenements.js"></script>
