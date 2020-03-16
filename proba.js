@@ -16,11 +16,10 @@ untue.capacite=(()=>null);
 unrecul.toHTML=(()=>"");
 unrecul.capacite=(()=>"en attaque : ajouter <span class='recul'/> aux résultats des dés");
 
-function distribution(dices,group1,feinte) {
-    let k,h,i,s,r,p,np;
+function distribution(dices,feinte) {
+    let k,h,i,s,r,p,np,f;
     if (typeof distribution.cache=="undefined") distribution.cache={};
     if (typeof feinte=="undefined") feinte=false;
-    else feinte=true;
     if (distribution.cache[dices+feinte]/*&&group1.nom!="Bertrand du Guesclin"*/) {
         //console.log(""+dices);
         return distribution.cache[dices+feinte];
@@ -87,12 +86,12 @@ function bouclier(dices,parade) {
     let res={bouclier:[],esquive:0};
     let p,s,i,j,es;
     if (typeof parade=="undefined") parade=false;
-    else parade=true;
     if (typeof bouclier.cache=="undefined") bouclier.cache={};
     if (bouclier.cache[dices+parade]) {
         //console.log(""+dices);
         return bouclier.cache[dices+parade];
     }
+    console.log("parade >>> "+parade);
     for (i=0;i<=n+1;i++) res.bouclier[i]=0;
     res.bouclier[0]=1;
     if (n==0) return res;
@@ -129,42 +128,10 @@ function bouclier(dices,parade) {
         newpr=[];
         for(i=0;i<=n+1;i++) newpr[i]=0;
     }
-    res.esquive=(1-es);
+    res.esquive=1-es;
     bouclier[dices+parade]=pr;
     res.bouclier=pr;
     return res;
-}
-function untouchetue(p,h,k) {
-    if (h>0) { k=k+1; h=h-1; }
-    return [p,h,k];
-}
-function touchetuerecul(p,h,k) {
-    return [p+h+k,0,0];
-}
-function annule1recul(p,h,k) {
-    if (p>0) p=p-1;
-    return [p,h,k];
-}
-function doubleblessure(p,h) {
-    if (h>0) h++;
-    return [p,h]
-}
-function annule2recul(p,h,k) {
-    if (p>0) p=p-1;
-    if (p>0) p=p-1;
-    return [p,h,k];
-}
-function annule2touche(p,h,k) {
-    if (h>2) h=h-2;
-    else h=0;
-    return [p,h,k];
-}
-function annule1touche(p,h,k) {
-    if (h>0) h=h-1;
-    return [p,h,k];
-}
-function transformetoucherecul(p,h,k) {
-    return [p+h,0,k];
 }
 
 /*
@@ -184,27 +151,33 @@ masse: ** avant compose ** 3 unités de meme nom: +1 de blanc en attaque
 cohesion: ** avant compose ** 3 unités de meme nom: +1 de blanc en defense
 annule 1 resultat: ** apres compose **
 */
-function attaque(dices,mod,group1,group2,feinte) {
-    let pr=distribution(dices,group1,feinte);
+function* iterate(n) {
+    let p,k,h;
+    for (p=0; p<=9; p++) 
+	for (h=0; h<=9-p; h++)
+	    for (k=0; k<=9-h-p; k++) {
+                yield([p,h,k]);
+            }
+}
+
+function attaque(dices,mod,group1,group2,feinte,type) {
+    let pr=distribution(dices,feinte);
     let n=dices.length;
     let res=[];
     let p,h,k,s,i,touche,tue,recul;
     for (i=0;i<=1000;i++) {
         res[i]=0;
     }
-    for (p=0; p<=n; p++) 
-	for (h=0; h<=n-p; h++)
-	    for (k=0; k<=n-h-p; k++) {
-                let p2,h2,k2;
-                p2=p;k2=k;h2=h;
-		i=p+10*h+100*k;
-                if (typeof group1.bonusattaque=="function") [p2,h2,k2]=group1.bonusattaque(p2,h2,k2);
-                if (typeof mod=="function") {
-                    [p2,h2,k2]=mod(p2,h2,k2);
-                }
-                res[k2*100+h2*10+p2]+=pr[i];
-            }
-    //for (i=0;i<=n*100;i++) console.log(i+":"+res[i]);
+    for ([p,h,k] of iterate(n)) {
+        let p2,h2,k2;
+        p2=p;k2=k;h2=h;
+	i=p+10*h+100*k;
+        if (typeof group1.bonusattaque=="function") [p2,h2,k2]=group1.bonusattaque(p2,h2,k2,type);
+        if (typeof mod=="function") {
+            [p2,h2,k2]=mod(p2,h2,k2);
+        }
+        res[k2*100+h2*10+p2]+=pr[i];
+    }
     return res;
 }
 function compose(res1,res2) {
@@ -220,19 +193,18 @@ function compose(res1,res2) {
 }
 
 function blank(dices) {
-    let pr=distribution(dices,{},{});
+    let pr=distribution(dices,{});
     let n=dices.length;
     let res=[];
     let p,h,k,s,i,b;
     for (i=0;i<=n;i++) res[i]=0;
-    for (p=0; p<=n; p++) 
-	for (h=0; h<=n-p; h++)
-	    for (k=0; k<=n-h-p; k++)
-		for (s=0; s<=n-h-p-k; s++) {
-		    i=p+10*h+100*k+1000*s;
-                    b=n-p-h-k-s;
-                    res[b]+=pr[i];
-                }
+    for ([p,h,k] of iterate(n)) {
+	for (s=0; s<=n-h-p-k; s++) {
+	    i=p+10*h+100*k+1000*s;
+            b=n-p-h-k-s;
+            res[b]+=pr[i];
+        }
+    }
     //for (i=0;i<=n;i++) $(".main").append("<p>"+i+":"+res[i]+"</p>");
     return res;
 }
@@ -251,58 +223,60 @@ function grouper(list) {
 function combat_a(a,na,bouclier,nd,coef,group1,group2,res) {
     let h,k,p,b;
     let boucliermalus=false;
-    if (group1.terrain=="marais") {
+    if (!group2.noterrain&&group2.terrain=="swamp") {
         boucliermalus=true;
     }
-    for (h=0;h<=na;h++)
-        for (k=0;k<=na-h;k++)
-            for (p=0;p<=na-h-k;p++) {
-                for (b=0;b<=nd;b++) {
-                    let val=a[k*100+h*10+p]*bouclier[b]*coef;
-                    let bb=b;
-                    if (boucliermalus&&bb>0) bb=bb-1;
-                    let kk,hh,pp;
-                    if (h+p+k>bb) {
-                        if (k-bb>0) {
-                            kk=k-bb;
-                            if (group1.pourfendeur&&!group2.troupe) kk++;
-                            hh=h;
+    for ([p,h,k] of iterate(na)) {
+        for (b=0;b<=nd;b++) {
+            let val=a[k*100+h*10+p]*bouclier[b]*coef;
+            let bb=b;
+            if (boucliermalus&&bb>0) bb=bb-1;
+            let kk,hh,pp;
+            if (h+p+k>bb) {
+                if (k-bb>0) {
+                    kk=k-bb;
+                    if (group1.pourfendeur&&!group2.troupe) kk++;
+                    hh=h;
+                    pp=0;
+                } else {
+                    kk=0;
+                    if (k+h-bb>0) {
+                        hh=k+h-bb;
+                        pp=0;
+                    } else {
+                        hh=0;
+                        pp=k+h+p-bb;
+                        if (group2.recultue) {
+                            kk=pp;
                             pp=0;
-                        } else {
-                            kk=0;
-                            if (k+h-bb>0) {
-                                hh=k+h-bb;
-                                pp=0;
-                            } else {
-                                hh=0;
-                                pp=k+h+p-bb;
-                                if (group2.recultue) {
-                                    kk=pp;
-                                    pp=0;
-                                }
-                            }
                         }
-                        if (kk+hh>=group2.pdv) {
-                            if (kk>0) 
-                                res.tue+=val;
-                            else res.hdc+=val;
-                        } else if (kk+hh>0) {
-                            if (typeof group1.postattaque=="function") {
-                                [pp,kk]=group1.postattaque(pp,kk+hh)
-                                if (kk>=group2.pdv) {
-                                    res.hdc+=val;
-                                } else res.blessure[kk]+=val;
-                            } else res.blessure[kk]+=val;
-                        } else if (pp>0) res.recul+=val;
-                    } else res.blessure[0]+=val;
+                    }
                 }
-            }
+                if (kk+hh>=group2.pdv) {
+                    if (kk>0) 
+                        res.tue+=val;
+                    else res.hdc+=val;
+                } else if (kk+hh>0) {
+                    if (typeof group1.postattaque=="function") {
+                        [pp,kk]=group1.postattaque(pp,kk+hh)
+                        if (kk>=group2.pdv) {
+                            res.hdc+=val;
+                        } else res.blessure[kk]+=val;
+                    } else res.blessure[kk]+=val;
+                } else if (pp>0) res.recul+=val;
+            } else res.blessure[0]+=val;
+        }
+    }
     return res;
 }
 function combat(group1,group2,islogged) {
     let a,aa=[];
+    let type=MELEE;
     let res={esquive:0,blessure:[1,0,0,0,0,0,0,0,0,0],recul:0,hdc:0,tue:0,inflige:[1,0,0,0,0,0,0,0,0,0],infligetue:0,infligehdc:0};
-    if (group1.tir) aa=group1.tir;//(group2);
+    if (group1.tir) {
+        type=group1.typetir;
+        aa=group1.tir;//(group2);
+    }
     if (group1.melee) {
         aa=group1.melee;//(group2);
         if (group1.bonusmelee) aa=group1.bonusmelee(group1.melee,group2);
@@ -317,9 +291,10 @@ function combat(group1,group2,islogged) {
         }
         let parade=false;
         if (typeof group2.parade=="function") parade=group2.parade(group1);
-        if (group2.terrain=="forest") {
+        if (!group2.noterrain&&(group2.terrain=="forest"||group2.terrain=="pave")) {
             parade=true;
         }
+        console.log(group2.name+" parade:"+parade);
         d=bouclier(dd,parade);
         nd=dd.length;
     } else {
@@ -328,18 +303,15 @@ function combat(group1,group2,islogged) {
     }
     let na=aa.length;
     if (na>0) {
-        a=attaque(aa,group2.modattaque,group1,group2,group1.feinte);
+        a=attaque(aa,group2.modattaque,group1,group2,group1.feinte(),type);
     } else a=[1];
     let terreur=1;
-    let esquive=1;
     let hdcterreur=0;
     let reculterreur=0;
+    let esquive=0;
+    if (group2.esquive) esquive=d.esquive;
     if (islogged) {
         console.log(group1.nom+" combat "+group2.nom);
-    }
-    if (group2.esquive) {
-        esquive=1-d.esquive;
-        //$(".main").append(group2.name+" esquives "+group1.name+":"+(1-esquive));
     }
     res.blessure[0]=0;
     res.inflige[0]=0;
@@ -347,18 +319,18 @@ function combat(group1,group2,islogged) {
     if (group2.terreur&&group1.melee&&!(group1.grand||group1.noterreur||group1.immortel)&&(typeof group1.terreur=="undefined"||(group1.terreur&&group1.terreur<group2.terreur))) {
         // ni avec une terreur >= que celle du defenseur
         for (i=1;i<=group2.terreur;i++) terreur=terreur*0.5; // Unités terrorisés ? 1/2 par dé terreur
-        let aterreur= attaque([group1.melee/*(group2)*/[0]],group2.modattaque,group1,group2,group1.feinte); // Garder un dé d'attaque
+        let aterreur= attaque([group1.melee/*(group2)*/[0]],group2.modattaque,group1,group2,group1.feinte(),type); // Garder un dé d'attaque
         if (na>1) {
-            res=combat_a(aterreur,1,d.bouclier,nd,(1-terreur)*esquive,group1,group2,res);
+            res=combat_a(aterreur,1,d.bouclier,nd,(1-terreur)*(1-esquive),group1,group2,res);
             if (group2.immortel) {
                 res.blessure[group2.pdv-1]+=res.tue;
                 res.tue=0;
             }
             if (islogged) console.log("terreur tue: "+res.tue+" "+(1-terreur)+" na="+na); 
-        } else res.blessure[0]+=(1-terreur)*esquive;
+        } else res.blessure[0]+=(1-terreur)*(1-esquive);
     }
     res.tue=0;
-    res=combat_a(a,na,d.bouclier,nd,terreur*esquive,group1,group2,res);
+    res=combat_a(a,na,d.bouclier,nd,terreur*(1-esquive),group1,group2,res);
     if (group2.immortel) {
         res.blessure[group2.pdv-1]+=res.tue;
         res.tue=0;
@@ -366,11 +338,11 @@ function combat(group1,group2,islogged) {
     if (islogged) console.log("sans terreur tue: "+res.tue+" "+(terreur)); 
 
     //res.recul=res.recul+(1-esquive);
-    res.esquive=1-esquive;
+    res.esquive=esquive;
     let hasriposte,rispote,haslimited;
     hasriposte=group2.riposte&&group2.riposte(group1);
     riposte=group2.defense;
-    haslimited=(group2.terrain=="rock");
+    haslimited=(!group2.noterrain&&group2.terrain=="rock");
     if (islogged) {
         console.log(" dégat sans terreur("+terreur+"):"+(res.blessure[1]-hdcterreur)+" "+res.blessure[2]+" "+res.blessure[3]+" "+res.blessure[4]);
         console.log(" recul sans terreur ("+terreur+"):"+(res.recul[1]-reculterreur)+" "+res.recul[2]+" "+res.recul[3]+" "+res.recul[4]);
@@ -380,7 +352,7 @@ function combat(group1,group2,islogged) {
     if (!group1.noriposte&&group1.melee) {
         if (hasriposte) {
             ret=0;
-            let r=attaque(riposte,(x,y,z)=>[x,y,z],group2,group1/* pas de feinte */);
+            let r=attaque(riposte,(x,y,z)=>[x,y,z],group2,group1/* pas de feinte */,false,AUCUN);
             for (h=0;h<=nd;h++)
                 for (k=0;k<=nd-h;k++) 
                     if (k+h>=1) {
@@ -394,26 +366,23 @@ function combat(group1,group2,islogged) {
                     }
             res.inflige[0]=1-ret;
         } else if (haslimited) {
-            let pr=distribution(group2.defense,group2/*pas de feinte*/);
-            let n=group2.defense.length;
+            let pr=distribution([group2.defense[0]]/*pas de feinte*/);
+            let n=1;
             ret=0;
-            console.log("defense length:"+n);
-            for (p=0; p<=n; p++) 
-	        for (h=0; h<=n-p; h++)
-	            for (k=0; k<=n-h-p; k++) {
-		        i=p+10*h+100*k;
-                        if (k>0&&group1.pdv==1) {
-                            res.infligetue+=pr[i];
-                            ret+=pr[i];
-                        } else if (h>0&&group1.pdv==1) {
-                            res.infligehdc+=pr[i];
-                            ret+=pr[i];
-                        } else if (h+k>0) {
-                            res.inflige[1]+=pr[i];
-                            ret+=pr[i];
-                        }
-                    }
-            console.log("res.infligehdc="+res.infligehdc);
+            
+            for ([p,h,k] of iterate(n)) {
+		i=p+10*h+100*k;
+                if (k>0&&group1.pdv==1) {
+                    res.infligetue+=pr[i];
+                    ret+=pr[i];
+                } else if (h>0&&group1.pdv==1) {
+                    res.infligehdc+=pr[i];
+                    ret+=pr[i];
+                } else if (h+k>0) {
+                    res.inflige[1]+=pr[i];
+                    ret+=pr[i];
+                }
+            }
             res.inflige[0]=res.inflige[0]*(1-ret);
         }
     }
@@ -441,7 +410,7 @@ function fightwith1cube(group1,group2) {
     let dead2=0,dead1=0;
     let i,j;
     let norecul=1;
-    const MAX=8;
+    const MAX=9;
     let res1,res2;
     let p={p1:1e-6,p2:1e-6,p3:0,p4:0}
     res1=combat(group1,group2);
@@ -566,11 +535,11 @@ function tableStat(c1,m,p1,d1,b1,push,e) {
     if (push>0)
         $("#hex3").append("<div><span class='xtra'>&#10230;</span><span class='facenoir recul'></span> "+Math.floor(1000*push)/10+"%</div>");
     if (e>0)
-        $("#hex3").append("<div><span class='xtra'>&#10230;</span>esquive "+Math.floor(1000*push)/10+"%</div>");
+        $("#hex3").append("<div><span class='xtra'>&#10230;</span>esquive "+Math.floor(1000*e)/10+"%</div>");
     b+="<tr><td colspan='2'>"+m+"</td></tr>";
-    if (p1[1]>0.01) 
+    if (p1[0]>0.01) {
         b+="<tr><td style='text-align:right'>"+(Math.floor(100*p1[0])/100)+" pdv</td><td  style='text-align:left'>"+Math.floor(p1[1]*1000)/10+"%</td></tr>";
-    else fin+=emptyline;
+    } else fin+=emptyline;
     if (b1>0) b+="<tr><td style='text-align:right;'><span class='facenoir touche'></span></td><td style='text-align:left;'>"+Math.floor(1000*b1)/10+"%</td></tr>";
     else fin+=emptyline;
     if (d1>0) b+="<tr><td style='text-align:right'><span class='facenoir mort'></span></td><td style='text-align:left'>"+Math.floor(1000*d1)/10+"%</td></tr>";
@@ -624,7 +593,9 @@ function trouveperso(n) {
         let b=0;
         let cb=0;
         let ci=0;
-        for (i=1;i<MAX;i++) { b+=c.blessure[i]; cb+=c.blessure[i]*i; ci+=c.inflige[i]*i; }
+        for (i=1;i<9;i++) {
+            b+=c.blessure[i]; cb+=c.blessure[i]*i; ci+=c.inflige[i]*i;
+        }
         b+=c.blessure[0];
         drawValues(perso1,perso2,perso1.a,perso2.d,[perso1.pdv-ci,1-c.infligetue-c.infligehdc],[perso2.pdv-cb,b],[1,c.recul],c.infligetue,c.tue,c.infligehdc,c.hdc,c.esquive);
      
@@ -762,7 +733,6 @@ $( document ).ready(function() {
         events:evenements,
         formatter:(e)=>e.format(false)
     });
-
     $(".findperso").select2({placeholder:'Choisissez une unité',data:persolist,templateResult:(e)=>(new Unite(e)).format(true)});
     $(".finddate").select2({placeholder:'Choisissez un événement',data:evenements,templateResult:(e)=>(new Evenement(e)).format(true)});
     let terrains=[{id:"plain",text:"plaine",selected:true},{id:"ble",text:"champs"},{id:"forest",text:"forêt"},{id:"swamp",text:"marais"},{id:"pave",text:"village"},{id:"rock",text:"rocher"}];

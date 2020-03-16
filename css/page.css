@@ -72,7 +72,7 @@ figure {
   font-size: smaller; }
 
 #tablepersos td, #tablepersos th, #tabletroupes td, #tabletroupes th {
-  font-size: smaller;
+  /*        font-size:smaller;*/
   padding: 0.25rem; }
 
 .hexagon {
@@ -278,6 +278,15 @@ header {
 
 .francais::after {
   background-image: url("../images/icon/francais.png"); }
+
+.teutonique::after {
+  background-image: url("../images/icon/teutonique.png"); }
+
+.lituanien::after {
+  background-image: url("../images/icon/lituanien.png"); }
+
+.polonais::after {
+  background-image: url("../images/icon/polonais.png"); }
 
 .anglais::after {
   background-image: url("../images/icon/anglais.png"); }
