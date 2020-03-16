@@ -669,6 +669,7 @@ class Unite {
 
         if (this.pdf&&!this.troupe) n="<a href='#card' data-name='"+nn+"' data-toggle='modal' data-target='#card' data-embed='#mycard' onclick=\"document.getElementById('mycard').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+n+"</a>";
         if (this.troupe&&this.pdf) n="<a href='#card-troop' data-name='"+nn+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+n+"</a>";
+        if (this.troupe&&this.png) n="<a href='#card-troop' data-name='"+nn+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".png')\">"+n+"</a>";
 
         if (this.source) {
             urla=this.source.split(" ");
