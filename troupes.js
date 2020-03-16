@@ -187,18 +187,18 @@ blanc_parade.capacite=(()=>"parade <span class='faceblanc'></span>");
 
 class Unite {
     static tps() { return [
-        {nom:"Chariot de guerre",pdv:5,type:ARTILLERIE,grand:true,tir:[rouge,blanc,blanc],portee:1,typetir:TENDU,defense:[noir,noir],desc:"%DEFENSE%: %TOUCHE%%HERE%, %TUE%%HERE% peuvent être alloués à %THIS%%BR%%THIS% ne peut pas subir de résultats %RECUL%%BR%Pour effectuer un déplacement, %THIS% utilise l'action de %INFANTERIE%%HERE% en plus de la sienne",v15:true},
-        {nom:"Sergents teutoniques",faction:TEUTONIQUE,type:INFANTERIE,melee:[rouge],riposte:ftrue,defense:[noir,blanc],v15:true},
-        {nom:"Chevaliers teutoniques",faction:TEUTONIQUE,type:INFANTERIE,melee:[rouge,noir],charge:true,impetueux:true,priere:true,defense:[noir_tuebouclier],v15:true},
-        {nom:"Chevaliers teutoniques montés",faction:TEUTONIQUE,type:CAVALERIE,melee:[rouge,noir],charge:true,impetueux:true,priere:true,defense:[noir],bonusmelee:blancsiinfanterie,v15:true},
-        {nom:"Cavaliers polonais",faction:POLONAIS,type:CAVALERIE,melee:[rouge,blanc],charge:true,defense:[blanc],bonusmelee:rougesicharge,v15:true},
-        {nom:"Cavalerie lourde lituanienne",faction:LITUANIEN,type:CAVALERIE,melee:[rouge,rouge],charge:true,feinte:ftrue,defense:[noir,blanc],modattaque:annule1recul,v15:true},
-        {nom:"Archers tatars",type:CAVALERIE,tir:[noir,jaune],portee:1,typetir:TENDU,defense:[blanc],v15:true},
-        {nom:"Arbalétriers montés",type:CAVALERIE,tir:[rouge,jaune],portee:1,typetir:TENDU,defense:[blanc],celerite:2,bonusattaque:recultouchesiplaine,v15:true},
+        {nom:"Chariot de guerre",png:true,pdv:5,type:ARTILLERIE,grand:true,tir:[rouge,blanc,blanc],portee:1,typetir:TENDU,defense:[noir,noir],desc:"%DEFENSE%: %TOUCHE%%HERE%, %TUE%%HERE% peuvent être alloués à %THIS%%BR%%THIS% ne peut pas subir de résultats %RECUL%%BR%Pour effectuer un déplacement, %THIS% utilise l'action de %INFANTERIE%%HERE% en plus de la sienne",v15:true},
+        {nom:"Sergents Teutoniques",png:true,faction:TEUTONIQUE,type:INFANTERIE,melee:[rouge],riposte:ftrue,defense:[noir,blanc],v15:true},
+        {nom:"Chevaliers Teutoniques",png:true,faction:TEUTONIQUE,type:INFANTERIE,melee:[rouge,noir],charge:true,impetueux:true,priere:true,defense:[noir_tuebouclier],v15:true},
+        {nom:"Chevaliers Teutoniques Montés",png:true,faction:TEUTONIQUE,type:CAVALERIE,melee:[rouge,noir],charge:true,impetueux:true,priere:true,defense:[noir],bonusmelee:blancsiinfanterie,v15:true},
+        {nom:"Cavaliers Polonais",png:true,faction:POLONAIS,type:CAVALERIE,melee:[rouge,blanc],charge:true,defense:[blanc],bonusmelee:rougesicharge,v15:true},
+        {nom:"Cavalerie lourde Lituanienne",png:true,faction:LITUANIEN,type:CAVALERIE,melee:[rouge,rouge],charge:true,feinte:ftrue,defense:[noir,blanc],modattaque:annule1recul,v15:true},
+        {nom:"Archers Tatars",png:true,type:CAVALERIE,tir:[noir,jaune],portee:1,typetir:TENDU,defense:[blanc],v15:true},
+        {nom:"Arbalétriers montés",png:true,type:CAVALERIE,tir:[rouge,jaune],portee:1,typetir:TENDU,defense:[blanc],celerite:2,bonusattaque:recultouchesiplaine,v15:true},
         {nom:"Lanciers montés",melee:[jaune,jaune,jaune],celerite:2,esquive:true,type:CAVALERIE,defense:[jaune],v15:true},
-        {nom:"Piquiers avec pavois",melee:[blanc_bouclierrecule],masse:true,type:INFANTERIE,defense:[noir],riposte:sicavalerie,v15:true},
-        {nom:"Fantassins d'infanterie légère",melee:[blanc,jaune],type:INFANTERIE,defense:[jaune],v15:true,riposte:siinfanterie,parade:siinfanterie},
-        {nom:"Coureurs des bois",faction:LITUANIEN,melee:[jaune],/*portee:1,typetir:TENDU,tir:[jaune,jaune],*/type:INFANTERIE,defense:[jaune],esquive:true,celerite:2,v15:true,bonusattaque:doublereculsiforet},
+        {nom:"Piquiers avec pavois",png:true,melee:[blanc_bouclierrecule],masse:true,type:INFANTERIE,defense:[noir],riposte:sicavalerie,v15:true},
+        {nom:"Fantassins d'infanterie légère",png:true,melee:[blanc,jaune],type:INFANTERIE,defense:[jaune],v15:true,riposte:siinfanterie,parade:siinfanterie},
+        {nom:"Coureurs des bois",png:true,faction:LITUANIEN,melee:[jaune],/*portee:1,typetir:TENDU,tir:[jaune,jaune],*/type:INFANTERIE,defense:[jaune],esquive:true,celerite:2,v15:true,bonusattaque:doublereculsiforet},
         {nom:"Adeptes",m2:[80,1,FANTASSINS,0,0,1,0],pdf:true,melee:[rouge],defense:[noir],type:INFANTERIE,faction:MAL,desc:"quand ils sont dans une zone de marais, %THIS% ignorent les effets de terrain liés aux marais et peuvent réaliser un mouvement vers n'importe quelle autre zone de marais du plateau de jeu"},
         {nom:"Almogavres",f2:[65,1,HAST,0,5],f3:[70,1,HAST,2,6],a2:[65,1,HAST,2,6],a3:[65,1,HAST,0,5],pdf:true,melee:[blanc],defense:[jaune],type:INFANTERIE,esquive:true,noriposte:true,cout:65},
         {nom:"Ange",b2:[230,4,VOLANTS,0,0,0,2],b3:[230,4,VOLANTS,0,0,2,2],pdf:true,melee:[rouge,blanc],bonusmelee:blancsimal,defense:[noir,noir],type:VOLANT,faction:BIEN,saut:2,transport:true,faction:BIEN,priere:true}, 
@@ -897,6 +897,7 @@ class Unite {
         let n=this.getName(true);
         if (this.pdf&&!this.troupe) n="<a href='#card' data-name='"+nn+"' data-toggle='modal' data-target='#card' data-embed='#mycard' onclick=\"document.getElementById('mycard').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+n+"</a>";
         if (this.troupe&&this.pdf) n="<a href='#card-troop' data-name='"+nn+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+n+"</a>";
+        if (this.troupe&&this.png) n="<a href='#card-troop' data-name='"+nn+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".png')\">"+n+"</a>";
 
         if (!this.troupe) {
             n="<span class='blason "+NOM_FACTION[this.faction]+"'></span> "+n;
