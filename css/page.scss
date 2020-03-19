@@ -75,7 +75,7 @@ figure {
 }
 #tablepersos,#tabletroupes {
     td,th {
-        font-size:smaller;
+/*        font-size:smaller;*/
         padding:0.25rem;
     }
 }
@@ -299,7 +299,7 @@ header {
     text-shadow: 1px 1px grey;
 }
 
-$icons: ("francais", "anglais","bourguignon", "ecossais","mercenaire","ottoman","valaque","mal","neutre","bien","cartelegende","actiongrise","actionbleue","actionjaune","actionverte","jetonlegende","jetonxp","jetondetruit","jetonrumeur","jetonscenario","jetonincendie","jetonblessure","tue","touche","rallie","recul","mort","retarde","bouclier","melee","defense","tircloche0","tircloche1","tircloche2","tircloche3","tirtendu0","tirtendu1","tirtendu2","tirtendu3","artillerie","infanterie","cavalerie","volant","tirtendu","tircloche","tour","round","montour","tontour","here","hereandthere","hereandthere2","hereandtherehexa","poursuiteaprescombat","niveau1","niveau2","troupe","personnage","carteriviere","touttype","no","ralliement","move","touttypeennemi","touttypeallie","there","herehexa","tap","turn","actionblanche","game","ble","plaine","foret");
+$icons: ("francais", "teutonique","lituanien","polonais","anglais","bourguignon", "ecossais","mercenaire","ottoman","valaque","mal","neutre","bien","cartelegende","actiongrise","actionbleue","actionjaune","actionverte","jetonlegende","jetonxp","jetondetruit","jetonrumeur","jetonscenario","jetonincendie","jetonblessure","tue","touche","rallie","recul","mort","retarde","bouclier","melee","defense","tircloche0","tircloche1","tircloche2","tircloche3","tirtendu0","tirtendu1","tirtendu2","tirtendu3","artillerie","infanterie","cavalerie","volant","tirtendu","tircloche","tour","round","montour","tontour","here","hereandthere","hereandthere2","hereandtherehexa","poursuiteaprescombat","niveau1","niveau2","troupe","personnage","carteriviere","touttype","no","ralliement","move","touttypeennemi","touttypeallie","there","herehexa","tap","turn","actionblanche","game","ble","plaine","foret");
 
 
 @each $name in $icons {
