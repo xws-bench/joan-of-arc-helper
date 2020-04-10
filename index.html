@@ -258,7 +258,7 @@
         <div class="col-3">Grande Bataille (4000 points)</div>
         <select class="col-3 m-1 form-control trouvearmee3" onchange="changeArmee()">          <option label="placeholder"></option>
         </select>
-        <div class="col-5"></div>
+        <div class="col-5 text-center"><button type="button" class="btn btn-primary" onclick="print()">Imprimer</button></div>
       </div>
 
       <div class="row no-gutters">
@@ -274,7 +274,38 @@
     </div>
   </section>
 
+  <section class="printable" class="bg-light">
+    <div class="container-fluid">
+      <div class="row no-gutters">
+        <div class="col-12 text-justify">
+          <h2><img class="w-10" src="images/icon/joanofarc.png">Liste de bataille</h2>
+          <div class="army-name"></div>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-12 text-justify">
+          <table class="armee-table-perso armee table table-bordered table-sm">
+            <thead><th><img class="w-2" src="images/icon/lion.png"> Personnages, créatures</th><th class="w-10">Points</th><th class="w-10">Moral</th></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-12 text-justify">
+          <table class="armee-table armee table table-bordered table-sm">
+            <thead><th><img class="w-2" src="images/icon/lion.png"> Unités</th><th class="w-10">Nombre</th><th class="w-10">Points</th><th class="w-10">Moral</th></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-2">Perte Moral</div>
+        <div class="col-10 moralshield"></div>
+      </div>
+    </div>
+  </section>
 
+  
   <section id="compare" class="bg-light">
     <div class="container-fluid">
       <div class="row no-gutters">

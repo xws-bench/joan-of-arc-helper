@@ -620,7 +620,6 @@ function changeArmee() {
             let l=LISTE_ARMEES[i];
             if (l.id==at) { atfaction=l.blason; break; }
         }
-        console.log("faction:"+atfaction+" at:"+at+" "+k);
         if (atfaction==-1||at=="_") continue;
 
         army[at]={g:[],f:"<span class='blason-large "+NOM_FACTION[atfaction]+"'></span>"};
@@ -698,7 +697,7 @@ function changeArmee() {
     $("input[data-pts]").click(computeArmy);
 }
 function computeArmy() {
-    let s=0,m=0;
+    let s=0,m=0,a={};
     $("input:radio[data-mini]").prop("disabled",false);
     $("input:radio[data-mini]:checked").each(function() {
         let mini=$(this).attr("data-mini");
@@ -707,8 +706,39 @@ function computeArmy() {
             if ($(this).attr("name")!=name) $(this).prop("disabled",true);
         });
     })
-    $("input[data-pts]:checked").each(function() { s+=parseInt($(this).data("pts"),10); m+=parseInt($(this).data("moral"),10); });
+    $(".armee-table-perso tbody").html("");
+    $(".armee-table tbody").html("");
+    $("input[data-pts]:checked").each(function() {
+        let s0=parseInt($(this).data("pts"),10);
+        let m0=parseInt($(this).data("moral"),10);
+        let u=$(this).parent().parent().children("td").children("a");
+        let name=u.text();
+        let faction=u.data("faction");
+        m+=m0;
+        s+=s0;
+        if (typeof name!="undefined") {
+            let perso=false;
+            if (u.data("perso")) perso=true;
+            if (typeof a[name]=="undefined") a[name]={type:u.data("type"),moral:m0,points:s0,no:1,perso:perso,faction:faction};
+            else {
+                a[name]={type:u.data("type"),moral:m0,points:s0,no:a[name].no+1,perso:perso,faction:faction};
+            }
+        }
+    });
+    for (i in a) {
+        let x=a[i];
+        if (x.perso)
+            $(".armee-table-perso tbody").append("<tr><td><span class='blason-large "+x.faction+"'></span> <span class='type "+x.type+"'></span>"+i+"</td><td>"+x.points+"</td><td>"+x.moral+"</td></tr>");
+        else  $(".armee-table tbody").append("<tr><td><span class='blason-large "+x.faction+"'></span> <span class='type "+x.type+"'></span>"+i+"</td><td>"+"&#9632;".repeat(x.no)+"</td><td>"+(x.points*x.no)+" ("+x.points+"/u)</td><td>"+(x.moral*x.no)+" ("+x.moral+"/u)</td></tr>");
+    }
+    $(".armee-table tbody").append("<tr><td colspan=2></td><td><div class='text-muted'>Total</div>"+s+"</td><td><div class='text-muted'>Total</div>"+m+"</td></tr>");
     $(".sum").html(s);
+    let r="";
+    for (i=0;i<Math.ceil(2*m/3)-4;i+=5) {
+        r+="&#9633;".repeat(5)+"&nbsp;&nbsp;";
+    }
+    r+="&#9633;".repeat(Math.ceil(2*m/3)-i);
+    $(".moralshield").html(r+" (<span class='moral'></span> max)");
     $(".moral").html(Math.ceil(2*m/3));
 }
 

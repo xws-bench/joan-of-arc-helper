@@ -1,7 +1,23 @@
+@media print {
+  section, header, footer, nav {
+    display: none; }
+  .printable {
+    display: block; } }
+
+@media screen {
+  .printable {
+    display: none; } }
+
+.w-10 {
+  width: 10% !important; }
+
+.w-2 {
+  width: 2em !important; }
+
 .card {
   display: inline-block; }
 
-.table-striped tbody tr:nth-of-type(2n+1), .armee tr:nth-child(even) {
+.table-striped tbody tr:nth-of-type(2n+1), .armee th, .armee tr:nth-child(even) {
   background-color: #edeae4; }
 
 a, a:hover {
