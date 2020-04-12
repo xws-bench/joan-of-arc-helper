@@ -2,6 +2,7 @@ const BIEN=0,MAL=1,FRANCAIS=2,ECOSSAIS=3,OTTOMAN=4,ANGLAIS=5,BOURGUIGNON=6,VALAQ
 const INFANTERIE=0,CAVALERIE=1,VOLANT=2,ARTILLERIE=3,MAXTYPE=4;
 const TENDU=0,CLOCHE=1,MELEE=2,AUCUN=3;
 const AA=0;
+const CORE=0;
 const NOM_FACTION=["bien","mal","francais","ecossais","ottoman","anglais","bourguignon","valaque","mercenaire","neutre","lituanien","polonais","teutonique"];
 const NOM_TYPE=["infanterie","cavalerie","volant","artillerie"];
 const NOM_CAPACITE=["cette unité n'est pas affectée par les effets de terrain","ignifugé",null,null,null,null,null,null,null,null,null,null,"grand","soin","soin </span> <span class='hereandthere combat-cond'></span>","cruel","relance","garde du corps","pourfendeur","charge",null,"prière",null,null,"esquive",null,null,"charisme","ralliement","impétueux","survie","génie",null,"immortel","mercenaire","visée","masse","cohésion","transport",null,"immunisé aux ripostes",null,"immunisé à la terreur",null,null,null,null,"légendaire","<span class='melee combat'></span>: -1 <span class='deblanc'></span><span class='defense combat-cond'></span>"];
@@ -324,12 +325,12 @@ class Unite {
         {nom:"Jean Jourdain",f:'C',f3:[180,2,PERSONNAGE,1,2],faction:FRANCAIS,type:INFANTERIE,melee:[blanc],defense:[noir],pdv:2,dates:[1418,1419],source:"https://www.paris-normandie.fr/rouen/l-histoire-revisitee--le-siege-de-rouen-entre-1418-et-1419-CN13969319"/*Siege de Rouen */,desc:"Couleuvrine%HERE%%TIRTENDU%: +1 <span class='derouge'></span>%BR%Couleuvrine%HERE%%TIRTENDU%: %MORT% &rarr; %XP%"},
         {nom:"Guy le Bouteiller",f:'F',f3:[190,5,PERSONNAGE,1,2],faction:FRANCAIS,type:INFANTERIE,melee:[rouge,blanc],defense:[blanc],pdv:2,dates:[1414,1438],source:"http://www.mesqui.net/Articles_fortif/pdf/Guy-le-Bouteillier-et-La-Roche-Guyon.pdf",desc:"%MELEE%: %MORT% &rarr; %XP%%BR%%LEGENDE% %DEFENSE%: <span class='facerouge tue'></span> &rarr; <span class='facerouge bouclier'></span>"},
         {nom:"Alain Blanchard",f:'C',f3:[230,2,PERSONNAGE,1,2],faction:FRANCAIS,type:INFANTERIE,melee:[rouge,jaune],defense:[rouge],pdv:2,tir:[noir_bouclierrecule,noir_bouclierrecule],portee:3,typetir:TENDU,dates:[1394,1419],source:"https://fr.wikipedia.org/wiki/Alain_Blanchard_(capitaine)"},
-        {nom:"Jeanne d'Arc",pdf:true,niv:2,subfaction:BIEN,faction:FRANCAIS,type:INFANTERIE,melee:[blanc,jaune],defense:[noir,noir],pdv:3,commandement:[3,2],survie:true,priere:true,terreur:1,dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,desc:"%ACTIVATED%%ROUNDCOND%: en fin d'activation, jouez %JAUNE% depuis la réserve commune dans la zone sitée jusqu'à 3 zones de distance de %THIS%%BR%%CAMP%: %RETARDE% &rarr; %RALLIE%"},
-        {nom:"Jeanne d'Arc",pdf:true,niv:2,subfaction:MAL,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,jaune],defense:[rouge,jaune],pdv:4,commandement:[2,2],terreur:2,riposte:ftrue,dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,desc:"%ACTIVATED%%ROUNDCOND%: en fin d'activation, jouez un %JAUNE%  depuis la réserve commune dans la zone sitée jusqu'à 3 zones de distance de %THIS%%BR%%ROUND%: +1 %LEGENDE%, +1 %CARTELEGENDE%"},
-        {nom:"Jeanne d'Arc",f:"JJ",f3:[390,5,PERSONNAGE,1,2],pdf:true,niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[blanc],defense:[noir],pdv:2,commandement:[1,1],terreur:1,survie:true,priere:true,maj:2,dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,desc:"%ACTIVATED%%ROUNDCOND%: en fin d'activation, jouez %JAUNE% depuis la réserve commune dans la zone sitée jusqu'à 3 zones de distance de %THIS%%BR%%CAMP%: %RETARDE% &rarr; %RALLIE%"},
-        {nom:"Jeanne d'Arc",pdf:true,faction:FRANCAIS,niv:0,type:INFANTERIE,defense:[noir],pdv:2,survie:true,priere:true,dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,desc:"%ONCEINGAME%: +1 %CARTELEGENDE%, +1 %LEGENDE%"},
-        {nom:"Bertrand du Guesclin",b:[1,435,6,PERSONNAGE,1,2],pdf:true,niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,noir],defense:[rouge],pdv:5,charge:true,riposte:ftrue,pourfendeur:true,commandement:[1,1],maj:5,dates:[1337,1380],source:"https://fr.wikipedia.org/wiki/Bertrand_du_Guesclin",blason:true,moral:6,cout:435,enleve1d:true,desc:"Lorsqu'il est mis hors de combat, %THIS% est directement placé dans la zone d'attente de l'infirmerie"},
-        {nom:"Bertrand du Guesclin",pdf:true,niv:2,subfaction:MAL,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[rouge,blanc],pdv:5,cruel:true,gardeducorps:true,pourfendeur:true,commandement:[1,2],dates:[1337,1380],source:"https://fr.wikipedia.org/wiki/Bertrand_du_Guesclin",blason:true,moral:6,desc:"%XP%%XP% %MELEE%: 1 <span class='derouge'></span> &rarr; <span class='facerouge tue'></span>%BR%%MELEE%: %MORT% &rarr; %XP%"},
+        {nom:"Jeanne d'Arc",box:CORE,pdf:true,niv:2,subfaction:BIEN,faction:FRANCAIS,type:INFANTERIE,melee:[blanc,jaune],defense:[noir,noir],pdv:3,commandement:[3,2],survie:true,priere:true,terreur:1,dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,desc:"%ACTIVATED%%ROUNDCOND%: en fin d'activation, jouez %JAUNE% depuis la réserve commune dans la zone sitée jusqu'à 3 zones de distance de %THIS%%BR%%CAMP%: %RETARDE% &rarr; %RALLIE%"},
+        {nom:"Jeanne d'Arc",box:CORE,pdf:true,niv:2,subfaction:MAL,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,jaune],defense:[rouge,jaune],pdv:4,commandement:[2,2],terreur:2,riposte:ftrue,dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,desc:"%ACTIVATED%%ROUNDCOND%: en fin d'activation, jouez un %JAUNE%  depuis la réserve commune dans la zone sitée jusqu'à 3 zones de distance de %THIS%%BR%%ROUND%: +1 %LEGENDE%, +1 %CARTELEGENDE%"},
+        {nom:"Jeanne d'Arc",f:"JJ",box:CORE,f3:[390,5,PERSONNAGE,1,2],pdf:true,niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[blanc],defense:[noir],pdv:2,commandement:[1,1],terreur:1,survie:true,priere:true,maj:2,dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,desc:"%ACTIVATED%%ROUNDCOND%: en fin d'activation, jouez %JAUNE% depuis la réserve commune dans la zone sitée jusqu'à 3 zones de distance de %THIS%%BR%%CAMP%: %RETARDE% &rarr; %RALLIE%"},
+        {nom:"Jeanne d'Arc",box:CORE,pdf:true,faction:FRANCAIS,niv:0,type:INFANTERIE,defense:[noir],pdv:2,survie:true,priere:true,dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,desc:"%ONCEINGAME%: +1 %CARTELEGENDE%, +1 %LEGENDE%"},
+        {nom:"Bertrand du Guesclin",box:CORE,b:[1,435,6,PERSONNAGE,1,2],pdf:true,niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,noir],defense:[rouge],pdv:5,charge:true,riposte:ftrue,pourfendeur:true,commandement:[1,1],maj:5,dates:[1337,1380],source:"https://fr.wikipedia.org/wiki/Bertrand_du_Guesclin",blason:true,moral:6,cout:435,enleve1d:true,desc:"Lorsqu'il est mis hors de combat, %THIS% est directement placé dans la zone d'attente de l'infirmerie"},
+        {nom:"Bertrand du Guesclin",box:CORE,pdf:true,niv:2,subfaction:MAL,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge],defense:[rouge,blanc],pdv:5,cruel:true,gardeducorps:true,pourfendeur:true,commandement:[1,2],dates:[1337,1380],source:"https://fr.wikipedia.org/wiki/Bertrand_du_Guesclin",blason:true,moral:6,desc:"%XP%%XP% %MELEE%: 1 <span class='derouge'></span> &rarr; <span class='facerouge tue'></span>%BR%%MELEE%: %MORT% &rarr; %XP%"},
         {nom:"Bertrand du Guesclin",pdf:true,niv:2,subfaction:BIEN,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,noir,jaune],defense:[rouge,blanc],pdv:5,charge:true,riposte:ftrue,pourfendeur:true,commandement:[1,1],dates:[1337,1380],source:"https://fr.wikipedia.org/wiki/Bertrand_du_Guesclin",blason:true,moral:6,desc:"%CAMP%: %RALLIE%<span class='troupe combat-cond'></span>%BR%%ACTIVATED%%ROUNDCOND%: +1 %BLEU%"},
         {nom:"Amaury de Sévérac",niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[blanc,blanc],defense:[rouge,rouge],pdv:2,mercenaire:true,riposte:ftrue,commandement:[1,2],maj:3,dates:[1385,1427],source:"https://fr.wikipedia.org/wiki/Amaury_de_S%C3%A9v%C3%A9rac",blason:true,desc:"%BLESSURE% &rarr; %XP%"},
         {nom:"Amaury de Sévérac",niv:2,faction:FRANCAIS,type:INFANTERIE,melee:[blanc,blanc,jaune],defense:[rouge,rouge],pdv:3,pourfendeur:true,riposte:ftrue,commandement:[1,2],dates:[1385,1427],source:"https://fr.wikipedia.org/wiki/Amaury_de_S%C3%A9v%C3%A9rac",blason:true,desc:"%BLESSURE% &rarr; %XP%"},
@@ -337,11 +338,11 @@ class Unite {
         {nom:"Jeanne d'Arc",pdf:true,acheval:true,niv:2,subfaction:MAL,faction:FRANCAIS,type:CAVALERIE,melee:[rouge,blanc],defense:[rouge,jaune],pdv:4,celerite:2,riposte:ftrue,terreur:2,commandement:[2,2],dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,legendaire:true,desc:"%MELEE% / %DEFENSE%: <span class='faceblanc vierge'></span> &rarr; %LEGENDE% / %CARTELEGENDE%"},
         {nom:"Jeanne d'Arc",pdf:true,acheval:true,niv:2,subfaction:BIEN,faction:FRANCAIS,type:CAVALERIE,pdv:3,celerite:2,priere:true,ralliement:true,commandement:[3,2],dates:[1428,1431],source:"https://fr.wikipedia.org/wiki/Jeanne_d%27Arc",blason:true,moral:5,desc:"%ACTIVATED%%ROUNDCOND%: +1 %JAUNE% et jouez cet ordre immédiatement dans n'importe quelle zone alliée%BR%%ACTIVATED% %ROLL% le dé du Destin: %RALLIE% &rarr; %TOUTTYPE%%RALLIE%"},
         {nom:"Héros",niv:1,f:'D',b2:[170,3,PERSONNAGE,1,2],b1:[150,3,PERSONNAGE,1,2],b2:[160,3,PERSONNAGE,1,2],f1:[170,3,PERSONNAGE,1,2],f3:[160,3,PERSONNAGE,1,2],f2:[160,3,SOUTIEN,0,1],faction:FRANCAIS,type:INFANTERIE,melee:[rouge],defense:[noir],priere:true,feinte:ftrue,commandement:[AA,1],maj:3,cout:160,moral:3,pdf:true},
-        {nom:"Héros",niv:2,subfaction:BIEN,faction:FRANCAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:2,priere:true,parade:ftrue,commandement:[1,1],moral:3},
-        {nom:"Héros",niv:2,subfaction:MAL,faction:FRANCAIS,type:INFANTERIE,melee:[blanc_blanctouche,jaune_blanctouche],defense:[blanc,blanc],pdv:2,priere:true,terreur:1,commandement:[AA,2],moral:3},
+        {nom:"Héros",niv:2,pdf:true,subfaction:BIEN,faction:FRANCAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:2,priere:true,parade:ftrue,commandement:[1,1],moral:3},
+        {nom:"Héros",niv:2,pdf:true,subfaction:MAL,faction:FRANCAIS,type:INFANTERIE,melee:[blanc_blanctouche,jaune_blanctouche],defense:[blanc,blanc],pdv:2,priere:true,terreur:1,commandement:[AA,2],moral:3},
         {nom:"Héros",f:'D',a1:[160,3,PERSONNAGE,1,2],a2:[170,3,PERSONNAGE,1,2],niv:1,pdf:true,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],priere:true,feinte:ftrue,commandement:[AA,1],maj:3,moral:3,cout:160},
-        {nom:"Héros",niv:2,subfaction:BIEN,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:2,priere:true,parade:ftrue,commandement:[1,1],cout:160,moral:3},
-        {nom:"Héros",niv:2,subfaction:MAL,faction:ANGLAIS,type:INFANTERIE,melee:[blanc_blanctouche,jaune_blanctouche],defense:[blanc,blanc],pdv:2,priere:true,terreur:1,commandement:[AA,2],moral:3},
+        {nom:"Héros",niv:2,pdf:true,subfaction:BIEN,faction:ANGLAIS,type:INFANTERIE,melee:[rouge],defense:[noir],pdv:2,priere:true,parade:ftrue,commandement:[1,1],cout:160,moral:3},
+        {nom:"Héros",niv:2,subfaction:MAL,pdf:true,faction:ANGLAIS,type:INFANTERIE,melee:[blanc_blanctouche,jaune_blanctouche],defense:[blanc,blanc],pdv:2,priere:true,terreur:1,commandement:[AA,2],moral:3},
         {nom:"Boucicaut",f:'BCC',f1:[405,5,PERSONNAGE,1,2],pdf:true,niv:1,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,jaune],defense:[noir,noir],pdv:3,ralliement:true,commandement:[2,2],maj:4,modattaque:annule2recul,dates:[1340,1415],source:"https://fr.wikipedia.org/wiki/Jean_II_Le_Meingre",blason:true,moral:5,cout:405,desc:"%ACTIVATED% %XP%%XP%%XP% %ROUNDCOND%: +1 %BLEU%"},
         {nom:"Boucicaut",pdf:true,niv:2,faction:FRANCAIS,type:INFANTERIE,melee:[rouge,rouge,blanc],defense:[noir,noir],pdv:3,ralliement:true,celerite:2,commandement:[3,2],dates:[1340,1415],source:"https://fr.wikipedia.org/wiki/Jean_II_Le_Meingre",blason:true,desc:"%BLEU%%HERE%%ROUNDCOND%: vous pouvez jouer un %BLEU%%HERE% après celui-ci%BR%%ACTIVATED%%TOURCOND% %XP%%XP%%XP%: +1 %BLEU%"},
         {nom:"Poton de Xaintrailles",f:'A',f3:[260,4,SOUTIEN,0,1],pdf:true,niv:2,subfaction:MAL,faction:FRANCAIS,type:CAVALERIE,melee:[noir,noir],defense:[noir],pourfendeur:true,pdv:3,commandement:[1,2],dates:[1423,1450],source:"https://fr.wikipedia.org/wiki/Jean_Poton_de_Xaintrailles",blason:true,moral:4,desc:"%BLEU%%HERE%%ROUNDCOND%: vous pouvez jouer  %BLEU%%HERE% à la suite%BR%une zone adjacente ennemie vient de recevoir un ordre %ROUNDCOND%: +1 %MELEE%"},
@@ -365,9 +366,9 @@ class Unite {
         {nom:"Amaury de Craon",pdf:true,niv:2,faction:FRANCAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir,noir],pdv:2,commandement:[AA,2],dates:[1345,1373],source:"https://fr.wikipedia.org/wiki/Amaury_IV_de_Craon",blason:true,cout:280,moral:3,desc:"%ACTIVATED%%ROUNDCOND%: %MOVE% %THIS% de 2 zones"},    
         {nom:"Amaury de Craon",f:'A',f1:[280,3,PERSONNAGE,1,2],pdf:true,niv:1,faction:FRANCAIS,type:CAVALERIE,melee:[rouge],defense:[noir,noir],pdv:2,commandement:[AA,1],maj:3,dates:[1345,1373],source:"https://fr.wikipedia.org/wiki/Amaury_IV_de_Craon",blason:true,desc:"%ACTIVATED%%TOURCOND%: en début ou fin d'activation, %MOVE% %THIS%"},    
         {nom:"Héros monté",f:'A',f1:[220,3,PERSONNAGE,1,2],f3:[220,3,PERSONNAGE,1,2],niv:1,faction:FRANCAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],pdv:3,charge:true,commandement:[AA,1],maj:3,cout:220,moral:3,pdf:true},    
-        {nom:"Héros monté",niv:2,faction:FRANCAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],pdv:3,charge:true,commandement:[1,1],moral:3},    
+        {nom:"Héros monté",niv:2,faction:FRANCAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],pdv:3,charge:true,pdf:true,commandement:[1,1],moral:3},    
         {nom:"Héros monté",f:'A',b1:[200,4,PERSONNAGE,1,2],b2:[210,3,PERSONNAGE,1,2],niv:1,faction:BIEN,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],pdf:true,pdv:3,charge:true,commandement:[AA,1],maj:3},    
-        {nom:"Héros monté",niv:2,faction:BIEN,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],pdv:3,charge:true,commandement:[1,1]},    
+        {nom:"Héros monté",niv:2,pdf:true,faction:BIEN,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],pdv:3,charge:true,commandement:[1,1]},    
         {nom:"Philippe VI de Valois",pdf:true,niv:2,subfaction:MAL,faction:FRANCAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir,noir],pdv:3,priere:true,commandement:[3,2],dates:[1328,1350],source:"https://fr.wikipedia.org/wiki/Philippe_VI_de_Valois",blason:true,desc:"%TROUPE%%HERE%%DEFENSE%: + %GARDEDUCORPS%%BR%%ACTIVATED% %LEGENDE%: au début d'activation,  + <span class='commandement'>&nbsp;&nbsp;&nbsp; 1</span>"},    
         {nom:"Philippe VI de Valois",pdf:true,niv:2,subfaction:BIEN,faction:FRANCAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir,noir],pdv:3,priere:true,commandement:[3,2],dates:[1328,1350],legendaire:true,source:"https://fr.wikipedia.org/wiki/Philippe_VI_de_Valois",blason:true,desc:"%TROUPE%%HERE%: + %CHARGE%"},
         {nom:"Philippe VI de Valois",f:'A',f1:[300,4,PERSONNAGE,1,2],pdf:true,niv:1,faction:FRANCAIS,type:CAVALERIE,melee:[rouge],defense:[noir,noir],pdv:2,priere:true,commandement:[1,1],modattaque:annule1recul,maj:4,dates:[1328,1350],source:"https://fr.wikipedia.org/wiki/Philippe_VI_de_Valois",blason:true,cout:300,moral:4,desc:"%ACTIVATED%%ROUNDCOND%: %MOVE% 1 %CAVALERIE% d'une zone en direction d'une zone ennemie"},
@@ -434,7 +435,7 @@ class Unite {
         {nom:"Henry V",pdf:true,niv:2,subfaction:MAL,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,blanc],defense:[noir,noir],visee:true,genie:true,charge:true,pdv:3,commandement:[3,3],dates:[1410,1422],source:"https://fr.wikipedia.org/wiki/Henri_V_(roi_d%27Angleterre)",blason:true,desc:"<span class='blason-large mal'></span>%HERE%: + %CHARGE%%BR%%MONTOUR%: +1 %BLEU%"},
         // Le meme que le francais
         {nom:"Héros monté",a3:[200,3,PERSONNAGE,1,2],a2:[210,3,PERSONNAGE,1,2],a1:[200,3,PERSONNAGE,1,2],niv:1,faction:ANGLAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],pdv:3,charge:true,commandement:[AA,1],maj:3,pdf:true},    
-        {nom:"Héros monté",niv:2,faction:ANGLAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],pdv:3,charge:true,commandement:[1,1]},    
+        {nom:"Héros monté",niv:2,faction:ANGLAIS,type:CAVALERIE,melee:[rouge,rouge],defense:[noir],pdv:3,charge:true,pdf:true,commandement:[1,1]},    
         {nom:"Espion",pdf:true,faction:ANGLAIS,type:INFANTERIE,melee:[blanc,blanc],defense:[noir,jaune],pdv:2,esquive:true,parade:ftrue,desc:"%THIS% peut emprunter un Passage secret sans dépenser de jeton"},    
         {nom:"Assassin",pdf:true,faction:ANGLAIS,type:INFANTERIE,melee:[rouge,blanc],defense:[noir],pdv:2,riposte:ftrue,feinte:ftrue, enleve1d:true,desc:"%REVEALED%, %MELEE%: +1 <span class='derouge'></span>"},
         {nom:"Jean II de Luxembourg",pdf:true,niv:1,faction:ANGLAIS,type:INFANTERIE,melee:[noir,blanc],defense:[blanc],mercenaire:true,charisme:true,pdv:2,maj:3,commandement:[AA,1],dates:[1414,1441],source:"https://fr.wikipedia.org/wiki/Jean_II_de_Luxembourg-Ligny",blason:true,desc:"%DEFENSE%: pas d'unité%HERE% &rarr; +1 <span class='deblanc'></span>"},
@@ -475,7 +476,7 @@ class Unite {
         {nom:"Jean de Murs",f:'JDM',b2:[110,3,PERSONNAGE,1,2],faction:BIEN,type:INFANTERIE,civil:true,genie:true,desc:"lorsque %THIS% est dans un bâtiment, ce dernier gagne 1 point de résistance%BR%%LEGENDE%%ROUNDCOND%: choisissez %CARTELEGENDE%"},
         {nom:"Jean de Toulongeon",niv:2,faction:BOURGUIGNON,type:INFANTERIE,melee:[noir,blanc],defense:[rouge,noir],pdv:3,riposte:ftrue,ralliement:true,commandement:[2,3],dates:[1395,1427],source:"https://fr.wikipedia.org/wiki/Jean_II_de_Toulongeon",blason:true,desc:"%MELEE%: 1+ %MORT% &rarr; 2 %CARTELEGENDE%%BR%Compte comme 1 unité pour toutes les unités dans sa zone dotées de Masse"},
         {nom:"Jean de Toulongeon",niv:1,faction:BOURGUIGNON,type:INFANTERIE,melee:[noir],defense:[rouge,noir],pdv:2,riposte:ftrue,ralliement:true,commandement:[1,2],maj:4,dates:[1395,1427],source:"https://fr.wikipedia.org/wiki/Jean_II_de_Toulongeon",blason:true,desc:"%MELEE%: 1+ %MORT% &rarr; %CARTELEGENDE%%BR%Compte comme 1 unité pour toutes les unités dans sa zone dotées de Masse"},
-        {nom:"Héros",faction:BOURGUIGNON,type:INFANTERIE,melee:[rouge,blanc],defense:[blanc],charge:true,survie:true,modattaque:annule1recul,pdv:2,pdf:true},
+        {nom:"Héros",pdf:true,faction:BOURGUIGNON,type:INFANTERIE,melee:[rouge,blanc],defense:[blanc],charge:true,survie:true,modattaque:annule1recul,pdv:2,pdf:true},
         {nom:"Jean de Croy",pdf:true,faction:BOURGUIGNON,type:INFANTERIE,melee:[blanc,blanc],defense:[blanc,jaune],riposte:ftrue,pdv:2,commandement:[AA,1],dates:[1380,1415],source:"https://fr.wikipedia.org/wiki/Jean_Ier_de_Cro%C3%BF",blason:true, desc:"%DEFENSE%: <span class='faceblanc vierge'></span> / <span class='facejaune vierge'></span> &rarr; %LEGENDE%"},
         {nom:"Lala Sahin Pacha",o1:[325,4,PERSONNAGE,1,2],f:'LL',niv:1,faction:OTTOMAN,type:INFANTERIE,melee:[rouge,jaune],defense:[noir_toucherecule],celerite:2,ralliement:true,pdv:2,commandement:[1,2],maj:5,dates:[1360,1388],source:"https://en.wikipedia.org/wiki/Lala_%C5%9Eahin_Pasha",desc:"%ACTIVATED%: %LEGENDE% &rarr; + <span class='commandement'>&nbsp;&nbsp;&nbsp; 1</span>"},
         {nom:"Lala Sahin Pacha",niv:2,faction:OTTOMAN,type:INFANTERIE,melee:[rouge,rouge],defense:[noir],celerite:2,ralliement:true,terreur:1,pdv:3,commandement:[2,2],dates:[1360,1388],source:"https://en.wikipedia.org/wiki/Lala_%C5%9Eahin_Pasha",desc:"%ACTIVATED%%TOURCOND% %LEGENDE%: %GRIS% &rarr; %JAUNE%/%BLEU%%BR%%BLEU%%HERE%%ROUNDCOND%: vous pouvez jouer  %BLEU%%HERE% à la suite"},
@@ -516,23 +517,23 @@ class Unite {
         {nom:"Arbre Sacré",pdf:true,faction:LITUANIEN,v15:true,type:INFANTERIE,melee:[rouge,rouge,blanc],defense:[noir],pdv:4,grand:true,terreur:1,noriposte:true,desc:"Si %THIS% est située dans une zone de forêt, elle peut déclarer une attaque de mélée depuis n'importe quelle autre zone de forêt contenant un arbre. Retirez ensuite cet arbre du jeu."},
         {nom:"Perkunas",pdf:true,niv:1,maj:5,v15:true,faction:LITUANIEN,type:VOLANT,melee:[rouge,noir],tir:[blanc,blanc],portee:2,typetir:TENDU,commandement:[1,1],defense:[unbouclier,unbouclier],pdv:3,grand:true,terreur:1,saut:2,desc:"Il est impossible de se défendre contre une attaque de tir de Perkunas."},
         {nom:"Perkunas",pdf:true,niv:2,v15:true,faction:LITUANIEN,type:VOLANT,melee:[rouge,noir],commandement:[2,1],defense:[unbouclier,unbouclier],pdv:4,grand:true,terreur:3,saut:3,immortel:true,ignifuge:true},
-        {nom:"Héros Lituanien",pdf:true,niv:1,faction:LITUANIEN,type:INFANTERIE,melee:[blanc],commandement:[AA,1],defense:[noir],parade:true,maj:2},
-        {nom:"Héros Lituanien",pdf:true,v15:true,niv:2,faction:LITUANIEN,subfaction:BIEN,type:INFANTERIE,melee:[blanc,blanc],commandement:[1,1],defense:[noir],ralliement:true,parade:true,pdv:2,desc:"<span class='foret combat'></span>%HERE% : + <span class='commandement'>&nbsp;&nbsp;&nbsp; 1</span>"},
-        {nom:"Héros Lituanien",pdf:true,niv:2,v15:true,faction:LITUANIEN,subfaction:MAL,type:INFANTERIE,melee:[rouge,blanc,blanc],commandement:[1,1],defense:[blanc,rouge],feinte:ftrue,parade:true,pdv:2,desc:"%MELEE%%FORET%: %RECUL% &rarr; %TOUCHE%"},
+        {nom:"Héros",pdf:true,niv:1,faction:LITUANIEN,type:INFANTERIE,melee:[blanc],commandement:[AA,1],defense:[noir],parade:true,maj:2,note:"devrait s'appeler juste 'Héros' et non 'Héros Lituanien', comme les Héros français et anglais"},
+        {nom:"Héros",pdf:true,v15:true,niv:2,faction:LITUANIEN,subfaction:BIEN,type:INFANTERIE,melee:[blanc,blanc],commandement:[1,1],defense:[noir],ralliement:true,parade:true,pdv:2,desc:"<span class='foret combat'></span>%HERE% : + <span class='commandement'>&nbsp;&nbsp;&nbsp; 1</span>",note:"devrait s'appeler juste 'Héros' et non 'Héros Lituanien', comme les Héros français et anglais"},
+        {nom:"Héros",pdf:true,niv:2,v15:true,faction:LITUANIEN,subfaction:MAL,type:INFANTERIE,melee:[rouge,blanc,blanc],commandement:[1,1],defense:[blanc,rouge],feinte:ftrue,parade:true,pdv:2,desc:"%MELEE%%FORET%: %RECUL% &rarr; %TOUCHE%",note:"devrait s'appeler juste 'Héros' et non 'Héros Lituanien', comme les Héros français et anglais"},
         {nom:"Roi Casimir IV de Lituanie",pdf:true,niv:1,v15:true,maj:5,faction:LITUANIEN,type:CAVALERIE,melee:[rouge,rouge],commandement:[1,1],defense:[noir,blanc],charge:true,feinte:ftrue,parade:true,riposte:ftrue,pdv:3,desc:"%DEFENSE%, %THIS% seul dans sa zone: 1 %TOUCHE &rarr; 1 %RECUL%"},
         {nom:"Roi Casimir IV de Lituanie",pdf:true,niv:2,v15:true,faction:LITUANIEN,type:CAVALERIE,melee:[rouge,rouge],commandement:[1,2],defense:[noir,blanc],charge:true,feinte:ftrue,parade:true,riposte:ftrue,pdv:4,desc:"%DEFENSE%, %THIS% seul dans sa zone: 2 %TOUCHE &rarr; 2 %RECUL%"},
         {nom:"Narimantas",pdf:true,niv:1,maj:4,v15:true,faction:LITUANIEN,type:CAVALERIE,melee:[rouge,rouge],commandement:[1,1],defense:[noir],charge:true,gardeducorps:true,pdv:2,desc:"%DEFENSE%: pour chaque résultat alloué à %THIS%, infligez 1 %RECUL% en tant que riposte à la zone attaquante."},
         {nom:"Narimantas",pdf:true,niv:2,faction:LITUANIEN,v15:true,type:CAVALERIE,melee:[rouge,rouge],commandement:[2,1],defense:[noir],charge:true,gardeducorps:true,visee:true,pdv:3,desc:"%DEFENSE%: pour chaque résultat alloué à %THIS%, infligez 1 %RECUL% en tant que riposte à la zone attaquante."},
-        {nom:"Héros Teutonique",pdf:true,niv:1,v15:true,maj:3,faction:TEUTONIQUE,type:INFANTERIE,melee:[noir],commandement:[AA,1],defense:[noir],charge:true,impetueux:true,priere:true,desc:"%MELEE%: pour chaque résultat %TUE% obtenu, lancez 1 <span class='denoir'></span>. Ce dé dispose du même effet"},
-        {nom:"Héros Teutonique",pdf:true,v15:true,niv:2,faction:TEUTONIQUE,type:INFANTERIE,melee:[noir],commandement:[1,1],defense:[noir],charge:true,impetueux:true,feinte:true,pdv:2,desc:"%MELEE%: pour chaque résultat %TUE% obtenu, lancez 1 <span class='denoir'></span>. Ce dé dispose du même effet"},
+        {nom:"Héros",pdf:true,niv:1,v15:true,maj:3,faction:TEUTONIQUE,type:INFANTERIE,melee:[noir],commandement:[AA,1],defense:[noir],charge:true,impetueux:true,priere:true,desc:"%MELEE%: pour chaque résultat %TUE% obtenu, lancez 1 <span class='denoir'></span>. Ce dé dispose du même effet",note:"devrait s'appeler juste 'Héros' et non 'Héros Teutonique, comme les Héros français et anglais"},
+        {nom:"Héros",pdf:true,v15:true,niv:2,faction:TEUTONIQUE,type:INFANTERIE,melee:[noir],commandement:[1,1],defense:[noir],charge:true,impetueux:true,feinte:true,pdv:2,desc:"%MELEE%: pour chaque résultat %TUE% obtenu, lancez 1 <span class='denoir'></span>. Ce dé dispose du même effet",note:"devrait s'appeler juste 'Héros' et non 'Héros Teutonique, comme les Héros français et anglais"},
         {nom:"Winrich von Kniprod",v15:true,pdf:true,niv:1,maj:4,faction:TEUTONIQUE,type:CAVALERIE,melee:[rouge,blanc,jaune],commandement:[1,1],defense:[blanc],charge:true,pdv:2,desc:"%MELEE%: si %THIS% obtient au moins 2 %TOUCHE%, l'attaque de %THIS% ne peut pas être bloquée par des résultats %BOUCLIER%"},
         {nom:"Winrich von Kniprod",v15:true,pdf:true,niv:2,faction:TEUTONIQUE,type:CAVALERIE,melee:[rouge,blanc,blanc],commandement:[1,1],defense:[noir,blanc],charge:true,feinte:true,pdv:3,desc:"%MELEE%: si %THIS% obtient au moins 2 %TOUCHE%, l'attaque de %THIS% ne peut pas être bloquée par des résultats %BOUCLIER%"},
         {nom:"Manvydas",pdf:true,v15:true,niv:1,faction:TEUTONIQUE,type:INFANTERIE,melee:[blanc,blanc],tir:[jaune,jaune],portee:1,typetir:TENDU,commandement:[AA,1],defense:[blanc],celerite:2,desc:"%MELEE%%FORET%: %TOUCHE% &rarr; +1 %RECUL%"},
         {nom:"Bernard Szumborski",v15:true,pdf:true,faction:TEUTONIQUE,type:INFANTERIE,melee:[rouge,blanc],commandement:[1,2],defense:[noir],feinte:true,pdv:3,desc:"%SPECIAL%: %THIS% peut déclarer une attaque contre une unité adjacente. Seul de jet d'attaque de %THIS% et le jet de défense de l'unité ciblée sont résolus."},
-        {nom:"Héros Teutonique Monté",v15:true,pdf:true,niv:1,maj:3,faction:TEUTONIQUE,type:CAVALERIE,melee:[rouge,blanc,noir],commandement:[1,1],defense:[noir],charge:true,impetueux:true,priere:true,pdv:2},
-        {nom:"Héros Teutonique Monté",v15:true,pdf:true,niv:2,faction:TEUTONIQUE,type:CAVALERIE,melee:[rouge,blanc,noir],commandement:[2,1],defense:[noir],charge:true,parade:true,priere:true,pdv:3},
-        {nom:"Héros Polonais Monté",v15:true,pdf:true,niv:1,maj:4,faction:POLONAIS,type:CAVALERIE,melee:[rouge,noir],commandement:[AA,1],defense:[noir],charge:true,pdv:2,desc:"%MELEE%%VERT%: +1 <span class='denoir'></span>"},
-        {nom:"Héros Polonais Monté",v15:true,pdf:true,niv:2,faction:POLONAIS,type:CAVALERIE,melee:[rouge,noir],commandement:[1,1],defense:[noir],charge:true,pdv:3,desc:"%MELEE%%VERT%: +1 <span class='derouge'></span>, -1 %BOUCLIER% du jet de défense de votre adversaire"},
+        {nom:"Héros monté",v15:true,pdf:true,niv:1,maj:3,faction:TEUTONIQUE,type:CAVALERIE,melee:[rouge,blanc,noir],commandement:[1,1],defense:[noir],charge:true,impetueux:true,priere:true,pdv:2,note:"devrait s'appeler juste 'Héros monté et non 'Héros Teutonique Monté', comme les Héros français et anglais"},
+        {nom:"Héros monté",v15:true,pdf:true,niv:2,faction:TEUTONIQUE,type:CAVALERIE,melee:[rouge,blanc,noir],commandement:[2,1],defense:[noir],charge:true,parade:true,priere:true,pdv:3,note:"devrait s'appeler juste 'Héros monté et non 'Héros Teutonique Monté', comme les Héros français et anglais"},
+        {nom:"Héros monté",v15:true,pdf:true,niv:1,maj:4,faction:POLONAIS,type:CAVALERIE,melee:[rouge,noir],commandement:[AA,1],defense:[noir],charge:true,pdv:2,desc:"%MELEE%%VERT%: +1 <span class='denoir'></span>",note:"devrait s'appeler juste 'Héros monté et non 'Héros Polonais Monté', comme les Héros français et anglais"},
+        {nom:"Héros monté",v15:true,pdf:true,niv:2,faction:POLONAIS,type:CAVALERIE,melee:[rouge,noir],commandement:[1,1],defense:[noir],charge:true,pdv:3,desc:"%MELEE%%VERT%: +1 <span class='derouge'></span>, -1 %BOUCLIER% du jet de défense de votre adversaire",note:"devrait s'appeler juste 'Héros monté et non 'Héros Polonais Monté', comme les Héros français et anglais"},
     ];}
     
 /*    let tests={
@@ -621,6 +622,7 @@ class Unite {
         if (nostar) return n;
         if (this.niv==1) n+=" *";
         if (this.niv==2) n+=" **";
+
         return n;
     }
     getAttack() {
@@ -681,14 +683,23 @@ class Unite {
         if (this.niv==0) nn+="__";
         if (this.niv==1) nn+="_*";
         if (this.niv==2) nn+="_**";
-        if (this.subfaction==MAL) nn+="_Mal";
-        else if (this.subfaction==BIEN) nn+="_Bien";
 
+
+        if (this.pdf&&nn.startsWith("Héros")) {
+            nn+="_"+NOM_FACTION[this.faction];
+            if (this.subfaction==MAL) nn+="_Mal";
+            else if (this.subfaction==BIEN) nn+="_Bien";
+        } else {
+            if (this.subfaction==MAL) nn+="_Mal";
+            else if (this.subfaction==BIEN) nn+="_Bien";
+        }
         let n=this.getName();
-
-        if (this.pdf&&!this.troupe) n="<a href='#card' data-name='"+nn+"' data-toggle='modal' data-target='#card' data-embed='#mycard' onclick=\"document.getElementById('mycard').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+n+"</a>";
-        if (this.troupe&&this.pdf) n="<a href='#card-troop' data-name='"+nn+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+n+"</a>";
-        if (this.troupe&&this.png) n="<a href='#card-troop' data-name='"+nn+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".png')\">"+n+"</a>";
+        if (!this.troupe) {
+            if (this.pdf) {
+                n="<a href='#card' data-name='"+nn+"' data-toggle='modal' data-target='#card' data-embed='#mycard' onclick=\"document.getElementById('mycard').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+n+"</a>";
+            }
+        } else if (this.pdf) n="<a href='#card-troop' data-name='"+nn+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+n+"</a>";
+        else if (this.png) n="<a href='#card-troop' data-name='"+nn+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".png')\">"+n+"</a>";
 
         if (this.source) {
             urla=this.source.split(" ");
@@ -912,23 +923,24 @@ class Unite {
         if (this.niv==0) nn+="__";
         if (this.niv==1) nn+="_*";
         if (this.niv==2) nn+="_**";
-        if (this.subfaction==MAL) nn+="_Mal";
-        else if (this.subfaction==BIEN) nn+="_Bien";
+        
 
-        let n=this.getName(true);
-        if (this.pdf&&!this.troupe) {
-            let extran="";
-            if (nn.startsWith("Héros")) {
-                extran="_"+NOM_FACTION[this.faction];
-                if (this.subfaction==MAL) extran+="_Bien";
-                else if (this.subfaction==BIEN) extran+="_Mal";
-            }
-            n="<a href='#card' data-name='"+nn+"' data-toggle='modal'data-faction='"+NOM_FACTION[ar.blason]+"' data-type='"+NOM_TYPE[this.type]+"' data-target='#card' data-perso='true' data-embed='#mycard' onclick=\"document.getElementById('mycard').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+extran+".pdf#toolbar=0')\">"+n+"</a>";
+        if (nn.startsWith("Héros")&&this.pdf) {
+            nn+="_"+NOM_FACTION[this.faction];
+            if (this.subfaction==MAL) nn+="_Mal";
+            else if (this.subfaction==BIEN) nn+="_Bien";
+        } else {
+            if (this.subfaction==MAL) nn+="_Mal";
+            else if (this.subfaction==BIEN) nn+="_Bien";
         }
-        if (this.troupe&&this.pdf) n="<a href='#card-troop' data-name='"+nn+"' data-toggle='modal' data-type='"+NOM_TYPE[this.type]+"' data-faction='"+NOM_FACTION[ar.blason]+"' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+n+"</a>";
-        if (this.troupe&&this.png) n="<a href='#card-troop' data-name='"+nn+"' data-type='"+NOM_TYPE[this.type]+"' data-faction='"+NOM_FACTION[ar.blason]+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".png')\">"+n+"</a>";
-
+        let n=this.getName(true);
         if (!this.troupe) {
+            if (this.pdf) {
+                n="<a href='#card' data-name='"+nn+"' data-toggle='modal'data-faction='"+NOM_FACTION[ar.blason]+"' data-type='"+NOM_TYPE[this.type]+"' data-target='#card' data-perso='true' data-embed='#mycard' onclick=\"document.getElementById('mycard').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+n+"</a>";
+            }
+        } else if (this.pdf) n="<a href='#card-troop' data-name='"+nn+"' data-toggle='modal' data-type='"+NOM_TYPE[this.type]+"' data-faction='"+NOM_FACTION[ar.blason]+"' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".pdf#toolbar=0')\">"+n+"</a>";
+        else if (this.png) n="<a href='#card-troop' data-name='"+nn+"' data-type='"+NOM_TYPE[this.type]+"' data-faction='"+NOM_FACTION[ar.blason]+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','https://xws-bench.github.io/joan-of-arc-helper/cards/"+nn+".png')\">"+n+"</a>";
+        else {
             n="<span class='blason "+NOM_FACTION[this.faction]+"'></span>"+n;
         }
         r="<tr><td class='form-check-inline'>"+r+"</td><td>"+n+"</td></td><td>"+this[at][0]/*cout*/+"</td><td>"+this[at][1]/*moral*/+"</td></tr>";
