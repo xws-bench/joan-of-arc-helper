@@ -168,7 +168,7 @@ class Evenement {
                 {start:"1431-07-02",text:"Bataille de Bulgnéville", flag:[BOURGUIGNON,FRANCAIS],commandants:["Toulongeon"],wiki:"Bataille_de_Bulgnéville",campagne:"Succession du duché de Lorraine",victoire:BOURGUIGNON,desc:"Les Lorrains, en supériorité numérique, attaquent les Bourguignons sur une butte. Ceux ci, grâce à leurs archers, mettent en déroute les Lorrains."},
                 {start:"1432-07",stop:"1432-08-20",text:"Siège de Lagny-sur-Marne", flag:[FRANCAIS,ANGLAIS,BOURGUIGNON,ECOSSAIS],wiki:"Siège_de_Lagny-sur-Marne",commandants:["Xaintrailles","Hire","Rais","Dunois","Lancastre","Arundel"],victoire:FRANCAIS,desc:"Lagny était une gène pour l'approvisionnement de Paris. Une armée commandée par Jean de Lancastre l'assiégea. Le roi de France envoya une troupe de secours, et une mélée générale s'ensuivit dans une chaleur accablante. "},
                 {start:"1435-05-09",text:"Bataille de Gerberoy", flag:[FRANCAIS,ANGLAIS],wiki:"Bataille_de_Gerberoy",commandants:["Hire","Xaintrailles","Arundel"],desc:"Les Anglais viennent assiéger Gerberoy, défendue par Xaintrailles. La Hire prend l'avant-garde anglaise par l'envers puis combat les assiégeants. Le comte d'Arundel, blessé au pied par une couleuvrine, mourut quelques jours plus tard.",victoire:FRANCAIS},
-                {start:"1435-09-20",text:"Traité d'Arras",desc:"La fin de la guerre entre Armagnacs et Bourguignons. Les Bourguignons passent du coté Français",wiki:"Traité_d'Arras_(1435)"},
+                {start:"1435-09-20",text:"Traité d'Arras",flag:[FRANCAIS,BOURGUIGNON],desc:"La fin de la guerre entre Armagnacs et Bourguignons. Les Bourguignons passent du coté Français",wiki:"Traité_d'Arras_(1435)"},
                 {start:"1435-04",stop:"1436-04-17",text:"Siège de Paris", flag:[FRANCAIS,ANGLAIS],wiki:"Siège_de_Paris_(1435-1436)",commandants:["Loré","Richemont","Dunois"],desc:"Richemont surprit la garnison anglaise à Saint Denis et s'y installa en 1435. En 1436, avec le renfort des Bourguignons, les Français encerclent Paris. Les Parisiens font diversion pour obliger les Anglais à aller à une porte pendant que les Français entrent par une autre. La garnison anglaise se réfugie à la Bastille, avant d'être autorisée à s'en aller.",victoire:FRANCAIS},
                 {start:"1436-07-09",stop:"1436-07-29",text:"Siège de Calais", flag:[BOURGUIGNON,ANGLAIS],commandants:["Croy","Sommerset"],victoire:ANGLAIS,desc:"Le duc de Bourgogne fit le siège de Calais. Aidé par les milices flamandes, il dut lever le siège quand celles-ci désertèrent.",wiki:"Siège_de_Calais_(1436)"},
                 {start:"1441-08-31",stop:"1442-06-24",text:"Siège de Tartas", flag:[FRANCAIS,ANGLAIS],wiki:"Siège_de_Tartas",commandants:["Richemont","Albret","Somerset","Buch","Coétivy","Hire","Xaintrailles"],desc:"Repère de Charles II d'Albret en pleine Gascogne anglaise, Tartas fut assiégée par les Anglais. Une armée de secours fut alors envoyée, avec tous les grands noms français. Devant cette démonstration de force, les Anglais se rendent. C'est la dernière campagne de la Hire.",victoire:FRANCAIS},
@@ -200,6 +200,7 @@ class Evenement {
         if (typeof this.type!="undefined"&&this.type!=BATAILLE)
             this.class=COULEUR_BATAILLES[this.type];
         if (this.scenario) this.text=this.text+"*";
+        this.start=new Date(this.start);
     }
     static liste() {
         let i,l=[];
@@ -208,7 +209,9 @@ class Evenement {
             let e=liste[i];
             e.id=i;
             l[i]=new Evenement(e);
-            if (typeof l[i].wiki=="undefined") console.log(l[i].text+" "+l[i].book+" "+l[i].source);
+            if (typeof l[i].flag=="undefined") {
+                console.log(l[i].text);
+            }
         }
         return l;
     }

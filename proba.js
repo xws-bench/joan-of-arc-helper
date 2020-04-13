@@ -496,8 +496,8 @@ function temporaliseperso(x) {
         }
     }
     let d;
-    dl.find(String(minid));
-    $(".d-dateline").bind("datelinechange",function() {
+    //dl.find(String(minid));
+    /*$(".d-dateline").bind("datelinechange",function() {
         let i;
         for (i=0;i<evenements.length;i++) {
             let e=evenements[i];
@@ -507,7 +507,7 @@ function temporaliseperso(x) {
         }
         $(".d-dateline").unbind("datelinechange");
     });
-
+    */
 }
 
 
@@ -605,6 +605,7 @@ function trouveperso(n) {
 function resetgroup(group,min,max) {
     let i;
     for (i=min;i<max;i++)
+        // RM CHECKBOX
         $("input[name=g"+group+"_"+i+"]").prop("checked",false);
     computeArmy();
 }
@@ -694,6 +695,7 @@ function changeArmee() {
     if (nbarmee==3) $(".total").html("4000");
     
     computeArmy();
+    // RM RADIO
     $("input[data-pts]").click(computeArmy);
 }
 function computeArmy() {
@@ -708,6 +710,7 @@ function computeArmy() {
     })
     $(".armee-table-perso tbody").html("");
     $(".armee-table tbody").html("");
+    // RM RADIO
     $("input[data-pts]:checked").each(function() {
         let s0=parseInt($(this).data("pts"),10);
         let m0=parseInt($(this).data("moral"),10);
@@ -741,11 +744,11 @@ function computeArmy() {
     $(".moralshield").html(r+" (<span class='moral'></span> max)");
     $(".moral").html(Math.ceil(2*m/3));
 }
-
 $( document ).ready(function() {
     troupes=Unite.troupes();
 
     persolist=troupes.filter((x)=>typeof x.dates!="undefined").sort((a,b)=>(a.text>b.text)).filter(unique);
+    evenements.map(x=>x.info(persolist));
 
     dl=new dateline("dl",{
         start:"1297-09-10",
@@ -755,17 +758,19 @@ $( document ).ready(function() {
         cursor:"1429-02-01",
         loading:"<i class=\"far fa-spinner fa-spin fa-lg\"></i>&nbsp;&hellip;",
         locale:"fr-FR",
-        bands:[
+        
+       bands:[
             {size:"68%",scale:6,interval:60},
             {size:"16%",layout:"overview",scale:7,interval:100},
             {size:"16%",layout:"overview",scale:8,interval:40,multiple:2}
         ],
-        events:evenements,
-        formatter:(e)=>e.format(false)
+       events:evenements,
+       formatter:(e)=>e.format(false)
     });
     $(".findperso").select2({placeholder:'Choisissez une unité',data:persolist,templateResult:(e)=>(new Unite(e)).format(true)});
     $(".finddate").select2({placeholder:'Choisissez un événement',data:evenements,templateResult:(e)=>(new Evenement(e)).format(true)});
-    let terrains=[{id:"plain",text:"plaine",selected:true},{id:"ble",text:"champs"},{id:"forest",text:"forêt"},{id:"swamp",text:"marais"},{id:"pave",text:"village"},{id:"rock",text:"rocher"}];
+
+        let terrains=[{id:"plain",text:"plaine",selected:true},{id:"ble",text:"champs"},{id:"forest",text:"forêt"},{id:"swamp",text:"marais"},{id:"pave",text:"village"},{id:"rock",text:"rocher"}];
     
     $(".trouveterrain").select2({data:terrains,templateResult:(e)=>$("<span><img class='img-circle "+e.id+"' src='css/"+e.id+".png'/>"+e.text+"</span>")});
     for (i in NOM_FACTION) {
@@ -784,12 +789,8 @@ $( document ).ready(function() {
     //var allp= touslesduels(troupes.filter((x)=>!x.troupe));
     $("#tablepersos tbody").append(troupes.filter((x)=>!x.troupe).join(''));
     $("#tablepersos").DataTable({
-        /*"scrollY":        "300px",*/
-        /*scrollCollapse: true,*/
-        "paging":         true,
-        /*ordering:true,
-          order: [[ 3, "asc" ]],*/
-        responsive:true,
+          "paging":         true,
+          responsive:true,
         "columnDefs": [
             { "width": "20%", "targets": 0 }
         ],
@@ -808,10 +809,7 @@ $( document ).ready(function() {
     //var u = touslesduels(troupes.filter((x)=>x.troupe));
     $("#tabletroupes tbody").append(troupes.filter((x)=>x.troupe).join(''));
     $("#tabletroupes").DataTable({
-        /*"scrollY":        "300px",*/
-        /*"scrollCollapse": true,*/
         "paging":         true,
-        /*"ordering":true,*/
         "columnDefs": [
             { "width": "20%", "targets": 0 }
         ],
@@ -827,7 +825,8 @@ $( document ).ready(function() {
             {"width":"5%"},
             {"width": "40%"},
         ]
-    });
+});
+
     $(".trouvearmee1").select2({placeholder:'1ère liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
     $(".trouvearmee2").select2({placeholder:'2ème liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
     $(".trouvearmee3").select2({placeholder:'3ème liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
