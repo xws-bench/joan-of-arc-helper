@@ -1,8 +1,4 @@
-let unbouclier=[0,0,0,1];
-let untue=[0,0,1,0];
-let unrecul=[1,0,0,0];
-let unblanc=[0,0,0,0];
-let untouche=[0,1,0,0];
+
 var persolist=[];
 var dl;
 var k,kk,i=0,j;
@@ -480,6 +476,7 @@ function unique(value, index, self) {
 
 function temporaliseperso(x) {
     let p=troupes[x];
+    console.log("unité:"+x+" "+p.nom+" "+p.dates[0]);
     let d1=p.dates[0],d2=p.dates[1];
     let d3=p.dates[2],d4=p.dates[3];
     let i,j,miny=2000,mindid;
@@ -496,8 +493,8 @@ function temporaliseperso(x) {
         }
     }
     let d;
-    //dl.find(String(minid));
-    /*$(".d-dateline").bind("datelinechange",function() {
+    dl.find(String(minid));
+    $(".d-dateline").bind("datelinechange",function() {
         let i;
         for (i=0;i<evenements.length;i++) {
             let e=evenements[i];
@@ -507,7 +504,7 @@ function temporaliseperso(x) {
         }
         $(".d-dateline").unbind("datelinechange");
     });
-    */
+    
 }
 
 
@@ -582,7 +579,7 @@ function trouveperso(n) {
         if (nn>1&&t.troupe==true) 
             perso2=new Unite(t,nn);
          else perso2=t;
-        perso2.d=perso2.toHTML()[4];
+        perso2.d=perso2.toHTML()[5];
      }
     if (perso1) $("#hex1").html(tableStat(perso1,perso1.a,[perso1.pdv,1],0,0,0,0));
     if (perso2) $("#hex2").html(tableStat(perso2,perso2.d,[perso2.pdv,1],0,0,0,0)); 
@@ -746,7 +743,6 @@ function computeArmy() {
 }
 $( document ).ready(function() {
     troupes=Unite.troupes();
-
     persolist=troupes.filter((x)=>typeof x.dates!="undefined").sort((a,b)=>(a.text>b.text)).filter(unique);
     evenements.map(x=>x.info(persolist));
 
@@ -795,14 +791,15 @@ $( document ).ready(function() {
             { "width": "20%", "targets": 0 }
         ],
         "columns": [
-            {"width": "20%"},
+            {"width": "25%",className:"fr"},
+            {"width":"25%",className:"en"},
             {"width":"3%"},
             {"width":"3%"},
-            {"width":"10%"},
-            {"width":"10%"},
+            {"width":"3%"},
+            {"width":"15%"},
             {"width":"3%"},
             {"width":"5%"},
-            {"width": "40%"},
+            {"width": "50%"},
         ]
     });
 
@@ -816,17 +813,17 @@ $( document ).ready(function() {
         order: [[2, 'asc']],
         responsive:true,
         "columns": [
-            {"width": "20%"},
+            {"width": "25%",className:'fr'},
+            {"width": "25%",className:'en'},
             {"width":"3%"},
             {"width":"3%"},
-            {"width":"10%"},
-            {"width":"10%"},
+            {"width":"3%"},
+            {"width":"15%"},
             {"width":"3%"},
             {"width":"5%"},
-            {"width": "40%"},
+            {"width": "45%"},
         ]
-});
-
+    });
     $(".trouvearmee1").select2({placeholder:'1ère liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
     $(".trouvearmee2").select2({placeholder:'2ème liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
     $(".trouvearmee3").select2({placeholder:'3ème liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
@@ -839,5 +836,7 @@ $( document ).ready(function() {
         let modalName = $(this).data("name");
         $(modalEmbed).attr("src","https://xws-bench.github.io/joan-of-arc-helper/cards/"+modalName+".pdf#toolbar=0");
         $(modalId).modal('show');
-    });*/
+        });*/
+    Unite.changeLang();
+
 });

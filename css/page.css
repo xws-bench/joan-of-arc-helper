@@ -1,3 +1,15 @@
+:lang(fr) [lang='en'] {
+  display: none; }
+
+:lang(fr) .en {
+  display: none; }
+
+:lang(en) [lang='fr'] {
+  display: none; }
+
+:lang(en) .fr {
+  display: none; }
+
 @media print {
   section, header, footer, nav {
     display: none; }
@@ -15,7 +27,8 @@
   width: 2em !important; }
 
 .card {
-  display: inline-block; }
+  display: inline-block;
+  border: 0; }
 
 .table-striped tbody tr:nth-of-type(2n+1), .armee th, .armee tr:nth-child(even) {
   background-color: #edeae4; }
@@ -29,8 +42,11 @@ a, a:hover {
 embed .toolbar {
   display: none; }
 
+.modal-dialog {
+  margin: 8.75rem auto; }
+
 #card .modal-lg, #card-troop .modal-lg {
-  max-width: 380px; }
+  max-width: 15em; }
 
 .img-circle, .img-circle2 {
   width: 2em; }
@@ -520,8 +536,35 @@ header {
 .plaine::after {
   background-image: url("../images/icon/plaine.png"); }
 
+.ble::after {
+  background-image: url("../images/icon/ble.png"); }
+
 .foret::after {
   background-image: url("../images/icon/foret.png"); }
+
+.niveau0::after {
+  background-image: url("../images/icon/niveau0.png"); }
+
+.commandementhexa::after {
+  background-image: url("../images/icon/commandementhexa.png"); }
+
+.Apocalypse::after {
+  background-image: url("../images/icon/Apocalypse.png"); }
+
+.Chevaliers_teutoniques::after {
+  background-image: url("../images/icon/Chevaliers_teutoniques.png"); }
+
+.Siege::after {
+  background-image: url("../images/icon/Siege.png"); }
+
+.Legendary::after {
+  background-image: url("../images/icon/Legendary.png"); }
+
+.Village::after {
+  background-image: url("../images/icon/Village.png"); }
+
+.Hell::after {
+  background-image: url("../images/icon/Hell.png"); }
 
 .here::after, .hereandthere::after, .hereandthere2::after, hereandtherehexa::after, herehexa::after, .there::after, .therehexa::after {
   border: 1px solid black;
@@ -531,7 +574,7 @@ header {
   width: 2.5ex;
   height: 2.5ex; }
 
-.rallie::after, .carte::after, .action::after, .jeton::after, .mort::after, .retarde::after, .vierge::after, .bouclier::after, .tue::after, .touche::after, .recul::after, .combat::after, .dejaune::after, .derouge::after, .deblanc::after, .denoir::after, .type::after {
+.rallie::after, .carte::after, .action::after, .jeton::after, .mort::after, .retarde::after, .vierge::after, .bouclier::after, .tue::after, .touche::after, .recul::after, .combat::after, .dejaune::after, .derouge::after, .deblanc::after, .deviolet::after, .denoir::after, .type::after {
   content: "";
   background-size: 90%;
   width: 3ex;
@@ -575,6 +618,9 @@ header {
 .denoir::after {
   background-image: url("../images/icon/De_Noir.png"); }
 
+.deviolet::after {
+  background-image: url("../images/icon/De_Violet.png"); }
+
 #troupes .list-group-item.active {
   background-color: #d2cabb;
   color: #d2cabb; }
@@ -591,6 +637,11 @@ img {
 
 .card img {
   width: 16px; }
+
+.modal-content .card img {
+  margin-top: -18ex;
+  width: 100%;
+  border-radius: 50%; }
 
 .list-group-item {
   padding: 2px;
