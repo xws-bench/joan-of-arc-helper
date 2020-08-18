@@ -218,7 +218,7 @@ class Evenement {
                 //if (t!=l[i].text)
                     l[i].etext=t;
             }
-            $(".fin").html($(".fin").html()+l[i].desc+"<br>");
+            //$(".fin").html($(".fin").html()+l[i].desc+"<br>");
             if (typeof l[i].etext=="undefined") {
                 //console.log(l[i].text);
             }

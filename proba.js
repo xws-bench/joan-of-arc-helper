@@ -87,7 +87,7 @@ function bouclier(dices,parade) {
         //console.log(""+dices);
         return bouclier.cache[dices+parade];
     }
-    console.log("parade >>> "+parade);
+    //console.log("parade >>> "+parade);
     for (i=0;i<=n+1;i++) res.bouclier[i]=0;
     res.bouclier[0]=1;
     if (n==0) return res;
@@ -183,7 +183,7 @@ function compose(res1,res2) {
     for (i=0;i<res1.length;i++)
         for (j=0;j<res2.length;j++) {
             res[i+j]+=res1[i]*res2[j];
-            if (res1[i]>1e-6&&res2[j]>1e-6) console.log((i+j)+":"+(res1[i]*res2[j]));
+            //if (res1[i]>1e-6&&res2[j]>1e-6) console.log((i+j)+":"+(res1[i]*res2[j]));
         }
     return res;
 }
@@ -290,7 +290,7 @@ function combat(group1,group2,islogged) {
         if (!group2.noterrain&&(group2.terrain=="forest"||group2.terrain=="pave")) {
             parade=true;
         }
-        console.log(group2.name+" parade:"+parade);
+        //console.log(group2.name+" parade:"+parade);
         d=bouclier(dd,parade);
         nd=dd.length;
     } else {
@@ -476,7 +476,7 @@ function unique(value, index, self) {
 
 function temporaliseperso(x) {
     let p=troupes[x];
-    console.log("unité:"+x+" "+p.nom+" "+p.dates[0]);
+    //console.log("unité:"+x+" "+p.nom+" "+p.dates[0]);
     let d1=p.dates[0],d2=p.dates[1];
     let d3=p.dates[2],d4=p.dates[3];
     let i,j,miny=2000,mindid;

@@ -135,8 +135,6 @@ class Unite {
             u.troupe=true;
             if (dictionnaire_unites[n]) {
                 if (dictionnaire_unites[n].f) u.troupe=false;
-                if (typeof dictionnaire_unites[n].i=="undefined")
-                    console.log(n);
                 else u.i=dictionnaire_unites[n].i;
                 u.en=dictionnaire_unites[n].en;
                 if (typeof u.en=="undefined") u.en=n;
@@ -254,7 +252,6 @@ class Unite {
             urla=this.source.split(" ");
         }
         if (this.dates) {
-            if (this.dates.length>2) console.log(">>>>> " + this.nom);
             if (typeof urla[0]!="undefined") da="<a href='http://"+urla[0]+"'>"+this.dates[0]+"-"+this.dates[1]+"</a>";
             else da=this.dates[0]+"-"+this.dates[1];
             if (typeof urla[1]!="undefined"&&this.dates[2]) 
