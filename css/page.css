@@ -491,6 +491,9 @@ header {
 .personnage::after {
   background-image: url("../images/icon/personnage.png"); }
 
+.batiment::after {
+  background-image: url("../images/icon/batiment.png"); }
+
 .carteriviere::after {
   background-image: url("../images/icon/carteriviere.png"); }
 
@@ -638,10 +641,16 @@ img {
 .card img {
   width: 16px; }
 
-.modal-content .card img {
-  margin-top: -18ex;
-  width: 100%;
-  border-radius: 50%; }
+#myModal .modal-content {
+  background: white; }
+
+.modal .modal-content {
+  padding: 7px;
+  border-radius: 25px;
+  background: rgba(0, 0, 0, 0.5); }
+  .modal .modal-content img {
+    width: 100%;
+    border-radius: 25px; }
 
 .list-group-item {
   padding: 2px;
