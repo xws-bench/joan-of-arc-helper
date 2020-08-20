@@ -58,6 +58,7 @@ class Unite {
                 case 'E': u.mercenaire=true; break;
                 case 'F': u.feinte=ftrue; if (u.carac[j+1]=='2') u.feinte=feintesichamp; j++; break;
                 case 'G': u.genie=true; break;
+                case 'H': u.gigantesque=true;break;
                 case 'I': u.type=INFANTERIE; break;
                 case 'L': u.legendaire=true; break;
                 case 'M': if (u.carac[j+1]=='A') u.commandement=[AA,parseInt(u.carac[j+2],10)];
@@ -316,6 +317,8 @@ class Unite {
             c.push("<br/><span class='defense combat'></span>: -1 <span class='recul'></span>");
         else if (this.modattaque==annule2recul)
             c.push("<br/><span class='defense combat'></span>: -2 <span class='recul'></span>");
+        else if (this.modattaque==annuletoutrecul)
+            c.push("<br/><span class='defense combat'></span>: 0 <span class='recul'></span>");
         else if (this.modattaque==annule1touche)
             c.push("<br/><span class='defense combat'></span>: -1 <span class='touche'></span>");
         else if (this.modattaque==annule2touche)
@@ -376,6 +379,7 @@ class Unite {
                 .replace(/%MOVEENNEMI%/g,"<span class='fr'>une unité ennemie vient d'entrer ou déclare une action de mouvement pour sortir d'une zone</span><span class='en'>an opponent unit goes in or out of an area</span>")
                 .replace(/%TIRTENDU%/g,"<span class='tirtendu combat'></span>")
                 .replace(/%TIRCLOCHE%/g,"<span class='tircloche combat'></span>")
+                .replace(/%GEANT%/g,"<span class='geant combat'></span>")
                 .replace(/%DEFENSE%/g,"<span class='defense combat'></span>")
                 .replace(/%CONSEIL%/g,"<b class='fr'>entretien</b><b class='en'>upkeep</b>")
                 .replace(/%CAMP%/g,"<b class='fr'>contrôle des dégâts</b><b class='en'>casualties check</b>")
@@ -458,7 +462,7 @@ class Unite {
         let command=null;
         if (this.commandement) 
             command=[this.commandement[0]==0?'A':this.commandement[0],this.commandement[1]];
-        let nbox=NOM_BOITE[this.box];
+        let nbox=this.box.map(x=>NOM_BOITE[x]).join(",");
         //if (IMAGE_BOITE[this.box]) nbox="<span class='combat "+IMAGE_BOITE[this.box]+"'></span>";
         return [n,en,
                 f+subfaction,

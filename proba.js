@@ -743,7 +743,7 @@ function computeArmy() {
 }
 $( document ).ready(function() {
     troupes=Unite.troupes();
-    persolist=troupes.filter((x)=>typeof x.dates!="undefined").sort((a,b)=>(a.text>b.text)).filter(unique);
+    persolist=troupes/*.filter((x)=>typeof x.dates!="undefined")*/.sort((a,b)=>(a.text>b.text)).filter(unique);
     evenements.map(x=>x.info(persolist));
 
     dl=new dateline("dl",{
