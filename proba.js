@@ -1,4 +1,4 @@
-
+var troupes;
 var persolist=[];
 var dl;
 var k,kk,i=0,j;
@@ -743,14 +743,14 @@ function computeArmy() {
 }
 $( document ).ready(function() {
     troupes=Unite.troupes();
-    persolist=troupes/*.filter((x)=>typeof x.dates!="undefined")*/.sort((a,b)=>(a.text>b.text)).filter(unique);
-    evenements.map(x=>x.info(persolist));
+    persolist=troupes.filter((x)=>typeof x.dates!="undefined").sort((a,b)=>(a.text>b.text)).filter(unique);
+    evenements.map(x=>x.info(troupes,persolist));
 
     dl=new dateline("dl",{
         start:"1297-09-10",
         end:"1475-08",
         url:"top",
-        info:(e=>e.info(persolist)),
+        info:(e=>e.info(troupes,persolist)),
         cursor:"1429-02-01",
         loading:"<i class=\"far fa-spinner fa-spin fa-lg\"></i>&nbsp;&hellip;",
         locale:"fr-FR",
