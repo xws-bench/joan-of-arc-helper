@@ -4,10 +4,10 @@ const TENDU=0,CLOCHE=1,MELEE=2,AUCUN=3;
 const AA=0;
 const NOM_FACTION=["bien","mal","francais","ecossais","ottoman","anglais","bourguignon","valaque","mercenaire","neutre","lituanien","polonais","teutonique"];
 const NOM_TYPE=["infanterie","cavalerie","volant","artillerie"];
-const NOM_CAPACITE=["cette unité n'est pas affectée par les effets de terrain","ignifugé",null,null,null,null,null,null,null,null,null,null,"grand","soin","soin <span class='bien combat-cond'></span>","cruel","relance","garde du corps","bouclier","pourfendeur","charge",null,"prière",null,null,"esquive",null,null,"charisme","ralliement","impétueux","survie","génie",null,"immortel","mercenaire","visée","masse","cohésion","transport",null,"immunisé aux ripostes",null,"immunisé à la terreur",null,null,null,null,"légendaire","<span class='melee combat'></span>: -1 <span class='deblanc'></span><span class='defense combat-cond'></span>"];
-const NOM_CAPACITE_EN=["this unit is not affected by hex effects","fireproof",null,null,null,null,null,null,null,null,null,null,"big","heal","heal </span> <span class='hereandthere combat-cond'></span>","ruthless","reroll","bodyguard","shield","slayer","charge",null,"prayer",null,null,"dodge",null,null,"charisma","rally","impetuous","survival","engineer",null,"immortal","mercenary","targeting","support","cohesion","carrier",null,"immune to retaliation",null,"immune to terror",null,null,null,null,"legendary","<span class='melee combat'></span>: -1 <span class='deblanc'></span><span class='defense combat-cond'></span>"];
+const NOM_CAPACITE=["cette unité n'est pas affectée par les effets de terrain","ignifugé",null,null,null,null,null,null,null,null,null,null,"grand","gigantesque","soin","soin <span class='bien combat-cond'></span>","cruel","relance","garde du corps","bouclier","pourfendeur","charge",null,"prière",null,null,"esquive",null,null,"charisme","ralliement","impétueux","survie","génie",null,"immortel","mercenaire","visée","masse","cohésion","transport",null,"immunisé aux ripostes",null,"immunisé à la terreur",null,null,null,null,"légendaire","<span class='melee combat'></span>: -1 <span class='deblanc'></span><span class='defense combat-cond'></span>"];
+const NOM_CAPACITE_EN=["this unit is not affected by hex effects","fireproof",null,null,null,null,null,null,null,null,null,null,"big","gigantic","heal","heal </span> <span class='hereandthere combat-cond'></span>","ruthless","reroll","bodyguard","shield","slayer","charge",null,"prayer",null,null,"dodge",null,null,"charisma","rally","impetuous","survival","engineer",null,"immortal","mercenary","targeting","support","cohesion","carrier",null,"immune to retaliation",null,"immune to terror",null,null,null,null,"legendary","<span class='melee combat'></span>: -1 <span class='deblanc'></span><span class='defense combat-cond'></span>"];
 const B1=1,B2=2,B3=3;
-const LISTE_CAPACITES=["noterrain","ignifuge","tir","melee","type","faction","typetir","portee","defense","pdv","maj","commandement","grand","soin","soinbienthere","cruel","relance","gardeducorps","shield","pourfendeur","charge","celerite","priere","riposte","terreur","esquive","saut","feinte","charisme","ralliement","impetueux","survie","genie","parade","immortel","mercenaire","visee","masse","cohesion","transport","recultue","noriposte","contrecoup","noterreur","modattaque","source","dates","civil","legendaire","enleve1d"];
+const LISTE_CAPACITES=["noterrain","ignifuge","tir","melee","type","faction","typetir","portee","defense","pdv","maj","commandement","grand","gigantesque","soin","soinbienthere","cruel","relance","gardeducorps","shield","pourfendeur","charge","celerite","priere","riposte","terreur","esquive","saut","feinte","charisme","ralliement","impetueux","survie","genie","parade","immortel","mercenaire","visee","masse","cohesion","transport","recultue","noriposte","contrecoup","noterreur","modattaque","source","dates","civil","legendaire","enleve1d"];
 
 const APO=0,CORE=1,CRA=2,DRA=3,HEL=4,LEG=5,OTT=6,REL=7,SE=8,SIE=9,SIQ=10,TEU=11,VIL=12;
 const NOM_BOITE=["Apo.","Core","Cravant","Dragon","Hell","Legend.","Ottoman","Reliq.","Super Excl.","Siege","Siege Ext.","Teuton.","Village"];
@@ -66,6 +66,9 @@ function touchetuerecul(p,h,k) {
 function annule1recul(p,h,k) {
     if (p>0) p=p-1;
     return [p,h,k];
+}
+function annuletoutrecul(p,h,k) {
+    return [0,h,k];
 }
 function doubleblessure(p,h) {
     if (h>0) h++;
