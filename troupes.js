@@ -181,8 +181,7 @@ class Unite {
             if (this.niv==1) en=en+" *";
             if (this.niv==2) en=en+" **";
         }
-        n="<span lang='fr'>"+n+"</span>";
-        if (english==false) n+="<span lang='en'>"+en+"</span>";
+        n="<span lang='fr'>"+n+"</span><span lang='en'>"+en+"</span>";
         if (english==true) return "<span lang='en'>"+en+"</span>";
         return n;
     }
