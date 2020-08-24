@@ -606,94 +606,180 @@ function resetgroup(group,min,max) {
         $("input[name=g"+group+"_"+i+"]").prop("checked",false);
     computeArmy();
 }
+function setArmyGroups(army,at,atfaction) {
+    let i,first=-1;
+    if (typeof atfaction=="undefined") atfaction=AUTRE;
+    army[at]={g:[],f:"<span class='blason-large "+NOM_FACTION[atfaction]+"'></span>"};
+    let liste=troupes
+        .filter((x)=>(typeof x[at]!="undefined"))
+        .sort((a,b)=>(a[at][2]-b[at][2]));
+    let ggid=liste[0][at][2];
+    let g=[];
+    for (i=0;i<liste.length;i++) {
+        let gid=liste[i][at][2];
+        if (gid==ggid) g.push(liste[i]);
+        else {
+            if (first==-1&&ggid>0) army[at].g.push([]);
+            first=ggid;
+            army[at].g.push(g);
+            g=[liste[i]];
+            ggid=liste[i][at][2];
+        }
+    }
+    army[at].g.push(g);
+}
+function getArmyHTML(army,at) {
+    let s="";
+    let button="";
+    groups=army[at].g;
+    for (i=1;i<groups.length;i++) {
+        groups[i].sort((a,b)=>b[at][0]-a[at][0]);
+        let gid=groups[i][0];
+        let l=groups[i].length;
+        let type="";
+        let min=gid[at][3],max=gid[at][4];
+        //let interval=" ["+min+"-"+max+"]";
+        //if (gid[at].length>6) interval=" ["+(min+gid[at][5]*l)+"-"+(max+gid[at][5]*l+gid[at][6]*l)+"]"; 
+        button="";
+        if (groups[i].some((x)=>x[at][4]>x[at][3])) button="<button class='btn btn-sm btn-outline-light' onclick='resetgroup("+gid[at][2]+","+min+","+max+")'>&#x21ba;</button>";
+        if (gid[at][2]>0&&gid[at][2]!=SOUTIEN) {
+            type="&nbsp;<span class='"+NOM_TYPE[gid.type]+" type'></span>";
+            if (gid.melee) type+="&nbsp;<span class='melee combat'></span>";
+            else if (gid.tir&&gid.typetir==TENDU) type+="&nbsp;<span class='tirtendu combat'></span>";
+            else if (gid.tir&&gid.typetir==CLOCHE) type+="&nbsp;<span class='tircloche combat'></span>";
+        }
+        s+="<div class='card shadow'><div class='card-header p-1'>"+button+" <b lang='fr'>"+LISTE_CATEGORIES[gid[at][2]]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[gid[at][2]]+"</b><span style='float:right'>"+type+"&nbsp;"+army[at].f+"</span></div><div class='card-body p-0 m-0'><table class='armee w-100'>"; //<tr><th>#</th><th>Unité</th><th>C</th><th>M</th></tr>";
+        for (j=0;j<groups[i].length;j++) {
+            let g=groups[i][j];
+            s+=g.toArmy(at);
+        }
+        s+="</table></div></div>";
+    }
+    return s;
+}
 function changeArmee() {
     let k;
     let army={};
-    for (k=1;k<=4;k++) {
-        let at=$("select.trouvearmee"+k+" option:selected").val();
+    for (k=1;k<=3;k++) {
+        let at=$("#list"+k).attr("val");
+        if(at=="") continue;
         let groups=[];
         let i,first=-1;
         let atfaction=-1;
-        for (i=0;i<LISTE_ARMEES.length;i++) {
+        for (i=0;i<LISTE_ARMEES.length-4;i++) {
             let l=LISTE_ARMEES[i];
             if (l.id==at) { atfaction=l.blason; break; }
         }
-        if (atfaction==-1||at=="_") continue;
-
-        army[at]={g:[],f:"<span class='blason-large "+NOM_FACTION[atfaction]+"'></span>"};
-        let liste=troupes
-            .filter((x)=>(typeof x[at]!="undefined"))
-            .sort((a,b)=>(a[at][2]-b[at][2]));
-        let ggid=liste[0][at][2];
-        let g=[];
-        for (i=0;i<liste.length;i++) {
-            let gid=liste[i][at][2];
-            if (gid==ggid) g.push(liste[i]);
-            else {
-                if (first==-1&&ggid>0) army[at].g.push([]);
-                first=ggid;
-                army[at].g.push(g);
-                g=[liste[i]];
-                ggid=liste[i][at][2];
-            }
-        }
-        army[at].g.push(g);
+        if (atfaction==-1) continue;
+        setArmyGroups(army,at,atfaction);
     }
     let s="";
-    let nbarmee=0;
     let button="";
     for (at in army) {
-        if (at!="pb"&&at!="pm") nbarmee++;
         groups=army[at].g;
-        for (i=1;i<groups.length;i++) {
-            groups[i].sort((a,b)=>b[at][0]-a[at][0]);
-            let gid=groups[i][0];
-            let l=groups[i].length;
-            let type="";
-            let min=gid[at][3],max=gid[at][4];
-            //let interval=" ["+min+"-"+max+"]";
-            //if (gid[at].length>6) interval=" ["+(min+gid[at][5]*l)+"-"+(max+gid[at][5]*l+gid[at][6]*l)+"]"; 
-            button="";
-            if (groups[i].some((x)=>x[at][4]>x[at][3])) button="<button class='btn btn-sm btn-outline-light' onclick='resetgroup("+gid[at][2]+","+min+","+max+")'>&#x21ba;</button>";
-            if (gid[at][2]>0&&gid[at][2]!=SOUTIEN) {
-                type="&nbsp;<span class='"+NOM_TYPE[gid.type]+" type'></span>";
-                if (gid.melee) type+="&nbsp;<span class='melee combat'></span>";
-                else if (gid.tir&&gid.typetir==TENDU) type+="&nbsp;<span class='tirtendu combat'></span>";
-                else if (gid.tir&&gid.typetir==CLOCHE) type+="&nbsp;<span class='tircloche combat'></span>";
-            }
-            s+="<div class='card shadow'><div class='card-header p-1'>"+button+" <b>"+LISTE_CATEGORIES[gid[at][2]]+"</b><span style='float:right'>"+type+"&nbsp;"+army[at].f+"</span></div><div class='card-body p-0 m-0'><table class='armee w-100'>"; //<tr><th>#</th><th>Unité</th><th>C</th><th>M</th></tr>";
-            for (j=0;j<groups[i].length;j++) {
-                let g=groups[i][j];
-                s+=g.toArmy(at);
-            }
-            s+="</table></div></div>";
-        }
+        s+=getArmyHTML(army,at);
     }
     let card="";
-    if (army[at].g[0].length>0) {
-        let head="<div class='card shadow'><div class='card-header p-1'><b>"+LISTE_CATEGORIES[PERSONNAGE]+"</b><span style='float:right'>";
-        let min=1,max=2;
-        if (nbarmee==2) max=4;
-        if (nbarmee==3) { min=2; max=6; }
-        for (at in army) {
-            groups=army[at].g;
-            groups[0].sort((a,b)=>b[at][0]-a[at][0]);
-            head+=army[at].f;
-            for (j=0;j<groups[0].length;j++) {
-                let g=groups[0][j];
-                card+=g.toArmy(at,min,max);
-            }
+    let head="<div class='card shadow'><div class='card-header p-1'><b lang='fr'>"+LISTE_CATEGORIES[PERSONNAGE]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[PERSONNAGE]+"</b><span style='float:right'>";
+    let min=1,max=2;
+    if (nbarmee==2) max=4;
+    if (nbarmee==3) { min=2; max=6; }
+    for (at in army) {
+        groups=army[at].g;
+        groups[0].sort((a,b)=>b[at][0]-a[at][0]);
+        head+=army[at].f;
+        for (j=0;j<groups[0].length;j++) {
+            let g=groups[0][j];
+            card+=g.toArmy(at,min,max);
         }
-        card=head+"</div><div class='card-body p-0 m-0'><table class='armee w-100'>"+card+"</table></div></div>";
     }
+    if (card!="") card=head+"</div><div class='card-body p-0 m-0'><table class='armee w-100'>"+card+"</table></div></div>";
     $("#deck").html(card+s);
-    if (nbarmee==1) $(".total").html("1500");
-    if (nbarmee==2) $(".total").html("2500");
-    if (nbarmee==3) $(".total").html("4000");
     
     computeArmy();
     // RM RADIO
     $("input[data-pts]").click(computeArmy);
+}
+var team=false;
+var siege=0;
+var nbarmee=1;
+function off(t) {
+    $("#list"+t).html("---------");
+    $("#list"+t).attr("val","");
+    $("#list"+t).prop("disabled",true);
+}
+
+function armySize(t) {
+    let oldsize=nbarmee;
+    nbarmee=t;
+    $("#defsiege").prop("disabled",false);
+    $("#attsiege").prop("disabled",false);
+    if (nbarmee==1) {
+        off(2);
+        off(3);
+        $("#defsiege").prop("disabled",true);
+        $("#attsiege").prop("disabled",true);
+        $("#nosiege").prop("checked",true);
+        armySiege(0);
+        changeArmee();
+    } else if (nbarmee==2) {
+        off(3);
+        changelist(2,1);
+    } else {
+        if (oldsize<2) changelist(2,1);
+        changelist(3,6);
+    }
+    updateTotalPts();
+}
+function armySiege(t) {
+    if (t==0)  {
+        siege=0;
+        $(".defsiege").hide();
+        $(".attsiege").hide();
+    } else if (t==1) {
+        siege=1;
+        $(".defsiege").hide();
+        $(".attsiege").show();
+        $(".totalattsiege").html(750+(nbarmee==3)*500);        
+    } else if (t==2) {
+        siege=2;
+        $(".attsiege").hide();
+        $(".defsiege").show();
+        $(".totaldefsiege").html(750+(nbarmee==3)*500);
+    }
+    updateTotalPts();
+}
+function armyTeam(t) {
+    team=t;
+    updateTotalPts();
+}
+function updateTotalPts() {
+    let bonuspts=0;
+    if (siege==1) bonuspts=250;
+    if (team) {
+        switch(nbarmee) {
+        case 1: $(".total").html(1250+bonuspts); break;
+        case 2: $(".total").html(2000+bonuspts); break;
+        default: $(".total").html(3250+bonuspts); break;
+        }
+    } else {
+        switch(nbarmee) {
+        case 1: $(".total").html(1500+bonuspts); break;
+        case 2: $(".total").html(2500+bonuspts); break;
+        default: $(".total").html(4000+bonuspts); break;
+        }
+    }
+    $(".sum").html(0);
+    $(".moral").html(0);
+}
+function changebutton(id) {
+    console.log($("#list"+id).attr(val));
+}
+function changelist(id,e) {
+    $("#list"+id).prop("disabled",false);
+    $("#list"+id).attr("val",LISTE_ARMEES[e].id);
+    $("#list"+id).html("<span class='blason-large "+NOM_FACTION[LISTE_ARMEES[e].blason]+"'></span>&nbsp;<span lang='fr'>"+LISTE_ARMEES[e].ftext+"</span><span lang='en'>"+LISTE_ARMEES[e].etext+"</span>");
+    changeArmee();
 }
 function computeArmy() {
     let s=0,m=0,a={};
@@ -785,8 +871,19 @@ $( document ).ready(function() {
     //var allp= touslesduels(troupes.filter((x)=>!x.troupe));
     $("#tablepersos tbody").append(troupes.filter((x)=>!x.troupe).join(''));
     $("#tablepersos").DataTable({
-          "paging":         true,
-          responsive:true,
+        "paging":         true,
+        responsive: {
+            breakpoints: [
+                {name: 'bigdesktop', width: Infinity},
+                {name: 'meddesktop', width: 1480},
+                {name: 'smalldesktop', width: 1280},
+                {name: 'medium', width: 1188},
+                {name: 'tabletl', width: 1024},
+                {name: 'btwtabllandp', width: 848},
+                {name: 'tabletp', width: 768},
+                {name: 'mobilel', width: 480},
+                {name: 'mobilep', width: 320}
+            ]},
         "columnDefs": [
             { "width": "20%", "targets": 0 }
         ],
@@ -811,7 +908,18 @@ $( document ).ready(function() {
             { "width": "20%", "targets": 0 }
         ],
         order: [[2, 'asc']],
-        responsive:true,
+        responsive: {
+            breakpoints: [
+                {name: 'bigdesktop', width: Infinity},
+                {name: 'meddesktop', width: 1480},
+                {name: 'smalldesktop', width: 1280},
+                {name: 'medium', width: 1188},
+                {name: 'tabletl', width: 1024},
+                {name: 'btwtabllandp', width: 848},
+                {name: 'tabletp', width: 768},
+                {name: 'mobilel', width: 480},
+                {name: 'mobilep', width: 320}
+            ]},
         "columns": [
             {"width": "25%",className:'fr'},
             {"width": "25%",className:'en'},
@@ -824,19 +932,29 @@ $( document ).ready(function() {
             {"width": "45%"},
         ]
     });
-    $(".trouvearmee1").select2({placeholder:'1ère liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
-    $(".trouvearmee2").select2({placeholder:'2ème liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
-    $(".trouvearmee3").select2({placeholder:'3ème liste',data:LISTE_ARMEES.slice(0,17),templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
-    $(".trouvearmee4").select2({placeholder:"Apocalypse",data:[LISTE_ARMEES[0],LISTE_ARMEES[17],LISTE_ARMEES[18]],templateResult:(e)=>$("<span "+(e.blason>=0?"data-blason='"+NOM_FACTION[e.blason]+"'>&nbsp;<span class='blason-large "+NOM_FACTION[e.blason]+"'></span>":">")+"&nbsp;"+e.text+"</span>")});
+    let tmpl=((l,e)=>$('<li class="dropdown-item" onclick="changelist('+l+','+e+')"><span class="blason '+NOM_FACTION[LISTE_ARMEES[e].blason]+'"></span>&nbsp;<span lang="fr">'+LISTE_ARMEES[e].ftext+'</span><span lang="en">'+LISTE_ARMEES[e].etext+'</span></li>'));
+    
+    for (i=0;i<LISTE_ARMEES.length-4;i++) {
+        $(".trouvearmee1").append(tmpl(1,i));
+        $(".trouvearmee2").append(tmpl(2,i));
+        $(".trouvearmee3").append(tmpl(3,i));
+    }
+    let army={}
+    setArmyGroups(army,"s1");
+    $("#deckattsiege").html(getArmyHTML(army,"s1"));
+    army={}
+    setArmyGroups(army,"s2");
+    $("#deckdefsiege").html(getArmyHTML(army,"s2"));
+    changelist(1,0);
 
-    //changeArmee();
-    /*$("a[data-toggle]").hover(function() {
-        let modalId = $(this).data("target");
-        let modalEmbed = $(this).data("embed");
-        let modalName = $(this).data("name");
-        $(modalEmbed).attr("src","https://xws-bench.github.io/joan-of-arc-helper/cards/"+modalName+".pdf#toolbar=0");
-        $(modalId).modal('show');
-        });*/
+    armySize(1);
+    armySiege(0);
+    $("#ex13").slider({
+        ticks: [1, 2, 3],
+        ticks_labels: ['<span lang="fr">petite</span><span lang="en">small</span>', '<span lang="fr">moyenne</span><span lang="en">medium</span>', '<span lang="fr">grande</span><span lang="en">large</span>'],
+        ticks_snap_bounds: 1,
+    });
+    console.log("slider:"+$("#ex13").val());
     Unite.changeLang();
 
 });

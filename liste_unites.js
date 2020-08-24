@@ -60,7 +60,7 @@ var dictionnaire_unites = {
     "Chevaliers Teutoniques Montés":{en:"Mounted Teutonic Knights",box:[TEU],i:"Chevaliers_Teutoniques_Montés"},
     "Chevaliers Teutoniques":{en:"Teutonic Knights",box:[TEU],i:"Chevaliers_Teutoniques"},
 "Chevaliers montés Français":{en:"French Mounted Knights",box:[REL],i:"Chevaliers_montés"},
-"Chevaliers montés Petite noblesse":{en:"Gentry Mounter Knights",box:[CORE],i:"Chevaliers_montés"},
+"Chevaliers montés Petite noblesse":{en:"Gentry Mounted Knights",box:[CORE],i:"Chevaliers_montés"},
     "Chevaliers montés":{en:"Mounted Knights",box:[CORE,LEG],i:"Chevaliers_montés"},
 "Chevaliers squelettes":{en:"Mounted Skeletons",box:[APO]},
     "Chevaliers à pied Armes à 2 mains":{en:"Foot Knights 2 Handed Weapons",box:[REL],i:"Chevaliers_à_pied"},

@@ -371,16 +371,22 @@
     <div class="container-fluid">
       <div class="row no-gutters">
         <div class="col-12 text-justify">
-          <h2>Stats</h2>
-          <p class="lead">Statistiques de combat des unités</p>
-          <p>Il s'agit d'un mini-simulateur de combat. Choisissez un attaquant et un défenseur, l'attaquant attaque une fois (comme avec un ordre <span class='actiongrise type'></span>) le défenseur. Les terrains de chaque unité peuvent être changés. Les chiffres indiqués sont des probabilités, d'être encore dans l'hexagone et avec combien de points de vie en moyenne, d'être à l'hopital <span class='facenoir touche'></span>, d'être mort <span class='facenoir mort'></span> ou d'avoir subi un recul <span class='facenoir recul'></span>. La riposte et autres effets similaires sont pris en compte, l'attaquant peut aussi avoir les mêmes probabilités, s'il y a riposte par exemple. Le nombre de troupes sans faction peut être ajusté entre 1 et 3.
+          <h2 lang='fr'>Stats</h2>
+          <h2 lang='en'>Statistics</h2>
+          <p class="lead" lang='fr'>Statistiques de combat des unités</p>
+          <p class="lead" lang='en'>Statistics for combat</p>
+          <p lang='fr'>Choisissez un attaquant et un défenseur, l'attaquant attaque une fois (comme avec un ordre <span class='actiongrise type'></span>) le défenseur. Les terrains de chaque unité peuvent être changés. Les chiffres indiqués sont des probabilités, d'être encore dans l'hexagone et avec combien de points de vie en moyenne, d'être à l'hopital <span class='facenoir touche'></span>, d'être mort <span class='facenoir mort'></span> ou d'avoir subi un recul <span class='facenoir recul'></span>. La riposte et autres effets similaires sont pris en compte, l'attaquant peut aussi avoir les mêmes probabilités, s'il y a riposte par exemple. Le nombre de troupes sans faction peut être ajusté entre 1 et 5.
           </p>
-          <p>Les attaques gratuites après poursuites après combat ne sont pas implémentées.</p>
+          <p lang='fr'>Les attaques gratuites après poursuites après combat ne sont pas implémentées.</p>
+          <p lang='en'>Select an attacking unit and a defending unit, and the type of terrain (for attacker and defender). The attacking unit(s) attack one with an order <span class='actiongrise type'></span>. The numbers show the probabilities for the defender to be pushed away <span class='facenoir recul'></span>, to be killed <span class='facenoir tue></span>, disabled <span class='facenoir touche></span> and shows the average number of lifepoints remaining. Retaliation are taken into account, the attacker can also have the same stats.  For troops without faction, the number of units can range from 1 to 5.
+          </p>
+          <p lang='en'>Free attacks after a pursuit after combat are not implemented.</p>
         </div>
       </div>
       <div class="row no-gutters">
         <div class="col-6 border-right">
-          <div class="lead">Attaquant</div>
+          <div class="lead" lang='fr'>Attaquant</div>
+          <div class="lead" lang='en'>Attacker</div>
           <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
             <a class="blason-large neutre list-group-item list-group-item-action active" id="list-neutre-list" data-toggle="list" href="#list-neutre" role="tab" aria-controls="list-neutre"></a>
             <a class="blason-large francais list-group-item list-group-item-action" id="list-francais-list" data-toggle="list" href="#list-francais" role="tab" aria-controls="list-francais"></a>
@@ -398,7 +404,8 @@
           </div>
         </div>
         <div class="col-6">
-          <div class="lead">Défenseur</div>
+          <div class="lead" lang='fr'>Défenseur</div>
+          <div class="lead" lang='en'>Defender</div>
           <div class="list-group list-group-horizontal" id="list-tab2" role="tablist">
             <a class="blason-large neutre list-group-item list-group-item-action active" id="list-neutre-list2" data-toggle="list" href="#list-neutre2" role="tab" aria-controls="list-neutre2"></a>
             <a class="blason-large francais list-group-item list-group-item-action" id="list-francais-list2" data-toggle="list" href="#list-francais2" role="tab" aria-controls="list-francais2"></a>
@@ -660,9 +667,12 @@
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Denis Wings 2019-2020</p>
-      <p class="m-0 text-center text-white">Tous droits réservés pour le jeu Joan of Arc pour Mythic Games</p>
-      <p class="m-0 text-center text-white">Contenu Wikipedia soumis à <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">la licence CC-BY-SA</a></p>
-      <p class="m-0 text-center text-white">Dernière maj: 20/08/2020</p>
+      <p class="m-0 text-center text-white" lang='fr'>Tous droits réservés pour le jeu Joan of Arc pour Mythic Games</p>
+      <p class="m-0 text-center text-white" lang='en'>All rights reserved for the game to Mythic Games</p>
+      <p class="m-0 text-center text-white" lang='fr'>Contenu Wikipedia soumis à <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">la licence CC-BY-SA</a></p>
+      <p class="m-0 text-center text-white" lang='en'>Wikipedia content on <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">CC-BY-SA licence</a></p>
+      <p class="m-0 text-center text-white" lang='en'>Latest update: 08/24/2020</p>
+      <p class="m-0 text-center text-white" lang='fr'>Dernière maj: 24/08/2020</p>
     </div>
     <!-- /.container -->
   </footer>

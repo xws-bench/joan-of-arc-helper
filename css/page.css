@@ -1,13 +1,22 @@
+body {
+  overflow-x: hidden; }
+
 :lang(fr) [lang='en'] {
   display: none; }
 
 :lang(fr) .en {
   display: none; }
 
+:lang(fr) [lang='en'] + .select2 {
+  display: none; }
+
 :lang(en) [lang='fr'] {
   display: none; }
 
 :lang(en) .fr {
+  display: none; }
+
+:lang(en) [lang='fr'] + .select2 {
   display: none; }
 
 @media print {
@@ -406,6 +415,9 @@ header {
 
 .melee::after {
   background-image: url("../images/icon/melee.png"); }
+
+.geant::after {
+  background-image: url("../images/icon/geant.png"); }
 
 .defense::after {
   background-image: url("../images/icon/defense.png"); }
