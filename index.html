@@ -21,6 +21,7 @@
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap-slider.min.css" rel="stylesheet">
   <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/flags.min.css"/>
   <!-- <link href="css/datatables.min.css" rel="stylesheet"> -->
@@ -262,74 +263,99 @@
     <div class="container-fluid p-2">
       <div class="row no-gutters">
         <div class="text-justify">
-          <h2>Construction d'armée</h2>
-          <p class="lead text-muted">Pour construire son armée avec les règles Joan of Arc. L'armée peut comporter 1 à 3 listes, complémentée avec l'Apocalypse. Pas de règle imposée sur le mélange de listes. 
+          <h2 lang='fr'>Construction d'armée</h2>
+          <h2 lang='en'>Army builder</h2>
+          <p class="lead text-muted" lang='fr'>Pour construire son armée avec les règles Joan of Arc. L'armée peut comporter 1 à 3 listes, complémentée avec l'Apocalypse. Pas de règle imposée sur le mélange de listes. 
+          <p class="lead text-muted" lang='en'>To build an army according to the rules of Joan of Arc. The army can contain 1-3 lists, complemented with Apocalypse. No restriction here on how to mix lists.
           </p>
         </div>
       </div>
       <div class="row">
-        <div class="col-1"></div>
-        <div class="col-3">Petite Bataille (1500 points)</div>
-        <select class="col-3 m-1 form-control trouvearmee1" onchange="changeArmee()">
-          <option label="placeholder"></option>
-        </select>
-        <div class="col-2">Apocalypse</div>
-        <select class="col-2 m-1 form-control trouvearmee4" onchange="changeArmee()">          <option label="placeholder"></option>
-        </select>
-        <div class="col-1"></div>
+        <div class="col-12">
+          
+        </div>
       </div>
       <div class="row">
-        <div class="col-1"></div>      
-        <div class="col-3">Bataille Moyenne (2500 points)</div>
-         <select class="col-3 m-1 form-control trouvearmee2" onchange="changeArmee()">          <option label="placeholder"></option>
-         </select>
-         <div class="col-5"></div>
+        <div class="col-4"><span lang='fr'>Taille de la bataille</span><span lang='en'>Battle size</span></div>
+        <div class="col-6">
+          <input id="ex13" class="w-100" type="text" data-slider-tooltip="hide" data-slider-ticks="[1, 2, 3]" data-slider-ticks-snap-bounds="1" data-slider-ticks-labels='["small", "medium", "large"]' onchange="armySize(this.value)" data-slider-value="1"/>
+        </div>
       </div>
       <div class="row">
-        <div class="col-1"></div>
-        <div class="col-3">Grande Bataille (4000 points)</div>
-        <select class="col-3 m-1 form-control trouvearmee3" onchange="changeArmee()">          <option label="placeholder"></option>
-        </select>
-        <div class="col-5 text-center"><button type="button" class="btn btn-primary" onclick="print()">Imprimer</button></div>
+        <div class="dropdown col-4">
+          <button class=" btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="list1" val="a1">
+            ---
+          </button>
+          <div class="dropdown-menu trouvearmee1" aria-labelledby="list1"></div>
+        </div>
+        <div class="dropdown col-4">
+          <button class=" btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="list2" val="">
+            ---
+          </button>
+          <div class="dropdown-menu trouvearmee2" aria-labelledby="list2"></div>
+        </div>
+        <div class="dropdown col-4">
+          <button class=" btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="list3" val="">
+            ---
+          </button>
+          <div class="dropdown-menu trouvearmee3" aria-labelledby="list3"></div>
+        </div>
       </div>
+      
       <div class="row">
-        <div class="col-1"></div>
-        <div class="col-3">Bataille en groupe (2+2)</div>
+        <div class="col-4"><span lang='fr'>Siège</span><span lang='en'>Besieged</span></div>
+        <div class="col-2 m-1 form-check">
+          <input checked="" type="radio" id="nosiege" class="form-check-input" name="siege" onchange="armySiege(0)"></input><label class="form-check-label" for="nosiege"><span lang='fr'>non</span><span lang='en'>no</span></label>
+        </div>
+        <div class="col-2 m-1 form-check">
+          <input id="attsiege" type="radio" class="form-check-input" name="siege" onchange="armySiege(1)"></input><label class="form-check-label" for="attsiege"><span lang='fr'>Attaquant</span><span lang='en'>Attacker</span></label>
+        </div>
+        <div class="col-2 m-1 form-check">
+          <input id="defsiege" type="radio" class="form-check-input" name="siege" onchange="armySiege(2)"></input><label class="form-check-label" for="defsiege"><span lang='fr'>Défenseur</span><span lang='en'>Defender</span></label>
+        </div>
+        <div class="col-2"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-4"><span lang='fr'>Bataille en équipe (2+2)</span><span lang='en'>Team battle (2+2)</span></div>
         <div class="col-1 m-1 form-check">
-          <input checked="" type="radio" id="groupeno" class="form-check-input" name="groupe"></input><label class="form-check-label" for="groupeno" >non</label>
+          <input checked="" type="radio" id="groupeno" class="form-check-input" name="groupe" onchange="armyTeam(false)"></input><label lang='fr' class="form-check-label" for="groupeno" >non</label><label lang='en' class="form-check-label" for="groupeno">no</label>
         </div>
         <div class="col-1 m-1 form-check">
-          <input id="groupeyes" type="radio" class="form-check-input" name="groupe"></input><label class="form-check-label" for="groupeyes">oui</label>
+          <input id="groupeyes" type="radio" class="form-check-input" name="groupe" onchange="armyTeam(true)"></input><label lang='fr' class="form-check-label" for="groupeyes">oui</label><label lang='en' class="form-check-label" for="groupeyes">yes</label>
         </div>
         <div class="col-6"></div>
       </div>
-      <div class="row">
-        <div class="col-1"></div>
-        <div class="col-3">Siège</div>
-        <select class="col-3 m-1 form-control">
-          <option label="Pas de siege">Pas de siège</option>
-          <option label="Assiégeant">Assiégeant</option>
-          <option label="Assiégé">Assiégé</option>
-        </select>
-        <div class="col-6"></div>
-      </div>
+      
+      <hr/>
+     
+
       <div class="row no-gutters">
-        <div class="col-6 font-weight-bold reverse">ARMEE : <span class='sum'></span> / <span class='total'></span> points</div>
-        <div class="col-6 font-weight-bold reverse">Seuil de déroute : <span class='moral'></span></div>
+        <div class="col-6 font-weight-bold reverse"><span lang='fr'>ARMEE : </span><span lang='en'>ARMY: </span><span class='sum'></span> / <span class='total'></span> pts</div>
+        <div class="col-6 font-weight-bold reverse"><span lang='fr'>Seuil de déroute : </span><span lang='en'>Breaking Point : </span><span class='moral'></span></div>
       </div>
       <div class="row no-gutters">
         <div class="col-12">
           <div class="card-columns armee" id="deck"></div>
         </div>
       </div>
-      <div class="row no-gutters">
-        <div class="col-12 font-weight-bold reverse">EQUIPEMENT DE SIEGE : <span class='sumsiege'></span> / <span class='totalsiege'></span> points</div>
+      <div class="row no-gutters attsiege">
+        <div class="col-12 font-weight-bold reverse">SIEGE - Attaquant : <span class='sumattsiege'></span> / <span class='totalattsiege'></span> points</div>
       </div>
-      <div class="row no-gutters">
+      <div class="row no-gutters attsiege">
         <div class="col-12">
-          <div class="card-columns siege" id="deck"></div>
+          <div class="card-columns armee" id="deckattsiege"></div>
         </div>
       </div>
+      <div class="row no-gutters defsiege">
+        <div class="col-12 font-weight-bold reverse">SIEGE - Défenseur : <span class='sumdefsiege'></span> / <span class='totaldefsiege'></span> points</div>
+      </div>
+      <div class="row no-gutters defsiege">
+        <div class="col-12">
+          <div class="card-columns armee" id="deckdefsiege"></div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="print()"><span lang='fr'>Imprimer</span><span lang='en'>Print</span></button>
 
       
     </div>
@@ -682,6 +708,7 @@
   <script src="js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/rowgroup/1.1.1/js/dataTables.rowGroup.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap-slider.min.js"></script>
   <!-- Plugin JavaScript -->
   <script  src="vendor/jquery-easing/jquery.easing.min.js"></script>
   
