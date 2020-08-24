@@ -293,7 +293,7 @@ class Evenement {
             .map((x)=>"<span class='blason "+NOM_FACTION[x.faction]+"'>"+x.text+"</span><br/>");
         
         p="<h5 lang='fr'>"+this.text+"</h5><h5 lang='en'>"+this.etext+"</h5>";
-
+        p+="<div>"+this.start.toLocaleString('fr-FR', { timeZone: 'UTC',month:'long',year:'numeric',day:'numeric' })+"</div>";
         if (this.campagne) p+="<div class='text-muted'>"+this.campagne+"</div>";
         if (this.victoire) p+="<div class='text-muted blason "+NOM_FACTION[this.victoire]+"'><span lang='fr'>Victoire</span><span lang='en'>Victory</span> </div>";
         if (this.desc) p+="<div lang='fr' class='text-justify'>"+this.desc+"</div>";
