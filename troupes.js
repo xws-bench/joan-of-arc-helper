@@ -146,6 +146,7 @@ class Unite {
             } else {
                 console.log("No dict for "+n+" "+u.faction);
             }
+            if (u.troupe==true&&!u.civil&&!(u.B1||u.o1||u.a1||u.a2||u.a3||u.f1||u.f2||u.s1||u.s2||u.f3||u.b1||u.b2||u.b3||u.m1||u.m2||u.m3||u.e1)) console.log("no cost:"+n);
             l.push(new Unite(u));
         }
         return l;
@@ -479,8 +480,8 @@ class Unite {
         let j=this.toHTML();
         return "<tr><td>"+j[0]+"</td><td>"+j[1]+"</td><td>"+j[9]+"</td><td>"+j[2]+"</td><td>"+j[3]+"</td><td><div>"+j[4]+"</div><div class='hvalr'>"+j[5]+"</div></td><td>"+this.getCommand()+"</td><td><span class='pdv'>"+j[6]+"</span></td><td>"+j[7]+"</td></tr>";
     }
-    getHrefImg(n) {
-        let nn=this.nom;
+    getHTMLName(n) {
+       let nn=this.nom;
         
         if (this.prenom) nn+="_"+this.prenom;
         nn=nn.replace(/ /g,"_").replace(/'/g,"_").replace(/,/g,"_").replace(/&/g,"");
@@ -495,6 +496,10 @@ class Unite {
             if (this.subfaction==BIEN) nn+="_Bien";
             if (this.subfaction==MAL) nn+="_Mal";
         }
+        return nn;
+    }
+    getHrefImg(n) {
+        let nn=this.getHTMLName(n);
         //if (typeof this.i!="undefined") nn=this.i;
         
         if (!this.troupe) { 
@@ -521,9 +526,10 @@ class Unite {
             for (i=0;i<this[at][6];i++) r+="<input class='form-check-input' type='checkbox' data-moral='"+this[at][1]+"' data-pts='"+this[at][0]+"'>";
         }
 
-        let n=this.getName(true);
+        let n=this.getName(false);
+        let hn=this.getHTMLName(n);
         n=this.getHrefImg(n);
-        r="<tr><td class='form-check-inline'>"+r+"</td><td>"+n+"</td></td><td>"+this[at][0]/*cout*/+"</td><td>"+this[at][1]/*moral*/+"</td></tr>";
+        r="<tr id='P"+hn+"'><td class='form-check-inline'>"+r+"</td><td>"+n+"</td></td><td>"+this[at][0]/*cout*/+"</td><td>"+this[at][1]/*moral*/+"</td></tr>";
         return r;
     }
     format(dates) {

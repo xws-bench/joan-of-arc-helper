@@ -21,28 +21,33 @@ const blanctouchesicavalerie=(d,a)=>(a.type==CAVALERIE?[blanc_blanctouche]:d);
 const sicavalerie=(a)=>(a.type==CAVALERIE?true:false);
 const siinfanterie=(a)=>(a.type==INFANTERIE?true:false);
 const ftrue=()=>true;
-const PERSONNAGE=0,CHEVALERIE_M=1,CHEVALERIE=2,HAST=3,MILICE=4,ARME=5,MUSICIEN=6,ETENDARD=7,ARBA=8,ARCHERS=9,SOUTIEN=10,CAVAL=11,PAYSANS=12,CANON=13,PIQUIERS=14,PAVOISIERS=15,BOMBARDE=16,TOURDESIEGE=17,FANTASSINS=18,PAVOIS=19,BELIER=20,SAPEURS=21,CIVIL=22,DEVOTS=23,INFANTERIEELITE=24,CHIENS=25,HERETIQUE=27,VOLANTS=28,SQUELETTES=29,DEMONS=30,ARCHERS_M=31;
-const LISTE_CATEGORIES=["Personnages","Chevaliers montés","Chevaliers à pied","Armes d'Hast","Milice","Gens d'armes","Bannière/Musicien","Etendard","Arbalétriers","Archers","Soutien","Cavaliers","Paysans","Canons","Piquiers","Pavoisiers","Pièce d'artillerie","Engins de siège","Fantassins","Pavois","Bélier","Sapeurs","Civils","Dévôts","Infanterie d'élite","Chiens","XXX","Hérétiques","Volants","Squelettes","Démons","Archers montés"];
-const LISTE_CATEGORIES_EN=["Heroes","Mounted Knights","Knights","Hast","Militia","Men-at-arms","Standard Bearer/Musician","Standard Bearer","Crossbowmen","Bowmen","Support","Cavalery","Peasans","Cannons","Pikemen","Pavisiers","Artillery","Siege weapons","Infantry","Pavise shield","Battering Ram","Sappers","Civilians","Devotees","Elite Infantry","Dogs","XXX","Heretics","Flying","Skeletons","Demons","Mounted Bowmen"];
+const PERSONNAGE=0,CHEVALERIE_M=1,CHEVALERIE=2,HAST=3,MILICE=4,ARME=5,MUSICIEN=6,ETENDARD=7,ARBA=8,ARCHERS=9,SOUTIEN=10,CAVAL=11,PAYSANS=12,CANON=13,PIQUIERS=14,PAVOISIERS=15,BOMBARDE=16,TOURDESIEGE=17,FANTASSINS=18,PAVOIS=19,BELIER=20,SAPEURS=21,CIVIL=22,DEVOTS=23,INFANTERIEELITE=24,CHIENS=25,HERETIQUE=27,VOLANTS=28,SQUELETTES=29,DEMONS=30,ARCHERS_M=31,MERCEN=32,APOCALYPSE=33;
+const LISTE_CATEGORIES=["Personnages","Chevaliers montés","Chevaliers à pied","Armes d'Hast","Milice","Gens d'armes","Bannière/Musicien","Etendard","Arbalétriers","Archers","Soutien","Cavaliers","Paysans","Canons","Piquiers","Pavoisiers","Pièce d'artillerie","Engins de siège","Fantassins","Pavois","Bélier","Sapeurs","Civils","Dévôts","Infanterie d'élite","Chiens","XXX","Hérétiques","Volants","Squelettes","Démons","Archers montés","Mercenaires","Apocalypse"];
+const LISTE_CATEGORIES_EN=["Characters","Mounted Knights","Knights","Hast","Militia","Men-at-arms","Standard Bearer/Musician","Standard Bearer","Crossbowmen","Bowmen","Support","Cavalery","Peasans","Cannons","Pikemen","Pavisiers","Artillery","Siege weapons","Infantry","Pavise shield","Battering Ram","Sappers","Civilians","Devotees","Elite Infantry","Dogs","XXX","Heretics","Flying","Skeletons","Demons","Mounted Bowmen","Mercenaries","Apocalypse"];
 const LISTE_ARMEES=[
-    {id:"f1",blason:FRANCAIS,ftext:"Début de Guerre (1ère moitié)",etext:"Beginning of War (First half)"},
-    {id:"f2",blason:FRANCAIS,ftext:"Levée du Peuple (1ère moitié)",etext:"Crowd Rise (First half)"},
-    {id:"f3",blason:FRANCAIS,ftext:"Fin de Guerre (2ème moitié)",etext:"End of War (Second half)"},
-    {id:"a1",blason:ANGLAIS,ftext:"Début de Guerre (1ère moitié)",etext:"Beginning of War (First half)"},
-    {id:"a2",blason:ANGLAIS,ftext:"Pillards d'entre deux Guerres (1ère moitié)",etext:"Looters between two Wars (First half)"},
-    {id:"a3",blason:ANGLAIS,ftext:"Fin de Guerre (2ème moitié)",etext:"End of War (Second half)"},
-    {id:"b1",blason:BIEN,ftext:"Alliés fantastiques",etext:"Fantastic Allies"},
-    {id:"b2",blason:BIEN,ftext:"Martyr de Dieu (1ère moitié)",etext:"God's Martyr (First half)"},
-    {id:"b3",blason:BIEN,ftext:"Cohorte angélique",etext:"Angelic Cohort"},
-    {id:"m1",blason:MAL,ftext:"Pillards sans foi",etext:"Faithless Looters"},
-    {id:"m2",blason:MAL,ftext:"Destructeurs de monde",etext:"World Enders"},
-    {id:"m3",blason:MAL,ftext:"Sauvagerie bestiale",etext:"Bestial Savagery"},
+    {id:"f",group:true,blason:FRANCAIS,ftext:"Armée française",etext:"French Army"},
+    {id:"a",group:true,blason:ANGLAIS,ftext:"Armée anglaise",etext:"English Army"},
+     {id:"b",group:true,blason:BIEN,ftext:"Armée du Bien",etext:"Holy Army"},
+    {id:"m",group:true,blason:MAL,ftext:"Armée du mal",etext:"Unholy Army"},
+    {parent:"f",id:"f1",blason:FRANCAIS,ftext:"Début de Guerre (1ère moitié)",etext:"Beginning of War (First half)"},
+    {parent:"f",id:"f2",blason:FRANCAIS,ftext:"Levée du Peuple (1ère moitié)",etext:"Crowd Rise (First half)"},
+    {parent:"f",id:"f3",blason:FRANCAIS,ftext:"Fin de Guerre (2ème moitié)",etext:"End of War (Second half)"},
+    {parent:"a",id:"a1",blason:ANGLAIS,ftext:"Début de Guerre (1ère moitié)",etext:"Beginning of War (First half)"},
+    {parent:"a",id:"a2",blason:ANGLAIS,ftext:"Pillards d'entre deux Guerres (1ère moitié)",etext:"Looters between two Wars (First half)"},
+    {parent:"a",id:"a3",blason:ANGLAIS,ftext:"Fin de Guerre (2ème moitié)",etext:"End of War (Second half)"},
+    {parent:"b",id:"b1",blason:BIEN,ftext:"Alliés fantastiques",etext:"Fantastic Allies"},
+    {parent:"b",id:"b2",blason:BIEN,ftext:"Martyr de Dieu (1ère moitié)",etext:"God's Martyr (First half)"},
+    {parent:"b",id:"b3",blason:BIEN,ftext:"Cohorte angélique",etext:"Angelic Cohort"},
+    {parent:"m",id:"m1",blason:MAL,ftext:"Pillards sans foi",etext:"Faithless Looters"},
+    {parent:"m",id:"m2",blason:MAL,ftext:"Destructeurs de monde",etext:"World Enders"},
+    {parent:"m",id:"m3",blason:MAL,ftext:"Sauvagerie bestiale",etext:"Bestial Savagery"},
+    {id:"B1",blason:BOURGUIGNON,ftext:"Armée bourguignonne",etext:"Burgundian Army"},
     {id:"e1",blason:ECOSSAIS,ftext:"Armée écossaise",etext:"Scottish Army"},
     {id:"o1",blason:OTTOMAN,ftext:"Armée ottomane",etext:"Ottoman Army"},
-    {id:"pb",blason:BIEN,ftext:"Armée du Bien",etext:"Holy Army"},
-    {id:"pm",blason:MAL,ftext:"Armée du Mal",etext:"Unholy Army"},
-    {id:"s1",blason:AUTRE,ftext:"Armée de siège",etext:"Siege: Attacker's Army"},
-    {id:"s2",blason:AUTRE,ftext:"Armée d'assiégé",etext:"Siege: Defender's Army"},
+    {noselect:true,id:"pb",blason:BIEN,ftext:"Armée du Bien",etext:"Holy Army"},
+    {noselect:true,id:"pm",blason:MAL,ftext:"Armée du Mal",etext:"Unholy Army"},
+    {noselect:true,id:"s1",blason:AUTRE,ftext:"Armée de siège",etext:"Siege: Attacker's Army"},
+    {noselect:true,id:"s2",blason:AUTRE,ftext:"Armée d'assiégé",etext:"Siege: Defender's Army"},
 ];
 
 function feintesichamp() {

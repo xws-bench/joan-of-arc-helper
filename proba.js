@@ -637,18 +637,26 @@ function getArmyHTML(army,at) {
         let gid=groups[i][0];
         let l=groups[i].length;
         let type="";
-        let min=gid[at][3],max=gid[at][4];
-        //let interval=" ["+min+"-"+max+"]";
-        //if (gid[at].length>6) interval=" ["+(min+gid[at][5]*l)+"-"+(max+gid[at][5]*l+gid[at][6]*l)+"]"; 
+        let min=gid[at][3],max=gid[at][4]; 
         button="";
+        if (gid[at][2]==APOCALYPSE&&army.apocalypse==true) continue;
+        if (gid[at][2]==APOCALYPSE) army.apocalypse=true;
         if (groups[i].some((x)=>x[at][4]>x[at][3])) button="<button class='btn btn-sm btn-outline-light' onclick='resetgroup("+gid[at][2]+","+min+","+max+")'>&#x21ba;</button>";
-        if (gid[at][2]>0&&gid[at][2]!=SOUTIEN) {
+        if (gid[at][2]>0&&gid[at][2]!=SOUTIEN&&gid[at][2]!=APOCALYPSE) {
             type="&nbsp;<span class='"+NOM_TYPE[gid.type]+" type'></span>";
             if (gid.melee) type+="&nbsp;<span class='melee combat'></span>";
             else if (gid.tir&&gid.typetir==TENDU) type+="&nbsp;<span class='tirtendu combat'></span>";
             else if (gid.tir&&gid.typetir==CLOCHE) type+="&nbsp;<span class='tircloche combat'></span>";
         }
-        s+="<div class='card shadow'><div class='card-header p-1'>"+button+" <b lang='fr'>"+LISTE_CATEGORIES[gid[at][2]]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[gid[at][2]]+"</b><span style='float:right'>"+type+"&nbsp;"+army[at].f+"</span></div><div class='card-body p-0 m-0'><table class='armee w-100'>"; //<tr><th>#</th><th>Unité</th><th>C</th><th>M</th></tr>";
+        if (gid[at][2]==APOCALYPSE) {
+            let pts=350;
+            if (nbarmee==2) pts=750;
+            if (nbarmee==3) pts=1250;
+            type="&nbsp;<b>[<span class='apo'>0</span>/<span class='apopts'>"+pts+"</span> pts]</b>";
+        }
+        s+="<div class='card shadow";
+        if (gid[at][2]==APOCALYPSE) s+=" apocalypse";
+        s+="'><div class='card-header p-1'>"+button+" <b lang='fr'>"+LISTE_CATEGORIES[gid[at][2]]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[gid[at][2]]+"</b><span style='float:right'>"+type+"&nbsp;"+army[at].f+"</span></div><div class='card-body p-0 m-0'><table class='armee w-100'>"; 
         for (j=0;j<groups[i].length;j++) {
             let g=groups[i][j];
             s+=g.toArmy(at);
@@ -675,16 +683,19 @@ function changeArmee() {
     }
     let s="";
     let button="";
+    army.apocalypse=false;
     for (at in army) {
+        if (at=="apocalypse") continue;
         groups=army[at].g;
         s+=getArmyHTML(army,at);
     }
     let card="";
-    let head="<div class='card shadow'><div class='card-header p-1'><b lang='fr'>"+LISTE_CATEGORIES[PERSONNAGE]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[PERSONNAGE]+"</b><span style='float:right'>";
+    let head="<div class='card shadow'><div class='card-header p-1'><b lang='fr'>"+LISTE_CATEGORIES[PERSONNAGE]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[PERSONNAGE]+"</b> <span style='float:right'>";
     let min=1,max=2;
     if (nbarmee==2) max=4;
     if (nbarmee==3) { min=2; max=6; }
     for (at in army) {
+        if (at=="apocalypse") continue;
         groups=army[at].g;
         groups[0].sort((a,b)=>b[at][0]-a[at][0]);
         head+=army[at].f;
@@ -724,12 +735,19 @@ function armySize(t) {
         changeArmee();
     } else if (nbarmee==2) {
         off(3);
-        changelist(2,1);
+        changelist(2,5);
     } else {
         if (oldsize<2) changelist(2,1);
-        changelist(3,6);
+        changelist(3,11);
     }
     updateTotalPts();
+}
+function changeyear(t) {
+    $(".year").html(t);
+    if ($("#yearfilter").is(":checked")) troupes.filter((x)=>!x.troupe&&x.dates).forEach((x) => {
+        let y=x.getHTMLName(x.getName(false));
+        if (x.dates[0]>t||x.dates[1]<t) $("#P"+y).hide(); else $("#P"+y).show();
+    });
 }
 function armySiege(t) {
     if (t==0)  {
@@ -778,7 +796,7 @@ function changebutton(id) {
 function changelist(id,e) {
     $("#list"+id).prop("disabled",false);
     $("#list"+id).attr("val",LISTE_ARMEES[e].id);
-    $("#list"+id).html("<span class='blason-large "+NOM_FACTION[LISTE_ARMEES[e].blason]+"'></span>&nbsp;<span lang='fr'>"+LISTE_ARMEES[e].ftext+"</span><span lang='en'>"+LISTE_ARMEES[e].etext+"</span>");
+    $("#list"+id).html("<span class='blason "+NOM_FACTION[LISTE_ARMEES[e].blason]+"'> </span> <span lang='fr'>"+LISTE_ARMEES[e].ftext+"</span><span lang='en'>"+LISTE_ARMEES[e].etext+"</span>");
     changeArmee();
 }
 function computeArmy() {
@@ -794,6 +812,12 @@ function computeArmy() {
     $(".armee-table-perso tbody").html("");
     $(".armee-table tbody").html("");
     // RM RADIO
+    let apo=0;
+    $(".apocalypse input[data-pts]:checked").each(function() {
+        apo+=parseInt($(this).data("pts"),10);
+    });
+    $(".apo").html(apo);
+    
     $("input[data-pts]:checked").each(function() {
         let s0=parseInt($(this).data("pts"),10);
         let m0=parseInt($(this).data("moral"),10);
@@ -932,12 +956,17 @@ $( document ).ready(function() {
             {"width": "45%"},
         ]
     });
-    let tmpl=((l,e)=>$('<li class="dropdown-item" onclick="changelist('+l+','+e+')"><span class="blason '+NOM_FACTION[LISTE_ARMEES[e].blason]+'"></span>&nbsp;<span lang="fr">'+LISTE_ARMEES[e].ftext+'</span><span lang="en">'+LISTE_ARMEES[e].etext+'</span></li>'));
+    let tmpl=((l,e)=>$('<li class="dropdown-item" onclick="changelist('+l+','+e+')"><span class="blason-large '+NOM_FACTION[LISTE_ARMEES[e].blason]+'"> </span> <span lang="fr">'+LISTE_ARMEES[e].ftext+'</span><span lang="en">'+LISTE_ARMEES[e].etext+'</span></li>'));
+    let group=((e)=>$("<li class='dropdown-submenu'><span class='dropdown-item dropdown-toggle'><span class='blason-large "+NOM_FACTION[LISTE_ARMEES[e].blason]+"'> </span> <span lang='fr'>"+LISTE_ARMEES[e].ftext+"</span><span lang='en'>"+LISTE_ARMEES[e].etext+"</span> </span><ul class='dropdown-menu C"+LISTE_ARMEES[e].id+"'></ul>"));
     
-    for (i=0;i<LISTE_ARMEES.length-4;i++) {
-        $(".trouvearmee1").append(tmpl(1,i));
-        $(".trouvearmee2").append(tmpl(2,i));
-        $(".trouvearmee3").append(tmpl(3,i));
+    for (i=0;i<LISTE_ARMEES.length;i++) {
+        let a=LISTE_ARMEES[i];
+        if (a.noselect) continue;
+        for (j=1;j<=3;j++) {
+            if (a.group) $(".trouvearmee"+j).append(group(i));
+            else if (a.parent) $(".trouvearmee"+j+" .C"+a.parent).append(tmpl(j,i));
+            else $(".trouvearmee"+j).append(tmpl(j,i));
+        }
     }
     let army={}
     setArmyGroups(army,"s1");
@@ -945,7 +974,7 @@ $( document ).ready(function() {
     army={}
     setArmyGroups(army,"s2");
     $("#deckdefsiege").html(getArmyHTML(army,"s2"));
-    changelist(1,0);
+    changelist(1,4);
 
     armySize(1);
     armySiege(0);
@@ -954,7 +983,9 @@ $( document ).ready(function() {
         ticks_labels: ['<span lang="fr">petite</span><span lang="en">small</span>', '<span lang="fr">moyenne</span><span lang="en">medium</span>', '<span lang="fr">grande</span><span lang="en">large</span>'],
         ticks_snap_bounds: 1,
     });
-    console.log("slider:"+$("#ex13").val());
+    $("#ex7").slider({
+	tooltip: 'always'
+    });
     Unite.changeLang();
 
 });
