@@ -44,7 +44,7 @@ class Unite {
         });*/
     }
     static troupes() {
-        let i,j=0,l=[];
+        let i,j=0,l=[],k;
         for (i=0;i<liste_unites.length;i++) {
             let u=liste_unites[i];
             for (j=0;j<u.carac.length;j++) {
@@ -127,7 +127,6 @@ class Unite {
                 default: console.log(u.nom+" :: "+u.carac[j]);
                 }
             }
-            u.id=j++;
             if (!u.pdv) u.pdv=1;
             let n=u.nom;
             if (u.prenom) n=n+" "+u.prenom;
@@ -146,7 +145,33 @@ class Unite {
             } else {
                 console.log("No dict for "+n+" "+u.faction);
             }
-            if (u.troupe==true&&!u.civil&&!(u.B1||u.o1||u.a1||u.a2||u.a3||u.f1||u.f2||u.s1||u.s2||u.f3||u.b1||u.b2||u.b3||u.m1||u.m2||u.m3||u.e1)) console.log("no cost:"+n);
+            if (u.troupe==true&&!u.civil&&!(u.B1||u.o1||u.a1||u.a2||u.a3||u.f1||u.f2||u.s1||u.s2||u.f3||u.b1||u.b2||u.b3||u.m1||u.m2||u.m3||u.e1)) console.log("cannot buy:"+n);
+            let tl=["f","a","m","b"];
+            for (k in tl) {
+                let kk=tl[k];
+                if (u[kk+"1"]||u[kk+"2"]||u[kk+"3"]) {
+                    let t=[kk+"1",kk+"2",kk+"3"];
+                    for (j in t) {
+                        let v=u[t[j]];
+                        if (typeof v=="undefined") continue;
+                        if (typeof u[kk+"0"]=="undefined") u[kk+"0"]=[v[0],v[1],v[2],0,0,0,0];
+                        if (v[2]==PERSONNAGE) {
+                            u[kk+"0"][3]=1;
+                            u[kk+"0"][4]=4;
+                            break;
+                        }
+                        let a=v[6];
+                        let b=v[4];
+                        let c=v[5];
+                        if (typeof a=="undefined") a=0;
+                        if (typeof b=="undefined") b=0;
+                        if (typeof c=="undefined") c=0;
+                        if (a+b+c>u[kk+"0"][6]) u[kk+"0"][6]=a+b+c; 
+                    }
+                }
+            }
+
+            
             l.push(new Unite(u));
         }
         return l;
@@ -391,6 +416,7 @@ class Unite {
                 .replace(/%CARTELEGENDE%/g,"<span class='cartelegende carte'></span>")
                 .replace(/%CARTERIVIERE%/g,"<span class='carteriviere carte'></span>")
                          .replace(/%BOUCLIER%/g,"<span class='bouclier'></span>")
+                .replace(/%UNITEENNEMIE%/g,"<span class='fr'>unité ennemie</span><span class='en'>ennemy unit</span>")
                 .replace(/%THIS%/g,"<span class='fr'>cette unité</span><span class='en'>this unit</span>")
                 .replace(/%CANPUTSTAKEHEDGE%/g,"<span class='fr'>peut placer une haie de pieux (prise à la réserve) sur une frontière libre de sa zone</span><span class='en'>can place a stake hedge (taken from reserve) on a free border of his area</span>")
                 .replace(/%TOFORTIFIEDGATE%/g,"<span class='fr'>à une porte fortifiée dans une zone adjacente</span><span class='en'>to fortified gate in an adjacent area</span>")
@@ -462,6 +488,7 @@ class Unite {
         let command=null;
         if (this.commandement) 
             command=[this.commandement[0]==0?'A':this.commandement[0],this.commandement[1]];
+        console.log(this.text+" "+this.box);
         let nbox=this.box.map(x=>NOM_BOITE[x]).join(",");
         //if (IMAGE_BOITE[this.box]) nbox="<span class='combat "+IMAGE_BOITE[this.box]+"'></span>";
         return [n,en,
@@ -501,11 +528,13 @@ class Unite {
     getHrefImg(n) {
         let nn=this.getHTMLName(n);
         //if (typeof this.i!="undefined") nn=this.i;
-        
-        if (!this.troupe) { 
-            n="<a href='#card' data-name='"+nn+"' data-toggle='modal' data-target='#card' data-embed='#mycard' onclick=\"document.getElementById('mycard').setAttribute('src','cards/persos/"+nn+".png')\">"+n+"</a>";
+
+   
+        if (!this.troupe) {
+            let t=this.text.replace(/'/,"_");
+            n="<a href='#card' data-src='cards/persos/"+nn+".png' data-id='"+this.id+"' data-toggle='modal' data-target='#card' data-embed='#mycard' onclick=\"document.getElementById('mycard').setAttribute('src','cards/persos/"+nn+".png')\">"+n+"</a>";
         } else {
-            n="<a href='#card-troop' data-name='"+nn+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','cards/troupes/"+nn+".png')\">"+n+"</a>";
+            n="<a href='#card-troop' data-src='cards/troupes/"+nn+".png' data-id='"+this.id+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','cards/troupes/"+nn+".png')\">"+n+"</a>";
         }
         return n;
     }
@@ -517,7 +546,7 @@ class Unite {
         if (typeof max=="undefined") max=this[at][4];
         let ar = LISTE_ARMEES.filter(x=>x.id==at)[0];
         let checked="checked";
-        if (this.f) { mini="data-mini='"+this.f+"'"; }
+        if (this.f) { mini="data-mini='"+this.i+"'"; }
         for (i=0;i<min;i++)
             r+="<input "+mini+" data-moral='"+this[at][1]+"' data-pts='"+this[at][0]+"' "+checked+" type='radio' class='form-check-input' ' name='g"+this[at][2]+"_"+i+"'>";
         for (i=min;i<max;i++) r+="<input "+mini+" class='form-check-input' type='radio' data-moral='"+this[at][1]+"' data-pts='"+this[at][0]+"' name='g"+this[at][2]+"_"+i+"'>";

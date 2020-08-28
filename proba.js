@@ -609,7 +609,7 @@ function resetgroup(group,min,max) {
 function setArmyGroups(army,at,atfaction) {
     let i,first=-1;
     if (typeof atfaction=="undefined") atfaction=AUTRE;
-    army[at]={g:[],f:"<span class='blason-large "+NOM_FACTION[atfaction]+"'></span>"};
+    army[at]={g:[],f:atfaction};
     let liste=troupes
         .filter((x)=>(typeof x[at]!="undefined"))
         .sort((a,b)=>(a[at][2]-b[at][2]));
@@ -627,6 +627,7 @@ function setArmyGroups(army,at,atfaction) {
         }
     }
     army[at].g.push(g);
+    return army;
 }
 function getArmyHTML(army,at) {
     let s="";
@@ -652,11 +653,11 @@ function getArmyHTML(army,at) {
             let pts=350;
             if (nbarmee==2) pts=750;
             if (nbarmee==3) pts=1250;
-            type="&nbsp;<b>[<span class='apo'>0</span>/<span class='apopts'>"+pts+"</span> pts]</b>";
+            type="&nbsp;<b>[Points <span class='apo'>0</span>/<span class='apopts'>"+pts+"</span>]</b>";
         }
         s+="<div class='card shadow";
         if (gid[at][2]==APOCALYPSE) s+=" apocalypse";
-        s+="'><div class='card-header p-1'>"+button+" <b lang='fr'>"+LISTE_CATEGORIES[gid[at][2]]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[gid[at][2]]+"</b><span style='float:right'>"+type+"&nbsp;"+army[at].f+"</span></div><div class='card-body p-0 m-0'><table class='armee w-100'>"; 
+        s+="'><div class='card-header p-1'>"+button+" <b lang='fr'>"+LISTE_CATEGORIES[gid[at][2]]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[gid[at][2]]+"</b><span style='float:right'>"+type+"&nbsp;<span class='blason-large "+NOM_FACTION[army[at].f]+"'></span></span></div><div class='card-body p-0 m-0'><table class='armee w-100' data-faction='"+NOM_FACTION[army[at].f]+"'>"; 
         for (j=0;j<groups[i].length;j++) {
             let g=groups[i][j];
             s+=g.toArmy(at);
@@ -674,7 +675,7 @@ function changeArmee() {
         let groups=[];
         let i,first=-1;
         let atfaction=-1;
-        for (i=0;i<LISTE_ARMEES.length-4;i++) {
+        for (i=0;i<LISTE_ARMEES.length;i++) {
             let l=LISTE_ARMEES[i];
             if (l.id==at) { atfaction=l.blason; break; }
         }
@@ -690,7 +691,8 @@ function changeArmee() {
         s+=getArmyHTML(army,at);
     }
     let card="";
-    let head="<div class='card shadow'><div class='card-header p-1'><b lang='fr'>"+LISTE_CATEGORIES[PERSONNAGE]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[PERSONNAGE]+"</b> <span style='float:right'>";
+    button="<button class='btn btn-sm btn-outline-light' onclick='resetgroup("+PERSONNAGE+",1,2)'>&#x21ba;</button>";
+    let head="<div class='card shadow'><div class='card-header p-1'>"+button+"<b lang='fr'>"+LISTE_CATEGORIES[PERSONNAGE]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[PERSONNAGE]+"</b> <span style='float:right'>";
     let min=1,max=2;
     if (nbarmee==2) max=4;
     if (nbarmee==3) { min=2; max=6; }
@@ -708,7 +710,6 @@ function changeArmee() {
     $("#deck").html(card+s);
     
     computeArmy();
-    // RM RADIO
     $("input[data-pts]").click(computeArmy);
 }
 var team=false;
@@ -747,23 +748,37 @@ function changeyear(t) {
     if ($("#yearfilter").is(":checked")) troupes.filter((x)=>!x.troupe&&x.dates).forEach((x) => {
         let y=x.getHTMLName(x.getName(false));
         if (x.dates[0]>t||x.dates[1]<t) $("#P"+y).hide(); else $("#P"+y).show();
-    });
+    }); else {
+        troupes.filter((x)=>!x.troupe&&x.dates).forEach((x) => {
+        let y=x.getHTMLName(x.getName(false));
+        $("#P"+y).show();
+    }); 
+    }
 }
 function armySiege(t) {
     if (t==0)  {
         siege=0;
         $(".defsiege").hide();
         $(".attsiege").hide();
+        $("#deckattsiege").html("");
+        $("#deckdefsiege").html("");
     } else if (t==1) {
         siege=1;
         $(".defsiege").hide();
+        $("#deckattsiege").html(getArmyHTML(setArmyGroups({},"s1"),"s1"));
         $(".attsiege").show();
-        $(".totalattsiege").html(750+(nbarmee==3)*500);        
+        $(".totalattsiege").html(750+(nbarmee==3)*500);
+        $("input[data-pts]").click(computeArmy);
+        computeArmy();
     } else if (t==2) {
         siege=2;
         $(".attsiege").hide();
+        $("#deckattsiege").html("");
+        $("#deckdefsiege").html(getArmyHTML(setArmyGroups({},"s2"),"s2"));
         $(".defsiege").show();
         $(".totaldefsiege").html(750+(nbarmee==3)*500);
+        $("input[data-pts]").click(computeArmy);
+        computeArmy();
     }
     updateTotalPts();
 }
@@ -796,6 +811,7 @@ function changebutton(id) {
 function changelist(id,e) {
     $("#list"+id).prop("disabled",false);
     $("#list"+id).attr("val",LISTE_ARMEES[e].id);
+    $("#list"+id).attr("faction",LISTE_ARMEES[e].blason);
     $("#list"+id).html("<span class='blason "+NOM_FACTION[LISTE_ARMEES[e].blason]+"'> </span> <span lang='fr'>"+LISTE_ARMEES[e].ftext+"</span><span lang='en'>"+LISTE_ARMEES[e].etext+"</span>");
     changeArmee();
 }
@@ -817,31 +833,42 @@ function computeArmy() {
         apo+=parseInt($(this).data("pts"),10);
     });
     $(".apo").html(apo);
-    
+    //let f=NOM_FACTION[$("#list1").attr("faction")];
+
     $("input[data-pts]:checked").each(function() {
         let s0=parseInt($(this).data("pts"),10);
         let m0=parseInt($(this).data("moral"),10);
+        let f=$(this).parent().parent().parent().parent().data("faction");
         let u=$(this).parent().parent().children("td").children("a");
-        let name=u.text();
-        let faction=u.data("faction");
-        m+=m0;
-        s+=s0;
-        if (typeof name!="undefined") {
-            let perso=false;
-            if (u.data("perso")) perso=true;
-            if (typeof a[name]=="undefined") a[name]={type:u.data("type"),moral:m0,points:s0,no:1,perso:perso,faction:faction};
-            else {
-                a[name]={type:u.data("type"),moral:m0,points:s0,no:a[name].no+1,perso:perso,faction:faction};
-            }
+        let img=u.data("src");
+        if (typeof u.data("id")!="undefined") { 
+            let t=troupes[u.data("id")];
+            let name=t.text;
+            if (typeof f=="undefined") f=NOM_FACTION[t.faction];
+            if (typeof a[f]=="undefined") a[f]={};
+            m+=m0;
+            s+=s0;
+            if (typeof a[f][name]=="undefined") a[f][name]={t:t,moral:m0,points:s0,no:1,src:img};
+            else a[f][name]={t:t,moral:m0,points:s0,no:a[f][name].no+1,src:img};
         }
     });
+    $(".armee-table").html("");
     for (i in a) {
         let x=a[i];
-        if (x.perso)
-            $(".armee-table-perso tbody").append("<tr><td><span class='blason-large "+x.faction+"'></span> <span class='type "+x.type+"'></span>"+i+"</td><td>"+x.points+"</td><td>"+x.moral+"</td></tr>");
-        else  $(".armee-table tbody").append("<tr><td><span class='blason-large "+x.faction+"'></span> <span class='type "+x.type+"'></span>"+i+"</td><td>"+"&#9632;".repeat(x.no)+"</td><td>"+(x.points*x.no)+" ("+x.points+"/u)</td><td>"+(x.moral*x.no)+" ("+x.moral+"/u)</td></tr>");
+        let text="<div class='row pt-3 pl-1'><span class='blason-xlarge "+i+"'></span>";
+        for (j in x) {
+            let u = x[j];
+            text+="<figure>";
+            text+="<img src='"+u.src+"'>";
+            if (u.t.troupe)
+                text+="<figcaption>"+u.no+" "+u.t.getName();
+            else  text+="<figcaption>"+u.t.getName();
+            text+="<div class='moralv text-muted'>moral:"+u.moral+" pts:"+u.points+"</div></figcaption>";
+            text+="</figure>";
+        }
+        text=text+"</div>";
+        $(".armee-table").append(text);
     }
-    $(".armee-table tbody").append("<tr><td colspan=2></td><td><div class='text-muted'>Total</div>"+s+"</td><td><div class='text-muted'>Total</div>"+m+"</td></tr>");
     $(".sum").html(s);
     let r="";
     for (i=0;i<Math.ceil(2*m/3)-4;i+=5) {
@@ -896,18 +923,6 @@ $( document ).ready(function() {
     $("#tablepersos tbody").append(troupes.filter((x)=>!x.troupe).join(''));
     $("#tablepersos").DataTable({
         "paging":         true,
-        responsive: {
-            breakpoints: [
-                {name: 'bigdesktop', width: Infinity},
-                {name: 'meddesktop', width: 1480},
-                {name: 'smalldesktop', width: 1280},
-                {name: 'medium', width: 1188},
-                {name: 'tabletl', width: 1024},
-                {name: 'btwtabllandp', width: 848},
-                {name: 'tabletp', width: 768},
-                {name: 'mobilel', width: 480},
-                {name: 'mobilep', width: 320}
-            ]},
         "columnDefs": [
             { "width": "20%", "targets": 0 }
         ],
@@ -932,18 +947,6 @@ $( document ).ready(function() {
             { "width": "20%", "targets": 0 }
         ],
         order: [[2, 'asc']],
-        responsive: {
-            breakpoints: [
-                {name: 'bigdesktop', width: Infinity},
-                {name: 'meddesktop', width: 1480},
-                {name: 'smalldesktop', width: 1280},
-                {name: 'medium', width: 1188},
-                {name: 'tabletl', width: 1024},
-                {name: 'btwtabllandp', width: 848},
-                {name: 'tabletp', width: 768},
-                {name: 'mobilel', width: 480},
-                {name: 'mobilep', width: 320}
-            ]},
         "columns": [
             {"width": "25%",className:'fr'},
             {"width": "25%",className:'en'},
@@ -968,12 +971,6 @@ $( document ).ready(function() {
             else $(".trouvearmee"+j).append(tmpl(j,i));
         }
     }
-    let army={}
-    setArmyGroups(army,"s1");
-    $("#deckattsiege").html(getArmyHTML(army,"s1"));
-    army={}
-    setArmyGroups(army,"s2");
-    $("#deckdefsiege").html(getArmyHTML(army,"s2"));
     changelist(1,4);
 
     armySize(1);
@@ -983,9 +980,7 @@ $( document ).ready(function() {
         ticks_labels: ['<span lang="fr">petite</span><span lang="en">small</span>', '<span lang="fr">moyenne</span><span lang="en">medium</span>', '<span lang="fr">grande</span><span lang="en">large</span>'],
         ticks_snap_bounds: 1,
     });
-    $("#ex7").slider({
-	tooltip: 'always'
-    });
+    $("#ex7").slider();
     Unite.changeLang();
 
 });

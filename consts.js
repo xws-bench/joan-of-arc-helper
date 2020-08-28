@@ -32,15 +32,19 @@ const LISTE_ARMEES=[
     {parent:"f",id:"f1",blason:FRANCAIS,ftext:"Début de Guerre (1ère moitié)",etext:"Beginning of War (First half)"},
     {parent:"f",id:"f2",blason:FRANCAIS,ftext:"Levée du Peuple (1ère moitié)",etext:"Crowd Rise (First half)"},
     {parent:"f",id:"f3",blason:FRANCAIS,ftext:"Fin de Guerre (2ème moitié)",etext:"End of War (Second half)"},
+    {parent:"f",id:"f0",blason:FRANCAIS,ftext:"Toute l'armée",etext:"All army"},
     {parent:"a",id:"a1",blason:ANGLAIS,ftext:"Début de Guerre (1ère moitié)",etext:"Beginning of War (First half)"},
     {parent:"a",id:"a2",blason:ANGLAIS,ftext:"Pillards d'entre deux Guerres (1ère moitié)",etext:"Looters between two Wars (First half)"},
     {parent:"a",id:"a3",blason:ANGLAIS,ftext:"Fin de Guerre (2ème moitié)",etext:"End of War (Second half)"},
+    {parent:"a",id:"a0",blason:ANGLAIS,ftext:"Toute l'armée",etext:"All army"},
     {parent:"b",id:"b1",blason:BIEN,ftext:"Alliés fantastiques",etext:"Fantastic Allies"},
     {parent:"b",id:"b2",blason:BIEN,ftext:"Martyr de Dieu (1ère moitié)",etext:"God's Martyr (First half)"},
     {parent:"b",id:"b3",blason:BIEN,ftext:"Cohorte angélique",etext:"Angelic Cohort"},
+    {parent:"b",id:"b0",blason:BIEN,ftext:"Toute l'armée",etext:"All army"},
     {parent:"m",id:"m1",blason:MAL,ftext:"Pillards sans foi",etext:"Faithless Looters"},
     {parent:"m",id:"m2",blason:MAL,ftext:"Destructeurs de monde",etext:"World Enders"},
     {parent:"m",id:"m3",blason:MAL,ftext:"Sauvagerie bestiale",etext:"Bestial Savagery"},
+    {parent:"m",id:"m0",blason:MAL,ftext:"Toute l'armée",etext:"All army"},
     {id:"B1",blason:BOURGUIGNON,ftext:"Armée bourguignonne",etext:"Burgundian Army"},
     {id:"e1",blason:ECOSSAIS,ftext:"Armée écossaise",etext:"Scottish Army"},
     {id:"o1",blason:OTTOMAN,ftext:"Armée ottomane",etext:"Ottoman Army"},
@@ -127,12 +131,14 @@ let rouge_recultouche = new De(0,1/2,2/6,1/6);
 let rouge_toucherecule=new De(3/6,0,2/6,1/6);
 let rouge_bouclierrelance = new De(7/36,14/36,14/36,1/36);
 let rouge_bouclierrecule = new De(2/6,2/6,2/6,0);
+let rouge_touchetue = new De(1/6,0,4/6,1/6);
 
 let noir = new De(0,2/6,1/6,3/6);
 let noir_toucherecule = new De(2/6,0,1/6,3/6);
 let noir_bouclierrecule = new De(1/2,2/6,1/6,0);
 let noir_boucliertouche = new De(0,5/6,1/6,0);
 let noir_tuebouclier = new De(0,2/6,0,4/6);
+let noir_boucliertue = new De(0,2/6,4/6,0);
 
 let blanc = new De(1/6,2/6,0,2/6);
 let blanc_blancbouclier = new De(1/6,2/6,0,3/6);
@@ -140,6 +146,7 @@ let blanc_bouclierrecule = new De(1/2,2/6,0,0);
 let blanc_blanctouche=new De(1/6,1/2,0,2/6);
 let blanc_blanctue=new De(1/6,2/6,1/6,2/6);
 let blanc_parade=new De(4/36,2/9,0,20/36);
+let blanc_touchetue = new De(1/6,0,2/6,2/6);
 
 let violet = new De(1/6,2/6,1/6,2/6); // recule, touche, tue, pietinne
 let violet_recultue=new De(0,3/6,1/6,2/6);
@@ -162,22 +169,27 @@ rouge.couleur=rouge_recultouche.couleur
     =rouge_toucherecule.couleur
     =rouge_bouclierrelance.couleur
     =rouge_bouclierrecule.couleur
+    =rouge_touchetue.couleur
     ="rouge";
 noir.couleur=noir_toucherecule.couleur
     =noir_bouclierrecule.couleur
     =noir_boucliertouche.couleur
     =noir_tuebouclier.couleur
+    =noir_boucliertue.couleur
     ="noir";
 blanc.couleur=blanc_blancbouclier.couleur
     =blanc_bouclierrecule.couleur
     =blanc_blanctouche.couleur
     =blanc_blanctue.couleur
     =blanc_parade.couleur
+    =blanc_touchetue.couleur
     ="blanc";
 violet.couleur=violet_recultue.couleur
     ="violet";
 
+let boucliertue=function (t) { return "<span class='combat "+t+"'></span> : <span class='bouclier face"+this.couleur+"'></span>&rarr;<span class='tue'></span>"; }
 let bouclierrecule=function (t) { return "<span class='combat "+t+"'></span> : <span class='bouclier face"+this.couleur+"'></span>&rarr;<span class='recul'></span>"; }
+let touchetue=function (t) { return "<span class='combat "+t+"'></span> : <span class='touche face"+this.couleur+"'></span>&rarr;<span class='tue'></span>"; }
 let boucliertouche=function (t) { return "<span class='combat "+t+"'></span> : <span class='bouclier face"+this.couleur+"'></span>&rarr;<span class='touche'></span>"; }
 let blanctouche=function(t) { return "<span class='combat "+t+"'></span> : <span class='vierge face"+this.couleur+"'></span>&rarr;<span class='touche'></span>";}
 let blanctue=function(t) { return "<span class='combat "+t+"'></span> : <span class='vierge face"+this.couleur+"'></span>&rarr;<span class='tue'></span>";}
@@ -199,16 +211,19 @@ jaune_blancrecule.capacite=blancrecule;
 jaune_bouclierrecule.capacite=bouclierrecule;
 rouge_recultouche.capacite=recultouche;
 rouge_toucherecule.capacite=toucherecule;
+rouge_touchetue.capacite=touchetue;
 rouge_bouclierrelance.capacite=((t)=>"<span class='combat "+t+"'></span> : <span class='fr'>relancer tous les</span><span class='en'>reroll all</span> <span class='bouclier facerouge'></span>");
 rouge_bouclierrecule.capacite=bouclierrecule;
 noir_toucherecule.capacite=toucherecule;
 noir_bouclierrecule.capacite=bouclierrecule;
 noir_boucliertouche.capacite=boucliertouche;
+noir_boucliertue.capacite=boucliertue;
 noir_tuebouclier.capacite=tuebouclier;
 blanc_blancbouclier.capacite=blancbouclier;
 blanc_bouclierrecule.capacite=bouclierrecule;
 blanc_blanctouche.capacite=blanctouche;
 blanc_blanctue.capacite=blanctue;
+blanc_touchetue.capacite=touchetue;
 /* TODO:pas utilisé*/
 blanc_parade.capacite=(()=>"<span class='fr'>parade</span><span class='en'>parry</span> <span class='faceblanc'></span>");
 

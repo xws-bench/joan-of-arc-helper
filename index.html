@@ -23,6 +23,7 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="vendor/bootstrap/css/bootstrap-slider.min.css" rel="stylesheet">
   <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/fas.css">
   <link rel="stylesheet" href="css/flags.min.css"/>
   <!-- <link href="css/datatables.min.css" rel="stylesheet"> -->
   <!-- Custom styles for this template -->
@@ -34,69 +35,18 @@
 
 <body id="page-top">
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="https://www.mythicgames.net/time-of-legends-joan-of-fr/">Joan of Arc</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag flag-fr" lang="fr"></span><span class="flag flag-gb" lang="en"></span></a>
-            <div class="dropdown-menu" aria-labelledby="dropdown09">
-	      <a href="#" class="dropdown-item" onclick="document.documentElement.lang='en'; Unite.changeLang();"><span class="flag flag-gb"> </span> English</a>
-	      <a href="#" class="dropdown-item" onclick="document.documentElement.lang='fr'; Unite.changeLang();"><span class="flag flag-fr"> </span> Français</a>
-            </div>
-          </li>
 
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#chrono"><span class='fr'>Chronologie</span><span class='en'>Timeline</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#troupes">| <span class='fr'>Troupes</span><span class='en'>Troops</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#persos">| <span class='fr'>Personnages</span><span class='en'>Characters</span></a>
-          </li>
-         <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#armee">| <span class='fr'>Constructeur d'armée</span><span class='en'>Army builder</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#compare">Stats</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-  <header class="text-white">
-    <div lang="fr" class="w-screen mx-0 px-0 text-center">
-      <h1>Personnages et batailles historiques</h1>
-      <p class="lead">Un outil pour le jeu de figurines Times of Legend: Joan of Arc</p>
-      <p class="lead"><a class="text-white" href="https://boardgamegeek.com/thread/2370927/chronology-wardescription-units-and-combat-probabi"> BGG forum</a></p>
-      <a href='https://fr.wikipedia.org/wiki/Bataille_de_Castillon' class='text-white' style='float:right;left:0;font-size:x-small'>la bataille de Castillon</a>
-    </div>
-    <div lang="en" class="w-screen mx-0 px-0 text-center">
-      <h1>Characters and historical battles</h1>
-      <p class="lead">A tool for Times of Legend: Joan of Arc</p>
-      <p class="lead"><a class="text-white" href="https://boardgamegeek.com/thread/2370927/chronology-wardescription-units-and-combat-probabi"> BGG forum</a></p>
-      <a href='https://fr.wikipedia.org/wiki/Bataille_de_Castillon' class='text-white' style='float:right;left:0;font-size:x-small'>the battle of Castillon</a>
-    </div>
-  </header>
-
-  <section id="chrono">
+  <section id="chrono" class="noshow">
     <div class="container-fluid p-2">
       <div class="row no-gutters">
         <div class="text-justify">
-          <h2 lang="fr">Chronologie de la guerre</h2>
           <p lang="fr" class="lead text-muted">Le contexte historique de la Guerre de 100 ans. 
           </p>
           <div lang="fr">Cette frise chronologique replace les événements de la guerre de 100 ans, et permet de situer les personnages historiques de Joan of Arc.</div>
           <div lang="fr">Vous pouvez sélectionner une bataille pour la voir sur la frise. En sélectionnant un personnage, la frise se calera sur le premier événement contemporain à sa période d'activité, et les évenements mis en rouge correspondent à cette période. En cliquant sur un événement, la victoire, la guerre à laquelle il appartient et les personnages contemporains sont affichés ainsi qu'un petit résumé de l'événement.</div>
           <div lang="fr">
             Les scénarios de Joan of Arc sont marqués d'une à 3 étoiles en fonction de la difficulté du scénario et peuvent être listés en cherchant '*'.</div>
-          <h2 lang="en">Timeline of the war</h2>
           <p lang="en" class="lead text-muted">The historical context of the Hundrer Years war. 
           </p>
           <div lang="en">This timeline shows the main battles and the contemporary characters.</div>
@@ -112,11 +62,11 @@
     </div>
   </section>
 
-  <section id="troupes" class="bg-light">
+  <section id="troupes" class="bg-light noshow">
     <div class="container-fluid p-2">
       <div class="row no-gutters">
         <div lang="fr" class="text-justify">
-          <h2>Liste des troupes</h2>
+          <h3>Liste des troupes</h3>
           <p class="lead text-muted">Caractéristiques de combat des unités de Joan of Arc.
           </p>
           <p>La description des traits a été réécrite pour être plus compacte.  Les notations sont décrites dans l'aide: 
@@ -125,7 +75,7 @@
           </button></p>
         </div>
         <div lang="en" class="text-justify">
-          <h2>Troop listing</h2>
+          <h3>List of Troops</h3>
           <p class="lead text-muted">Features of troops in Joan of Arc.
           </p>
           <p>The description of traits is written in a more compact way than the original one. Notations are described in the Help.
@@ -141,10 +91,10 @@
               <tr>
                 <th class="th-sm">Nom</th>
                 <th class="th-sm">Name</th>
+                <th class="th-sm"><span lang='fr'>Boite</span><span lang='en'>Box</span></th>
                 <th class="th-sm"></th>
                 <th class="th-sm"></th>
-                <th class="th-sm"></th>
-                <th class="th-sm">&nbsp;Attaque/Defense&nbsp;</th>
+                <th class="th-sm">&nbsp;<span lang='fr'>Attaque/Defense</span><span lang='en'>Attack/Defense</span>&nbsp;</th>
                 <th class="th-sm"></th>
                 <th class="th-sm"></th>
                 <th class="th-sm">Traits</th>
@@ -154,14 +104,10 @@
           </table>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section id="persos">
-    <div class="container-fluid">
       <div class="row no-gutters">
         <div class="text-justify" lang="fr">
-          <h2>Liste des Personnages</h2>
+          <h3>Liste des Personnages</h3>
           <p class="lead text-muted">Caractéristiques de jeu et historiques des personnages de Joan of Arc.</p>
           <p>Pour chaque personnage, la table reprend ses caractéristiques, ses dates historiques d'activité, son blason historique s'il est connu. Les dates fournissent un lien vers la page concernant le personnage. La description des traits a été réécrite pour être plus compacte. Les notations sont les suivantes:
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -169,7 +115,7 @@
           </button></p>
         </div>
         <div class="text-justify" lang="en">
-          <h2>List of Characters</h2>
+          <h3>List of Characters</h3>
           <p class="lead text-muted">Traits and historical information on characters.</p>
           <p>For each character, the table lists its traits, its historical dates of activity, his coat of arm if any. The dates are a link to a webpage with more information on the character. The description of traits is written in a more compact way than the original one. Notations are described in the Help.
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -177,6 +123,34 @@
           </button></p>
         </div>
       </div>
+
+      
+      
+      <div class="row no-gutters">
+        <div class="col-12">
+          <table id="tablepersos" class="compact troupes  table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;Personnage&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;Personnage&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th><span lang='fr'>Boite</span><span lang='en'>Box</span></th>
+                <th></th>
+                <th></th>
+                <th>&nbsp;<span lang='fr'>Attaque/Defense</span><span lang='en'>Attack/Defense</span>&nbsp;</th>
+                <th></th>
+                <th></th>
+                <th>Traits</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>         
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
       <!-- The Modal -->
       <div class="modal" id="myModal">
         <div class="modal-dialog modal-lg">
@@ -230,41 +204,12 @@
           </div>
         </div>
       </div>
-      
-      
-      
-      <div class="row no-gutters">
-        <div class="col-12">
-          <table id="tablepersos" class="compact troupes  table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th>&nbsp;&nbsp;&nbsp;&nbsp;Personnage&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                <th>&nbsp;&nbsp;&nbsp;&nbsp;Personnage&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>&nbsp;Attaque/Defense&nbsp;</th>
-                <th></th>
-                <th></th>
-                <th>Traits</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>         
-          
-        </div>
-      </div>
-    </div>
-  </section>
 
-
-  <section id="armee" class="bg-light">
+      
+  <section id="armee" class="bg-light noshow">
     <div class="container-fluid p-2">
       <div class="row no-gutters">
         <div class="text-justify">
-          <h2 lang='fr'>Construction d'armée</h2>
-          <h2 lang='en'>Army builder</h2>
           <p class="lead text-muted" lang='fr'>Pour construire son armée avec les règles Joan of Arc. L'armée peut comporter 1 à 3 listes, complémentée avec l'Apocalypse. Pas de règle imposée sur le mélange de listes. 
           <p class="lead text-muted" lang='en'>To build an army according to the rules of Joan of Arc. The army can contain 1-3 lists, complemented with Apocalypse. No restriction here on how to mix lists.
           </p>
@@ -273,22 +218,6 @@
       <div class="row">
         <div class="col-12">
           
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4"><label for="ex7"><span lang='fr'>Date de la bataille</span><span lang='en'>Battle date</span></label>
-        </div>
-        <div class="col-6">
-          <input id="ex7" type="text" data-slider-min="1297" data-slider-max="1475" data-slider-step="1" data-slider-value="1340" onchange="changeyear(this.value)"/>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4"><label for="yearfilter"><span lang='fr'>
-          <span lang='fr'>Personnages vivants cette année:</span>
-          <span lang='en'>Characters living this year:</span></label>
-        </div>
-        <div class="col-6">
-          <input id="yearfilter" type="checkbox"/>
         </div>
       </div>
       <div class="row">
@@ -343,15 +272,21 @@
      
 
       <div class="row no-gutters">
-        <div class="col-6 font-weight-bold reverse"><span lang='fr'>ARMEE : </span><span lang='en'>ARMY: </span><span class='sum'></span> / <span class='total'></span> pts</div>
-        <div class="col-6 font-weight-bold reverse"><span lang='fr'>Seuil de déroute : </span><span lang='en'>Breaking Point : </span><span class='moral'></span></div>
+        <div class="col-4 reverse font-weight-bold p-1">
+          <input id="yearfilter" type="checkbox" onchange="changeyear(1340)"/>
+          <label for="yearfilter"><span lang='fr'>Année</span><span lang='en'>Year</span> <span class='year'>1340</span></label>
+          <input id="ex7" type="text" data-slider-min="1297" data-slider-max="1475" data-slider-step="1" data-slider-value="1340" onchange="changeyear(this.value)"/>
+        </div>
+        <div class="col-4 font-weight-bold reverse"><span lang='fr'>Points : </span><span lang='en'>Points: </span><span class='sum'></span> / <span class='total'></span></div>
+        <div class="col-4 font-weight-bold reverse"><span lang='fr'>Seuil de déroute : </span><span lang='en'>Breaking Point : </span><span class='moral'></span></div>
+
       </div>
       <div class="row no-gutters">
         <div class="col-12">
           <div class="card-columns armee" id="deck"></div>
         </div>
       </div>
-      <div class="row no-gutters attsiege">
+      <div class="row no-gutters attsiege p-1">
         <div class="col-12 font-weight-bold reverse">SIEGE - Attaquant : <span class='sumattsiege'></span> / <span class='totalattsiege'></span> points</div>
       </div>
       <div class="row no-gutters attsiege">
@@ -359,7 +294,7 @@
           <div class="card-columns armee" id="deckattsiege"></div>
         </div>
       </div>
-      <div class="row no-gutters defsiege">
+      <div class="row no-gutters defsiege p-1">
         <div class="col-12 font-weight-bold reverse">SIEGE - Défenseur : <span class='sumdefsiege'></span> / <span class='totaldefsiege'></span> points</div>
       </div>
       <div class="row no-gutters defsiege">
@@ -367,50 +302,26 @@
           <div class="card-columns armee" id="deckdefsiege"></div>
         </div>
       </div>
-      <button type="button" class="btn btn-primary" onclick="print()"><span lang='fr'>Imprimer</span><span lang='en'>Print</span></button>
-
-      
     </div>
-  </section>
+    <hr/>
 
-  <section class="printable" class="bg-light">
-    <div class="container-fluid">
-      <div class="row no-gutters">
-        <div class="col-12 text-justify">
-          <h2><img class="w-10" src="images/icon/joanofarc.png">Liste de bataille</h2>
-          <div class="army-name"></div>
+    <div class="row m-3">
+      <div class="col-12 text-justify">
+        <div class="armee-table">
         </div>
       </div>
-      <div class="row no-gutters">
-        <div class="col-12 text-justify">
-          <table class="armee-table-perso armee table table-bordered table-sm">
-            <thead><th><img class="w-2" src="images/icon/lion.png"> Personnages, créatures</th><th class="w-10">Points</th><th class="w-10">Moral</th></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-12 text-justify">
-          <table class="armee-table armee table table-bordered table-sm">
-            <thead><th><img class="w-2" src="images/icon/lion.png"> Unités</th><th class="w-10">Nombre</th><th class="w-10">Points</th><th class="w-10">Moral</th></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-2">Perte Moral</div>
-        <div class="col-10 moralshield"></div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-12 m-3 "><span lang='fr'>Points de Moral</span><span lang='en'>Morale Points:</span>
+        <span class="moralshield"></span>
       </div>
     </div>
   </section>
-
   
-  <section id="compare" class="bg-light">
+  <section id="compare" class="bg-light noshow">
     <div class="container-fluid">
       <div class="row no-gutters">
         <div class="col-12 text-justify">
-          <h2 lang='fr'>Stats</h2>
-          <h2 lang='en'>Statistics</h2>
           <p class="lead" lang='fr'>Statistiques de combat des unités</p>
           <p class="lead" lang='en'>Statistics for combat</p>
           <p lang='fr'>Choisissez un attaquant et un défenseur, l'attaquant attaque une fois (comme avec un ordre <span class='actiongrise type'></span>) le défenseur. Les terrains de chaque unité peuvent être changés. Les chiffres indiqués sont des probabilités, d'être encore dans l'hexagone et avec combien de points de vie en moyenne, d'être à l'hopital <span class='facenoir touche'></span>, d'être mort <span class='facenoir mort'></span> ou d'avoir subi un recul <span class='facenoir recul'></span>. La riposte et autres effets similaires sont pris en compte, l'attaquant peut aussi avoir les mêmes probabilités, s'il y a riposte par exemple. Le nombre de troupes sans faction peut être ajusté entre 1 et 5.
@@ -697,20 +608,118 @@
       </svg>
     </div> 
   </section>
+  
+  <header id="home" class="text-white">
+    <div lang="fr" class="head w-screen mx-0 px-0 text-center">
+      <h1>Personnages et batailles historiques</h1>
+      <p class="lead">Un outil pour le jeu de figurines Times of Legend: Joan of Arc</p>
+      <p>Commentaires, bugs sur les forums: <a class="text-white" href="https://boardgamegeek.com/thread/2370927/chronology-wardescription-units-and-combat-probabi"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"> (in English)</a> , <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-batailles-historiques-personnages-et-probas"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"> (en français)</a></p>
+      <a href='https://fr.wikipedia.org/wiki/Bataille_de_Castillon' class='text-white' style='float:right;left:0;font-size:x-small'>la bataille de Castillon</a>
+    </div>
+    
+    <div lang="en" class="head w-screen mx-0 px-0 text-center">
+      <h1>Characters and historical battles</h1>
+      <p class="lead">A tool for Times of Legend: Joan of Arc</p>
+      <p>Comments, bug reports on forums: <a class="text-white" href="https://boardgamegeek.com/thread/2370927/chronology-wardescription-units-and-combat-probabi"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"> (in English)</a> , <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-batailles-historiques-personnages-et-probas"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"> (en français)</a></p>
+      <a href='https://fr.wikipedia.org/wiki/Bataille_de_Castillon' class='text-white' style='float:right;left:0;font-size:x-small'>the battle of Castillon</a>
+    </div>
+  </header>
 
+  <section id="home">
+    <p  lang="fr">Ce site web est fait par un de fan du jeu "Times of Legend: Joan of Arc", et n'est pas lié aux auteurs ou éditeurs du jeu. Il propose des aides de jeu pour faire ses propres batailles, constituer ses armées ou même juste se documenter sur la guerre de Cent ans.</p>
+    <p lang="en">This website is made by a fan of the game "Times of Legend: Joan of Arc", and is not related to the authors or publishers of the game. It offers game aids for making your own battles, building armies, or even just learning about the Hundred Years War.
+    <br/>
+    <div class="featurette">
+      <img class="featurette-image img-responsive pull-right" src="css/chronologie.png" alt="chronologie">
+      <h2 class="featurette-heading"><a href="#chrono"><span lang="fr" class="text-muted">Chronologie</span><span lang="en" class="text-muted">Chronology</span></a></h2>
+      <p lang="fr" class="lead">Une frise historique de la plupart des batailles de la guerre de cent ans</p>
+      <p lang="fr">Chaque bataille liste avec les personnages contemporains du jeu Joan of Arc, ceux qui y ont participés. On peut y chercher une bataille parmi les 180+ événements listés, ou un personnage particulier. Le lien vers wikipedia ou d'autres ressources historiques est indiqué. Un court résumé de la bataille historique est donné, dans la plupart des cas (il y a beaucoup de batailles !)</p>
+      <p lang="en" class="lead">A timeline with most of the historical battles of the Hundred Year's War</p>
+      <p lang="en">Each battle lists the names of the characters active this year, and the characters that are known to have participated to the battle. A short summary of the battle is often given as well as a link to external sources, usually wikipedia. It's possible to search for a battle by its name, among the 180+ battles listed, to search for scenario (with '*') or search a character. It then shows the years of activity of this character. </p>
+    </div>
+    <hr class="featurette-divider"/>
 
-  <section class="fin"></section>
+    <div class="featurette">
+      <img class="featurette-image img-responsive pull-left" src="css/unités.png" alt="unités">
+      <h2 class="featurette-heading"><a href="#troupes"><span lang="fr" class="text-muted">Unités</span><span lang="en" class="text-muted">Units</span></a></h2>
+      <p lang="fr" class="lead">La liste des troupes et des personnages de JoA.</p>
+      <p lang="fr">Les règles sont décrites de façon plus compacte. Pour les personnages, leur blason historique est donné, ainsi que les dates où ils ont été actifs. Plusieurs intervalles sont possibles, notamment pour les titres (comme le comte d'Oxford), où plusieurs personnes l'ont porté. Cliquer sur le nom permet de voir l'image de la carte. Cliquer sur les dates permet de voir sa page wikipedia.</p>
+      <p lang="en" class="lead">The list of troops and characters of JoA.</p>
+      <p lang="en">The rules are described in a more compact way. For characters, their coat of arms is provided (for painting for instance), the time where they were active. Multiple intervals are possible for titles beared by multiple persons (Earl of Oxford for instance). The card can be seen by clicking on their name. The dates can be clicked to access to the wikipedia page (in French, just pick your language on wikipedia page)</p>
+    </div>
+    <hr class="featurette-divider"/>
+    <br/><br/>
+    <div class="featurette">
+      <img class="featurette-image img-responsive pull-right" src="css/armées.png" alt="armées">
+      <h2 class="featurette-heading"><a href="#armee"><span lang="fr" class="text-muted">Constructeur d'armées</span><span lang="en" class="text-muted">Army builder</span></a></h2>
+      <p class="lead">Un constructeur d'armées</p>
+      <p lang="fr">Sélectionnez les listes d'armées, puis les unités. Les contraintes sur les figurines, les personnages, la composition de l'armée sont prises en compte automatiquement. Vous pouvez cliquer sur tout les boutons, l'armée respectera les règles de composition. Les personnages mercenaires ont été ajoutés, ainsi qu'une armée bouguignonne.</p>
+      <p lang="fr">Vous pouvez aussi choisir des listes d'armées sans contrainte "Toute l'armée", ou filtrer les personnages en fonction de l'année de la bataille.</p>
+      <p lang="en">Select the army lists, then the units. Constraints on miniatures, characters, army composition are automatically taken into account. You can click on any button, the army will respect the composition rules. Mercenary characters have been added, as well as a burgundian army.</p>
+      <p lang="en">You can also choose unconstrained army lists "All Army", or filter characters according to the year of the battle.</p>
+    </div>
+    <hr class="featurette-divider"/>
+
+    <div class="featurette">
+      <img class="featurette-image img-responsive pull-right" src="css/stats.png" alt="stats">
+      <h2 class="featurette-heading"><a href="#compare"><span class="text-muted">Stats</span></a></h2>
+      <p lang="fr" class="lead">Calculateur des probas lors des combats</p>
+      <p lang="en" class="lead">Computing probabilities</p>
+      <p lang="fr">
+        C'est une aide simple, qui ne prend en compte qu'une action de combat effectuée par une unité ou un groupe d'unité contre une autre. On voit les points de vie moyens, la probabilité des unités de mourir, d'être hors de combat, d'esquiver, d'être repoussée ou les effets de la riposte. La plupart des effets des cartes sont pris en compte. Les effets du terrain sont aussi pris en compte.</p>
+      <p lang="en">
+        This is a simple helper, that takes into account only one combat action achieved by a unit or group of the same units.</p>
+      <p lang="en">Mean life points, probability to be killed, injured or pushed are shown for the defender and the attacker (in case of counterstrike or retaliation) Most of the traits are taken into account. Terrain effects are also taken into account. </p>
+    </div>
+  </section>
+
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <span class="navbar-brand"></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag flag-fr" lang="fr"></span><span class="flag flag-gb" lang="en"></span></a>
+            <div class="dropdown-menu" aria-labelledby="dropdown09">
+	      <a href="#" class="dropdown-item" onclick="document.documentElement.lang='en'; Unite.changeLang();"><span class="flag flag-gb"> </span> English</a>
+	      <a href="#" class="dropdown-item" onclick="document.documentElement.lang='fr'; Unite.changeLang();"><span class="flag flag-fr"> </span> Français</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#home"><span class="fas fa-home"></span></a>
+          </li>
+          <li>
+            <a class="nav-link" href="#chrono"><span class='fr'>Chronologie</span><span class='en'>Timeline</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#troupes"><span class='fr'>Unités</span><span class='en'>Units</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#armee"><span class='fr'>Construction d'armée</span><span class='en'>Army builder</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#compare">Stats</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Denis Wings 2019-2020</p>
-      <p class="m-0 text-center text-white" lang='fr'>Tous droits réservés pour le jeu Joan of Arc pour Mythic Games</p>
+      <p class="m-0 text-center text-white" lang='fr'>Tous droits réservés pour le jeu Joan of Arc à Mythic Games</p>
       <p class="m-0 text-center text-white" lang='en'>All rights reserved for the game to Mythic Games</p>
       <p class="m-0 text-center text-white" lang='fr'>Contenu Wikipedia soumis à <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">la licence CC-BY-SA</a></p>
       <p class="m-0 text-center text-white" lang='en'>Wikipedia content on <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">CC-BY-SA licence</a></p>
-      <p class="m-0 text-center text-white" lang='en'>Latest update: 08/24/2020</p>
-      <p class="m-0 text-center text-white" lang='fr'>Dernière maj: 24/08/2020</p>
+      <p class="m-0 text-center text-white" lang='en'>Latest update: 08/28/2020</p>
+      <p class="m-0 text-center text-white" lang='fr'>Dernière maj: 28/08/2020</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -718,13 +727,10 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/rowgroup/1.1.1/js/dataTables.rowGroup.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap-slider.min.js"></script>
   <!-- Plugin JavaScript -->
-  <script  src="vendor/jquery-easing/jquery.easing.min.js"></script>
   
-  <script src="js/scrolling-nav.js"></script>
   <script src="js/dateline.org.js"></script>
   <script src="js/select2.min.js"></script>
   <script src="js/d3.v3.min.js"></script>
