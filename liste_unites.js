@@ -429,7 +429,7 @@ var liste_unites=[
 {nom:"Chevaliers montés",carac:"Cc#O2",f1:[135,2,CHEVALERIE_M,2,6],f3:[135,2,CHEVALERIE_M,2,6],B1:[135,2,CHEVALERIE_M,0,4],a2:[135,2,CHEVALERIE_M,0,0,0,2],prenom:"Petite noblesse",melee:[rouge_bouclierrecule,noir_bouclierrecule],defense:[noir]},
 {nom:"Chevaliers squelettes",carac:"Câcum",m2:[160,2,CAVAL,0,0,0,4],melee:[rouge,blanc],defense:[blanc],modattaque:annule1recul},
 {nom:"Chevaliers à pied",carac:"I#R1",b1:[155,2,CHEVALERIE,0,4],b2:[130,2,CHEVALERIE,2,6],a1:[145,2,CHEVALERIE,0,4],a2:[140,2,CHEVALERIE,0,3],f1:[145,2,CHEVALERIE,0,4],B1:[145,2,CHEVALERIE,0,4],f2:[130,2,CHEVALERIE,0,2],prenom:"Armes à 2 mains",bonusmelee:rougesiinfanterie,melee:[rouge,rouge],defense:[noir]},
-{nom:"Chevaliers à pied",carac:"I#O2",b1:[130,2,CHEVALERIE,0,4],b2:[155,2,CHEVALERIE,2,6],a1:[165,2,CHEVALERIE,0,4],f2:[155,2,CHEVALERIE,0,2],melee:[rouge,rouge],defense:[noir],modattaque:annule1recul},
+{nom:"Chevaliers à pied",carac:"IR1",b1:[130,2,CHEVALERIE,0,4],b2:[155,2,CHEVALERIE,2,6],a1:[165,2,CHEVALERIE,0,4],f2:[155,2,CHEVALERIE,0,2],melee:[rouge,rouge],defense:[noir],modattaque:annule1recul},
 {nom:"Chiens de Chasse",carac:"I#r2F1",a1:[75,1,CHIENS,0,0,0,4],a2:[70,1,CHIENS,0,4],a3:[65,1,CHIENS,2,4],melee:[blanc,jaune],defense:[jaune]},
 {nom:"Chiens de Guerre",carac:"I#gr2",m3:[110,1,CHIENS,2,6],a2:[120,1,CHIENS,0,4],a3:[120,1,CHIENS,2,4],melee:[rouge,blanc],defense:[jaune]},
     {nom:"Claude de Chastellux",carac:"I~lM11q",melee:[noir,blanc],defense:[noir,jaune],pdv:2,B1:[160,2,PERSONNAGE,1,2],desc:"%DEFENSE%: <span class='facenoir vierge'></span> / <span class='facejaune vierge'></span>&rarr; %LEGENDE%"},
