@@ -418,7 +418,7 @@ class Unite {
         if (this.tir&&this.typetir==CLOCHE) attaque.push("<span class='tircloche combat'></span>");
         
         if (typeof this.desc!="undefined") {
-            dd="**"+this.desc;
+            dd=this.desc;
             let re = /%UNITE\(([^)]*)\)%/g;
             let res;
             while ((res = re.exec(dd)) !== null) {
@@ -429,7 +429,7 @@ class Unite {
             }
             dd=dd.replace(/%LEGENDE%/g,"<span class='jetonlegende jeton'></span>")
                 .replace(/%MELEE%/g,attaque.join(' / '))
-                .replace(/%BR%/g,"<br/>**")
+                .replace(/%BR%/g,"<br/>")
                 .replace(/%MELEEONLY%/g,"<span class='melee combat'></span>")
                 .replace(/%POURSUITE%/g,"<span class='poursuiteaprescombat combat'></span>")  
                 .replace(/%HERE%/g,"<span class='here combat-cond'></span>")
