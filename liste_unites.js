@@ -321,7 +321,7 @@ var liste_unites=[
 {nom:"John Fastolf",carac:"I£cM12*2R1",subfaction:BIEN,melee:[rouge_recultouche,rouge_recultouche],defense:[noir],pdv:2,desc:"%ACTIVATED% %XP%: %MOVE% 1 %CAVALERIE% alliée d'une zone"},
 {nom:"John Talbot",carac:"I£cF1M13*2P1",subfaction:BIEN,melee:[rouge,rouge],defense:[noir],pdv:4,desc:"%MONTOUR%: +1 %GRIS%"},
 {nom:"John Talbot",carac:"I£cM12*2T1",subfaction:MAL,melee:[rouge,rouge],defense:[noir],pdv:3,desc:"%ONCEINGAME% +2 %UNITE(Chiens de Guerre)%%HERE%%BR%%UNITE(Chiens de Guerre)%%HERE%: + %CHARGE%"},
-{nom:"John de la Pôle",carac:"I£yM11*2",melee:[rouge,noir],defense:[blanc_bouclierlegende,jaune],pdv:3,desc:"%MELEE%: %BOUCLIER% &rarr; +1 %LEGENDE%, +1 %CARTELEGENDE%"},
+{nom:"John de la Pôle",carac:"I£yM11*2",melee:[rouge,noir],defense:[blanc,jaune],pdv:3,desc:"%MELEE%: %BOUCLIER% &rarr; +1 %LEGENDE%, +1 %CARTELEGENDE%"},
     {nom:"Jugement",carac:"VïT2lgDJ0M33",melee:[rouge,rouge,rouge,rouge],defense:[noir,noir],pdv:12,desc:"%MELEE%: %BOUCLIER% &rarr; +1 %LEGENDE% /  +1 %CARTELEGENDE%"},
     {nom:"L'Agneau de Dieu",carac:"IïM43Dpy",b1:[300,2,APOCALYPSE,0,0,0,1],b2:[300,2,APOCALYPSE,0,0,0,1],b3:[300,2,APOCALYPSE,0,0,0,1],defense:[noir,blanc],pdv:2,desc:"%ACTIVATED%: %TOURCOND%, %LEGENDE% &rarr; %RALLIE%<span class='combat-cond troupe'></span>"},
     {nom:"L'Antéchrist",carac:"IâM24DpT2l",m1:[750,7,APOCALYPSE,0,0,0,1],m2:[750,7,APOCALYPSE,0,0,0,1],m3:[750,7,APOCALYPSE,0,0,0,1],defense:[blanc,blanc],pdv:3,desc:"%TOUTTYPE%%HERE%, %DEFENSE%: +1 %DENOIR%%BR%%ACTIVATED%: %TOURCOND%, %ROLL% %DENOIR%: %BOUCLIER% &rarr; placez une troupe ennemie à 2 zones de %THIS% dans sa zone."},
