@@ -9,8 +9,8 @@ var anti=ANGLAIS;
 unbouclier.toHTML=(()=>"<span class='bouclier'></span>");
 untue.toHTML=(()=>"<span class='facerouge tue'></span>");
 untue.capacite=(()=>null);
-unrecul.toHTML=(()=>"");
-unrecul.capacite=(()=>"en attaque : ajouter <span class='recul'/> aux résultats des dés");
+unrecul.toHTML=(()=>"<span class='recul'></span>");
+unrecul.capacite=(()=>null);
 
 function distribution(dices,feinte) {
     let k,h,i,s,r,p,np,f;
@@ -930,8 +930,8 @@ $( document ).ready(function() {
             {"width": "25%",className:"fr"},
             {"width":"25%",className:"en"},
             {"width":"3%"},
-            {"width":"3%"},
-            {"width":"3%"},
+            {"width":"2%"},
+            {"width":"2%"},
             {"width":"15%"},
             {"width":"3%"},
             {"width":"5%"},

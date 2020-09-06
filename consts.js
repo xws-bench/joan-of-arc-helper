@@ -12,12 +12,20 @@ const LISTE_CAPACITES=["noterrain","ignifuge","tir","melee","type","faction","ty
 const APO=0,CORE=1,CRA=2,DRA=3,HEL=4,LEG=5,OTT=6,REL=7,SE=8,SIE=9,SIQ=10,TEU=11,VIL=12;
 const NOM_BOITE=["Apo.","Core","Cravant","Dragon","Hell","Legend.","Ottoman","Reliq.","Super Excl.","Siege","Siege Ext.","Teuton.","Village"];
 const IMAGE_BOITE=["Apocalypse",null,null,"Dragon","Hell","Legendary",null,null,null,"Siege",null,"Chevaliers_teutoniques","Village"];
-const blancsimal=(d,a)=>(a.faction==MAL?d.concat([blanc]):d);
-const rougesiinfanterie=(d,a)=>(a.type==INFANTERIE?d.concat([rouge]):d);
-const rougesicharge=(d,a)=>(d); // TODO: rouge si charge
-const blancsiinfanterie=(d,a)=>(a.type==INFANTERIE?d.concat([blanc]):d);
-const blancsicavalerie=(d,a)=>(a.type==CAVALERIE?d.concat([blanc]):d);
+const simal=(d,a)=>(a.faction==MAL?true:false);
 const blanctouchesicavalerie=(d,a)=>(a.type==CAVALERIE?[blanc_blanctouche]:d);
+const silegende=(d,a)=>(false);
+const sicartelegende=(d,a)=>(false);
+const sixp=(d,a)=>(false);
+const si3troupesinfanterie=(d,a)=>false;
+const si2troupesinfanterie=(d,a)=>(false);
+const sisquelettes=(d,a)=>false;
+const sicommandee=(d,a)=>(false);
+const sipenitents=(d,a)=>(false);
+const siseul=(d,a)=>(false);
+const siLaHiredead=(d,a)=>false;
+const sicharge=(d,a)=>false;
+const simelee=(d,a)=>false;
 const sicavalerie=(a)=>(a.type==CAVALERIE?true:false);
 const siinfanterie=(a)=>(a.type==INFANTERIE?true:false);
 const ftrue=()=>true;
@@ -53,7 +61,6 @@ const LISTE_ARMEES=[
     {noselect:true,id:"s1",blason:AUTRE,ftext:"Armée de siège",etext:"Siege: Attacker's Army"},
     {noselect:true,id:"s2",blason:AUTRE,ftext:"Armée d'assiégé",etext:"Siege: Defender's Army"},
 ];
-
 function feintesichamp() {
     if (this.terrain=="ble") return true;
     return false;
@@ -103,8 +110,11 @@ function transformetoucherecul(p,h,k) {
 }
 
 class De extends Array { 
+    capacitede() {
+        return "";
+    }
     toHTML() {
-        return "<span class='de"+this.couleur+"'></span>";
+        return "<span class='de"+this.couleur+"'></span>"+this.capacitede();
     }
     toAttack() {
         return Math.round((this[2]*1000)+(this[1]*100)+(this[0]*10));
@@ -118,6 +128,10 @@ class De extends Array {
 }
 
 let jaune = new De(2/6,1/6,0,1/6); // recule, touche, tue, bouclier
+let jaune_blanclegende = new De(2/6,1/6,0,1/6); 
+let jaune_blancxp = new De(2/6,1/6,0,1/6); 
+let jaune_bouclierxp = new De(2/6,1/6,0,1/6); 
+let jaune_bouclierlegende = new De(2/6,1/6,0,1/6); 
 let jaune_blanctouche = new De(2/6,3/6,0,1/6);
 let jaune_boucliertouche = new De(2/6,2/6,0,0);
 let jaune_blanctue = new De(1/3,1/6,1/3,1/6);
@@ -127,6 +141,10 @@ let jaune_blancbouclier = new De(2/6,1/6,0,1/2);
 let jaune_bouclierrecule = new De(3/6,1/6,0,0);
 
 let rouge = new De(1/6,2/6,2/6,1/6);
+let rouge_boucliertue=new De(1/6,2/6,3/6,0);
+let rouge_blancxp = new De(1/6,2/6,2/6,1/6);
+let rouge_bouclierxp = new De(1/6,2/6,2/6,1/6);
+let rouge_bouclierlegende = new De(1/6,2/6,2/6,1/6);
 let rouge_recultouche = new De(0,1/2,2/6,1/6);
 let rouge_toucherecule=new De(3/6,0,2/6,1/6);
 let rouge_bouclierrelance = new De(7/36,14/36,14/36,1/36);
@@ -134,6 +152,7 @@ let rouge_bouclierrecule = new De(2/6,2/6,2/6,0);
 let rouge_touchetue = new De(1/6,0,4/6,1/6);
 
 let noir = new De(0,2/6,1/6,3/6);
+let noir_blanclegende = new De(0,2/6,1/6,3/6);
 let noir_toucherecule = new De(2/6,0,1/6,3/6);
 let noir_bouclierrecule = new De(1/2,2/6,1/6,0);
 let noir_boucliertouche = new De(0,5/6,1/6,0);
@@ -141,6 +160,9 @@ let noir_tuebouclier = new De(0,2/6,0,4/6);
 let noir_boucliertue = new De(0,2/6,4/6,0);
 
 let blanc = new De(1/6,2/6,0,2/6);
+let blanc_blanclegende = new De(1/6,2/6,0,2/6);
+let blanc_blanccarte = new De(1/6,2/6,0,2/6);
+let blanc_bouclierlegende = new De(1/6,2/6,0,2/6);
 let blanc_blancbouclier = new De(1/6,2/6,0,3/6);
 let blanc_bouclierrecule = new De(1/2,2/6,0,0);
 let blanc_blanctouche=new De(1/6,1/2,0,2/6);
@@ -164,22 +186,34 @@ jaune.couleur=jaune_blanctouche.couleur
     =jaune_blancrecule.couleur
     =jaune_bouclierrecule.couleur
     =jaune_blancbouclier.couleur
+    =jaune_blanclegende.couleur
+    =jaune_blancxp.couleur
+    =jaune_bouclierxp.couleur
+    =jaune_bouclierlegende.couleur
     ="jaune"; 
 rouge.couleur=rouge_recultouche.couleur
     =rouge_toucherecule.couleur
     =rouge_bouclierrelance.couleur
     =rouge_bouclierrecule.couleur
     =rouge_touchetue.couleur
+    =rouge_blancxp.couleur
+    =rouge_bouclierxp.couleur
+    =rouge_bouclierlegende.couleur
+    =rouge_boucliertue.couleur
     ="rouge";
 noir.couleur=noir_toucherecule.couleur
     =noir_bouclierrecule.couleur
     =noir_boucliertouche.couleur
+    =noir_blanclegende.couleur
     =noir_tuebouclier.couleur
     =noir_boucliertue.couleur
     ="noir";
 blanc.couleur=blanc_blancbouclier.couleur
+    =blanc_blanccarte.couleur
     =blanc_bouclierrecule.couleur
     =blanc_blanctouche.couleur
+    =blanc_bouclierlegende.couleur
+    =blanc_blanclegende.couleur
     =blanc_blanctue.couleur
     =blanc_parade.couleur
     =blanc_touchetue.couleur
@@ -202,28 +236,54 @@ let toucherecule=function(t) { return "<span class='combat "+t+"'></span> : <spa
 
 /* Capacités Speciales */
 violet_recultue.capacite=recultue;
-jaune_blanctouche.capacite=blanctouche;
-jaune_boucliertouche.capacite=boucliertouche;
-jaune_blanctue.capacite=blanctue;
-jaune_blancbouclier.capacite=blancbouclier;
+//jaune_blanctouche.capacite=blanctouche;
+jaune_blanctouche.capacitede=()=>"<span class='combat-cond touche'></span>";
+jaune_blanclegende.capacitede=()=>"<span class='combat-cond jetonlegende'></span>";
+jaune_bouclierlegende.capacitede=()=>"<span class='combat-under jetonlegende'></span>";
+//jaune_boucliertouche.capacite=boucliertouche;
+jaune_boucliertouche.capacitede=()=>"<span class='combat-under touche'></span>";
+//jaune_blanctue.capacite=blanctue;
+jaune_blanctue.capacitede=()=>"<span class='combat-cond tue'></span>";
+//jaune_blancbouclier.capacite=blancbouclier;
+jaune_blancbouclier.capacitede=()=>"<span class='combat-cond bouclier'></span>";
+jaune_blancxp.capacitede=()=>"<span class='combat-cond jetonxp'></span>";
+jaune_bouclierxp.capacitede=()=>"<span class='combat-under jetonxp'></span>";
 jaune_relance.capacite=(()=>"relancer <span class='vierge facejaune'></span>");
-jaune_blancrecule.capacite=blancrecule;
-jaune_bouclierrecule.capacite=bouclierrecule;
+//jaune_blancrecule.capacite=blancrecule;
+jaune_blancrecule.capacitede=()=>"<span class='combat-cond recul'></span>";
+//jaune_bouclierrecule.capacite=bouclierrecule;
+jaune_bouclierrecule.capacitede=()=>"<span class='combat-under recul'></span>";
 rouge_recultouche.capacite=recultouche;
 rouge_toucherecule.capacite=toucherecule;
 rouge_touchetue.capacite=touchetue;
+rouge_blancxp.capacitede=()=>"<span class='combat-cond jetonxp'></span>";
+rouge_bouclierxp.capacitede=()=>"<span class='combat-under jetonxp'></span>";
+rouge_bouclierlegende.capacitede=()=>"<span class='combat-under jetonlegende'></span>";
+rouge_boucliertue.capacitede=()=>"<span class='combat-under tue'></span>";
 rouge_bouclierrelance.capacite=((t)=>"<span class='combat "+t+"'></span> : <span class='fr'>relancer tous les</span><span class='en'>reroll all</span> <span class='bouclier facerouge'></span>");
-rouge_bouclierrecule.capacite=bouclierrecule;
+//rouge_bouclierrecule.capacite=bouclierrecule;
+rouge_bouclierrecule.capacitede=()=>"<span class='combat-under recul'></span>";
 noir_toucherecule.capacite=toucherecule;
-noir_bouclierrecule.capacite=bouclierrecule;
-noir_boucliertouche.capacite=boucliertouche;
-noir_boucliertue.capacite=boucliertue;
+//noir_bouclierrecule.capacite=bouclierrecule;
+noir_bouclierrecule.capacitede=()=>"<span class='combat-under recul'></span>";
+//noir_boucliertouche.capacite=boucliertouche;
+noir_boucliertouche.capacitede=()=>"<span class='combat-under touche'></span>";
+//noir_boucliertue.capacite=boucliertue;
+noir_boucliertue.capacitede=()=>"<span class='combat-under tue'></span>";
+noir_blanclegende.capacitede=()=>"<span class='combat-cond jetonlegende'></span>";
 noir_tuebouclier.capacite=tuebouclier;
-blanc_blancbouclier.capacite=blancbouclier;
-blanc_bouclierrecule.capacite=bouclierrecule;
-blanc_blanctouche.capacite=blanctouche;
-blanc_blanctue.capacite=blanctue;
+//blanc_blancbouclier.capacite=blancbouclier;
+blanc_blancbouclier.capacitede=()=>"<span class='combat-cond bouclier'></span>";
+blanc_blanccarte.capacitede=()=>"<span class='combat-cond cartelegende'></span>";
+//blanc_bouclierrecule.capacite=bouclierrecule;
+blanc_bouclierrecule.capacitede=()=>"<span class='combat-under recul'></span>";
+//blanc_blanctouche.capacite=blanctouche;
+blanc_blanctouche.capacitede=()=>"<span class='combat-cond touche'></span>";
+//blanc_blanctue.capacite=blanctue;
+blanc_blanctue.capacitede=()=>"<span class='combat-cond tue'></span>";
 blanc_touchetue.capacite=touchetue;
+blanc_blanclegende.capacitede=()=>"<span class='combat-cond jetonlegende'></span>";
+blanc_bouclierlegende.capacitede=()=>"<span class='combat-under jetonlegende'></span>";
 /* TODO:pas utilisé*/
 blanc_parade.capacite=(()=>"<span class='fr'>parade</span><span class='en'>parry</span> <span class='faceblanc'></span>");
 

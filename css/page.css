@@ -327,8 +327,8 @@ header {
 .combat-cond::after {
   content: "";
   background-size: 90%;
-  width: 2ex;
-  height: 2ex;
+  width: 2ex !important;
+  height: 2ex !important;
   display: inline-block;
   background-repeat: no-repeat;
   background-position: center;
@@ -338,6 +338,22 @@ header {
   margin-left: -5px;
   position: relative;
   top: -12px;
+  right: 3px; }
+
+.combat-under::after {
+  content: "";
+  background-size: 90%;
+  width: 2ex !important;
+  height: 2ex !important;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-bottom: 7px;
+  margin-bottom: -7px;
+  padding-left: 5px;
+  margin-left: -5px;
+  position: relative;
+  top: 5px;
   right: 3px; }
 
 .cond {

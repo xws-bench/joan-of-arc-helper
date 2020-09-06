@@ -29,10 +29,11 @@ class Unite {
             if (this.cohesion==true&&n>2) this.defense.push(blanc);
             this.defense.sort((a,b)=>b[3]-a[3]);
         }
+        /*
         if (this.bonusmelee) {
             if (n>1) this.bonusmelee=((x,y)=>u.bonusmelee(u.bonusmelee(x,y),y))
             if (n>2) this.bonusmelee=((x,y)=>u.bonusmelee(u.bonusmelee(u.bonusmelee(x,y),y),y))
-        }
+        }*/
     }
     static changeLang() {
       /*
@@ -182,7 +183,7 @@ class Unite {
         if (this.melee||this.tir) {
             if (this.melee) {
                 mm=this.melee;
-                if (this.bonusmelee&&u) mm=this.bonusmelee(mm,u);
+                //                if (this.bonusmelee&&u) mm=this.bonusmelee(mm,u);
                 m+="<span class='melee combat'></span> "+mm.map((x)=>x.toHTML()).join(' ');
             }// pas de capacité sur le tir et la melee
             if (this.melee&&this.tir) m+="<br/>";
@@ -218,9 +219,45 @@ class Unite {
             let mm=[];
             let type="",v=0;
             if (this.melee) {
-                mm=this.melee;
+                //mm=this.melee.slice();
                 type="melee";
                 //m+="<span class='hval'>"+mm.reduce((acc,val)=>acc+val.toAttack(),0)+"</span>";
+
+                if (this.bonusmelee) {
+                    let a="";
+                    m+="<span class='melee combat'></span>";
+                    mm=(this.bonusmelee);
+                    if (this.bonuscond==sisquelettes) {
+                        a="squelette<span class='here combat-cond'></span>";
+                    } else if (this.bonuscond==simal) {
+                        m+="<span class='combat-cond mal'></span>";
+                    }   else if (this.bonuscond==sicharge) {
+                        m+="<span class='actionverte combat-cond'></span>";
+                    } else if (this.bonuscond==siinfanterie) {
+                        m+="<span class='infanterie combat-cond'></span>"; 
+                    } else if (this.bonuscond==sicavalerie) {
+                        m+="<span class='cavalerie combat-cond'></span>";
+                    } else if (this.bonuscond==silegende) {
+                        m+="<span class='jetonlegende combat-cond'></span>";
+                    }else if (this.bonuscond==sicartelegende) {
+                        m+="<span class='cartelegende combat-cond'></span>";
+                    }else if (this.bonuscond==sixp) {
+                        m+="<span class='jetonxp combat-cond'></span>";
+                    } else if (this.bonuscond==si3troupesinfanterie) {
+                        a+="3&nbsp;<span class='type infanterie'></span><span class='troupe combat-cond'></span><span class='here combat-cond'></span>";
+                    } else if (this.bonuscond==si2troupesinfanterie) {
+                        a+="2&nbsp;<span class='infanterie combat'></span><span class='combat-cond troupe'></span><span class='combat-cond here'></span>";
+                    } else if (this.bonuscond==sicommandee) {
+                        m+="<span class='commandementhexa combat-cond'></span>";
+                    } else if (this.bonuscond==sipenitents) {
+                        a+="Pénitents<span class='combat-cond here'></span>";
+                    }
+                    mm.sort((a,b)=>2*b[2]+b[1]-2*a[2]-a[1]);
+                    m+=" "+mm.map((x)=>x.toHTML()).join(' ');
+                    if (a!="") m+=" si "+a;
+                    m+="<br/>";
+                }
+                mm=this.melee.slice();
                 m+="<span class='combat melee'></span> "+mm.map((x)=>x.toHTML()).join(' ');
                 mmm=mmm.concat(mm.map((x)=>x.capacite(type)).filter((x)=>x!=null).filter(uniquecapa));
             } else {
@@ -244,7 +281,7 @@ class Unite {
     }
     getDefense() {
         let d="";
-        let mmm=[];
+        let mmm=[];let a="";
         if (this.defense) {
             let mm=this.defense;
             let type="defense";
@@ -252,6 +289,23 @@ class Unite {
 
             d+="<span class='combat defense'></span> "+mm.map((x)=>x.toHTML()).join(' ');
             mmm=mmm.concat(mm.map((x)=>x.capacite(type)).filter((x)=>x!=null).filter(uniquecapa));
+            if (this.bonusdefense) {
+                mm=(this.bonusdefense);
+                let after="";
+                if (this.bonuscond==si2troupesinfanterie) {
+                    a+=" si 2&nbsp;<span class='infanterie combat'></span><span class='troupe combat-cond'></span><span class='here combat-cond'></span>";
+                } else if (this.bonuscond==siseul) {
+                    a+=" si seul<span class='here combat-cond'></span>";     
+                } else if (this.bonuscond==siLaHiredead) {
+                    a+=" si La Hire est mort";
+                } else if (this.bonuscond==simelee) {
+                    after+="<span class='combat-cond melee'></span>";
+                }if (this.bonuscond==sicavalerie) {
+                    after+="<span class='cavalerie combat-cond'></span>";
+                }
+                mm.sort((a,b)=>b[3]-a[3]);
+                d+="<br/><span class='combat defense'></span>"+after+" "+mm.map((x)=>x.toHTML()).join(' ')+a;
+            }
         }
         return [mmm,d];
     }
@@ -320,17 +374,8 @@ class Unite {
             c.push("<span class='fr'>saut "+this.saut+"</span><span class='en'>jump "+this.saut+"</span>");
         if (this.feinte==ftrue) c.push("<span class='fr'>feinte</span><span class='en'>feint</span>");
         else if (this.feinte==feintesichamp) c.push("feinte<span class='combat-cond ble'></span>");
-        if (this.bonusmelee==blancsimal)
-            c.push("<span class='melee combat'></span><span class='combat-cond mal'></span>: +1 <span class='deblanc'></span>");
-        else if (this.bonusmelee==rougesiinfanterie)
-            c.push("<span class='melee combat'></span><span class='infanterie combat-cond'></span>: +1 <span class='derouge'></span>");
-        else if (this.bonusmelee==rougesicharge)
-            c.push("<span class='melee combat'></span><span class='actionverte combat-cond'></span>: +1 <span class='derouge'></span>");
-        else if (this.bonusmelee==blancsiinfanterie)
-            c.push("<span class='melee combat'></span><span class='infanterie combat-cond'></span>: +1 <span class='deblanc'></span>");
-        else if (this.bonusmelee==blancsicavalerie)
-            c.push("<span class='melee combat'></span><span class='cavalerie combat-cond'></span>: +1 <span class='deblanc'></span>");
-        else if (this.bonusmelee==blanctouchesicavalerie)
+        /* TODO: pas assigné ?? */
+        if (this.bonusmelee==blanctouchesicavalerie)
             c.push("<span class='melee combat'></span><span class='cavalerie combat-cond'></span> : <span class='vierge faceblanc'></span> &rarr; <span class='touche'></span>");
         if (this.recultue==true) c.push("<span class='defense combat'></span>: <span class='recul'></span> &rarr; <span class='mort'></span>");
         if (this.riposte==ftrue) c.push("<span class='fr'>riposte</span><span class='en'>retaliation</span>");
@@ -373,7 +418,7 @@ class Unite {
         if (this.tir&&this.typetir==CLOCHE) attaque.push("<span class='tircloche combat'></span>");
         
         if (typeof this.desc!="undefined") {
-            dd=this.desc;
+            dd="**"+this.desc;
             let re = /%UNITE\(([^)]*)\)%/g;
             let res;
             while ((res = re.exec(dd)) !== null) {
@@ -384,7 +429,7 @@ class Unite {
             }
             dd=dd.replace(/%LEGENDE%/g,"<span class='jetonlegende jeton'></span>")
                 .replace(/%MELEE%/g,attaque.join(' / '))
-                .replace(/%BR%/g,"<br/>")
+                .replace(/%BR%/g,"<br/>**")
                 .replace(/%MELEEONLY%/g,"<span class='melee combat'></span>")
                 .replace(/%POURSUITE%/g,"<span class='poursuiteaprescombat combat'></span>")  
                 .replace(/%HERE%/g,"<span class='here combat-cond'></span>")
@@ -488,7 +533,6 @@ class Unite {
         let command=null;
         if (this.commandement) 
             command=[this.commandement[0]==0?'A':this.commandement[0],this.commandement[1]];
-        console.log(this.text+" "+this.box);
         let nbox=this.box.map(x=>NOM_BOITE[x]).join(",");
         //if (IMAGE_BOITE[this.box]) nbox="<span class='combat "+IMAGE_BOITE[this.box]+"'></span>";
         return [n,en,
