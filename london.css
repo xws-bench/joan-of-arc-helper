@@ -42,6 +42,7 @@
 
 #hexmap-9 {
   position: relative;
+  float: left;
   /*padding: 6% 8.3333%;*/
   margin: auto;
   padding: 0;
@@ -80,6 +81,9 @@
     display: block;
     z-index: 990;
     opacity: 0.5; }
+  #hexmap-9 .zone img {
+    opacity: 1;
+    z-index: 999; }
 
 /*#hexmap-9 .hex:hover .id, #hexmap-9 .hex:hover .name {
 	text-shadow: none;
@@ -90,7 +94,7 @@
 
 .vertical {
   background-color: #fdf4d6;
-  background-image: url(terrain/better/10A.png);
+  background-image: url(terrain/10A.png);
   /*linear-gradient(90deg, transparent 50%, rgba(0,0,0,0.15) 50%);*/
   background-size: 100% 100%; }
 
@@ -100,283 +104,283 @@
   background-size: 4% 4%; }
 
 .h10A {
-  background-image: url("terrain/better/10A.png");
+  background-image: url("terrain/10A.png");
   background-size: 100% 100%; }
 
 .h11A {
-  background-image: url("terrain/better/11A.png");
+  background-image: url("terrain/11A.png");
   background-size: 100% 100%; }
 
 .h11B {
-  background-image: url("terrain/better/11B.png");
+  background-image: url("terrain/11B.png");
   background-size: 100% 100%; }
 
 .h12A {
-  background-image: url("terrain/better/12A.png");
+  background-image: url("terrain/12A.png");
   background-size: 100% 100%; }
 
 .h12B {
-  background-image: url("terrain/better/12B.png");
+  background-image: url("terrain/12B.png");
   background-size: 100% 100%; }
 
 .h1A {
-  background-image: url("terrain/better/1A.png");
+  background-image: url("terrain/1A.png");
   background-size: 100% 100%; }
 
 .h1B {
-  background-image: url("terrain/better/1B.png");
+  background-image: url("terrain/1B.png");
   background-size: 100% 100%; }
 
 .h3A {
-  background-image: url("terrain/better/3A.png");
+  background-image: url("terrain/3A.png");
   background-size: 100% 100%; }
 
 .h5A {
-  background-image: url("terrain/better/5A.png");
+  background-image: url("terrain/5A.png");
   background-size: 100% 100%; }
 
 .h5B {
-  background-image: url("terrain/better/5B.png");
+  background-image: url("terrain/5B.png");
   background-size: 100% 100%; }
 
 .h6A {
-  background-image: url("terrain/better/6A.png");
+  background-image: url("terrain/6A.png");
   background-size: 100% 100%; }
 
 .h6B {
-  background-image: url("terrain/better/6B.png");
+  background-image: url("terrain/6B.png");
   background-size: 100% 100%; }
 
 .h7A {
-  background-image: url("terrain/better/7A.png");
+  background-image: url("terrain/7A.png");
   background-size: 100% 100%; }
 
 .h7B {
-  background-image: url("terrain/better/7B.png");
+  background-image: url("terrain/7B.png");
   background-size: 100% 100%; }
 
 .h8A {
-  background-image: url("terrain/better/8A.png");
+  background-image: url("terrain/8A.png");
   background-size: 100% 100%; }
 
 .h8B {
-  background-image: url("terrain/better/8B.png");
+  background-image: url("terrain/8B.png");
   background-size: 100% 100%; }
 
 .h9A {
-  background-image: url("terrain/better/9A.png");
+  background-image: url("terrain/9A.png");
   background-size: 100% 100%; }
 
 .h9B {
-  background-image: url("terrain/better/9B.png");
+  background-image: url("terrain/9B.png");
   background-size: 100% 100%; }
 
 .hS1A {
-  background-image: url("terrain/better/S1A.png");
+  background-image: url("terrain/S1A.png");
   background-size: 100% 100%; }
 
 .hS1B {
-  background-image: url("terrain/better/S1B.png");
+  background-image: url("terrain/S1B.png");
   background-size: 100% 100%; }
 
 .hS2A {
-  background-image: url("terrain/better/S2A.png");
+  background-image: url("terrain/S2A.png");
   background-size: 100% 100%; }
 
 .hS2B {
-  background-image: url("terrain/better/S2B.png");
+  background-image: url("terrain/S2B.png");
   background-size: 100% 100%; }
 
 .hS3A {
-  background-image: url("terrain/better/S3A.png");
+  background-image: url("terrain/S3A.png");
   background-size: 100% 100%; }
 
 .hS3B {
-  background-image: url("terrain/better/S3B.png");
+  background-image: url("terrain/S3B.png");
   background-size: 100% 100%; }
 
 .hV1A {
-  background-image: url("terrain/better/V1A.png");
+  background-image: url("terrain/V1A.png");
   background-size: 100% 100%; }
 
 .hV1B {
-  background-image: url("terrain/better/V1B.png");
+  background-image: url("terrain/V1B.png");
   background-size: 100% 100%; }
 
 .hV2B {
-  background-image: url("terrain/better/V2B.png");
+  background-image: url("terrain/V2B.png");
   background-size: 100% 100%; }
 
 .hV3A {
-  background-image: url("terrain/better/V3A.png");
+  background-image: url("terrain/V3A.png");
   background-size: 100% 100%; }
 
 .hV3B {
-  background-image: url("terrain/better/V3B.png");
+  background-image: url("terrain/V3B.png");
   background-size: 100% 100%; }
 
 .hwhite {
-  background-image: url("terrain/better/white.png");
+  background-image: url("terrain/white.png");
   background-size: 100% 100%; }
 
 .h13A_1 {
-  background-image: url("terrain/better/13A_1.png");
+  background-image: url("terrain/13A_1.png");
   background-size: 100% 100%; }
 
 .h13A_2 {
-  background-image: url("terrain/better/13A_2.png");
+  background-image: url("terrain/13A_2.png");
   background-size: 100% 100%; }
 
 .h13B_1 {
-  background-image: url("terrain/better/13B_1.png");
+  background-image: url("terrain/13B_1.png");
   background-size: 100% 100%; }
 
 .h13B_2 {
-  background-image: url("terrain/better/13B_2.png");
+  background-image: url("terrain/13B_2.png");
   background-size: 100% 100%; }
 
 .h14A_1 {
-  background-image: url("terrain/better/14A_1.png");
+  background-image: url("terrain/14A_1.png");
   background-size: 100% 100%; }
 
 .h14A_2 {
-  background-image: url("terrain/better/14A_2.png");
+  background-image: url("terrain/14A_2.png");
   background-size: 100% 100%; }
 
 .h14B_1 {
-  background-image: url("terrain/better/14B_1.png");
+  background-image: url("terrain/14B_1.png");
   background-size: 100% 100%; }
 
 .h14B_2 {
-  background-image: url("terrain/better/14B_2.png");
+  background-image: url("terrain/14B_2.png");
   background-size: 100% 100%; }
 
 .h15A_1 {
-  background-image: url("terrain/better/15A_1.png");
+  background-image: url("terrain/15A_1.png");
   background-size: 100% 100%; }
 
 .h15A_2 {
-  background-image: url("terrain/better/15A_2.png");
+  background-image: url("terrain/15A_2.png");
   background-size: 100% 100%; }
 
 .h15B_1 {
-  background-image: url("terrain/better/15B_1.png");
+  background-image: url("terrain/15B_1.png");
   background-size: 100% 100%; }
 
 .h15B_2 {
-  background-image: url("terrain/better/15B_2.png");
+  background-image: url("terrain/15B_2.png");
   background-size: 100% 100%; }
 
 .h16A_1 {
-  background-image: url("terrain/better/16A_1.png");
+  background-image: url("terrain/16A_1.png");
   background-size: 100% 100%; }
 
 .h16A_2 {
-  background-image: url("terrain/better/16A_2.png");
+  background-image: url("terrain/16A_2.png");
   background-size: 100% 100%; }
 
 .h16B_1 {
-  background-image: url("terrain/better/16B_1.png");
+  background-image: url("terrain/16B_1.png");
   background-size: 100% 100%; }
 
 .h16B_2 {
-  background-image: url("terrain/better/16B_2.png");
+  background-image: url("terrain/16B_2.png");
   background-size: 100% 100%; }
 
 .h17A_1 {
-  background-image: url("terrain/better/17A_1.png");
+  background-image: url("terrain/17A_1.png");
   background-size: 100% 100%; }
 
 .h17A_2 {
-  background-image: url("terrain/better/17A_2.png");
+  background-image: url("terrain/17A_2.png");
   background-size: 100% 100%; }
 
 .h17A_3 {
-  background-image: url("terrain/better/17A_3.png");
+  background-image: url("terrain/17A_3.png");
   background-size: 100% 100%; }
 
 .h17B_1 {
-  background-image: url("terrain/better/17B_1.png");
+  background-image: url("terrain/17B_1.png");
   background-size: 100% 100%; }
 
 .h17B_2 {
-  background-image: url("terrain/better/17B_2.png");
+  background-image: url("terrain/17B_2.png");
   background-size: 100% 100%; }
 
 .h17B_3 {
-  background-image: url("terrain/better/17B_3.png");
+  background-image: url("terrain/17B_3.png");
   background-size: 100% 100%; }
 
 .h18A_1 {
-  background-image: url("terrain/better/18A_1.png");
+  background-image: url("terrain/18A_1.png");
   background-size: 100% 100%; }
 
 .h18A_2 {
-  background-image: url("terrain/better/18A_2.png");
+  background-image: url("terrain/18A_2.png");
   background-size: 100% 100%; }
 
 .h18A_3 {
-  background-image: url("terrain/better/18A_3.png");
+  background-image: url("terrain/18A_3.png");
   background-size: 100% 100%; }
 
 .h18B_1 {
-  background-image: url("terrain/better/18B_1.png");
+  background-image: url("terrain/18B_1.png");
   background-size: 100% 100%; }
 
 .h18B_2 {
-  background-image: url("terrain/better/18B_2.png");
+  background-image: url("terrain/18B_2.png");
   background-size: 100% 100%; }
 
 .h18B_3 {
-  background-image: url("terrain/better/18B_3.png");
+  background-image: url("terrain/18B_3.png");
   background-size: 100% 100%; }
 
 .h2A_1 {
-  background-image: url("terrain/better/2A_1.png");
+  background-image: url("terrain/2A_1.png");
   background-size: 100% 100%; }
 
 .h2A_2 {
-  background-image: url("terrain/better/2A_2.png");
+  background-image: url("terrain/2A_2.png");
   background-size: 100% 100%; }
 
 .h2A_3 {
-  background-image: url("terrain/better/2A_3.png");
+  background-image: url("terrain/2A_3.png");
   background-size: 100% 100%; }
 
 .h2B_1 {
-  background-image: url("terrain/better/2B_1.png");
+  background-image: url("terrain/2B_1.png");
   background-size: 100% 100%; }
 
 .h2B_2 {
-  background-image: url("terrain/better/2B_2.png");
+  background-image: url("terrain/2B_2.png");
   background-size: 100% 100%; }
 
 .h2B_3 {
-  background-image: url("terrain/better/2B_3.png");
+  background-image: url("terrain/2B_3.png");
   background-size: 100% 100%; }
 
 .h4A_1 {
-  background-image: url("terrain/better/4A_1.png");
+  background-image: url("terrain/4A_1.png");
   background-size: 100% 100%; }
 
 .h4A_2 {
-  background-image: url("terrain/better/4A_2.png");
+  background-image: url("terrain/4A_2.png");
   background-size: 100% 100%; }
 
 .h4A_3 {
-  background-image: url("terrain/better/4A_3.png");
+  background-image: url("terrain/4A_3.png");
   background-size: 100% 100%; }
 
 .h4B_1 {
-  background-image: url("terrain/better/4B_1.png");
+  background-image: url("terrain/4B_1.png");
   background-size: 100% 100%; }
 
 .h4B_2 {
-  background-image: url("terrain/better/4B_2.png");
+  background-image: url("terrain/4B_2.png");
   background-size: 100% 100%; }
 
 .h4B_3 {
-  background-image: url("terrain/better/4B_3.png");
+  background-image: url("terrain/4B_3.png");
   background-size: 100% 100%; }
 
 .hex[data-o='1'] {
