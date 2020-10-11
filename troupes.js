@@ -35,6 +35,11 @@ class Unite {
             if (n>2) this.bonusmelee=((x,y)=>u.bonusmelee(u.bonusmelee(u.bonusmelee(x,y),y),y))
         }*/
     }
+    imageExists(url) {
+        var img = new Image();
+        img.src = url;
+        return img.height != 0;
+    }
     static changeLang() {
       /*
         $(":lang(fr) [data-fr]").each(function() {
@@ -137,6 +142,7 @@ class Unite {
             if (dictionnaire_unites[n]) {
                 if (dictionnaire_unites[n].f) u.troupe=false;
                 else u.i=dictionnaire_unites[n].i;
+                u.alt=dictionnaire_unites[n].alt;
                 u.en=dictionnaire_unites[n].en;
                 if (typeof u.en=="undefined") u.en=n;
                 u.blason=dictionnaire_unites[n].blason;
@@ -533,6 +539,19 @@ class Unite {
         let command=null;
         if (this.commandement) 
             command=[this.commandement[0]==0?'A':this.commandement[0],this.commandement[1]];
+        let mini="",mini2="",mini3="";
+        if (typeof this.i!="undefined") {
+            mini="url(../mini-small/"+this.i+".png)";
+            if (this.alt>=2) {
+                mini+=",url(../mini-small/"+this.i+"_2.png)";
+            }
+            if (this.alt>=3) {
+                mini+=",url(../mini-small/"+this.i+"_3.png)";
+            }
+            if (this.alt>=4) {
+                mini+=",url(../mini-small/"+this.i+"_4.png)";
+            }
+        }
         let nbox=this.box.map(x=>NOM_BOITE[x]).join(",");
         //if (IMAGE_BOITE[this.box]) nbox="<span class='combat "+IMAGE_BOITE[this.box]+"'></span>";
         return [n,en,
@@ -543,13 +562,17 @@ class Unite {
                 this.pdv,
                 c.join(', '),
                 command,
-                nbox
+                nbox,
+                [mini,mini2,mini3]
                ];         
     }
-    
     toString() {
         let j=this.toHTML();
-        return "<tr><td>"+j[0]+"</td><td>"+j[1]+"</td><td>"+j[9]+"</td><td>"+j[2]+"</td><td>"+j[3]+"</td><td><div>"+j[4]+"</div><div class='hvalr'>"+j[5]+"</div></td><td>"+this.getCommand()+"</td><td><span class='pdv'>"+j[6]+"</span></td><td>"+j[7]+"</td></tr>";
+        let c="mini";
+        let s="";
+        if (this.grand==true) c="mini-large";
+        if (this.gigantesque==true) c="mini-huge";
+        return "<tr><td  class='"+c+"' style='--mini:"+j[10][0]+s+"'><span class='img'></span>"+j[0]+"</td><td class='en "+c+"' style='--mini:"+j[10][0]+"'><span class='img'></span>"+j[1]+"</td><td>"+j[9]+"</td><td>"+j[2]+"</td><td>"+j[3]+"</td><td><div>"+j[4]+"</div><div class='hvalr'>"+j[5]+"</div></td><td>"+this.getCommand()+"</td><td><span class='pdv'>"+j[6]+"</span></td><td>"+j[7]+"</td></tr>";
     }
     getHTMLName(n) {
        let nn=this.nom;

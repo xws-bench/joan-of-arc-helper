@@ -982,5 +982,38 @@ $( document ).ready(function() {
     });
     $("#ex7").slider();
     Unite.changeLang();
+    
+    var hexmap = S.hexmap('hexmap-9');
+    hexmap.positionHexes().resize();
 
+    // Define the content of each hex
+    hexmap.setContent(function(id,hex){
+        hex["data-o"]=hex.o;
+	str = '';
+	
+	// Build the circular token that sits on a hex
+	str += '<div class="id">'+hex.n+'</div>';
+	//str += '<div class="name">'+hex.label+'</div>';
+
+	return str;
+    });    
+    var zones = hexmap.container.find('.zone');
+    for (var i=0;i<zones.length;i++) {
+        console.log(zones[i].attributes["data-z"].value);
+        zones[i].id=i;
+        zones[i].onclick=function(e){
+
+            S('#message-6').html("clicking on zone "+this.attributes["data-z"].value);
+            console.log("hex="+this.parentNode.id);
+        }.bind(zones[i]);
+    }
+    /*hexmap.on('click',function(e){
+
+      S('#message-6').html('You have clicked hex '+e.i+' ('+e.hex.id+')')
+
+      })*/
+    // Set the CSS class of each hex to be the hex type
+    hexmap.setClass(function(id,hex){
+	return "h"+hex.n;
+    });
 });

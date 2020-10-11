@@ -31,8 +31,9 @@
   <link href="css/dateline.css" rel="stylesheet">
   <link href="css/select2.min.css" rel="stylesheet">
   <link href="css/page.css" rel="stylesheet">
-</head>
-
+  <link rel="stylesheet" href="hexgridwidget/css/stuquery.hexmap.css">
+  <link rel="stylesheet" href="london.css">
+  </head>
 <body id="page-top">
 
 
@@ -317,298 +318,44 @@
       </div>
     </div>
   </section>
-  
-  <section id="compare" class="bg-light noshow">
-    <div class="container-fluid">
-      <div class="row no-gutters">
-        <div class="col-12 text-justify">
-          <p class="lead" lang='fr'>Statistiques de combat des unités</p>
-          <p class="lead" lang='en'>Statistics for combat</p>
-          <p lang='fr'>Choisissez un attaquant et un défenseur, l'attaquant attaque une fois (comme avec un ordre <span class='actiongrise type'></span>) le défenseur. Les terrains de chaque unité peuvent être changés. Les chiffres indiqués sont des probabilités, d'être encore dans l'hexagone et avec combien de points de vie en moyenne, d'être à l'hopital <span class='facenoir touche'></span>, d'être mort <span class='facenoir mort'></span> ou d'avoir subi un recul <span class='facenoir recul'></span>. La riposte et autres effets similaires sont pris en compte, l'attaquant peut aussi avoir les mêmes probabilités, s'il y a riposte par exemple. Le nombre de troupes sans faction peut être ajusté entre 1 et 5.
-          </p>
-          <p lang='fr'>Les attaques gratuites après poursuites après combat ne sont pas implémentées.</p>
-          <p lang='en'>Select an attacking unit and a defending unit, and the type of terrain (for attacker and defender). The attacking unit(s) attack one with an order <span class='actiongrise type'></span>. The numbers show the probabilities for the defender to be pushed away <span class='facenoir recul'></span>, to be killed <span class='facenoir tue></span>, disabled <span class='facenoir touche></span> and shows the average number of lifepoints remaining. Retaliation are taken into account, the attacker can also have the same stats.  For troops without faction, the number of units can range from 1 to 5.
-          </p>
-          <p lang='en'>Free attacks after a pursuit after combat are not implemented.</p>
-        </div>
+
+  <section id="scenario" class="noshow">
+    <figure class="ex-9">
+      <div id="hexmap-9">
+        <code>
+          {
+          "layout":"odd-q",
+          "armies":
+          {"army":"Francais","flag":"francais","list":[{"no":1,"name":"Chevaliers"},{"no":2,"name":"Chevaliers à pied"}]},
+          "hexes": [
+          {"n":"1A","q":0,"r":2,"army":"Francais"},
+          {"n":"2A_1","q":1,"r":2},
+          {"n":"3A","q":2,"r":1},
+          {"n":"4A_1","q":2,"r":0},
+          {"n":"5A","q":2,"r":-1},
+          {"n":"6A","q":1,"r":-1},
+          {"n":"7A","q":0,"r":-2,"label":"Brix<br>ton"},
+          {"n":"8A","q":-1,"r":-1,"label":"Batter<br>sea"},
+          {"n":"9A","q":-2,"r":-1,"label":"Chel<br>sea"},
+          {"n":"10A","q":-2,"r":0,"label":"Mary Le Bone"},
+          {"n":"11A","q":-2,"r":1,"label":"S<sup>t</sup> John'<sup>s</sup> Wood"},
+          {"n":"12A","orient":"1","q":-1,"r":2,"label":"Kentish Town"},
+          {"n":"1B","q":0,"r":1,"label":"Isling·<br>ton"},
+          {"n":"V1A","q":1,"r":1,"label":"Bethnal Green"},
+          {"n":"2A_2","q":1,"r":0,"label":"South·<br>wark"},
+          {"n":"4B_1","q":0,"r":-1,"label":"Kenning·<br>ton"},
+          {"n":"S2B","q":-1,"r":0,"label":"Westmin-<br>ster"},
+          {"n":"V2B","q":-1,"r":1,"label":"St Pan·<br>cras"},
+          {"n":"V1A","q":0,"r":0,"label":"The<br><div>City</div>"}
+          ]
+          }
+        </code>
       </div>
-      <div class="row no-gutters">
-        <div class="col-6 border-right">
-          <div class="lead" lang='fr'>Attaquant</div>
-          <div class="lead" lang='en'>Attacker</div>
-          <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
-            <a class="blason-large neutre list-group-item list-group-item-action active" id="list-neutre-list" data-toggle="list" href="#list-neutre" role="tab" aria-controls="list-neutre"></a>
-            <a class="blason-large francais list-group-item list-group-item-action" id="list-francais-list" data-toggle="list" href="#list-francais" role="tab" aria-controls="list-francais"></a>
-            <a class="blason-large anglais list-group-item list-group-item-action" id="list-anglais-list" data-toggle="list" href="#list-anglais" role="tab" aria-controls="list-anglais"></a>
-            <a class="blason-large bourguignon list-group-item list-group-item-action" id="list-bourguignon-list" data-toggle="list" href="#list-bourguignon" role="tab" aria-controls="list-bourguignon"></a>
-            <a class="blason-large ecossais list-group-item list-group-item-action" id="list-ecossais-list" data-toggle="list" href="#list-ecossais" role="tab" aria-controls="list-ecossais"></a>
-            <a class="blason-large ottoman list-group-item list-group-item-action" id="list-ottoman-list" data-toggle="list" href="#list-ottoman" role="tab" aria-controls="list-ottoman"></a>
-            <a class="blason-large valaque list-group-item list-group-item-action" id="list-valaque-list" data-toggle="list" href="#list-valaque" role="tab" aria-controls="list-valaque"></a>
-            <a class="blason-large teutonique list-group-item list-group-item-action" id="list-teutonique-list" data-toggle="list" href="#list-teutonique" role="tab" aria-controls="list-teutonique"></a>
-            <a class="blason-large polonais list-group-item list-group-item-action" id="list-polonais-list" data-toggle="list" href="#list-polonais" role="tab" aria-controls="list-polonais"></a>
-            <a class="blason-large lituanien list-group-item list-group-item-action" id="list-lituanien-list" data-toggle="list" href="#list-lituanien" role="tab" aria-controls="list-lituanien"></a>
-            <a class="blason-large mercenaire list-group-item list-group-item-action" id="list-mercenaire-list" data-toggle="list" href="#list-mercenaire" role="tab" aria-controls="list-mercenaire"></a>
-            <a class="blason-large mal list-group-item list-group-item-action" id="list-mal-list" data-toggle="list" href="#list-mal" role="tab" aria-controls="list-mal"></a>
-            <a class="blason-large bien list-group-item list-group-item-action" id="list-bien-list" data-toggle="list" href="#list-bien" role="tab" aria-controls="list-bien"></a>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="lead" lang='fr'>Défenseur</div>
-          <div class="lead" lang='en'>Defender</div>
-          <div class="list-group list-group-horizontal" id="list-tab2" role="tablist">
-            <a class="blason-large neutre list-group-item list-group-item-action active" id="list-neutre-list2" data-toggle="list" href="#list-neutre2" role="tab" aria-controls="list-neutre2"></a>
-            <a class="blason-large francais list-group-item list-group-item-action" id="list-francais-list2" data-toggle="list" href="#list-francais2" role="tab" aria-controls="list-francais2"></a>
-            <a class="blason-large anglais list-group-item list-group-item-action" id="list-anglais-list2" data-toggle="list" href="#list-anglais2" role="tab" aria-controls="list-anglais2"></a>
-            <a class="blason-large bourguignon list-group-item list-group-item-action" id="list-bourguignon-list2" data-toggle="list" href="#list-bourguignon2" role="tab" aria-controls="list-bourguignon2"></a>
-            <a class="blason-large ecossais list-group-item list-group-item-action" id="list-ecossais-list2" data-toggle="list" href="#list-ecossais2" role="tab" aria-controls="list-ecossais2"></a>
-            <a class="blason-large ottoman list-group-item list-group-item-action" id="list-ottoman-list2" data-toggle="list" href="#list-ottoman2" role="tab" aria-controls="list-ottoman2"></a>
-            <a class="blason-large valaque list-group-item list-group-item-action" id="list-valaque-list2" data-toggle="list" href="#list-valaque2" role="tab" aria-controls="list-valaque2"></a>
-            <a class="blason-large teutonique list-group-item list-group-item-action" id="list-teutonique-list2" data-toggle="list" href="#list-teutonique2" role="tab" aria-controls="list-teutonique2"></a>
-            <a class="blason-large polonais list-group-item list-group-item-action" id="list-polonais-list2" data-toggle="list" href="#list-polonais2" role="tab" aria-controls="list-polonais2"></a>
-            <a class="blason-large lituanien list-group-item list-group-item-action" id="list-lituanien-list2" data-toggle="list" href="#list-lituanien2" role="tab" aria-controls="list-lituanien2"></a>
-            <a class="blason-large mercenaire list-group-item list-group-item-action" id="list-mercenaire-list2" data-toggle="list" href="#list-mercenaire2" role="tab" aria-controls="list-mercenaire2"></a>
-            <a class="blason-large mal list-group-item list-group-item-action" id="list-mal-list2" data-toggle="list" href="#list-mal2" role="tab" aria-controls="list-mal2"></a>
-            <a class="blason-large bien list-group-item list-group-item-action" id="list-bien-list2" data-toggle="list" href="#list-bien2" role="tab" aria-controls="list-bien2"></a>
-          </div>
-        </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-6 border-right">
-          <div class="tab-content" id="nav-tabContent1">
-            <div class="tab-pane fade show active" id="list-neutre" role="tabpanel" aria-labelledby="list-neutre-list">
-              <select id="number1" style="width:10%"  onchange="trouveperso(1)" class="nbtroupe">
-                <option label="1">1</option>
-                <option label="2">2</option>
-                <option label="3">3</option>
-                <option label="4">4</option>
-                <option label="5">5</option>
-              </select>
-              <select style="width:85%" id="neutre1" class="trouveperso neutre form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade show" id="list-francais" role="tabpanel" aria-labelledby="list-francais-list">
-              <select style="width:100%" class="trouveperso francais form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-anglais" role="tabpanel" aria-labelledby="list-anglais-list">
-              <select style="width:100%" class="trouveperso anglais form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-bourguignon" role="tabpanel" aria-labelledby="list-bourguignon-list">
-              <select style="width:100%" class="trouveperso bourguignon form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-ecossais" role="tabpanel" aria-labelledby="list-ecossais-list">
-              <select style="width:100%" class="trouveperso ecossais form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-ottoman" role="tabpanel" aria-labelledby="list-ottoman-list">
-              <select style="width:100%" class="trouveperso ottoman form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-valaque" role="tabpanel" aria-labelledby="list-valaque-list">
-              <select style="width:100%" class="trouveperso valaque form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-teutonique" role="tabpanel" aria-labelledby="list-teutonique-list">
-              <select style="width:100%" class="trouveperso teutonique form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-polonais" role="tabpanel" aria-labelledby="list-polonais-list">
-              <select style="width:100%" class="trouveperso polonais form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-lituanien" role="tabpanel" aria-labelledby="list-lituanien-list">
-              <select style="width:100%" class="trouveperso lituanien form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-mercenaire" role="tabpanel" aria-labelledby="list-mercenaire-list">
-              <select style="width:100%" class="trouveperso mercenaire form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-mal" role="tabpanel" aria-labelledby="list-mal-list">
-              <select style="width:100%" class="trouveperso mal form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-bien" role="tabpanel" aria-labelledby="list-bien-list">
-              <select style="width:100%" class="trouveperso bien form-control" onchange="trouveperso(1)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-6">
-          <div class="tab-content" id="nav-tabContent2">
-            <div class="tab-pane fade show active" id="list-neutre2" role="tabpanel" aria-labelledby="list-neutre-list2">
-              <select id="number2" style="width:10%" class="nbtroupe" onchange="trouveperso(2)">
-                <option label="1">1</option>
-                <option label="2">2</option>
-                <option label="3">3</option>
-                <option label="4">4</option>
-                <option label="5">5</option>
-              </select>
-              <select style="width:85%" id="neutre2" class="trouveperso neutre form-control" onchange="trouveperso(2)">
-                <option label="placeholder"></option>
-
-              </select>
-            </div>
-            <div class="tab-pane fade show" id="list-francais2" role="tabpanel" aria-labelledby="list-francais-list2">
-              <select style="width:100%" class="trouveperso francais form-control" onchange="trouveperso(2)">
-                                <option label="placeholder"></option>
-
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-anglais2" role="tabpanel" aria-labelledby="list-anglais-list2">
-              <select style="width:100%" class="trouveperso anglais form-control" onchange="trouveperso(2)">
-                                <option label="placeholder"></option>
-
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-bourguignon2" role="tabpanel" aria-labelledby="list-bourguignon-list2">
-              <select style="width:100%" class="trouveperso bourguignon form-control" onchange="trouveperso(2)">
-                                <option label="placeholder"></option>
-
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-ecossais2" role="tabpanel" aria-labelledby="list-ecossais-list2">
-              <select style="width:100%" class="trouveperso ecossais form-control" onchange="trouveperso(2)">
-                                <option label="placeholder"></option>
-
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-ottoman2" role="tabpanel" aria-labelledby="list-ottoman-list2">
-              <select style="width:100%" class="trouveperso ottoman form-control" onchange="trouveperso(2)">
-                                <option label="placeholder"></option>
-
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-valaque2" role="tabpanel" aria-labelledby="list-valaque-list2">
-              <select style="width:100%" class="trouveperso valaque form-control" onchange="trouveperso(2)">
-                                <option label="placeholder"></option>
-
-              </select>
-            </div>
-                        <div class="tab-pane fade" id="list-teutonique" role="tabpanel" aria-labelledby="list-teutonique-list2">
-              <select style="width:100%" class="trouveperso teutonique form-control" onchange="trouveperso(2)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-polonais2" role="tabpanel" aria-labelledby="list-polonais-list2">
-              <select style="width:100%" class="trouveperso polonais form-control" onchange="trouveperso(2)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-lituanien2" role="tabpanel" aria-labelledby="list-lituanien-list2">
-              <select style="width:100%" class="trouveperso lituanien form-control" onchange="trouveperso(2)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-mercenaire2" role="tabpanel" aria-labelledby="list-mercenaire-list2">
-              <select style="width:100%" class="trouveperso mercenaire form-control" onchange="trouveperso(2)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-mal2" role="tabpanel" aria-labelledby="list-mal-list2">
-              <select style="width:100%" class="trouveperso mal form-control" onchange="trouveperso(2)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-            <div class="tab-pane fade" id="list-bien2" role="tabpanel" aria-labelledby="list-bien-list2">
-              <select style="width:100%" class="trouveperso bien form-control" onchange="trouveperso(2)">
-                <option label="placeholder"></option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row no-gutters">
-        <div class="col-6 border-right">
-          <table id="attaque"  class="display compact table table-sm"></table>
-        </div>
-        <div class="col-6">
-          <table id="defense"  class="display compact table table-sm"></table>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6 terrain1 border-right">
-          <div class="lead">Terrain de l'attaquant</div>
-          <select  style="width:100%" class="form-control trouveterrain" onchange="trouveterrain(1)">
-         </select>
-        </div>
-        <div class="col-6 terrain2">
-          <div class="lead">Terrain du défenseur</div>
-          <select style="width:100%" class="form-control trouveterrain" onchange="trouveterrain(2)">
-          </select>
-        </div>
-      </div>
-    </div>
-    
-    <div class="container-fluid">
-      <svg class="hexagons">
-        <defs>
-          <pattern id="plain" width="1" height="1" x="0" y="0">
-            <image xlink:href="css/plain.png" width="400" height="400" />
-          </pattern>
-          <pattern id="ble" width="1" height="1" x="0" y="0">
-            <image xlink:href="css/ble.png" width="400" height="400" />
-          </pattern>
-          <pattern id="pave" width="1" height="1" x="0" y="0">
-            <image xlink:href="css/pave.png" width="400" height="400" />
-          </pattern>
-          <pattern id="swamp" width="1" height="1" x="0" y="0">
-            <image xlink:href="css/swamp.png" width="400" height="400" />
-          </pattern>
-          <pattern id="forest" width="1" height="1" x="0" y="0">
-            <image xlink:href="css/forest.png" width="400" height="400" />
-          </pattern>
-          <pattern id="rock" width="1" height="1" x="0" y="0">
-            <image xlink:href="css/rock.png" width="400" height="400" />
-          </pattern>
-        </defs>
-        <g class='hexa'>
-        </g>
-        <foreignObject x="40" y="190" width="260" height="220">
-          <!--
-              Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
-              être omis, mais il est obligatoire dans le contexte d'un document SVG
-            -->
-          <div xmlns="http://www.w3.org/1999/xhtml" id="hex1">
-          </div>
-        </foreignObject>
-        <foreignObject x="400" y="190" width="260" height="220">
-          <!--
-              Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
-              être omis, mais il est obligatoire dans le contexte d'un document SVG
-            -->
-          <div xmlns="http://www.w3.org/1999/xhtml" id="hex2">
-          </div>
-        </foreignObject>
-        <foreignObject x="800" y="190" width="260" height="220">
-          <!--
-              Dans le cas d'un SVG intégré dans du HTML, le namespace XHTML peut
-              être omis, mais il est obligatoire dans le contexte d'un document SVG
-            -->
-          <div xmlns="http://www.w3.org/1999/xhtml" id="hex3" class="text-white">
-          </div>
-        </foreignObject>
-      </svg>
-    </div> 
+      <figcaption id="message-6">London indexed by 2-mile hexagons</figcaption>
+    </figure>    
   </section>
   
+
   <header id="home" class="text-white">
     <div lang="fr" class="head w-screen mx-0 px-0 text-center">
       <h1>Joan of Arc Scenario Helper</h1>
@@ -649,6 +396,7 @@
     </div>
     <hr class="featurette-divider"/>
     <br/><br/>
+    
     <div class="featurette">
       <img class="featurette-image img-responsive pull-right" src="css/armées.png" alt="armées">
       <h2 class="featurette-heading"><a href="#armee"><span lang="fr" class="text-muted">Constructeur d'armées</span><span lang="en" class="text-muted">Army builder</span></a></h2>
@@ -671,6 +419,7 @@
         This is a simple helper, that takes into account only one combat action achieved by a unit or group of the same units.</p>
       <p lang="en">Mean life points, probability to be killed, injured or pushed are shown for the defender and the attacker (in case of counterstrike or retaliation) Most of the traits are taken into account. Terrain effects are also taken into account. </p>
     </div>
+    
   </section>
 
   
@@ -703,6 +452,9 @@
             <a class="nav-link" href="#armee"><span class='fr'>Construction d'armée</span><span class='en'>Army builder</span></a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="#scenario">Scenario</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#compare">Stats</a>
           </li>
         </ul>
@@ -731,6 +483,8 @@
   <script src="vendor/bootstrap/js/bootstrap-slider.min.js"></script>
   <!-- Plugin JavaScript -->
   
+  <script src="hexgridwidget/js/stuquery.min.js"></script>
+  <script src="hexgridwidget/js/stuquery.hexmap.js"></script>
   <script src="js/dateline.org.js"></script>
   <script src="js/select2.min.js"></script>
   <script src="js/d3.v3.min.js"></script>

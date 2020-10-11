@@ -10,7 +10,7 @@ const B1=1,B2=2,B3=3;
 const LISTE_CAPACITES=["noterrain","ignifuge","tir","melee","type","faction","typetir","portee","defense","pdv","maj","commandement","grand","gigantesque","soin","soinbienthere","cruel","relance","gardeducorps","shield","pourfendeur","charge","celerite","priere","riposte","terreur","esquive","saut","feinte","charisme","ralliement","impetueux","survie","genie","parade","immortel","mercenaire","visee","masse","cohesion","transport","recultue","noriposte","contrecoup","noterreur","modattaque","source","dates","civil","legendaire","enleve1d"];
 
 const APO=0,CORE=1,CRA=2,DRA=3,HEL=4,LEG=5,OTT=6,REL=7,SE=8,SIE=9,SIQ=10,TEU=11,VIL=12;
-const NOM_BOITE=["Apo.","Core","Cravant","Dragon","Hell","Legend.","Ottoman","Reliq.","Super Excl.","Siege","Siege Ext.","Teuton.","Village"];
+const NOM_BOITE=["Apo.","Core","Cra.","Dra.","Hell","Leg.","Ott.","Rel.","Sup.","Sieg.","SExt.","Teu.","Vil."];
 const IMAGE_BOITE=["Apocalypse",null,null,"Dragon","Hell","Legendary",null,null,null,"Siege",null,"Chevaliers_teutoniques","Village"];
 const simal=(d,a)=>(a.faction==MAL?true:false);
 const blanctouchesicavalerie=(d,a)=>(a.type==CAVALERIE?[blanc_blanctouche]:d);
@@ -151,7 +151,7 @@ let rouge_bouclierrelance = new De(7/36,14/36,14/36,1/36);
 let rouge_bouclierrecule = new De(2/6,2/6,2/6,0);
 let rouge_touchetue = new De(1/6,0,4/6,1/6);
 
-let noir = new De(0,2/6,1/6,3/6);
+let noir = new De(0,2/6,1/6,1/2);
 let noir_blanclegende = new De(0,2/6,1/6,3/6);
 let noir_toucherecule = new De(2/6,0,1/6,3/6);
 let noir_bouclierrecule = new De(1/2,2/6,1/6,0);
