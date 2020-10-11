@@ -1,0 +1,398 @@
+.ex-9 {
+  font-family: "Times New Roman", serif;
+  background-color: #fdf4d6;
+  padding: 2em;
+  position: relative;
+  color: #656058;
+  width: 100%;
+  height: 20em; }
+
+.compass {
+  position: absolute;
+  display: block;
+  padding: 0.06em 0.125em;
+  background-color: #fdf4d6;
+  font-size: 2em;
+  font-weight: 700;
+  font-family: "Copperplate Gothic Bold", serif; }
+
+.compass-n {
+  left: 50%;
+  top: 0;
+  transform: translate3D(-50%, -50%, 0); }
+
+.compass-s {
+  left: 50%;
+  top: 100%;
+  transform: translate3D(-50%, -50%, 0); }
+
+.compass-e {
+  left: 100%;
+  top: 50%;
+  transform: translate3D(-50%, -50%, 0); }
+
+.compass-w {
+  left: 0%;
+  top: 50%;
+  transform: translate3D(-50%, -50%, 0); }
+
+.ex-9 figcaption {
+  margin-top: 2em;
+  text-align: center; }
+
+#hexmap-9 {
+  position: relative;
+  /*padding: 6% 8.3333%;*/
+  margin: auto;
+  padding: 0;
+  border: 0;
+  /*    width:20em !important;
+    height:20em !important;*/
+  /*border-radius: 100%;
+    border: 2px solid rgba(0,0,0,0.5);*/ }
+  #hexmap-9 .hex {
+    background-color: #656058;
+    font-family: "Arial Black","Copperplate Gothic Bold","Times New Roman", serif; }
+    #hexmap-9 .hex .hexinner {
+      background-color: #fdf4d6;
+      color: inherit;
+      /*margin: 2px;*/ }
+    #hexmap-9 .hex .id, #hexmap-9 .hex .name {
+      font-weight: 700;
+      line-height: 1em;
+      text-shadow: 3px 3px 2px #fdf4d6, -3px 3px 1px #fdf4d6, -3px -3px 1px #fdf4d6, 3px -3px 2px #fdf4d6; }
+    #hexmap-9 .hex .id {
+      font-size: 2em;
+      font-family: "Times New Roman", serif; }
+    #hexmap-9 .hex .name {
+      font-size: 1.3em;
+      text-transform: uppercase; }
+    #hexmap-9 .hex .name > div {
+      font-size: 1.6em;
+      line-height: 1.25em; }
+  #hexmap-9 .hex:hover .zone:hover {
+    /*#hexmap-9 .hex:hover .hexinner {*/
+    /* We have created the hexagon via clip-path so we have to simulate
+	a border using two nested elements. We can set the border colour
+	using "background" and the border width using "margin" */
+    background: #eee;
+    color: #fdf4d6;
+    display: block;
+    z-index: 990;
+    opacity: 0.5; }
+
+/*#hexmap-9 .hex:hover .id, #hexmap-9 .hex:hover .name {
+	text-shadow: none;
+}*/
+.outer-london .name {
+  font-size: 1.4em;
+  font-family: "Times New Roman", serif; }
+
+.vertical {
+  background-color: #fdf4d6;
+  background-image: url(terrain/better/10A.png);
+  /*linear-gradient(90deg, transparent 50%, rgba(0,0,0,0.15) 50%);*/
+  background-size: 100% 100%; }
+
+.horizontal {
+  background-color: #fdf4d6;
+  background-image: linear-gradient(0deg, transparent 50%, rgba(0, 0, 0, 0.15) 50%);
+  background-size: 4% 4%; }
+
+.h10A {
+  background-image: url("terrain/better/10A.png");
+  background-size: 100% 100%; }
+
+.h11A {
+  background-image: url("terrain/better/11A.png");
+  background-size: 100% 100%; }
+
+.h11B {
+  background-image: url("terrain/better/11B.png");
+  background-size: 100% 100%; }
+
+.h12A {
+  background-image: url("terrain/better/12A.png");
+  background-size: 100% 100%; }
+
+.h12B {
+  background-image: url("terrain/better/12B.png");
+  background-size: 100% 100%; }
+
+.h1A {
+  background-image: url("terrain/better/1A.png");
+  background-size: 100% 100%; }
+
+.h1B {
+  background-image: url("terrain/better/1B.png");
+  background-size: 100% 100%; }
+
+.h3A {
+  background-image: url("terrain/better/3A.png");
+  background-size: 100% 100%; }
+
+.h5A {
+  background-image: url("terrain/better/5A.png");
+  background-size: 100% 100%; }
+
+.h5B {
+  background-image: url("terrain/better/5B.png");
+  background-size: 100% 100%; }
+
+.h6A {
+  background-image: url("terrain/better/6A.png");
+  background-size: 100% 100%; }
+
+.h6B {
+  background-image: url("terrain/better/6B.png");
+  background-size: 100% 100%; }
+
+.h7A {
+  background-image: url("terrain/better/7A.png");
+  background-size: 100% 100%; }
+
+.h7B {
+  background-image: url("terrain/better/7B.png");
+  background-size: 100% 100%; }
+
+.h8A {
+  background-image: url("terrain/better/8A.png");
+  background-size: 100% 100%; }
+
+.h8B {
+  background-image: url("terrain/better/8B.png");
+  background-size: 100% 100%; }
+
+.h9A {
+  background-image: url("terrain/better/9A.png");
+  background-size: 100% 100%; }
+
+.h9B {
+  background-image: url("terrain/better/9B.png");
+  background-size: 100% 100%; }
+
+.hS1A {
+  background-image: url("terrain/better/S1A.png");
+  background-size: 100% 100%; }
+
+.hS1B {
+  background-image: url("terrain/better/S1B.png");
+  background-size: 100% 100%; }
+
+.hS2A {
+  background-image: url("terrain/better/S2A.png");
+  background-size: 100% 100%; }
+
+.hS2B {
+  background-image: url("terrain/better/S2B.png");
+  background-size: 100% 100%; }
+
+.hS3A {
+  background-image: url("terrain/better/S3A.png");
+  background-size: 100% 100%; }
+
+.hS3B {
+  background-image: url("terrain/better/S3B.png");
+  background-size: 100% 100%; }
+
+.hV1A {
+  background-image: url("terrain/better/V1A.png");
+  background-size: 100% 100%; }
+
+.hV1B {
+  background-image: url("terrain/better/V1B.png");
+  background-size: 100% 100%; }
+
+.hV2B {
+  background-image: url("terrain/better/V2B.png");
+  background-size: 100% 100%; }
+
+.hV3A {
+  background-image: url("terrain/better/V3A.png");
+  background-size: 100% 100%; }
+
+.hV3B {
+  background-image: url("terrain/better/V3B.png");
+  background-size: 100% 100%; }
+
+.hwhite {
+  background-image: url("terrain/better/white.png");
+  background-size: 100% 100%; }
+
+.h13A_1 {
+  background-image: url("terrain/better/13A_1.png");
+  background-size: 100% 100%; }
+
+.h13A_2 {
+  background-image: url("terrain/better/13A_2.png");
+  background-size: 100% 100%; }
+
+.h13B_1 {
+  background-image: url("terrain/better/13B_1.png");
+  background-size: 100% 100%; }
+
+.h13B_2 {
+  background-image: url("terrain/better/13B_2.png");
+  background-size: 100% 100%; }
+
+.h14A_1 {
+  background-image: url("terrain/better/14A_1.png");
+  background-size: 100% 100%; }
+
+.h14A_2 {
+  background-image: url("terrain/better/14A_2.png");
+  background-size: 100% 100%; }
+
+.h14B_1 {
+  background-image: url("terrain/better/14B_1.png");
+  background-size: 100% 100%; }
+
+.h14B_2 {
+  background-image: url("terrain/better/14B_2.png");
+  background-size: 100% 100%; }
+
+.h15A_1 {
+  background-image: url("terrain/better/15A_1.png");
+  background-size: 100% 100%; }
+
+.h15A_2 {
+  background-image: url("terrain/better/15A_2.png");
+  background-size: 100% 100%; }
+
+.h15B_1 {
+  background-image: url("terrain/better/15B_1.png");
+  background-size: 100% 100%; }
+
+.h15B_2 {
+  background-image: url("terrain/better/15B_2.png");
+  background-size: 100% 100%; }
+
+.h16A_1 {
+  background-image: url("terrain/better/16A_1.png");
+  background-size: 100% 100%; }
+
+.h16A_2 {
+  background-image: url("terrain/better/16A_2.png");
+  background-size: 100% 100%; }
+
+.h16B_1 {
+  background-image: url("terrain/better/16B_1.png");
+  background-size: 100% 100%; }
+
+.h16B_2 {
+  background-image: url("terrain/better/16B_2.png");
+  background-size: 100% 100%; }
+
+.h17A_1 {
+  background-image: url("terrain/better/17A_1.png");
+  background-size: 100% 100%; }
+
+.h17A_2 {
+  background-image: url("terrain/better/17A_2.png");
+  background-size: 100% 100%; }
+
+.h17A_3 {
+  background-image: url("terrain/better/17A_3.png");
+  background-size: 100% 100%; }
+
+.h17B_1 {
+  background-image: url("terrain/better/17B_1.png");
+  background-size: 100% 100%; }
+
+.h17B_2 {
+  background-image: url("terrain/better/17B_2.png");
+  background-size: 100% 100%; }
+
+.h17B_3 {
+  background-image: url("terrain/better/17B_3.png");
+  background-size: 100% 100%; }
+
+.h18A_1 {
+  background-image: url("terrain/better/18A_1.png");
+  background-size: 100% 100%; }
+
+.h18A_2 {
+  background-image: url("terrain/better/18A_2.png");
+  background-size: 100% 100%; }
+
+.h18A_3 {
+  background-image: url("terrain/better/18A_3.png");
+  background-size: 100% 100%; }
+
+.h18B_1 {
+  background-image: url("terrain/better/18B_1.png");
+  background-size: 100% 100%; }
+
+.h18B_2 {
+  background-image: url("terrain/better/18B_2.png");
+  background-size: 100% 100%; }
+
+.h18B_3 {
+  background-image: url("terrain/better/18B_3.png");
+  background-size: 100% 100%; }
+
+.h2A_1 {
+  background-image: url("terrain/better/2A_1.png");
+  background-size: 100% 100%; }
+
+.h2A_2 {
+  background-image: url("terrain/better/2A_2.png");
+  background-size: 100% 100%; }
+
+.h2A_3 {
+  background-image: url("terrain/better/2A_3.png");
+  background-size: 100% 100%; }
+
+.h2B_1 {
+  background-image: url("terrain/better/2B_1.png");
+  background-size: 100% 100%; }
+
+.h2B_2 {
+  background-image: url("terrain/better/2B_2.png");
+  background-size: 100% 100%; }
+
+.h2B_3 {
+  background-image: url("terrain/better/2B_3.png");
+  background-size: 100% 100%; }
+
+.h4A_1 {
+  background-image: url("terrain/better/4A_1.png");
+  background-size: 100% 100%; }
+
+.h4A_2 {
+  background-image: url("terrain/better/4A_2.png");
+  background-size: 100% 100%; }
+
+.h4A_3 {
+  background-image: url("terrain/better/4A_3.png");
+  background-size: 100% 100%; }
+
+.h4B_1 {
+  background-image: url("terrain/better/4B_1.png");
+  background-size: 100% 100%; }
+
+.h4B_2 {
+  background-image: url("terrain/better/4B_2.png");
+  background-size: 100% 100%; }
+
+.h4B_3 {
+  background-image: url("terrain/better/4B_3.png");
+  background-size: 100% 100%; }
+
+.hex[data-o='1'] {
+  transform: rotate(-60deg); }
+
+.hex[data-o='2'] {
+  transform: rotate(-120deg); }
+
+.hex[data-o='3'] {
+  transform: rotate(180deg); }
+
+.hex[data-o='-1'] {
+  transform: rotate(60deg); }
+
+.hex[data-o='-2'] {
+  transform: rotate(120deg); }
+
+sup {
+  top: -0.2em; }
