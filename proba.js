@@ -879,6 +879,9 @@ function computeArmy() {
     $(".moral").html(Math.ceil(2*m/3));
 }
 $( document ).ready(function() {
+    if (/^en\b/.test(navigator.language)) {       
+        document.documentElement.lang='en';
+    } else console.log(navigator.language);
     troupes=Unite.troupes();
     persolist=troupes.filter((x)=>typeof x.dates!="undefined").sort((a,b)=>(a.text>b.text)).filter(unique);
     evenements.map(x=>x.info(troupes,persolist));
@@ -999,12 +1002,10 @@ $( document ).ready(function() {
     });    
     var zones = hexmap.container.find('.zone');
     for (var i=0;i<zones.length;i++) {
-        console.log(zones[i].attributes["data-z"].value);
         zones[i].id=i;
         zones[i].onclick=function(e){
 
-            S('#message-6').html("clicking on zone "+this.attributes["data-z"].value);
-            console.log("hex="+this.parentNode.id);
+            S('#message-6').html("clicking on zone "+this.attributes["data-z"].value+" in hex "+this.parentNode.id+"/"+hexmap.hexes[this.parentNode.id].label);
         }.bind(zones[i]);
     }
     /*hexmap.on('click',function(e){

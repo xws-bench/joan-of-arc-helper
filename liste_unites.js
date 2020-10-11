@@ -565,7 +565,7 @@ var liste_unites=[
     {nom:"Philippe VI de Valois",carac:"C%pM11*1j4",f1:[300,4,PERSONNAGE,1,2],melee:[rouge],defense:[noir,noir],pdv:2,modattaque:annule1recul,desc:"%ACTIVATED%: %ROUNDCOND%, %MOVE% 1 %CAVALERIE% d'une zone en direction d'une zone ennemie"},
 {nom:"Philippe d'Orléans",carac:"I%cyM12*1j4am",f2:[240,3,0,1,2],melee:[rouge,blanc],defense:[noir],pdv:2,desc:"X %BLESSURE% &rarr; %MELEE%: +X %RECUL%"},
 {nom:"Philippe de Vitry",carac:"IïS",b2:[125,3,PERSONNAGE,1,2],defense:[noir,jaune],desc:"%ACTIVATED% %LEGENDE%: %ROUNDCOND%, %MOVE% <span class='blason-large mal'></span> d'une zone%BR%%CAMP%: 1 %REROLL% le dé du destin"},
-    {nom:"Philippe le Hardi",carac:"I%cF1P1",f2:[225,3,SOUTIEN,0,1],melee:[noir],defense:[noir,blanc] ,desc:"%PERSONNAGE%%HERE% : + %PARADE%%BR%Les unités dans sa zone ne peuvent subir d'attaque de tir"},
+    {nom:"Philippe le Hardi",carac:"I%cF1P1",f2:[225,3,SOUTIEN,0,1],melee:[noir],defense:[noir,blanc] ,desc:"%PERSONNAGE%%HERE% : + %PARADE%%BR%%NOSHOOT%"},
     {nom:"Piquiers Ecossais",carac:"Iémh",e1:[65,1,PIQUIERS,2,2,2,2],melee:[blanc],defense:[jaune],bonusdefense:[jaune_blanctue],bonuscond:sicavalerie,contrecoup:sicavalerie},
 {nom:"Piquiers Flamands",carac:"IR2h",melee:[blanc],defense:[blanc]},
 {nom:"Piquiers avec pavois",carac:"ImR2",melee:[blanc_bouclierrecule],defense:[noir]},

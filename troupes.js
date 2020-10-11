@@ -436,6 +436,7 @@ class Unite {
             dd=dd.replace(/%LEGENDE%/g,"<span class='jetonlegende jeton'></span>")
                 .replace(/%MELEE%/g,attaque.join(' / '))
                 .replace(/%BR%/g,"<br/>")
+                .replace(/%NOSHOOT%/g,"<span class='fr'>Les unités dans sa zone ne peuvent subir d'attaque de tir</span><span class='en'>Units in the same zone as this unit cannot be shooted at</span>")
                 .replace(/%MELEEONLY%/g,"<span class='melee combat'></span>")
                 .replace(/%POURSUITE%/g,"<span class='poursuiteaprescombat combat'></span>")  
                 .replace(/%HERE%/g,"<span class='here combat-cond'></span>")
