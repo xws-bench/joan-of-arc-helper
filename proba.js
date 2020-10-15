@@ -881,17 +881,7 @@ function computeArmy() {
     $(".moralshield").html(r+" (<span>"+mm+"</span> max)");
     /*$(".moral").html(Math.ceil(2*m/3));*/
 }
-
-    $.fn.dataTable.ext.buttons.alert = {
-        className: 'buttons-alert',
-        action: function ( e, dt, node, config ) {
-            let v=node[0].attributes.data.value;
-            console.log("v="+v);
-            //if (v=="neutre") v="undefined";
-            dt.columns( 1 ).search(v).draw();
-            }
-    };
-    
+ 
     function allowDrop(ev) {
         ev.preventDefault();
     }
