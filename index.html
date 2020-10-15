@@ -22,7 +22,8 @@
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="vendor/bootstrap/css/bootstrap-slider.min.css" rel="stylesheet">
-  <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="css/dataTables.min.css" rel="stylesheet">
+  <link href="css/buttons.bootstrap4.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/fas.css">
   <link rel="stylesheet" href="css/flags.min.css"/>
   <!-- <link href="css/datatables.min.css" rel="stylesheet"> -->
@@ -149,7 +150,54 @@
           
         </div>
       </div>
+
+
+      <div class="row no-gutters">
+        <div class="text-justify" lang="fr">
+          <h3>Liste des figurines</h3>
+          <p>Pour chaque figurine, la table liste les unités associées aux figurines ainsi que leur nombre par extension. Vous pouvez directement chercher l'abbréviation d'une extension, pour obtenir la liste de ses figurines. La liste des abbréviations pour les boites sont:</p>
+        </div>
+        <div class="text-justify" lang="en">
+          <h3>List of Minis</h3>
+          <p>For each mini, the table lists the units with this mini and their number for each extension. You can directly search for the abbreviation of a box to obtain its minis. List of box abbreviations:</p>
+        </div>
+        <div>
+          <ul>
+            <li>Core: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3074#/">the core box</a></li>
+            <li>Rel.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3074#/">reliquary extension</a></li>
+            <li>Apo.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3078#/">apocalypse extension</li>
+            <li>Dra.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3076#/">legendary dragon extension</a></li>
+            <li>Hel.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3081#/">unleash hell extension</a></li>
+            <li>Leg.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3079#/">legendary battles extension</a></li>
+            <li>Ott.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3084#/">ottoman army extension</a></li>
+            <li>Sie.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3077#/">siege extension</a></li>
+            <li>Vil.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3080#/">village extension</a></li>
+            <li>Siq.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3083#/">siege equipement extension</a></li>
+            <li>Teu.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3075#/">teutonic extension</a></li>
+            <li>SE: <a href="https://mythicgames.net/fr/joa-unboxing-the-super-exclusives/">super exclusive</a></li>
+            <li>RB1: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3479#/">reinforcement box #1</a></li>
+            <li>RB3: a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3482#/">reinforcement box #3</a></li>
+            <li>RB4: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3483#/">reinforcement box #4</a></li>
+            <li>RB5: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3485#/">reinforcement box #5</a></li>
+            <li>RB6: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3489#/">reinforcement box #6</a></li>
+            <li>RB10: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3495#/">reinforcement box #10</a></li>   
+          </ul>
+        </div>
+        <div class="col-12 p-0 mx-0">
+          <table id="tableminis" class="compact troupes table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th class="th-sm">Mini</th>
+                <th class="th-sm">Nombre </th>
+                <th class="th-sm">Nom</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
     </div>
+
   </section>
 
       <!-- The Modal -->
@@ -313,46 +361,74 @@
       </div>
     </div>
     <div class="row no-gutters">
-      <div class="col-12 m-3 "><span lang='fr'>Points de Moral</span><span lang='en'>Morale Points:</span>
+      <div class="col-12 m-3 "><span lang='fr'>Perte de moral</span><span lang='en'>Morale loss:</span>
         <span class="moralshield"></span>
       </div>
     </div>
   </section>
 
   <section id="scenario" class="noshow">
-    <figure class="ex-9">
-      <div id="hexmap-9">
+    <div class="row">
+      <div id="hexmap-9" class="col-6">
         <code>
           {
           "layout":"odd-q",
           "armies":
           {"army":"Francais","flag":"francais","list":[{"no":1,"name":"Chevaliers"},{"no":2,"name":"Chevaliers à pied"}]},
           "hexes": [
-          {"n":"1A","q":0,"r":2,"label":"Francais"},
-          {"n":"2A_1","q":1,"r":2,"label":"Francais"},
-          {"n":"3A","q":2,"r":1,"label":"Francais"},
-          {"n":"4A_1","q":2,"r":0,"label":"Francais"},
-          {"n":"5A","q":2,"r":-1,"label":"Francais"},
-          {"n":"6A","q":1,"r":-1,"label":"Francais"},
-          {"n":"7A","q":0,"r":-2,"label":"Brix<br>ton"},
-          {"n":"8A","q":-1,"r":-1,"label":"Batter<br>sea"},
-          {"n":"9A","q":-2,"r":-1,"label":"Chel<br>sea"},
-          {"n":"10A","q":-2,"r":0,"label":"Mary Le Bone"},
-          {"n":"11A","q":-2,"r":1,"label":"S<sup>t</sup> John'<sup>s</sup> Wood"},
-          {"n":"12A","orient":"1","q":-1,"r":2,"label":"Kentish Town"},
-          {"n":"1B","q":0,"r":1,"label":"Isling·<br>ton"},
-          {"n":"V1A","q":1,"r":1,"label":"Bethnal Green"},
-          {"n":"2A_2","q":1,"r":0,"label":"South·<br>wark"},
-          {"n":"4B_1","q":0,"r":-1,"label":"Kenning·<br>ton"},
-          {"n":"S2B","q":-1,"r":0,"label":"Westmin-<br>ster"},
-          {"n":"V2B","q":-1,"r":1,"label":"St Pan·<br>cras"},
-          {"n":"V1A","q":0,"r":0,"label":"The<br><div>City</div>"}
+          {"n":"1A","q":0,"r":2,"zones":["Francais"]},
+          {"n":"2A_1","q":1,"r":2,"zones":["Francais","Anglais","Ecossais"]},
+          {"n":"3A","q":2,"r":1,"zones":["Francais"]},
+          {"n":"4A_1","q":2,"r":0,"zones":["Francais","Francais"]},
+          {"n":"5A","q":2,"r":-1,"zones":["Francais"]},
+          {"n":"6A","q":1,"r":-1,"zones":["Francais"]},
+          {"n":"7A","q":0,"r":-2,"zones":["Anglais"]},
+          {"n":"8A","q":-1,"r":-1,"zones":["Anglais"]},
+          {"n":"9A","q":-2,"r":-1,"zones":["Anglais"]},
+          {"n":"10A","q":-2,"r":0,"zones":["Anglais"]},
+          {"n":"11A","q":-2,"r":1,"zones":["Ecossais"]},
+          {"n":"12A","orient":"1","q":-1,"r":2,"zones":["Anglais"]},
+          {"n":"1B","q":0,"r":1,"zones":["Anglais"]},
+          {"n":"V1A","q":1,"r":1,"zones":["Anglais"]},
+          {"n":"2A_2","q":1,"r":0,"zones":[""]},
+          {"n":"4B_1","q":0,"r":-1,"zones":[""]},
+          {"n":"S2B","q":-1,"r":0,"zones":[""]},
+          {"n":"V2B","q":-1,"r":1,"zones":[""]},
+          {"n":"V1A","q":0,"r":0,"zones":[""]}
           ]
           }
         </code>
       </div>
-      <figcaption id="message-6">London indexed by 2-mile hexagons</figcaption>
-    </figure>    
+      <div class="col-6">
+        <div class="player" data-selected=0 data-named=0>
+          <select title="Select your faction">
+            <option disabled>Select...</option>
+          </select>
+          <input type="text" placeholder="joueur 1">
+          <button disabled onclick="showUnitChooser()">Ok</button>
+        </div>
+        <div class="playerchosen">
+          <span class="blason-large"></span>
+          <span class="playername"></span>
+        </div>
+        <div class="unitchooser" style="display:none">
+          <table id="tableunites" class="compact troupes table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th class="th-sm">#</th>
+                <th class="th-sm">-</th>
+                <th class="th-sm">Nom</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div id="message-6">
+          Test map
+        </div>
+      </div>
   </section>
   
 
@@ -420,8 +496,8 @@
     </div>
     
   </section>
-
-  
+    
+  </section>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
@@ -477,7 +553,8 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="js/jquery.dataTables.min.js"></script>
+  <script src="js/dataTables.min.js"></script>
+  <script src="js/dataTables.buttons.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap-slider.min.js"></script>
   <!-- Plugin JavaScript -->

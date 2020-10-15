@@ -802,8 +802,8 @@ function updateTotalPts() {
         default: $(".total").html(4000+bonuspts); break;
         }
     }
-    $(".sum").html(0);
-    $(".moral").html(0);
+/*    $(".sum").html(0);
+    $(".moral").html(0);*/
 }
 function changebutton(id) {
     console.log($("#list"+id).attr(val));
@@ -858,12 +858,14 @@ function computeArmy() {
         let text="<div class='row pt-3 pl-1'><span class='blason-xlarge "+i+"'></span>";
         for (j in x) {
             let u = x[j];
-            text+="<figure>";
-            text+="<img src='"+u.src+"'>";
-            if (u.t.troupe)
-                text+="<figcaption>"+u.no+" "+u.t.getName();
+            let t="class='perso-img'";
+            if (u.t.troupe==true) t="class='troupe-img' ";
+            text+="<figure>";   
+            text+="<img "+t+" src='"+u.src+"'>";
+            if (u.t.troupe==true)
+                text+="<figcaption>"+u.no+"x"+u.t.getName();
             else  text+="<figcaption>"+u.t.getName();
-            text+="<div class='moralv text-muted'>moral:"+u.moral+" pts:"+u.points+"</div></figcaption>";
+            text+="<div class='moralv text-muted'>moral:"+(u.no*u.moral)+" pts:"+(u.no*u.points)+"</div></figcaption>";
             text+="</figure>";
         }
         text=text+"</div>";
@@ -871,17 +873,69 @@ function computeArmy() {
     }
     $(".sum").html(s);
     let r="";
-    for (i=0;i<Math.ceil(2*m/3)-4;i+=5) {
+    let mm=Math.ceil(2*m/3);
+    for (i=0;i<mm-4;i+=5) {
         r+="&#9633;".repeat(5)+"&nbsp;&nbsp;";
     }
-    r+="&#9633;".repeat(Math.ceil(2*m/3)-i);
-    $(".moralshield").html(r+" (<span class='moral'></span> max)");
-    $(".moral").html(Math.ceil(2*m/3));
+    r+="&#9633;".repeat(mm-i);
+    $(".moralshield").html(r+" (<span>"+mm+"</span> max)");
+    /*$(".moral").html(Math.ceil(2*m/3));*/
 }
+
+    $.fn.dataTable.ext.buttons.alert = {
+        className: 'buttons-alert',
+        action: function ( e, dt, node, config ) {
+            let v=node[0].attributes.data.value;
+            console.log("v="+v);
+            //if (v=="neutre") v="undefined";
+            dt.columns( 1 ).search(v).draw();
+            }
+    };
+    
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+function drop(ev,ui) {
+    ev.preventDefault();
+    var data = troupes[ev.dataTransfer.getData("text")];
+    var html=data.toHTML();
+    console.log(ev);
+    let img=$("<img src='images/"+html[10][0]+"'>");
+    let h=$(".navbar").css("height").split("p")[0];
+    console.log(h);
+    img.css({width:"32px"});
+    console.log(img.height());
+    img.css({top: ev.pageY-h-16, left: ev.pageX, position:'absolute'});
+    $("#hexmap-9").append(img);
+    if (typeof data.faction!="undefined") 
+        ev.target.attributes["class"].value+=" "+NOM_FACTION[data.faction];
+    ev.target.attributes["data-original-title"].value+="<br/>-"+data.getName(false);
+    //$('[data-toggle="tooltip"]').tooltip()
+}
+var tableunites;
+
+function newPlayer() {
+}
+function showUnitChooser() {
+    $(".player select").prop('disabled', 'disabled');
+    $(".player").hide();
+    $(".playerchosen").show();
+    $(".unitchooser").show();
+    
+    let faction=$(".player select").val();
+    $(".playerchosen .blason-large").addClass(NOM_FACTION[faction]);
+    $(".playerchosen .playername").html($(".player input").val());
+    tableunites.columns(1).search(NOM_FACTION[faction]).order( [ 3, 'asc' ] ).draw();
+}
+
 $( document ).ready(function() {
     if (/^en\b/.test(navigator.language)) {       
         document.documentElement.lang='en';
-    } else console.log(navigator.language);
+    }
     troupes=Unite.troupes();
     persolist=troupes.filter((x)=>typeof x.dates!="undefined").sort((a,b)=>(a.text>b.text)).filter(unique);
     evenements.map(x=>x.info(troupes,persolist));
@@ -905,8 +959,10 @@ $( document ).ready(function() {
     });
     $(".findperso").select2({placeholder:'Choisissez une unité',data:persolist,templateResult:(e)=>(new Unite(e)).format(true)});
     $(".finddate").select2({placeholder:'Choisissez un événement',data:evenements,templateResult:(e)=>(new Evenement(e)).format(true)});
-
-        let terrains=[{id:"plain",text:"plaine",selected:true},{id:"ble",text:"champs"},{id:"forest",text:"forêt"},{id:"swamp",text:"marais"},{id:"pave",text:"village"},{id:"rock",text:"rocher"}];
+    for (i=0;i<NOM_FACTION.length;i++)
+        $(".player select").append("<option value='"+i+"'>"+NOM_FACTION[i]+"</option>");
+    
+    let terrains=[{id:"plain",text:"plaine",selected:true},{id:"ble",text:"champs"},{id:"forest",text:"forêt"},{id:"swamp",text:"marais"},{id:"pave",text:"village"},{id:"rock",text:"rocher"}];
     
     $(".trouveterrain").select2({data:terrains,templateResult:(e)=>$("<span><img class='img-circle "+e.id+"' src='css/"+e.id+".png'/>"+e.text+"</span>")});
     for (i in NOM_FACTION) {
@@ -941,7 +997,57 @@ $( document ).ready(function() {
             {"width": "50%"},
         ]
     });
+    let mt = [];
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+    }
 
+    for (i in minis) {
+        let c="mini";
+        let names=minis[i].unites.map((x)=>troupes[x].getName(true)).filter(onlyUnique);
+        let ext=minis[i].n;
+        let boxes=["Core","Rel.","Apo.","Dra.","Hel.","Leg.","Ott.","SE","Sie.","SiQ.","Teu.","Vil.","RB1","RB3","RB4","RB5","RB6","RB10"];
+        let exts="";
+        for (let i=0;i<boxes.length;i++)
+            if (ext[i]>0) exts+="<li>"+boxes[i]+":"+ext[i]+"x </li>";
+        let n=names.length;
+        if (n>0)
+            mt.push("<td><img src='mini-small/"+i+".png'></td><td><ul>"+exts+"</ul></td><td>"+(names.join(", "))+"</td>");
+    }
+    $("#tableminis tbody").append("<tr>"+mt.join("</tr><tr>")+"</tr>");
+    $("#tableminis").DataTable({
+        "paging":         true,
+        "columnDefs": [
+            { "width": "10%", "targets": 0 }
+        ],
+        "columns": [
+            {"width":"10%"},
+            {"width":"20%"},
+            {"width": "70%"},
+
+        ]
+    });
+    $("#tableunites tbody").append(troupes.map(function (x) {
+        let h= x.toHTML();
+        let f=NOM_FACTION[x.faction];
+        if (typeof x.faction=="undefined"||x.faction==AUTRE||x.faction==MERCENAIRE)
+            f="bien mal francais ecossais ottoman anglais bourguignon valaque mercenaire lituanien polonais teutonique";
+        return "<tr><td><img draggable='true' ondragstart='drag(event)' id='"+x.id+"' src='mini-small/"+h[10][0]+"'></td>"
+            +"<td><span class='noshow'>"+f+"</span><span>"+h[2]+"</span></td><td>"+h[0]+"</td></tr>";
+    }).join(''));
+    
+    tableunites=$("#tableunites").DataTable({
+        scrollY:        "200px",
+        scrollCollapse: true,
+        "paging":         false,
+        "info":false,
+        "ordering":true,
+        "columns": [
+            {"width": "15%"},
+            {"width": "15%"},
+            {"width": "85%"},
+        ],
+    });
     //var u = touslesduels(troupes.filter((x)=>x.troupe));
     $("#tabletroupes tbody").append(troupes.filter((x)=>x.troupe).join(''));
     $("#tabletroupes").DataTable({
@@ -1003,11 +1109,15 @@ $( document ).ready(function() {
     var zones = hexmap.container.find('.zone');
     for (var i=0;i<zones.length;i++) {
         zones[i].id=i;
+        zones[i].attributes["title"].value="<b>Unités</b>";
         zones[i].onclick=function(e){
-
-            S('#message-6').html("clicking on zone "+this.attributes["data-z"].value+" in hex "+this.parentNode.id+"/"+hexmap.hexes[this.parentNode.id].label);
+            let z=this.attributes["data-z"].value;
+            S('#message-6').html("clicking on zone "+z+" in hex "+this.parentNode.id+"/"+hexmap.hexes[this.parentNode.id].zones[z-1]);
+            $(".zone").removeClass("active");
+            this.classList.add("active");
         }.bind(zones[i]);
     }
+    $('[data-toggle="tooltip"]').tooltip()
     /*hexmap.on('click',function(e){
 
       S('#message-6').html('You have clicked hex '+e.i+' ('+e.hex.id+')')
@@ -1017,4 +1127,10 @@ $( document ).ready(function() {
     hexmap.setClass(function(id,hex){
 	return "h"+hex.n;
     });
+    let a=function() {
+        if ($(".player input").val()!=""&&$(".player select").val()!="")
+            $(".player button").prop("disabled",false);
+    };
+    $(".player select").change(a);
+    $(".player input").change(a);
 });

@@ -44,6 +44,7 @@
     color: white;
     text-decoration: none;
 }
+
 .hexmap.pointy .hex, .hexmap.pointy .hexinner {
     -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
     clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
@@ -55,6 +56,12 @@
 .hexmap.flat .zone {
     z-index:9;
     opacity:0;
+    /*visibility:hidden;*/
+}
+.hexmap.flat .hex:hover .zone {
+    z-index:9;
+    opacity:0;
+    visibility:visible;
 }
 .hexmap.flat .fullhex {
     clip-path: polygon(25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0 50%);

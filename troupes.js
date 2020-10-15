@@ -11,6 +11,14 @@ class Unite {
         Object.assign(this,u);
         this.pdv=n*u.pdv;
         this.id=UNITEID++;
+        if (typeof this.i!="undefined") {
+            if (typeof minis[this.i]!="undefined") {
+                minis[this.i].unites.push(this.id);
+                if (this.alt>=2) minis[this.i+"_2"].unites.push(this.id);
+                if (this.alt>=3) minis[this.i+"_3"].unites.push(this.id);
+                if (this.alt>=4) minis[this.i+"_4"].unites.push(this.id);
+            } else minis[this.i]={unites:[],n:[]};
+        }
         this.text=this.nom+(this.prenom?" "+this.prenom:"");
         if (this.melee) {
             if (n>1) this.melee=this.melee.concat(u.melee);
@@ -141,7 +149,7 @@ class Unite {
             u.troupe=true;
             if (dictionnaire_unites[n]) {
                 if (dictionnaire_unites[n].f) u.troupe=false;
-                else u.i=dictionnaire_unites[n].i;
+                u.i=dictionnaire_unites[n].i;
                 u.alt=dictionnaire_unites[n].alt;
                 u.en=dictionnaire_unites[n].en;
                 if (typeof u.en=="undefined") u.en=n;
@@ -177,8 +185,7 @@ class Unite {
                     }
                 }
             }
-
-            
+         
             l.push(new Unite(u));
         }
         return l;
@@ -540,17 +547,17 @@ class Unite {
         let command=null;
         if (this.commandement) 
             command=[this.commandement[0]==0?'A':this.commandement[0],this.commandement[1]];
-        let mini="",mini2="",mini3="";
+        let mini=[],mini2="",mini3="";
         if (typeof this.i!="undefined") {
-            mini="url(../mini-small/"+this.i+".png)";
+            mini=["../mini-small/"+this.i+".png"];
             if (this.alt>=2) {
-                mini+=",url(../mini-small/"+this.i+"_2.png)";
+                mini.push("../mini-small/"+this.i+"_2.png");
             }
             if (this.alt>=3) {
-                mini+=",url(../mini-small/"+this.i+"_3.png)";
+                mini.push("../mini-small/"+this.i+"_3.png");
             }
             if (this.alt>=4) {
-                mini+=",url(../mini-small/"+this.i+"_4.png)";
+                mini.push("../mini-small/"+this.i+"_4.png");
             }
         }
         let nbox=this.box.map(x=>NOM_BOITE[x]).join(",");
@@ -564,7 +571,7 @@ class Unite {
                 c.join(', '),
                 command,
                 nbox,
-                [mini,mini2,mini3]
+                mini
                ];         
     }
     toString() {
@@ -573,7 +580,7 @@ class Unite {
         let s="";
         if (this.grand==true) c="mini-large";
         if (this.gigantesque==true) c="mini-huge";
-        return "<tr><td  class='"+c+"' style='--mini:"+j[10][0]+s+"'><span class='img'></span>"+j[0]+"</td><td class='en "+c+"' style='--mini:"+j[10][0]+"'><span class='img'></span>"+j[1]+"</td><td>"+j[9]+"</td><td>"+j[2]+"</td><td>"+j[3]+"</td><td><div>"+j[4]+"</div><div class='hvalr'>"+j[5]+"</div></td><td>"+this.getCommand()+"</td><td><span class='pdv'>"+j[6]+"</span></td><td>"+j[7]+"</td></tr>";
+        return "<tr><td  class='"+c+"' style='--mini:url("+j[10].join('),url(')+")'><span class='img'></span>"+j[0]+"</td><td class='en "+c+"' style='--mini:url("+j[10].join('),url(')+")'><span class='img'></span>"+j[1]+"</td><td>"+j[9]+"</td><td>"+j[2]+"</td><td>"+j[3]+"</td><td><div>"+j[4]+"</div><div class='hvalr'>"+j[5]+"</div></td><td>"+this.getCommand()+"</td><td><span class='pdv'>"+j[6]+"</span></td><td>"+j[7]+"</td></tr>";
     }
     getHTMLName(n) {
        let nn=this.nom;
@@ -637,3 +644,6 @@ class Unite {
     }
 }
 
+class Mini {
+
+}

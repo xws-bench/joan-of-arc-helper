@@ -78,12 +78,21 @@
 	using "background" and the border width using "margin" */
     background: #eee;
     color: #fdf4d6;
-    display: block;
+    display: flex;
     z-index: 990;
+    opacity: 0.5;
+    /*visibility:visible;*/ }
+  #hexmap-9 .hex .zone.francais {
+    background: #00f;
+    opacity: 0.5; }
+  #hexmap-9 .hex .zone.anglais {
+    background: #f00;
     opacity: 0.5; }
   #hexmap-9 .zone img {
-    opacity: 1;
-    z-index: 999; }
+    /*visibility:visible;*/
+    z-index: 999;
+    opacity: 0.9;
+    width: 50%; }
 
 /*#hexmap-9 .hex:hover .id, #hexmap-9 .hex:hover .name {
 	text-shadow: none;

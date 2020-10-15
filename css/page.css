@@ -26,6 +26,15 @@ body {
 .dropdown-submenu {
   position: relative; }
 
+img.troupe-img {
+  width: 13em; }
+
+img.perso-img {
+  width: 13em; }
+
+#tableminis img {
+  height: 130%; }
+
 .mini .img {
   position: absolute;
   bottom: 0;
@@ -38,6 +47,9 @@ body {
   background-repeat: no-repeat;
   background-position-x: 75%,40%,0%,110%;
   filter: opacity(0.7) contrast(2); }
+
+#tableminis img {
+  width: 5em; }
 
 .mini {
   height: 5em;
@@ -147,7 +159,8 @@ figure {
   background-color: #edeae4; }
 
 a, a:hover {
-  color: #73664d; }
+  color: #73664d;
+  /*mix-blend-mode: multiply;*/ }
 
 .card-header {
   background-color: #dbd5ca; }
@@ -831,8 +844,11 @@ section {
 h1 {
   font: 5ex "title", sans-serif; }
 
+#tableunites img {
+  width: 4em; }
+
 section img {
-  padding: 0;
+  padding: 1px;
   width: 90%; }
 
 .card img {
