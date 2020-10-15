@@ -46,7 +46,8 @@ img.perso-img {
   background-size: auto 130%;
   background-repeat: no-repeat;
   background-position-x: 75%,40%,0%,110%;
-  filter: opacity(0.7) contrast(2); }
+  filter: opacity(0.7) contrast(2);
+  pointer-events: none; }
 
 #tableminis img {
   width: 5em; }
@@ -70,7 +71,8 @@ img.perso-img {
   background-size: auto 130%;
   background-repeat: no-repeat;
   background-position-x: 50%;
-  filter: opacity(0.7) contrast(2); }
+  filter: opacity(0.7) contrast(2);
+  pointer-events: none; }
 
 .mini-huge {
   height: 6em;
@@ -87,7 +89,8 @@ img.perso-img {
   background-size: auto 120%;
   background-repeat: no-repeat;
   background-position-x: 0%;
-  filter: opacity(0.7) contrast(2); }
+  filter: opacity(0.7) contrast(2);
+  pointer-events: none; }
 
 /*
 figure {
