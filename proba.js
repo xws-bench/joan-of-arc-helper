@@ -949,7 +949,7 @@ function storeJSON(t) {
     let json=JSONC.unpack(jc);
     json.nom=$("#getname"+n).val();
     console.log("Storing joueur"+$("#getname"+n).val()+" = (n="+n+") "+JSON.stringify(json));
-    $.get("http://tinyurl.com/api-create.php",{url:"https://xws-bench.github.io/joan-of-arc-helper/index.html?h="+JSONC.pack(json)}).done(function(data) {
+    $.get("https://tinyurl.com/api-create.php",{url:"https://xws-bench.github.io/joan-of-arc-helper/index.html?h="+JSONC.pack(json)}).done(function(data) {
         console.log("code:"+data.substring(20));
         $("#code").html(data.substring(20));
     });
