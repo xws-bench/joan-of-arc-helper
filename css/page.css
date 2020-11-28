@@ -20,17 +20,70 @@ body {
 :lang(en) [lang='fr'] + .select2 {
   display: none; }
 
+img[draggable] {
+  filter: drop-shadow(1px 1px 1px #fff); }
+
+#hex1, #hex2, #hex3 {
+  display: flex;
+  flex-flow: row wrap; }
+
+.flexbox.tight {
+  margin: -3%; }
+
+.flexbox.tex1 {
+  width: 80px;
+  height: 75px; }
+
+.flexbox.tex2 {
+  width: 120px;
+  height: 140px; }
+
+.flexbox.tex3 {
+  width: 145px;
+  height: 145px; }
+
+.flexbox {
+  position: relative;
+  transform-origin: 20% 20%; }
+  .flexbox img {
+    /*width:20%;*/ }
+  .flexbox button {
+    border-radius: 50%;
+    position: absolute;
+    z-index: 2; }
+  .flexbox span.caption {
+    z-index: 3; }
+  .flexbox span {
+    position: absolute;
+    /*top:-20%;
+        left:0;*/
+    z-index: 1;
+    color: white;
+    text-shadow: 2px 2px black; }
+
+/*
+#hex1,#hex2,#hex3,#playerchooser {
+    visibility:hidden;
+    position:absolute;
+    top:-1000px;
+}
+
+#hex1.active,#hex2.active,#hex3.active,#playerchooser.active {
+    visibility:visible;
+    position:static;
+    padding-top:2em;
+}*/
 .hidden {
   display: none; }
 
 .dropdown-submenu {
   position: relative; }
 
-img.troupe-img {
-  width: 13em; }
+.troupe-img {
+  width: 5em; }
 
-img.perso-img {
-  width: 13em; }
+.perso-img {
+  width: 6em; }
 
 .mini .img {
   position: absolute;
@@ -129,10 +182,11 @@ figure {
   margin-top: 5px;
   margin-right: -10px; }
 
-.dropdown-toggle::after {
-  float: right;
-  margin-top: 1ex; }
-
+/*.dropdown-toggle::after {
+    float:left;
+    margin-top:1ex;
+    margin-right:0.255rem;
+}*/
 .dropdown-submenu:hover > span:after {
   border-left-color: #fff; }
 
@@ -806,54 +860,865 @@ section {
 @media screen {
   .noshow, .noshow:target ~ header, .noshow:target ~ #home {
     visibility: hidden;
-    position: absolute;
-    top: -1000px; }
+    position: fixed;
+    top: -1000em;
+    opacity: 0; }
   .noshow:target, header, #home {
     position: static;
-    visibility: visible; } }
-
-[lang='fr'] #chrono:target ~ nav .navbar-brand::after {
-  content: "Chronologie"; }
-
-[lang='en'] #chrono:target ~ nav .navbar-brand::after {
-  content: "Timeline"; }
-
-[lang='fr'] #armee:target ~ nav .navbar-brand::after {
-  content: "Constructeur d'armée"; }
-
-[lang='en'] #armee:target ~ nav .navbar-brand::after {
-  content: "Army Builder"; }
-
-[lang='fr'] #troupes:target ~ nav .navbar-brand::after {
-  content: "Unités"; }
-
-[lang='en'] #troupes:target ~ nav .navbar-brand::after {
-  content: "Units"; }
-
-[lang='fr'] #compare:target ~ nav .navbar-brand::after {
-  content: "Stats"; }
-
-[lang='en'] #compare:target ~ nav .navbar-brand::after {
-  content: "Statistics"; }
-
-.navbar-brand::after {
-  content: "";
-  color: white;
-  width: 8em;
-  font: 3ex "title", sans-serif; }
+    visibility: visible;
+    opacity: 1;
+    top: 0; } }
 
 h1 {
   font: 5ex "title", sans-serif; }
 
-#tableunites img {
-  width: 4em; }
+.nav-tabs {
+  background: #eee; }
+  .nav-tabs .nav-link {
+    background: #eee;
+    border: 1px; }
+
+.H10A {
+  background-size: 100%;
+  background-image: url("../terrain/10A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H10A {
+  transform: scale(0.8); }
+
+.H11A {
+  background-size: 100%;
+  background-image: url("../terrain/11A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H11A {
+  transform: scale(0.8); }
+
+.H11B {
+  background-size: 100%;
+  background-image: url("../terrain/11B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H11B {
+  transform: scale(0.8); }
+
+.H12A {
+  background-size: 100%;
+  background-image: url("../terrain/12A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H12A {
+  transform: scale(0.8); }
+
+.H12B {
+  background-size: 100%;
+  background-image: url("../terrain/12B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H12B {
+  transform: scale(0.8); }
+
+.H1A {
+  background-size: 100%;
+  background-image: url("../terrain/1A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H1A {
+  transform: scale(0.8); }
+
+.H1B {
+  background-size: 100%;
+  background-image: url("../terrain/1B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H1B {
+  transform: scale(0.8); }
+
+.H3A {
+  background-size: 100%;
+  background-image: url("../terrain/3A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H3A {
+  transform: scale(0.8); }
+
+.H5A {
+  background-size: 100%;
+  background-image: url("../terrain/5A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H5A {
+  transform: scale(0.8); }
+
+.H5B {
+  background-size: 100%;
+  background-image: url("../terrain/5B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H5B {
+  transform: scale(0.8); }
+
+.H6A {
+  background-size: 100%;
+  background-image: url("../terrain/6A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H6A {
+  transform: scale(0.8); }
+
+.H6B {
+  background-size: 100%;
+  background-image: url("../terrain/6B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H6B {
+  transform: scale(0.8); }
+
+.H7A {
+  background-size: 100%;
+  background-image: url("../terrain/7A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H7A {
+  transform: scale(0.8); }
+
+.H7B {
+  background-size: 100%;
+  background-image: url("../terrain/7B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H7B {
+  transform: scale(0.8); }
+
+.H8A {
+  background-size: 100%;
+  background-image: url("../terrain/8A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H8A {
+  transform: scale(0.8); }
+
+.H8B {
+  background-size: 100%;
+  background-image: url("../terrain/8B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H8B {
+  transform: scale(0.8); }
+
+.H9A {
+  background-size: 100%;
+  background-image: url("../terrain/9A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H9A {
+  transform: scale(0.8); }
+
+.H9B {
+  background-size: 100%;
+  background-image: url("../terrain/9B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .H9B {
+  transform: scale(0.8); }
+
+.HS1A {
+  background-size: 100%;
+  background-image: url("../terrain/S1A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .HS1A {
+  transform: scale(0.8); }
+
+.HS1B {
+  background-size: 100%;
+  background-image: url("../terrain/S1B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .HS1B {
+  transform: scale(0.8); }
+
+.HS2A {
+  background-size: 100%;
+  background-image: url("../terrain/S2A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .HS2A {
+  transform: scale(0.8); }
+
+.HS2B {
+  background-size: 100%;
+  background-image: url("../terrain/S2B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .HS2B {
+  transform: scale(0.8); }
+
+.HS3A {
+  background-size: 100%;
+  background-image: url("../terrain/S3A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .HS3A {
+  transform: scale(0.8); }
+
+.HS3B {
+  background-size: 100%;
+  background-image: url("../terrain/S3B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .HS3B {
+  transform: scale(0.8); }
+
+.HV1A {
+  background-size: 100%;
+  background-image: url("../terrain/V1A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .HV1A {
+  transform: scale(0.8); }
+
+.HV1B {
+  background-size: 100%;
+  background-image: url("../terrain/V1B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .HV1B {
+  transform: scale(0.8); }
+
+.HV2B {
+  background-size: 100%;
+  background-image: url("../terrain/V2B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .HV2B {
+  transform: scale(0.8); }
+
+.HV3A {
+  background-size: 100%;
+  background-image: url("../terrain/V3A.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .HV3A {
+  transform: scale(0.8); }
+
+.HV3B {
+  background-size: 100%;
+  background-image: url("../terrain/V3B.png");
+  color: white;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 3px black;
+  /*content:" ";*/
+  white-space: pre;
+  width: 50px;
+  height: 43px;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 0em;
+  transform-origin: 42px 33px; }
+
+.card-header .HV3B {
+  transform: scale(0.8); }
+
+.H13A {
+  background-image: url("../terrain/13A_1.png"), url("../terrain/13A_2.png");
+  background-position: center bottom, center top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 50px;
+  height: 87px;
+  /*content:" ";*/
+  white-space: pre;
+  background-size: 100%;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 1em;
+  transform-origin: 23px 78px; }
+
+.card-header .H13A {
+  transform: scale(0.8); }
+
+.H13B {
+  background-image: url("../terrain/13B_1.png"), url("../terrain/13B_2.png");
+  background-position: center bottom, center top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 50px;
+  height: 87px;
+  /*content:" ";*/
+  white-space: pre;
+  background-size: 100%;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 1em;
+  transform-origin: 23px 78px; }
+
+.card-header .H13B {
+  transform: scale(0.8); }
+
+.H14A {
+  background-image: url("../terrain/14A_1.png"), url("../terrain/14A_2.png");
+  background-position: center bottom, center top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 50px;
+  height: 87px;
+  /*content:" ";*/
+  white-space: pre;
+  background-size: 100%;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 1em;
+  transform-origin: 23px 78px; }
+
+.card-header .H14A {
+  transform: scale(0.8); }
+
+.H14B {
+  background-image: url("../terrain/14B_1.png"), url("../terrain/14B_2.png");
+  background-position: center bottom, center top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 50px;
+  height: 87px;
+  /*content:" ";*/
+  white-space: pre;
+  background-size: 100%;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 1em;
+  transform-origin: 23px 78px; }
+
+.card-header .H14B {
+  transform: scale(0.8); }
+
+.H15A {
+  background-image: url("../terrain/15A_1.png"), url("../terrain/15A_2.png");
+  background-position: center bottom, center top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 50px;
+  height: 87px;
+  /*content:" ";*/
+  white-space: pre;
+  background-size: 100%;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 1em;
+  transform-origin: 23px 78px; }
+
+.card-header .H15A {
+  transform: scale(0.8); }
+
+.H15B {
+  background-image: url("../terrain/15B_1.png"), url("../terrain/15B_2.png");
+  background-position: center bottom, center top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 50px;
+  height: 87px;
+  /*content:" ";*/
+  white-space: pre;
+  background-size: 100%;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 1em;
+  transform-origin: 23px 78px; }
+
+.card-header .H15B {
+  transform: scale(0.8); }
+
+.H16A {
+  background-image: url("../terrain/16A_1.png"), url("../terrain/16A_2.png");
+  background-position: center bottom, center top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 50px;
+  height: 87px;
+  /*content:" ";*/
+  white-space: pre;
+  background-size: 100%;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 1em;
+  transform-origin: 23px 78px; }
+
+.card-header .H16A {
+  transform: scale(0.8); }
+
+.H16B {
+  background-image: url("../terrain/16B_1.png"), url("../terrain/16B_2.png");
+  background-position: center bottom, center top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 50px;
+  height: 87px;
+  /*content:" ";*/
+  white-space: pre;
+  background-size: 100%;
+  display: block;
+  transform: scale(1.5);
+  margin-bottom: 1em;
+  transform-origin: 23px 78px; }
+
+.card-header .H16B {
+  transform: scale(0.8); }
+
+.H17A {
+  background-image: url("../terrain/17A_1.png"), url("../terrain/17A_2.png"), url("../terrain/17A_3.png");
+  background-position: right bottom, left top 50%, right top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 90px;
+  height: 90px;
+  background-size: 58%;
+  display: block;
+  white-space: pre;
+  transform: scale(1.5);
+  margin-bottom: 2em;
+  transform-origin: 91px 70px; }
+
+.card-header .H17A {
+  transform: scale(0.8); }
+
+.H18A {
+  background-image: url("../terrain/18A_1.png"), url("../terrain/18A_2.png"), url("../terrain/18A_3.png");
+  background-position: right bottom, left top 50%, right top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 90px;
+  height: 90px;
+  background-size: 58%;
+  display: block;
+  white-space: pre;
+  transform: scale(1.5);
+  margin-bottom: 2em;
+  transform-origin: 91px 70px; }
+
+.card-header .H18A {
+  transform: scale(0.8); }
+
+.H2A {
+  background-image: url("../terrain/2A_1.png"), url("../terrain/2A_2.png"), url("../terrain/2A_3.png");
+  background-position: right bottom, left top 50%, right top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 90px;
+  height: 90px;
+  background-size: 58%;
+  display: block;
+  white-space: pre;
+  transform: scale(1.5);
+  margin-bottom: 2em;
+  transform-origin: 91px 70px; }
+
+.card-header .H2A {
+  transform: scale(0.8); }
+
+.H4A {
+  background-image: url("../terrain/4A_1.png"), url("../terrain/4A_2.png"), url("../terrain/4A_3.png");
+  background-position: right bottom, left top 50%, right top;
+  background-repeat: no-repeat;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 90px;
+  height: 90px;
+  background-size: 58%;
+  display: block;
+  white-space: pre;
+  transform: scale(1.5);
+  margin-bottom: 2em;
+  transform-origin: 91px 70px; }
+
+.card-header .H4A {
+  transform: scale(0.8); }
+
+.H17B {
+  background-image: url("../terrain/17B_1.png"), url("../terrain/17B_2.png"), url("../terrain/17B_3.png");
+  background-repeat: no-repeat;
+  background-position: left bottom, right top 50%, left top;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 90px;
+  height: 90px;
+  background-size: 58%;
+  white-space: pre;
+  display: block;
+  transform: scale(1.5);
+  transform-origin: 64px 70px; }
+
+.H18B {
+  background-image: url("../terrain/18B_1.png"), url("../terrain/18B_2.png"), url("../terrain/18B_3.png");
+  background-repeat: no-repeat;
+  background-position: left bottom, right top 50%, left top;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 90px;
+  height: 90px;
+  background-size: 58%;
+  white-space: pre;
+  display: block;
+  transform: scale(1.5);
+  transform-origin: 64px 70px; }
+
+.H2B {
+  background-image: url("../terrain/2B_1.png"), url("../terrain/2B_2.png"), url("../terrain/2B_3.png");
+  background-repeat: no-repeat;
+  background-position: left bottom, right top 50%, left top;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 90px;
+  height: 90px;
+  background-size: 58%;
+  white-space: pre;
+  display: block;
+  transform: scale(1.5);
+  transform-origin: 64px 70px; }
+
+.H4B {
+  background-image: url("../terrain/4B_1.png"), url("../terrain/4B_2.png"), url("../terrain/4B_3.png");
+  background-repeat: no-repeat;
+  background-position: left bottom, right top 50%, left top;
+  color: white;
+  text-shadow: 2px 2px 3px black;
+  width: 90px;
+  height: 90px;
+  background-size: 58%;
+  white-space: pre;
+  display: block;
+  transform: scale(1.5);
+  transform-origin: 64px 70px; }
+
+.editor-preview-side, .editor-preview {
+  /*    column-count: 2;*/
+  text-align: justify;
+  /*    column-gap: 1ex;*/
+  background-color: #e5e1d8 !important; }
+  .editor-preview-side h1, .editor-preview h1 {
+    text-align: center;
+    color: #b89267;
+    background-color: #4b443c;
+    margin: 0;
+    padding: 1ex; }
+    .editor-preview-side h1 strong, .editor-preview h1 strong {
+      color: white;
+      font-size: smaller;
+      display: block;
+      font-size: small; }
+  .editor-preview-side h2::before, .editor-preview h2::before {
+    content: "";
+    background-image: url(../images/icon/lion.png);
+    background-size: 1.1em 1.1em;
+    width: 1.1em;
+    height: 1.1em;
+    display: inline-block; }
+
+#tableunites img, #hexmap-9 img {
+  width: 32px; }
+
+#tableunites img.grand, #hexmap-9 img.grand {
+  width: 64px; }
+
+#tableunites img.gigantesque, #hexmap-9 img.gigantesque {
+  width: 128px; }
 
 section img {
   padding: 1px;
   width: 90%; }
 
 .card img {
-  width: 16px; }
+  width: 48px; }
 
 section img.featurette-image {
   width: 40%;
@@ -1108,7 +1973,3 @@ section img.featurette-image {
 
 .coat.coat-Winrich-von-Kniprod {
   background-position: -224px -217px; }
-
-@font-face {
-  font-family: 'title';
-  src: url("../webfonts/blkchcry.ttf") format("truetype"); }

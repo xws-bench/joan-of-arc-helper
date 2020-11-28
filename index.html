@@ -14,15 +14,16 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Time of Legends: Joan of Arc scenario helper">
+  <meta name="description" content="Time of Legends: Joan of Arc scenario builder">
   <meta name="author" content="Denis Wings">
-   <meta name="keywords" content="Time of Legends: Joan of Arc, scenario helper, Hundred Years war, guerre de Cent ans">
+   <meta name="keywords" content="Time of Legends: Joan of Arc, scenario builder, Hundred Years war, guerre de Cent ans">
   <title>Joan of Arc Scenario Helper</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="vendor/bootstrap/css/bootstrap-slider.min.css" rel="stylesheet">
   <link href="css/datatables.min.css" rel="stylesheet">
+  <link href="css/jquery-ui.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/fas.css">
   <link rel="stylesheet" href="css/flags.min.css"/>
   <!-- <link href="css/datatables.min.css" rel="stylesheet"> -->
@@ -33,6 +34,8 @@
   <link href="css/page.css" rel="stylesheet">
   <link rel="stylesheet" href="css/stuquery.hexmap.css">
   <link rel="stylesheet" href="london.css">
+<link rel="stylesheet" href="css/simplemde.min.css">
+
   </head>
 <body id="page-top">
 
@@ -87,7 +90,7 @@
       </div>
       <div class="row no-gutters">
         <div class="col-12 p-0 mx-0">
-          <table id="tabletroupes" class="compact troupes table table-striped table-bordered">
+          <table id="tabletroupes" class="table-sm troupes table table-striped table-bordered">
             <thead>
               <tr>
                 <th class="th-sm">Nom</th>
@@ -129,7 +132,7 @@
       
       <div class="row no-gutters">
         <div class="col-12">
-          <table id="tablepersos" class="compact troupes  table table-striped table-bordered">
+          <table id="tablepersos" class="table-sm troupes  table table-striped table-bordered">
             <thead>
               <tr>
                 <th>&nbsp;&nbsp;&nbsp;&nbsp;Personnage&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -152,15 +155,15 @@
 
 
       <div class="row no-gutters">
-        <div class="text-justify" lang="fr">
+        <div class="text-justify col-12" lang="fr">
           <h3>Liste des figurines</h3>
           <p>Pour chaque figurine, la table liste les unités associées aux figurines ainsi que leur nombre par extension. Vous pouvez directement chercher l'abbréviation d'une extension, pour obtenir la liste de ses figurines. La liste des abbréviations pour les boites sont:</p>
         </div>
-        <div class="text-justify" lang="en">
+        <div class="text-justify col-12" lang="en">
           <h3>List of Minis</h3>
           <p>For each mini, the table lists the units with this mini and their number for each extension. You can directly search for the abbreviation of a box to obtain its minis. List of box abbreviations:</p>
         </div>
-        <div>
+        <div class="col-4">
           <ul>
             <li>Core: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3074#/">the core box</a></li>
             <li>Rel.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3074#/">reliquary extension</a></li>
@@ -168,12 +171,20 @@
             <li>Dra.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3076#/">legendary dragon extension</a></li>
             <li>Hel.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3081#/">unleash hell extension</a></li>
             <li>Leg.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3079#/">legendary battles extension</a></li>
+          </ul>
+        </div>
+        <div class="col-4">
+          <ul>
             <li>Ott.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3084#/">ottoman army extension</a></li>
             <li>Sie.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3077#/">siege extension</a></li>
             <li>Vil.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3080#/">village extension</a></li>
             <li>Siq.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3083#/">siege equipement extension</a></li>
             <li>Teu.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3075#/">teutonic extension</a></li>
             <li>SE: <a href="https://mythicgames.net/fr/joa-unboxing-the-super-exclusives/">super exclusive</a></li>
+          </ul>
+        </div>
+        <div class="col-4">
+          <ul>
             <li>RB1: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3479#/">reinforcement box #1</a></li>
             <li>RB3: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3482#/">reinforcement box #3</a></li>
             <li>RB4: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3483#/">reinforcement box #4</a></li>
@@ -183,7 +194,7 @@
           </ul>
         </div>
         <div class="col-12 p-0 mx-0">
-          <table id="tableminis" class="compact troupes table table-striped table-bordered">
+          <table id="tableminis" class="table-sm troupes table table-striped table-bordered">
             <thead>
               <tr>
                 <th class="th-sm">Mini</th>
@@ -364,89 +375,258 @@
         <span class="moralshield"></span>
       </div>
     </div>
+    <div style="display:none">
+      <code id="joueur1"></code>
+      <code id="joueur2"></code>
+      <code id="joueur3"></code>
+      <code id="joueur4"></code>
+      <code id="joueur5"></code>
+      <code id="joueur6"></code>
+    </div>
   </section>
 
-  <section id="scenario" class="noshow">
+  <section id="map" class="noshow">
     <div class="row">
-      <div class="col-12">
-        <h1>In construction...coming soon</h1>
+        <div id="hexmap-9" class="col-8"></div>
+        <div class="btn-toolbar" role="toolbar" style="position:fixed;top:3em;z-index:1050;color:white;left:0em;">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button type="button" class="btn btn-secondary" onclick="setHexmap(2)">5x5</button>
+          <button type="button" class="btn btn-secondary" onclick="setHexmap(3)">7x7</button>
+          <button type="button" class="btn btn-secondary" onclick="setHexmap(4)">9x9</button>
+          <button type="button" class="btn btn-secondary" onclick="setHexmap(5)">11x11</button>
+        </div>
+        <div class="btn-group mr-2">
+          <button type="button" class="fa fa-save btn btn-secondary" onclick="saveHexmap()"></button>
+        </div>
+
+      </div>
+
+      <div class="col-4 pr-0">
+        <div class="card bordered w-100">
+          <div class="card-header p-0">
+            <h2 class="m-0">
+              <button class="btn btn-link openbutton dropdown-toggle" data-target="hex1" type="button" onclick="$('#hex1').toggleClass('noshow');">Terrain x1</button>
+            </h2>
+          </div>
+          <div class="card-body p-0">
+            <div id="hex1" class="noshow mt-5"></div>
+          </div>
+        </div>
+       <div class="card bordered w-100">
+          <div class="card-header p-0">
+            <h5 class="m-0">
+              <button class="btn btn-link openbutton dropdown-toggle" data-target="hex2" type="button" onclick="$('#hex2').toggleClass('noshow');">Terrain x2 </button>
+            </h5>
+          </div>
+          <div class="card-body p-0">
+            <div id="hex2" class="noshow mt-5"></div>
+          </div>
+        </div>
+       <div class="card bordered w-100">
+          <div class="card-header p-0">
+            <h5 class="m-0">
+              <button class="btn btn-link openbutton dropdown-toggle" data-target="hex3" type="button" onclick="$('#hex3').toggleClass('noshow');">Terrain x3</button>
+            </h5>
+          </div>
+          <div class="card-body p-0">
+            <div id="hex3" class="noshow mt-5"></div>
+          </div>
+        </div>
+        
+        <div class="card bordered w-100">
+          <div class="card-header p-0">
+            <h5 class="m-0">
+              <button class="btn btn-link openbutton dropdown-toggle" data-target="houses" type="button" onclick="$('#houses').toggleClass('noshow');">
+                House
+              </button>
+            </h5>
+          </div>
+            <div class="card-body p-0">
+              <div id="houses" class="noshow mt-5"></div>
+            </div>
+        </div>
+        
+        <div class="card bordered w-100">
+          <div class="card-header p-0">
+            <h5 class="m-0">
+              <button class="btn btn-link openbutton dropdown-toggle" type="button" data-target="tableunites" onclick="$('#tableunites').toggleClass('noshow');">
+                <span class='fr'>Armées</span><span class='en'>Armies</span>
+              </button>
+            </h5>
+          </div>
+          <div class="card-body p-0">
+
+            <div class="card-columns" id="tableunites">
+              <div class="card">
+                <h5 class="card-title"><span class="bl1 blason"></span>Army #1</h5>
+                <h6 class="card-subtitle nom1 mb-2 text-muted"></h6>
+                <div class="card-body">
+                  <p class="card-text" id="mini1"></p>
+                  <span class="fa fa-link"></span><input id="armee1" class="w-75 small text-muted" type="text">
+                </div>
+              </div>
+              <div class="card">
+                <h5 class="card-title"><span class="bl2 blason"></span>Army #2</h5>
+                <h6 class="card-subtitle nom2 mb-2 text-muted"></h6>
+                <div class="card-body">
+                  <p class="card-text" id="mini2"></p>
+                  <span class="fa fa-link"></span><input id="armee2" class="w-75 small text-muted" type="text">
+                </div>
+              </div>
+              <div class="card">
+                <h5 class="card-title"><span class="bl3 blason"></span>Army #3</h5>
+                <h6 class="card-subtitle nom3 mb-2 text-muted"></h6>
+                <div class="card-body">
+                  <p class="card-text" id="mini3"></p>
+                  <span class="fa fa-link"></span><input id="armee3" class="w-75 small text-muted" type="text">
+                </div>
+              </div>
+              <div class="card">
+                <h5 class="card-title"><span class="bl4 blason"></span>Army #4</h5>
+                <h6 class="card-subtitle mb-2 nom4 text-muted"></h6>
+                <div class="card-body">
+                  <p class="card-text" id="mini4"></p>
+                  <span class="fa fa-link"></span><input id="armee4" class="w-75 small text-muted" type="text">
+                </div>
+              </div>
+              <div class="card">
+                <h5 class="card-title"><span class="bl5 blason"></span>Army #5</h5>
+                <h6 class="card-subtitle nom5 mb-2 text-muted"></h6>
+                <div class="card-body">
+                  <p class="card-text" id="mini5"></p>
+                  <span class="fa fa-link"></span><input id="armee5" class="w-75 small text-muted" type="text">
+                </div>
+              </div>
+              <div class="card">
+                <h5 class="card-title"><span class="bl6 blason"></span>Army #6</h5>
+                <h6 class="card-subtitle mb-2 nom6 text-muted"></h6>
+                <div class="card-body">
+                  <p class="card-text" id="mini6"></p>
+                  <span class="fa fa-link"></span><input id="armee6" class="w-75 small text-muted" type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
       </div>
     </div>
+  </section>
+  
+  <section id="scenario" class="noshow">
     <div class="row">
-      <div id="hexmap-9" class="col-6">
-        <code>
-          {
-          "layout":"odd-q",
-          "armies":
-          {"army":"Francais","flag":"francais","list":[{"no":1,"name":"Chevaliers"},{"no":2,"name":"Chevaliers à pied"}]},
-          "hexes": [
-          {"n":"1A","q":0,"r":2,"zones":["Francais"]},
-          {"n":"2A_1","q":1,"r":2,"zones":["Francais","Anglais","Ecossais"]},
-          {"n":"3A","q":2,"r":1,"zones":["Francais"]},
-          {"n":"4A_1","q":2,"r":0,"zones":["Francais","Francais"]},
-          {"n":"5A","q":2,"r":-1,"zones":["Francais"]},
-          {"n":"6A","q":1,"r":-1,"zones":["Francais"]},
-          {"n":"7A","q":0,"r":-2,"zones":["Anglais"]},
-          {"n":"8A","q":-1,"r":-1,"zones":["Anglais"]},
-          {"n":"9A","q":-2,"r":-1,"zones":["Anglais"]},
-          {"n":"10A","q":-2,"r":0,"zones":["Anglais"]},
-          {"n":"11A","q":-2,"r":1,"zones":["Ecossais"]},
-          {"n":"12A","orient":"1","q":-1,"r":2,"zones":["Anglais"]},
-          {"n":"1B","q":0,"r":1,"zones":["Anglais"]},
-          {"n":"V1A","q":1,"r":1,"zones":["Anglais"]},
-          {"n":"2A_2","q":1,"r":0,"zones":[""]},
-          {"n":"4B_1","q":0,"r":-1,"zones":[""]},
-          {"n":"S2B","q":-1,"r":0,"zones":[""]},
-          {"n":"V2B","q":-1,"r":1,"zones":[""]},
-          {"n":"V1A","q":0,"r":0,"zones":[""]}
-          ]
-          }
-        </code>
+      <div class="col-12 mt-2">
+        <textarea id="editor" class="mt-0">
+
+# La Bataille d'Azincourt **25 octobre 1415**
+
+*Henry V est un roi plein de fougue. Pour montrer sa puissance, il décide de marcher sur Paris. Il débarque à Harfleur qu'il assiège et dont il finit par s'emparer. Comme la saison de la guerre est bientôt terminée, il chang ses plans et décide de rembarquer à Calais. Pour amortir ses frais, il ravage et pille la région sur son chemin, mais son armée est atteinte de dysenterie. Le roi de France subissant des crises de folie et ne pouvant agir, son cousin et connétable Charles d'Albret prend alors les choses en main. Il réunit l'ost et traque l'ennemi sans merci. Acculés près d'Azincourt, les Anglais se terrent dans les bois. Les Français enthousiastes chargent dans un couloir étriqué et boueux sur une ligne de pieux défendus par des archers. Comme à Poitiers, c'est un carnage. Toutefois, les Français chargent et chargent encore, et finissent soit tués, soit prisonniers.*
+
+*Tout à coup, l'audacieux seigneur d'Azincourt fait une incursion dans le camp anglais et menace le butin. Il est accompagné d'une nouvelle vague de chevaliers français qui chargent les Anglais. Pris entre deux attaques, Henry V affolé donne l'ordre d'égorger les seigneurs prisonniers, de peur qu'ils ne soient libérés...*
+
+%ARMEE(y2pq3cum)%
+
+
+## Conditions de victoire
+Le camp français gagne automatiquement la partie dès qu' Henry V est détruit ou s'il est Hors de combat à la fin du 8e round, ou si 15 unités anglaises sont mises Hors de combat ou détruites à la fin du 8e round.
+
+Le camp anglais gagne si Henry V est vivant à la fin du 8e round et s'il a cumulé au moins 10 points de victoire :
+* Personnage français détruit à la fin de la partie : 1 point de victoire.
+* Chevalier français détruit à la fin de la partie : 1 point de victoire.
+* Chevalier ou Personnage français prisonnier à la fin de la bataille : 2 points de victoire.
+* Chariots détruits : -2 points de victoire.
+
+Tout autre résultat à  la fin du 8e round indique un match nul.
+
+
+## Avancement
+
+- 1 %XP% pour chaque Troupe d'infanterie ou de cavalerie détruite.
+- 2 %XP% pour chaque Chariot/Personnage détruit.
+
+## Règles spéciales
+**NOMBRE DE JOUEURS** Durant ce scénario, les camps français et anglais sont séparés en 5 batailles. Le camp français est composé des batailles de Charles d'Albret, de Boucicaut et d'Ysembart d'Azincourt. Le camp anglais est composé des batailles d'Edouard d'York et d'Henry V. La répartition des batailles change selon le nombre de joueurs :
+
+**2 joueurs**
+- 1 joueur contrôle les 3 batailles françaises.
+- 1 joueur contrôle les 2 batailles anglaises.
+
+**3 joueurs**
+- 1 joueur contrôle la bataille de Charles d'Albret.
+- 1 joueur contrôle les batailles de Boucicaut et d'Ysembart d'Azincourt.
+- 1 joueur contrôle les 2 batailles anglaises.
+
+**4 joueurs**
+- 1 joueur contrôle la bataille de Charles d'Albret.
+- 1 joueur contrôle les batailles de Boucicaut et d'Ysembart d'Azincourt.
+- 1 joueur contrôle la bataille d'Edouard d'York.
+- 1 joueur contrôle la bataille d'Henry V. Les armées sont déployées dans l'ordre suivant : Charles d'Albret, Boucicaut, Henry V, Edouard d'York et Ysembart d'Azincourt.
+
+**ORDRE DE JEU**
+Henry V, Edouard d'York, Charles d'Albret, Boucicaut et Ysembart d'Azincourt.
+
+**ALLIANCES**
+Aucun joueur ne peut mélanger ses unités avec celles d'un autre joueur, même s'ils font
+ partie du même camp. De la même manière, ils ne peuvent pas partager leurs ressources, car
+tes Légende et jetons de Relance.
+
+**PRISONNIERS**
+(Note : Les règles optionnelles de Rançon ne peuvent pas être utilisées dans ce scénario.) Une unité prisonnière est considér ée comme un élément de décor qui occupe un espace. Elle ne peut pas se déplacer, ni f aire d'action et peut cohabiter avec une unité ennemie. Si le Point de Ralliement est déplacé durant la partie, déplacez aussi les prisonniers si cela est possible. Les prisonniers ne pouvant se déplacer sont immédiatement détruits. Si le Point de Ralliement est occupé par des unités ennemies, toutes les unités situées dans la zone Hors de Combat de l'infirmerie sont immédiatement détruites.
+
+**LIBERER LES PRISONNIERS**
+Si une unité française entre dans une zone où se trouvent des prisonniers, tous les prisonniers de la zone sont libérés, et sont dirigés par le joueur qui les a libérés.
+
+**EGORGEZ-LES TOUS**
+L'armée d'Henry V peut donner l'ordre d'égorger tous les prisonniers français en dépensant un Ordre durant son tour. Ils sont automatiquement détruits si au moins une Troupe anglaise se trouve dans leur zone de captivité.
+
+**PAS DE QUARTIER**
+Les Français sont désorganisés et beaucoup se débandent quand ils voient leurs chefs se faire tuer. Une Troupe française mise Hors de combat est automatiquement détruite. S'il s'agit de Chevaliers ou d'un Personnage, il est fait prisonnier et l'armée d'Henry V le place dans l'une des zones de prisonniers de son choix. Si l'armée d'Henry V a donné l'ordre d'égorger les prisonniers, les Chevaliers et les Personnages français prisonniers sont immédiatement détruits.
+
+**HAIES DE PIEUX**
+Dans ce scénario, les Archers ne reçoivent pas de pieux. Les Haies de pieux sont retirées si une unité française les traverse.
+
+**CHARIOTS** Les Chariots sont détruits si une unité française entre dans leur zone. Ils ne peuvent pas se déplacer.
+
+---
+## Shortcuts
+Ctrl-S / Cmd-S (mac): toggle side by side view
+Ctrl-F / Cmd-F (mac): toggle full screen
+
+---
+## Special icons
+** Dices **
+%DEJAUNE%: yellow dice, %DEBLANC%: white dice, %DEROUGE%: red dice, %DENOIR%: black dice
+%TUE%: kill result, %BOUCLIER%: shield result, %TOUCHE%: hit result, %RECUL%: push
+%MORT%: death, %RETARDE%: delay, %RALLIE%: rally
+** Orders **
+%VERT%: charge, %GRIS%: normal, %BLEU%: interrupt, %JAUNE%: replay
+** Cards **
+%CARTELEGENDE%: legend, %CARTERIVIERE%: river
+** Tokens **
+%XP%: xp, %BLESSURE%: wound, %LEGENDE%: legend, %DETRUIT%: damage, %INCENDIE%: fire, %RALLIEMENT%: rally
+** Types of units **
+%CAVALERIE%: cavalry, %INFANTERIE%: infantery, %TROUPE%: troop, %PERSONNAGE%: hero
+** Heraldry **
+%FRANCAIS%: French, %ANGLAIS%: English, %ECOSSAIS%: Scottish, %BOURGUIGNON%: Burgundian, %VALAQUE%: Valach, %POLONAIS%: Polish, %LITUANIEN%: Lithuanian, %TEUTONIQUE%: Teutonic, %MERCENAIRE%: Mercenary, %NEUTRE%: Neutral (Civil)
+        </textarea>
       </div>
-      <div class="col-6">
-        <div class="player" data-selected=0 data-named=0>
-          <select title="Select your faction">
-            <option disabled>Select...</option>
-          </select>
-          <input type="text" placeholder="joueur 1">
-          <button disabled onclick="showUnitChooser()">Ok</button>
-        </div>
-        <div class="playerchosen">
-          <span class="blason-large"></span>
-          <span class="playername"></span>
-        </div>
-        <div class="unitchooser" style="display:none">
-          <table id="tableunites" class="compact troupes table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th class="th-sm">#</th>
-                <th class="th-sm">-</th>
-                <th class="th-sm">Nom</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-      <div class="row">
-        <div id="message-6">
-          Test map
-        </div>
-      </div>
+    </div>
   </section>
   
 
   <header id="home" class="text-white">
     <div lang="fr" class="head w-screen mx-0 px-0 text-center">
-      <h1>Joan of Arc Scenario Helper</h1>
-      <p class="lead">Un outil pour le jeu de figurines <a class="text-white" href="https://www.kickstarter.com/projects/1162110258/time-of-legends-joan-of-arc">Time of Legends: Joan of Arc</a></p>
+      <h1>Scenario Builder: Joan of Arc</h1>
+      <p class="lead">Une page pour le jeu de figurines <a class="text-white" href="https://www.kickstarter.com/projects/1162110258/time-of-legends-joan-of-arc">Time of Legends: Joan of Arc</a></p>
       <p>Commentaires, bugs sur les forums: <a class="text-white" href="https://boardgamegeek.com/thread/2370927/chronology-wardescription-units-and-combat-probabi"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"> (in English)</a> , <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-batailles-historiques-personnages-et-probas"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"> (en français)</a></p>
       <a href='https://fr.wikipedia.org/wiki/Bataille_de_Castillon' class='text-white' style='float:right;left:0;font-size:x-small'>la bataille de Castillon</a>
     </div>
     
     <div lang="en" class="head w-screen mx-0 px-0 text-center">
-      <h1>Joan of Arc Scenario Helper</h1>
-      <p class="lead">A tool for Time of Legends: Joan of Arc</p>
+      <h1>Scenario Builder: Joan of Arc</h1>
+      <p class="lead">A site for Time of Legends: Joan of Arc</p>
       <p>Comments, bug reports on forums: <a class="text-white" href="https://boardgamegeek.com/thread/2370927/chronology-wardescription-units-and-combat-probabi"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"> (in English)</a> , <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-batailles-historiques-personnages-et-probas"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"> (en français)</a></p>
       <a href='https://fr.wikipedia.org/wiki/Bataille_de_Castillon' class='text-white' style='float:right;left:0;font-size:x-small'>the battle of Castillon</a>
     </div>
@@ -506,20 +686,13 @@
   </section>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <div class="container">
-      <span class="navbar-brand"></span>
+    <div class="navbar-brand" style="position:absolute;right:0">Scenario Builder<div class="small text-muted">Time of Legends: Joan of Arc</div></div>
+    <div class="container m-0 p-0">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag flag-fr" lang="fr"></span><span class="flag flag-gb" lang="en"></span></a>
-            <div class="dropdown-menu" aria-labelledby="dropdown09">
-	      <a href="#" class="dropdown-item" onclick="document.documentElement.lang='en'; Unite.changeLang();"><span class="flag flag-gb"> </span> English</a>
-	      <a href="#" class="dropdown-item" onclick="document.documentElement.lang='fr'; Unite.changeLang();"><span class="flag flag-fr"> </span> Français</a>
-            </div>
-          </li>
-
+        <ul class="navbar-nav">         
           <li class="nav-item">
             <a class="nav-link" href="#home"><span class="fas fa-home"></span></a>
           </li>
@@ -530,50 +703,65 @@
             <a class="nav-link" href="#troupes"><span class='fr'>Unités</span><span class='en'>Units</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#armee"><span class='fr'>Construction d'armée</span><span class='en'>Army builder</span></a>
+            <a class="nav-link" href="#armee"><span class='fr'>Armées</span><span class='en'>Armies</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#map"><span class='fr'>Carte</span><spn class='en'>Map</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#scenario">Scenario</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#compare">Stats</a>
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag flag-fr" lang="fr"></span><span class="flag flag-gb" lang="en"></span></a>
+            <div class="dropdown-menu" aria-labelledby="dropdown09">
+	      <a href="#" class="dropdown-item" onclick="document.documentElement.lang='en'; Unite.changeLang();"><span class="flag flag-gb"> </span> English</a>
+	      <a href="#" class="dropdown-item" onclick="document.documentElement.lang='fr'; Unite.changeLang();"><span class="flag flag-fr"> </span> Français</a>
+            </div>
           </li>
-        </ul>
+
+</ul>
       </div>
     </div>
   </nav>
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-2 bg-dark text-muted">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Denis Wings 2019-2020</p>
-      <p class="m-0 text-center text-white" lang='fr'>Tous droits réservés pour le jeu Joan of Arc à Mythic Games</p>
-      <p class="m-0 text-center text-white" lang='en'>All rights reserved for the game to Mythic Games</p>
-      <p class="m-0 text-center text-white" lang='fr'>Contenu Wikipedia soumis à <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">la licence CC-BY-SA</a></p>
-      <p class="m-0 text-center text-white" lang='en'>Wikipedia content on <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">CC-BY-SA licence</a></p>
-      <p class="m-0 text-center text-white" lang='en'>Latest update: 15/10/2020</p>
-      <p class="m-0 text-center text-white" lang='fr'>Dernière maj: 15/10/2020</p>
+      <p class="m-0 text-center">Copyright &copy; Denis Wings 2019-2020</p>
+      <p class="m-0 text-center" lang='fr'>Tous droits réservés pour le jeu Joan of Arc à Mythic Games</p>
+      <p class="m-0 text-center" lang='en'>All rights reserved for the game to Mythic Games</p>
+      <p class="m-0 text-center" lang='fr'>Contenu Wikipedia soumis à <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">la licence CC-BY-SA</a></p>
+      <p class="m-0 text-center" lang='en'>Wikipedia content on <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">CC-BY-SA licence</a></p>
+      <p class="m-0 text-center" lang='en'>Latest update: 15/10/2020</p>
+      <p class="m-0 text-center" lang='fr'>Dernière maj: 15/10/2020</p>
     </div>
     <!-- /.container -->
   </footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+
   <script src="js/datatables.min.js"></script>
+  <script src="js/jsonc.min.js"></script>
+<script src="js/simplemde.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap-slider.min.js"></script>
   <!-- Plugin JavaScript -->
   
-  <script src="js/stuquery.min.js"></script>
-  <script src="js/stuquery.hexmap.js"></script>
+  <script src="hexmap.js"></script>
+  <script src="hex.js"></script>
   <script src="js/dateline.org.js"></script>
   <script src="js/select2.min.js"></script>
   <script src="js/d3.v3.min.js"></script>
   <script src="js/topojson.min.js"></script>
   <script src="consts.js"></script>
   <script src="liste_unites.js"></script>
+  <script src="liste_decors.js"></script>
   <script src="troupes.js"></script>
   <script src="evenements.js"></script>
+  <script src="hexchooser.js"></script>
+  <script src="unitimg.js"></script>
   <script src="proba.js"></script>
   <script src="hexa.js"></script>
 </body>

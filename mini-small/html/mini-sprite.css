@@ -1,0 +1,843 @@
+.mini-sprite {
+	background:url('mini-sprite.png') no-repeat top left; display:inline-block;
+}
+.mini-sprite#Aitvaras {
+	background-position:0 -0px;
+	width: 256px;
+	height: 303px;
+}
+.mini-sprite#Ange {
+	background-position:0 -303px;
+	width: 256px;
+	height: 330px;
+}
+.mini-sprite#Ange_Glorieux {
+	background-position:0 -633px;
+	width: 256px;
+	height: 339px;
+}
+.mini-sprite#Ange_annonciateur {
+	background-position:0 -972px;
+	width: 256px;
+	height: 361px;
+}
+.mini-sprite#Apothicaire {
+	background-position:0 -1333px;
+	width: 256px;
+	height: 311px;
+}
+.mini-sprite#Arbalétriers {
+	background-position:0 -1644px;
+	width: 256px;
+	height: 298px;
+}
+.mini-sprite#Arbalétriers_2 {
+	background-position:0 -1942px;
+	width: 256px;
+	height: 352px;
+}
+.mini-sprite#Arbalétriers_montés {
+	background-position:0 -2294px;
+	width: 256px;
+	height: 330px;
+}
+.mini-sprite#Arbalétriers_montés_2 {
+	background-position:0 -2624px;
+	width: 256px;
+	height: 367px;
+}
+.mini-sprite#Arbre_sacré {
+	background-position:0 -2991px;
+	width: 256px;
+	height: 302px;
+}
+.mini-sprite#Archange_Gabriel {
+	background-position:0 -3293px;
+	width: 256px;
+	height: 385px;
+}
+.mini-sprite#Archange_Raphaël {
+	background-position:0 -3678px;
+	width: 256px;
+	height: 367px;
+}
+.mini-sprite#Archange_saint_Michel {
+	background-position:0 -4045px;
+	width: 256px;
+	height: 275px;
+}
+.mini-sprite#Arche_d_Alliance {
+	background-position:0 -4320px;
+	width: 256px;
+	height: 292px;
+}
+.mini-sprite#Archers {
+	background-position:0 -4612px;
+	width: 256px;
+	height: 384px;
+}
+.mini-sprite#Archers_2 {
+	background-position:0 -4996px;
+	width: 256px;
+	height: 370px;
+}
+.mini-sprite#Archers_3 {
+	background-position:0 -5366px;
+	width: 256px;
+	height: 418px;
+}
+.mini-sprite#Archers_Tatars {
+	background-position:0 -5784px;
+	width: 256px;
+	height: 279px;
+}
+.mini-sprite#Archers_Tatars_2 {
+	background-position:0 -6063px;
+	width: 256px;
+	height: 433px;
+}
+.mini-sprite#Archers_montés {
+	background-position:0 -6496px;
+	width: 256px;
+	height: 403px;
+}
+.mini-sprite#Arnaud_de_Cervole {
+	background-position:0 -6899px;
+	width: 256px;
+	height: 291px;
+}
+.mini-sprite#Assassin {
+	background-position:0 -7190px;
+	width: 256px;
+	height: 259px;
+}
+.mini-sprite#Baliste {
+	background-position:0 -7449px;
+	width: 256px;
+	height: 179px;
+}
+.mini-sprite#Bélier {
+	background-position:0 -7628px;
+	width: 256px;
+	height: 199px;
+}
+.mini-sprite#Bertrand_de_Poulengy {
+	background-position:0 -7827px;
+	width: 256px;
+	height: 361px;
+}
+.mini-sprite#Bertrand_du_Guesclin {
+	background-position:0 -8188px;
+	width: 256px;
+	height: 288px;
+}
+.mini-sprite#Bombarde {
+	background-position:0 -8476px;
+	width: 256px;
+	height: 192px;
+}
+.mini-sprite#Boucicaut {
+	background-position:0 -8668px;
+	width: 256px;
+	height: 343px;
+}
+.mini-sprite#Bourgeois {
+	background-position:0 -9011px;
+	width: 256px;
+	height: 355px;
+}
+.mini-sprite#Bourreau {
+	background-position:0 -9366px;
+	width: 256px;
+	height: 237px;
+}
+.mini-sprite#Canon {
+	background-position:0 -9603px;
+	width: 256px;
+	height: 190px;
+}
+.mini-sprite#Captal_de_Buch {
+	background-position:0 -9793px;
+	width: 256px;
+	height: 367px;
+}
+.mini-sprite#Cavalerie_Légère_lance {
+	background-position:0 -10160px;
+	width: 256px;
+	height: 322px;
+}
+.mini-sprite#Cavalerie_lourde_Lituanienne {
+	background-position:0 -10482px;
+	width: 256px;
+	height: 289px;
+}
+.mini-sprite#Cavalerie_lourde_Lituanienne_2 {
+	background-position:0 -10771px;
+	width: 256px;
+	height: 313px;
+}
+.mini-sprite#Cavaliers_Archers {
+	background-position:0 -11084px;
+	width: 256px;
+	height: 386px;
+}
+.mini-sprite#Cavaliers_Nobles {
+	background-position:0 -11470px;
+	width: 256px;
+	height: 683px;
+}
+.mini-sprite#Cavaliers_Polonais {
+	background-position:0 -12153px;
+	width: 256px;
+	height: 363px;
+}
+.mini-sprite#Cavaliers_Polonais_2 {
+	background-position:0 -12516px;
+	width: 256px;
+	height: 327px;
+}
+.mini-sprite#Cavaliers_Sipahi {
+	background-position:0 -12843px;
+	width: 256px;
+	height: 577px;
+}
+.mini-sprite#Cavaliers_damnés {
+	background-position:0 -13420px;
+	width: 256px;
+	height: 232px;
+}
+.mini-sprite#Chariot_de_guerre {
+	background-position:0 -13652px;
+	width: 256px;
+	height: 200px;
+}
+.mini-sprite#Chevaliers_Squelettes {
+	background-position:0 -13852px;
+	width: 256px;
+	height: 433px;
+}
+.mini-sprite#Chevaliers_Teutoniques {
+	background-position:0 -14285px;
+	width: 256px;
+	height: 265px;
+}
+.mini-sprite#Chevaliers_Teutoniques_2 {
+	background-position:0 -14550px;
+	width: 256px;
+	height: 375px;
+}
+.mini-sprite#Chevaliers_Teutoniques_Montés {
+	background-position:0 -14925px;
+	width: 256px;
+	height: 386px;
+}
+.mini-sprite#Chevaliers_Teutoniques_Montés_2 {
+	background-position:0 -15311px;
+	width: 256px;
+	height: 276px;
+}
+.mini-sprite#Chevaliers_à_pied {
+	background-position:0 -15587px;
+	width: 256px;
+	height: 366px;
+}
+.mini-sprite#Chevaliers_à_pied_2 {
+	background-position:0 -15953px;
+	width: 256px;
+	height: 330px;
+}
+.mini-sprite#Chevaliers_à_pied_3 {
+	background-position:0 -16283px;
+	width: 256px;
+	height: 363px;
+}
+.mini-sprite#Chevaliers_montés {
+	background-position:0 -16646px;
+	width: 256px;
+	height: 272px;
+}
+.mini-sprite#Chiens_de_Chasse {
+	background-position:0 -16918px;
+	width: 256px;
+	height: 246px;
+}
+.mini-sprite#Comte_de_Salisbury {
+	background-position:0 -17164px;
+	width: 256px;
+	height: 342px;
+}
+.mini-sprite#Comte_de_Warwick {
+	background-position:0 -17506px;
+	width: 256px;
+	height: 249px;
+}
+.mini-sprite#Couleuvrine {
+	background-position:0 -17755px;
+	width: 256px;
+	height: 204px;
+}
+.mini-sprite#Coureurs_des_bois {
+	background-position:0 -17959px;
+	width: 256px;
+	height: 301px;
+}
+.mini-sprite#Coureurs_des_bois_2 {
+	background-position:0 -18260px;
+	width: 256px;
+	height: 359px;
+}
+.mini-sprite#Démons_Volants {
+	background-position:0 -18619px;
+	width: 256px;
+	height: 317px;
+}
+.mini-sprite#Démons_Voraces {
+	background-position:0 -18936px;
+	width: 256px;
+	height: 330px;
+}
+.mini-sprite#Devin {
+	background-position:0 -19266px;
+	width: 256px;
+	height: 383px;
+}
+.mini-sprite#Dévoreurs {
+	background-position:0 -19649px;
+	width: 256px;
+	height: 418px;
+}
+.mini-sprite#Dévôts {
+	background-position:0 -20067px;
+	width: 256px;
+	height: 325px;
+}
+.mini-sprite#Dévôts_2 {
+	background-position:0 -20392px;
+	width: 256px;
+	height: 281px;
+}
+.mini-sprite#Dracula {
+	background-position:0 -20673px;
+	width: 256px;
+	height: 276px;
+}
+.mini-sprite#Edouard_III {
+	background-position:0 -20949px;
+	width: 256px;
+	height: 357px;
+}
+.mini-sprite#Espion {
+	background-position:0 -21306px;
+	width: 256px;
+	height: 259px;
+}
+.mini-sprite#Expiateurs {
+	background-position:0 -21565px;
+	width: 256px;
+	height: 305px;
+}
+.mini-sprite#Fantassins_d_infanterie_légère {
+	background-position:0 -21870px;
+	width: 256px;
+	height: 313px;
+}
+.mini-sprite#Fantassins_d_infanterie_légère_2 {
+	background-position:0 -22183px;
+	width: 256px;
+	height: 393px;
+}
+.mini-sprite#Fantômes {
+	background-position:0 -22576px;
+	width: 256px;
+	height: 366px;
+}
+.mini-sprite#Flagellants {
+	background-position:0 -22942px;
+	width: 256px;
+	height: 314px;
+}
+.mini-sprite#Forgeron {
+	background-position:0 -23256px;
+	width: 256px;
+	height: 302px;
+}
+.mini-sprite#Gargouilles {
+	background-position:0 -23558px;
+	width: 256px;
+	height: 372px;
+}
+.mini-sprite#Gilles_de_Rais {
+	background-position:0 -23930px;
+	width: 256px;
+	height: 262px;
+}
+.mini-sprite#Guide {
+	background-position:0 -24192px;
+	width: 256px;
+	height: 338px;
+}
+.mini-sprite#Hacquebutiers {
+	background-position:0 -24530px;
+	width: 256px;
+	height: 361px;
+}
+.mini-sprite#Hallebardiers {
+	background-position:0 -24891px;
+	width: 256px;
+	height: 269px;
+}
+.mini-sprite#Hallebardiers_2 {
+	background-position:0 -25160px;
+	width: 256px;
+	height: 283px;
+}
+.mini-sprite#Hallebardiers_3 {
+	background-position:0 -25443px;
+	width: 256px;
+	height: 272px;
+}
+.mini-sprite#Henry_V {
+	background-position:0 -25715px;
+	width: 256px;
+	height: 259px;
+}
+.mini-sprite#Héros_Lituanien {
+	background-position:0 -25974px;
+	width: 256px;
+	height: 362px;
+}
+.mini-sprite#Héros_Polonais_monté {
+	background-position:0 -26336px;
+	width: 256px;
+	height: 339px;
+}
+.mini-sprite#Héros_monté {
+	background-position:0 -26675px;
+	width: 256px;
+	height: 274px;
+}
+.mini-sprite#Héros_teutonique {
+	background-position:0 -26949px;
+	width: 256px;
+	height: 361px;
+}
+.mini-sprite#Infanterie_de_Soutien {
+	background-position:0 -27310px;
+	width: 256px;
+	height: 292px;
+}
+.mini-sprite#Janissaires {
+	background-position:0 -27602px;
+	width: 256px;
+	height: 392px;
+}
+.mini-sprite#Janissaires_2 {
+	background-position:0 -27994px;
+	width: 256px;
+	height: 271px;
+}
+.mini-sprite#Jean_II_le_Bon {
+	background-position:0 -28265px;
+	width: 256px;
+	height: 384px;
+}
+.mini-sprite#Jean_de_Dunois {
+	background-position:0 -28649px;
+	width: 256px;
+	height: 265px;
+}
+.mini-sprite#Jean_de_Lancastre {
+	background-position:0 -28914px;
+	width: 256px;
+	height: 284px;
+}
+.mini-sprite#Jeanne_d_Arc {
+	background-position:0 -29198px;
+	width: 256px;
+	height: 445px;
+}
+.mini-sprite#Jeanne_d_Arc_à_cheval {
+	background-position:0 -29643px;
+	width: 256px;
+	height: 533px;
+}
+.mini-sprite#John_de_la_Pôle {
+	background-position:0 -30176px;
+	width: 256px;
+	height: 289px;
+}
+.mini-sprite#Jugement {
+	background-position:0 -30465px;
+	width: 256px;
+	height: 447px;
+}
+.mini-sprite#L_Agneau_de_Dieu {
+	background-position:0 -30912px;
+	width: 256px;
+	height: 325px;
+}
+.mini-sprite#L_Inquisiteur {
+	background-position:0 -31237px;
+	width: 256px;
+	height: 360px;
+}
+.mini-sprite#L_antechrist {
+	background-position:0 -31597px;
+	width: 256px;
+	height: 288px;
+}
+.mini-sprite#La_Cocatrix {
+	background-position:0 -31885px;
+	width: 256px;
+	height: 228px;
+}
+.mini-sprite#La_Conquête {
+	background-position:0 -32113px;
+	width: 256px;
+	height: 282px;
+}
+.mini-sprite#La_Famine {
+	background-position:0 -32395px;
+	width: 256px;
+	height: 298px;
+}
+.mini-sprite#La_Grande_Faucheuse {
+	background-position:0 -32693px;
+	width: 256px;
+	height: 359px;
+}
+.mini-sprite#La_Guerre {
+	background-position:0 -33052px;
+	width: 256px;
+	height: 194px;
+}
+.mini-sprite#La_Hire {
+	background-position:0 -33246px;
+	width: 256px;
+	height: 261px;
+}
+.mini-sprite#La_Licorne {
+	background-position:0 -33507px;
+	width: 256px;
+	height: 340px;
+}
+.mini-sprite#La_Mort {
+	background-position:0 -33847px;
+	width: 256px;
+	height: 328px;
+}
+.mini-sprite#La_Succube {
+	background-position:0 -34175px;
+	width: 256px;
+	height: 456px;
+}
+.mini-sprite#La_Tarasque {
+	background-position:0 -34631px;
+	width: 256px;
+	height: 136px;
+}
+.mini-sprite#Laima {
+	background-position:0 -34767px;
+	width: 256px;
+	height: 295px;
+}
+.mini-sprite#Lala_Sahin_Pacha {
+	background-position:0 -35062px;
+	width: 256px;
+	height: 330px;
+}
+.mini-sprite#Lanciers_montés {
+	background-position:0 -35392px;
+	width: 256px;
+	height: 225px;
+}
+.mini-sprite#Le_Griffon {
+	background-position:0 -35617px;
+	width: 256px;
+	height: 185px;
+}
+.mini-sprite#Le_Prince_Noir {
+	background-position:0 -35802px;
+	width: 256px;
+	height: 286px;
+}
+.mini-sprite#Le_Prince_Noir_à_cheval {
+	background-position:0 -36088px;
+	width: 256px;
+	height: 334px;
+}
+.mini-sprite#Légion_démoniaque {
+	background-position:0 -36422px;
+	width: 256px;
+	height: 334px;
+}
+.mini-sprite#Loup-garou {
+	background-position:0 -36756px;
+	width: 256px;
+	height: 349px;
+}
+.mini-sprite#Loups {
+	background-position:0 -37105px;
+	width: 256px;
+	height: 248px;
+}
+.mini-sprite#Loups_2 {
+	background-position:0 -37353px;
+	width: 256px;
+	height: 297px;
+}
+.mini-sprite#Loups_3 {
+	background-position:0 -37650px;
+	width: 256px;
+	height: 268px;
+}
+.mini-sprite#Marchande {
+	background-position:0 -37918px;
+	width: 256px;
+	height: 349px;
+}
+.mini-sprite#Médecin {
+	background-position:0 -38267px;
+	width: 256px;
+	height: 318px;
+}
+.mini-sprite#Mehmet_II {
+	background-position:0 -38585px;
+	width: 256px;
+	height: 368px;
+}
+.mini-sprite#Mehmet_le_Conquérant {
+	background-position:0 -38953px;
+	width: 256px;
+	height: 460px;
+}
+.mini-sprite#Musicien {
+	background-position:0 -39413px;
+	width: 256px;
+	height: 343px;
+}
+.mini-sprite#Narimantas {
+	background-position:0 -39756px;
+	width: 256px;
+	height: 309px;
+}
+.mini-sprite#Noble_Dame {
+	background-position:0 -40065px;
+	width: 256px;
+	height: 383px;
+}
+.mini-sprite#Okchu {
+	background-position:0 -40448px;
+	width: 256px;
+	height: 354px;
+}
+.mini-sprite#Ours {
+	background-position:0 -40802px;
+	width: 256px;
+	height: 393px;
+}
+.mini-sprite#Pavois {
+	background-position:0 -41195px;
+	width: 256px;
+	height: 322px;
+}
+.mini-sprite#Paysans {
+	background-position:0 -41517px;
+	width: 256px;
+	height: 359px;
+}
+.mini-sprite#Paysans_2 {
+	background-position:0 -41876px;
+	width: 256px;
+	height: 394px;
+}
+.mini-sprite#Paysans_3 {
+	background-position:0 -42270px;
+	width: 256px;
+	height: 370px;
+}
+.mini-sprite#Paysans_4 {
+	background-position:0 -42640px;
+	width: 256px;
+	height: 367px;
+}
+.mini-sprite#Pénitents {
+	background-position:0 -43007px;
+	width: 256px;
+	height: 339px;
+}
+.mini-sprite#Perkunas {
+	background-position:0 -43346px;
+	width: 256px;
+	height: 185px;
+}
+.mini-sprite#Pestiférés {
+	background-position:0 -43531px;
+	width: 256px;
+	height: 299px;
+}
+.mini-sprite#Philippe_d_Orléans {
+	background-position:0 -43830px;
+	width: 256px;
+	height: 331px;
+}
+.mini-sprite#Piquiers {
+	background-position:0 -44161px;
+	width: 256px;
+	height: 228px;
+}
+.mini-sprite#Piquiers_2 {
+	background-position:0 -44389px;
+	width: 256px;
+	height: 243px;
+}
+.mini-sprite#Piquiers_3 {
+	background-position:0 -44632px;
+	width: 256px;
+	height: 311px;
+}
+.mini-sprite#Piquiers_avec_pavois {
+	background-position:0 -44943px;
+	width: 256px;
+	height: 249px;
+}
+.mini-sprite#Porte-Etendard {
+	background-position:0 -45192px;
+	width: 256px;
+	height: 428px;
+}
+.mini-sprite#Prêtre {
+	background-position:0 -45620px;
+	width: 256px;
+	height: 372px;
+}
+.mini-sprite#Radu_III_Le_Beau {
+	background-position:0 -45992px;
+	width: 256px;
+	height: 216px;
+}
+.mini-sprite#Relique {
+	background-position:0 -46208px;
+	width: 256px;
+	height: 217px;
+}
+.mini-sprite#Repentants {
+	background-position:0 -46425px;
+	width: 256px;
+	height: 415px;
+}
+.mini-sprite#Robert_Knolles {
+	background-position:0 -46840px;
+	width: 256px;
+	height: 271px;
+}
+.mini-sprite#Sapeurs {
+	background-position:0 -47111px;
+	width: 256px;
+	height: 395px;
+}
+.mini-sprite#Seguin_de_Badefol {
+	background-position:0 -47506px;
+	width: 256px;
+	height: 291px;
+}
+.mini-sprite#Sergents_Teutoniques {
+	background-position:0 -47797px;
+	width: 256px;
+	height: 266px;
+}
+.mini-sprite#Sergents_Teutoniques_2 {
+	background-position:0 -48063px;
+	width: 256px;
+	height: 275px;
+}
+.mini-sprite#Sergents_d_armes {
+	background-position:0 -48338px;
+	width: 256px;
+	height: 323px;
+}
+.mini-sprite#Sergents_d_armes_2 {
+	background-position:0 -48661px;
+	width: 256px;
+	height: 346px;
+}
+.mini-sprite#Sergents_d_armes_3 {
+	background-position:0 -49007px;
+	width: 256px;
+	height: 362px;
+}
+.mini-sprite#Sergents_d_armes_montés {
+	background-position:0 -49369px;
+	width: 256px;
+	height: 405px;
+}
+.mini-sprite#Sorcière {
+	background-position:0 -49774px;
+	width: 256px;
+	height: 328px;
+}
+.mini-sprite#Sorcière_de_Sabbat {
+	background-position:0 -50102px;
+	width: 256px;
+	height: 307px;
+}
+.mini-sprite#Spectres_montés {
+	background-position:0 -50409px;
+	width: 256px;
+	height: 314px;
+}
+.mini-sprite#Squelettes {
+	background-position:0 -50723px;
+	width: 256px;
+	height: 330px;
+}
+.mini-sprite#Squelettes_2 {
+	background-position:0 -51053px;
+	width: 256px;
+	height: 332px;
+}
+.mini-sprite#Squelettes_3 {
+	background-position:0 -51385px;
+	width: 256px;
+	height: 339px;
+}
+.mini-sprite#Squelettes_4 {
+	background-position:0 -51724px;
+	width: 256px;
+	height: 345px;
+}
+.mini-sprite#Tour_de_Siège {
+	background-position:0 -52069px;
+	width: 256px;
+	height: 383px;
+}
+.mini-sprite#Trébuchet {
+	background-position:0 -52452px;
+	width: 256px;
+	height: 298px;
+}
+.mini-sprite#Triomphe {
+	background-position:0 -52750px;
+	width: 256px;
+	height: 264px;
+}
+.mini-sprite#Wickerman {
+	background-position:0 -53014px;
+	width: 256px;
+	height: 294px;
+}
+.mini-sprite#William_Wallace {
+	background-position:0 -53308px;
+	width: 256px;
+	height: 335px;
+}
+.mini-sprite#Winrich_von_Kniprod {
+	background-position:0 -53643px;
+	width: 256px;
+	height: 273px;
+}
+.mini-sprite#Yildirim_Bayezid {
+	background-position:0 -53916px;
+	width: 256px;
+	height: 291px;
+}

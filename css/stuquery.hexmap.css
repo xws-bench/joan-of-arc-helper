@@ -18,16 +18,16 @@
     position: absolute;
     background: #efefef;
     margin: 0;
-    z-index: 1;
+    /*z-index: 1;*/
 }
 /*.hex:hover, .hex:focus { z-index: 2; }*/
 .hexmap.pointy .hex {
-    width: 6em;
-    height: 6.9282em;
+    width: 9em;
+    height:10.3923em; /*6.9282em;*/
 }
 .hexmap.flat .hex {
-    width: 6.9282em;
-    height: 6em;
+    width: 10.3923em;/*6.9282em;*/
+    height: 9em;
 }
 .hexinner, .zone {
     position: absolute;
@@ -54,12 +54,12 @@
     clip-path: polygon(25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0 50%);
 }
 .hexmap.flat .zone {
-    z-index:9;
+    /*z-index:9;*/
     opacity:0;
     /*visibility:hidden;*/
 }
 .hexmap.flat .hex:hover .zone {
-    z-index:9;
+    /*z-index:9;*/
     opacity:0;
     visibility:visible;
 }

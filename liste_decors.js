@@ -1,0 +1,16 @@
+var liste_decors=[
+    {text:"arbuste",i:"arbuste"},
+    {text:"arbre",i:"arbre"},
+    {text:"mur",i:"mur",},
+    {text:"feu",i:"feu"},
+    {text:"moulin",i:"moulin",grand:true},
+    {text:"pont_pierre",i:"pont_pierre",grand:true},
+    {text:"ruine",i:"ruine",grand:true},
+    {text:"tente",i:"tente",grand:true},
+    {text:"eglise",i:"eglise",grand:true},
+    {text:"chaumiere",i:"chaumiere",grand:true},
+    {text:"maison2",i:"maison2",grand:true},
+    {text:"house1",i:"house1",grand:true},
+    {text:"palissade",i:"palissade"},
+    {text:"rochers",i:"rochers"},
+]
