@@ -5,6 +5,11 @@ var k,kk,i=0,j;
 var nom;
 var f=FRANCAIS;
 var anti=ANGLAIS;
+    let full=["1A","2B_1","3A","8A","9B","10A","11B","12B","15B_2","16B_2","S1B","V3B","white"];
+
+    let tex1=["10A","11A","11B","12A","12B","1A","1B","3A","5A","5B","6A","6B","7A","7B","8A","8B","9A","9B","S1A","S1B","S2A","S2B","S3A","S3B","V1A","V1B","V2B","V3A","V3B","white"];
+    let tex2=["13A","13B","14A","14B","15A","15B","16A","16B"];
+    let tex3=["17","18","2","4"];
 
 unbouclier.toHTML=(()=>"<span class='bouclier'></span>");
 untue.toHTML=(()=>"<span class='facerouge tue'></span>");
@@ -666,19 +671,22 @@ function getArmyHTML(army,at) {
     }
     return s;
 }
+function getArmyFaction(at) {
+    let i;
+    let atfaction=-1;
+    if (at=="") return atfaction;
+    for (i=0;i<LISTE_ARMEES.length;i++) {
+        let l=LISTE_ARMEES[i];
+        if (l.id==at) { atfaction=l.blason; break; }
+    }
+    return atfaction;
+}
 function changeArmee() {
     let k;
     let army={};
     for (k=1;k<=3;k++) {
         let at=$("#list"+k).attr("val");
-        if(at=="") continue;
-        let groups=[];
-        let i,first=-1;
-        let atfaction=-1;
-        for (i=0;i<LISTE_ARMEES.length;i++) {
-            let l=LISTE_ARMEES[i];
-            if (l.id==at) { atfaction=l.blason; break; }
-        }
+        let atfaction= getArmyFaction(at);
         if (atfaction==-1) continue;
         setArmyGroups(army,at,atfaction);
     }
@@ -756,6 +764,8 @@ function changeyear(t) {
     }
 }
 function armySiege(t) {
+    let at=$("#list1").attr("val");
+    let atfaction= getArmyFaction(at);
     if (t==0)  {
         siege=0;
         $(".defsiege").hide();
@@ -765,7 +775,7 @@ function armySiege(t) {
     } else if (t==1) {
         siege=1;
         $(".defsiege").hide();
-        $("#deckattsiege").html(getArmyHTML(setArmyGroups({},"s1"),"s1"));
+        $("#deckattsiege").html(getArmyHTML(setArmyGroups({},"s1",atfaction),"s1"));
         $(".attsiege").show();
         $(".totalattsiege").html(750+(nbarmee==3)*500);
         $("input[data-pts]").click(computeArmy);
@@ -774,7 +784,7 @@ function armySiege(t) {
         siege=2;
         $(".attsiege").hide();
         $("#deckattsiege").html("");
-        $("#deckdefsiege").html(getArmyHTML(setArmyGroups({},"s2"),"s2"));
+        $("#deckdefsiege").html(getArmyHTML(setArmyGroups({},"s2",atfaction),"s2"));
         $(".defsiege").show();
         $(".totaldefsiege").html(750+(nbarmee==3)*500);
         $("input[data-pts]").click(computeArmy);
@@ -848,29 +858,33 @@ function computeArmy() {
             if (typeof a[f]=="undefined") a[f]={};
             m+=m0;
             s+=s0;
-            if (typeof a[f][name]=="undefined") a[f][name]={t:t,moral:m0,points:s0,no:1,src:img};
-            else a[f][name]={t:t,moral:m0,points:s0,no:a[f][name].no+1,src:img};
+            if (typeof a[f][name]=="undefined") a[f][name]={id:u.data("id"),moral:m0,points:s0,no:1,src:img,mini:t.i};
+            else a[f][name]={id:u.data("id"),moral:m0,points:s0,no:a[f][name].no+1,src:img,mini:t.i};
         }
     });
     $(".armee-table").html("");
+    // REDO 
+    let ii=1,i;
+    let text="";
     for (i in a) {
         let x=a[i];
-        let text="<div class='row pt-3 pl-1'><span class='blason-xlarge "+i+"'></span>";
-        for (j in x) {
+        text+=listeCartesJSON(ii,{nom:"Armée "+ii,faction:i,liste:x},true)+"<br/>";
+        /*for (j in x) {
             let u = x[j];
             let t="class='perso-img'";
-            if (u.t.troupe==true) t="class='troupe-img' ";
+            if (troupes[u.id].troupe==true) t="class='troupe-img' ";
             text+="<figure>";   
             text+="<img "+t+" src='"+u.src+"'>";
-            if (u.t.troupe==true)
-                text+="<figcaption>"+u.no+"x"+u.t.getName();
-            else  text+="<figcaption>"+u.t.getName();
+            if (troupes[u.id].troupe==true)
+                text+="<figcaption>"+u.no+"x"+troupes[u.id].getName();
+            else  text+="<figcaption>"+troupes[u.id].getName();
             text+="<div class='moralv text-muted'>moral:"+(u.no*u.moral)+" pts:"+(u.no*u.points)+"</div></figcaption>";
             text+="</figure>";
         }
-        text=text+"</div>";
-        $(".armee-table").append(text);
+        text=text+"</div>";*/
+        ii++;
     }
+    $(".armee-table").append(text);
     $(".sum").html(s);
     let r="";
     let mm=Math.ceil(2*m/3);
@@ -881,45 +895,155 @@ function computeArmy() {
     $(".moralshield").html(r+" (<span>"+mm+"</span> max)");
     /*$(".moral").html(Math.ceil(2*m/3));*/
 }
- 
-    function allowDrop(ev) {
-        ev.preventDefault();
-    }
 
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-    }
-function drop(ev,ui) {
+function allowDrop(ev) {
     ev.preventDefault();
-    var data = troupes[ev.dataTransfer.getData("text")];
-    var html=data.toHTML();
-    console.log(ev);
-    let img=$("<img src='images/"+html[10][0]+"'>");
-    let h=$(".navbar").css("height").split("p")[0];
-    console.log(h);
-    img.css({width:"32px"});
-    console.log(img.height());
-    img.css({top: ev.pageY-h-16, left: ev.pageX, position:'absolute'});
-    $("#hexmap-9").append(img);
-    if (typeof data.faction!="undefined") 
-        ev.target.attributes["class"].value+=" "+NOM_FACTION[data.faction];
-    ev.target.attributes["data-original-title"].value+="<br/>-"+data.getName(false);
-    //$('[data-toggle="tooltip"]').tooltip()
 }
-var tableunites;
 
-function newPlayer() {
+function dragstart_handler(ev) {
+    console.log("targetid="+ev.target.id);
+    let dt=ev.dataTransfer;
+    if (typeof ev.originalEvent!="undefined") dt=ev.originalEvent.dataTransfer;
+    dt.setData("id", ev.target.id);
+    console.log(dt);
+    if (typeof ev.target.attributes.rot!="undefined") 
+        dt.setData("rot", ev.target.attributes.rot.value);
 }
-function showUnitChooser() {
-    $(".player select").prop('disabled', 'disabled');
-    $(".player").hide();
-    $(".playerchosen").show();
-    $(".unitchooser").show();
-    
-    let faction=$(".player select").val();
-    $(".playerchosen .blason-large").addClass(NOM_FACTION[faction]);
-    $(".playerchosen .playername").html($(".player input").val());
-    tableunites.columns(1).search(NOM_FACTION[faction]).order( [ 3, 'asc' ] ).draw();
+let hex2_q=[0,1,1,0,-1,-1];
+let hex2_r=[1,1,0,-1,0,1];
+let hex2_qe=[0,1,1,0,-1,-1];
+let hex2_re=[1,0,-1,-1,-1,0];
+var dropped=0;
+var hexmap;
+
+function listeCartesC(s,v) {
+    console.log("Loading joueur");
+    let d=$("<div>");
+    let w,e;
+    vv=d.html(v).text();
+    try {
+//    console.log(JSONC.unpack(localStorage["joueur"+v]));
+        w=JSONC.unpack(sessionStorage.getItem("joueur"+vv));
+        return listeCartesJSON(vv,w,false);
+    } catch(e) {
+        try {
+            let tt="tt"+(new Date().getUTCMilliseconds());
+            fetch('https://tinyurl.com/'+vv,{redirect:"follow"})
+                .then(response => {
+                    w=JSONC.unpack(response.url.substring(60));
+                    $("#"+tt).html(listeCartesJSON(vv,w,false));
+                })
+                .catch(err => {
+                    console.log(err); // gestion des erreurs
+                });
+            return "<div id='"+tt+"'></div>";
+        } catch(e) {
+            return "";
+        }
+    }
+}
+
+function storeJSON(t) {
+    let n=t.attr("data-n");
+    let jc=t.attr("data-json");
+    let json=JSONC.unpack(jc);
+    json.nom=$("#getname"+n).val();
+    console.log("Storing joueur"+$("#getname"+n).val()+" = (n="+n+") "+JSON.stringify(json));
+    $.get("http://tinyurl.com/api-create.php",{url:"https://xws-bench.github.io/joan-of-arc-helper/index.html?h="+JSONC.pack(json)}).done(function(data) {
+        console.log("code:"+data.substring(20));
+        $("#code").html(data.substring(20));
+    });
+   
+    //localStorage["joueur"+$("#getname"+n).val()]=JSON.stringify(JSONC.pack(json));
+}
+function listeCartesJSON(n,vv,b) {
+    let ii=1,j;
+    let text="<div class='row d-inline-block'>";
+    if (!b) {
+        text+="<div class='d-inline-block align-middle p-2'><div>"+vv.nom+"</div><div class='blason-xlarge "+vv.faction+"'></div></div>";
+    } else {
+        text+="<div class='d-inline-block align-middle p-2'><input type='text' id='getname"+n+"' placeholder='"+vv.nom+"'><button class='btn btn-secondary  fa fa-save' data-n='"+n+"' data-json='"+JSONC.pack(vv)+"' onclick='storeJSON($(this))'></button><div class='text-muted'><span id='code'></span><span class='fa fa-link'></span></div><div class='blason-xlarge "+vv.faction+"'></div></div>";
+    }
+    for (j in vv.liste) {
+        let u = vv.liste[j];
+        let t="class='perso-img'";
+        if (troupes[u.id].troupe==true) t="class='troupe-img' ";
+        text+="<div class='d-inline-block align-top'>";   
+        text+="<img "+t+" src='"+u.src+"'>";
+        if (troupes[u.id].troupe==true)
+            text+="<div class='small troupe-img'>"+u.no+" "+troupes[u.id].getName();
+        else  text+="<div class='small perso-img'>"+troupes[u.id].getName();
+        text+="<div class='moralv text-muted small'>moral:"+(u.no*u.moral)+" pts:"+(u.no*u.points)+"</div></div>";
+        text+="</div>";
+    }
+    text+="</div>";
+    return text;
+}
+function drop(ev) {
+    ev.preventDefault();
+    console.log("dropping !!!");
+    let dt=ev.dataTransfer;
+    if (typeof ev.originalEvent!="undefined") dt=ev.originalEvent.dataTransfer;
+
+    let s=dt.getData("id");
+    let id=s.substring(4);
+    let target=$(ev.target);
+    let parent=target.parent();
+    let q=parseInt(parent.attr("data-q"),10);
+    let r=parseInt(parent.attr("data-r"),10);
+    let hex=hexmap.find(q,r);
+    let zone=parseInt(target.attr("data-z"),10);
+    let faction=null;
+    console.log("s="+s);
+ 
+    // Add a new unit
+    var data = troupes[id];
+    let img,html;
+    let h=parseInt($(".navbar").css("height").split("p")[0],10);
+    let hh=0; //64;
+    let ll=0;
+    let g="";
+    console.log("id="+id);
+    if (typeof data!="undefined"&&s.startsWith("un")) {
+        html=data.toHTML();
+        faction=$("#"+s).attr("data-faction");
+        if (data.grand) { g="class='grand'"; hh=64; }
+        else if (data.gigantesque) { g="class='gigantesque'"; hh=80;ll=40;}
+        if (s=="unit"+id) {
+            s="un"+("0" + dropped).slice(-2)+data.id;
+            img=$("<img draggable='true' "+g+" data-original-title='"+data.text+"' data-toggle='tooltip' ondragstart='dragstart_handler(event)' id='"+s+"' src='images/"+html[10][0]+"'>");        
+            dropped++;
+            
+        } else {
+            img=$("#"+s);
+        }
+    } else {
+        console.log("plante decor "+id);
+        data=liste_decors[id];
+        if (data.grand) { g="class='grand'"; hh=64; }
+        else if (data.gigantesque) { g="class='gigantesque'"; hh=80;ll=40;}
+        img=$("<img draggable='true' "+g+" data-original-title='"+data.text+"' data-toggle='tooltip' ondragstart='dragstart_handler(event)' id='"+s+"' class='deco' src='decors/"+data.i+".png'>");
+        
+    }
+    let off=100/parent.parent()[0].clientWidth;
+    console.log("###"+h+"###");
+    img.css("top",((ev.pageY-h-hh-$("#scenario").scrollTop()))+"px ")
+    img.css({"left":(ev.pageX-ll)+"px", position:'absolute'});
+        
+    $("#hexmap-9").append(img);
+    /* Remove units from all zones */
+    if (!s.startsWith("deco")) 
+        for (i=0;i<hexmap.hexes.length;i++)
+            hexmap.hexes[i].removeUnit(s);
+    /* Now add unit to its zone */
+    hex.addUnit(s,zone,faction);
+    $('[data-toggle="tooltip"]').tooltip();
+}
+
+
+function setActive(n) {
+    $(".active").removeClass("active");
+    $("#"+n).addClass("active");
 }
 
 $( document ).ready(function() {
@@ -949,8 +1073,10 @@ $( document ).ready(function() {
     });
     $(".findperso").select2({placeholder:'Choisissez une unité',data:persolist,templateResult:(e)=>(new Unite(e)).format(true)});
     $(".finddate").select2({placeholder:'Choisissez un événement',data:evenements,templateResult:(e)=>(new Evenement(e)).format(true)});
-    for (i=0;i<NOM_FACTION.length;i++)
-        $(".player select").append("<option value='"+i+"'>"+NOM_FACTION[i]+"</option>");
+    /*for (i in localStorage)
+        if (i.startsWith("joueur")) {
+            $(".player select").append("<option value='"+i.substring(6)+"'>"+i.substring(6)+"</option>");
+            }*/
     
     let terrains=[{id:"plain",text:"plaine",selected:true},{id:"ble",text:"champs"},{id:"forest",text:"forêt"},{id:"swamp",text:"marais"},{id:"pave",text:"village"},{id:"rock",text:"rocher"}];
     
@@ -1017,27 +1143,38 @@ $( document ).ready(function() {
 
         ]
     });
-    $("#tableunites tbody").append(troupes.map(function (x) {
-        let h= x.toHTML();
-        let f=NOM_FACTION[x.faction];
-        if (typeof x.faction=="undefined"||x.faction==AUTRE||x.faction==MERCENAIRE)
-            f="bien mal francais ecossais ottoman anglais bourguignon valaque mercenaire lituanien polonais teutonique";
-        return "<tr><td><img draggable='true' ondragstart='drag(event)' id='"+x.id+"' src='mini-small/"+h[10][0]+"'></td>"
-            +"<td><span class='noshow'>"+f+"</span><span>"+h[2]+"</span></td><td>"+h[0]+"</td></tr>";
-    }).join(''));
-    
-    tableunites=$("#tableunites").DataTable({
-        scrollY:        "200px",
-        scrollCollapse: true,
-        "paging":         false,
-        "info":false,
-        "ordering":true,
-        "columns": [
-            {"width": "15%"},
-            {"width": "15%"},
-            {"width": "85%"},
-        ],
-    });
+
+    $('[data-toggle="tooltip"]').tooltip()
+
+    for (i=0;i<6; i++) {
+        $("#armee"+i).change(function() {
+            let vv=($(this).val());
+            try {
+                fetch('https://tinyurl.com/'+vv,{redirect:"follow"})
+                    .then(response => {
+                        w=JSONC.unpack(response.url.substring(60));
+                        let id=$(this).attr("id").substring(5);
+                        let td=$("#mini"+id);
+                        for (let j in w.liste) {
+                            $(".nom"+id).html(w.nom);
+                            $(".bl"+id).removeClass(["bien","mal", "francais", "ecossais","ottoman", "anglais", "bourguignon", "valaque", "mercenaire", "lituanien", "polonais" ,"teutonique"]);
+                            $(".bl"+id).addClass(w.faction);
+                            for (let k=0;k<w.liste[j].no;k++) 
+                                td.unitimg({u:troupes[w.liste[j].id],
+                                            id:"un"+("0" + k).slice(-2)+w.liste[j].id,
+                                            faction:w.faction,
+                                            dir:"mini-small"});
+                        }
+                        $('[data-toggle="tooltip"]').tooltip()
+                    })
+                    .catch(err => {
+                        console.log(err); // gestion des erreurs
+                    });
+            } catch(e) {
+                return "";
+            }
+        });
+    }
     //var u = touslesduels(troupes.filter((x)=>x.troupe));
     $("#tabletroupes tbody").append(troupes.filter((x)=>x.troupe).join(''));
     $("#tabletroupes").DataTable({
@@ -1074,53 +1211,84 @@ $( document ).ready(function() {
 
     armySize(1);
     armySiege(0);
-    $("#ex13").slider({
+    $("#ex13").bootstrapSlider({
         ticks: [1, 2, 3],
         ticks_labels: ['<span lang="fr">petite</span><span lang="en">small</span>', '<span lang="fr">moyenne</span><span lang="en">medium</span>', '<span lang="fr">grande</span><span lang="en">large</span>'],
         ticks_snap_bounds: 1,
     });
-    $("#ex7").slider();
+    $("#ex7").bootstrapSlider();
     Unite.changeLang();
-    
-    var hexmap = S.hexmap('hexmap-9');
-    hexmap.positionHexes().resize();
 
-    // Define the content of each hex
-    hexmap.setContent(function(id,hex){
-        hex["data-o"]=hex.o;
-	str = '';
-	
-	// Build the circular token that sits on a hex
-	str += '<div class="id">'+hex.n+'</div>';
-	//str += '<div class="name">'+hex.label+'</div>';
+    let q,r,ball=[];
+    setHexmap(3);
 
-	return str;
-    });    
-    var zones = hexmap.container.find('.zone');
-    for (var i=0;i<zones.length;i++) {
+    $("#hex1").hexchooser({list:tex1,top:"5%",left:"2%"});
+    $("#hex2").hexchooser({list:tex2,top:"15%",left:"8%",leftt:"10%",topt:"50%"});
+    $("#hex3").hexchooser({list:tex3,top:"15%",left:"10%",topt:"50%",leftt:"28%",suff:"A"});
+    $("#hex3").hexchooser({list:tex3,top:"15%",left:"10%",topt:"50%",leftt:"-3%",suff:"B"});
+    var zones = $('.zone');
+    for (i=0;i<zones.length;i++) {
         zones[i].id=i;
         zones[i].attributes["title"].value="<b>Unités</b>";
         zones[i].onclick=function(e){
             let z=this.attributes["data-z"].value;
-            S('#message-6').html("clicking on zone "+z+" in hex "+this.parentNode.id+"/"+hexmap.hexes[this.parentNode.id].zones[z-1]);
             $(".zone").removeClass("active");
             this.classList.add("active");
         }.bind(zones[i]);
     }
-    $('[data-toggle="tooltip"]').tooltip()
-    /*hexmap.on('click',function(e){
 
-      S('#message-6').html('You have clicked hex '+e.i+' ('+e.hex.id+')')
+    for ( i=0;i<liste_decors.length;i++) {
+        let l=liste_decors[i];
+        $("#houses").unitimg({u:l,dir:"decors",id:"deco"+i});
+    }
+    let civil=troupes.filter((x)=>x.civil==true);
+    for (let j in civil) {
+        let u=civil[j];
+        $("#houses").unitimg({u:u,id:"unit"+u.id});
+    }
+    $('[data-toggle="tooltip"]').tooltip();
 
-      })*/
-    // Set the CSS class of each hex to be the hex type
-    hexmap.setClass(function(id,hex){
-	return "h"+hex.n;
+    
+    // $(".player input").change(a);
+    
+    var simplemde = new SimpleMDE({ 
+        element: document.getElementById("editor"),
+        status: ["autosave", "lines", "words", "cursor"], // Optional usage
+       /* autosave: {
+		enabled: true,
+		uniqueId: "MyUniqueID",
+		delay: 1000,
+	        },*/
+        spellChecker:false,
+        shortcuts: {
+            "toggleSideBySide":"Ctrl-S",
+	    "toggleFullScreen": "Ctrl-F",
+        },
+        previewRender: function(plainText) {
+	    return Unite.replaceMd(this.parent.markdown(plainText)); // Returns HTML from a custom parser
+	},
     });
-    let a=function() {
-        if ($(".player input").val()!=""&&$(".player select").val()!="")
-            $(".player button").prop("disabled",false);
-    };
-    $(".player select").change(a);
-    $(".player input").change(a);
+    /*simplemde.previewRender=function(plainText) {
+	    return Unite.replace(this.markdown(plainText)); // Returns HTML from a custom parser
+    };*/
+    
+    $("a.nav-link").click(function() {
+        console.log(this);
+        $(".nav-link").css({color:"rgba(255,255,255,0.5)"});
+        $(this).css({ color:"white" });
+    });
 });
+
+function setHexmap(ray) {
+    let q,r,ball=[];
+    for (q=-ray;q<=ray;q++)
+        for (r=-ray;r<=ray;r++) 
+            ball.push({n:"white",q:q,r:r});
+    hexmap= new HexMap($("#hexmap-9"),{
+        "layout":"odd-q",
+        "hexes": ball
+    });
+}
+function saveHexmap() {
+    console.log((JSONC.pack(hexmap.save())));
+}
