@@ -59,6 +59,7 @@ class Unite {
     }
     static replaceMd(dd) {
         return dd.replace(/%LEGENDE%/g,"<span class='jetonlegende jeton'></span>")
+            .replace(/%CARTE\(([^)]+)\)%/g,carte)
             .replace(/%ARMEE\(([^)]+)\)%/g,listeCartesC)
             .replace(/%FRANCAIS%/g,"<span class='blason-large francais'></span>")
             .replace(/%ANGLAIS%/g,"<span class='blason-large anglais'></span>")
@@ -629,7 +630,7 @@ class Unite {
         let s="";
         if (this.grand==true) c="mini-large";
         if (this.gigantesque==true) c="mini-huge";
-        return "<tr><td  class='"+c+"' style='--mini:url("+j[10].join('),url(')+")'><span class='img'></span>"+j[0]+"</td><td class='en "+c+"' style='--mini:url("+j[10].join('),url(')+")'><span class='img'></span>"+j[1]+"</td><td>"+j[9]+"</td><td>"+j[2]+"</td><td>"+j[3]+"</td><td><div>"+j[4]+"</div><div class='hvalr'>"+j[5]+"</div></td><td>"+this.getCommand()+"</td><td><span class='pdv'>"+j[6]+"</span></td><td>"+j[7]+"</td></tr>";
+        return "<tr><td  class='"+c+"'>"+j[0]+"</td><td class='en "+c+"'>"+j[1]+"</td><td>"+j[9]+"</td><td>"+j[2]+"</td><td>"+j[3]+"</td><td><div>"+j[4]+"</div><div class='hvalr'>"+j[5]+"</div></td><td>"+this.getCommand()+"</td><td><span class='pdv'>"+j[6]+"</span></td><td>"+j[7]+"</td></tr>";
     }
     getHTMLName(n) {
        let nn=this.nom;
