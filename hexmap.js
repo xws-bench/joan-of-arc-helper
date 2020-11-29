@@ -12,7 +12,7 @@ class HexMap {
 	    'formatLabel': ""
 	};
 	this.attr = {};
-        this.container=el;
+        this.container=$("#"+el);
 	// odd-r  shoves odd rows by +½ column
 	// even-r  shoves even rows by +½ column
 	// odd-q  shoves odd columns by +½ row
@@ -105,12 +105,25 @@ class HexMap {
         return null;
     }
     save() {
-        let hex=[];
+        let json=[];
         for (i in this.hexes) {
             let h=this.hexes[i];
-            hex.push(h.save());
+            json.push(h.save());
         }
-        return hex;
+        console.log("SAVING JSON");
+        console.log(json);
+        console.log(JSONC.pack(json));
+        return JSON.save(json);
+    }//y63guyez
+    static load(hash,elt) {
+        JSON.load(hash,function(h,json) {
+            console.log("LOADING JSON from "+h);
+            console.log(json);
+            hexmap= new HexMap(elt,{
+                "layout":"odd-q",
+                "hexes": json
+            });
+        });
     }
     // Function to resize our hex grid based on the DOM container
     resize(){

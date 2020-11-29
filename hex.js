@@ -2,9 +2,9 @@
     // An object for each hex
 class Hex {
     constructor(me,attr){
-        $.extend(this,me,attr);
         this.rot=0;
         this.units=[];
+        $.extend(this,me,attr);
 	this.s = -this.q - this.r;
         if (typeof this.zones=="undefined") this.zones=[];
  	return this;
@@ -21,10 +21,11 @@ class Hex {
     }
     addUnit(x,z,f) {
         console.log("pushing "+x+" in zone "+z+" of hex "+this.q+" "+this.r);
-        this.units[z].push(x);
-        if (f!=null) this.zones[z].addClass(f);
-
-        this.makeTitle(z);
+        if (typeof f!="undefined") this.zones[z].addClass(f);
+        if (!x.startsWith("blaso")) {
+            this.units[z].push(x);
+            this.makeTitle(z);
+        }
     }
     removeUnit(x) {
         for (let z=0;z<this.units.length;z++) {
@@ -37,7 +38,7 @@ class Hex {
         return false;
     }
     save() {
-        return {q:this.q,r:this.r,n:this.n,rot:this.rot};
+        return {q:this.q,r:this.r,n:this.n,rot:this.rot,units:this.units};
     }
     makeTitle(z) {
         let p={};
@@ -73,7 +74,7 @@ class Hex {
                 s+="<b>Décors</b><br/>"+d;
             }
             this.zones[z].attr("data-original-title",s);
-            this.zones[z].attr("title",s);
+            //this.zones[z].attr("title",s);
         }
 
     }
@@ -152,7 +153,7 @@ class Hex {
    
             zone[i].on("drop",drop);
             zone[i].on("dragover",allowDrop);
-            zone[i].attr("title","empty");
+            //zone[i].attr("title","empty");
             zone[i].addClass("zone");
             this.zones[i]=zone[i];
             if (this.units.length>i)
@@ -182,7 +183,12 @@ class Hex {
         for (i=0;i<cls.length;i++) {
             zone[i].addClass(cls[i]);
             this.el.append(zone[i]);
-        }   
+        }
+        if (c!="white"&&(c.endsWith("_1")||c.indexOf("_")==-1)) {
+            if (c.endsWith("_1")) c=c.slice(0,-2);
+            let dd=$("<div>").html(c).addClass("hexname");
+            this.el.append(dd);
+        }
         this.el.css("transform","rotate("+(this.rot/6)+"turn");
     }
     static axial2cube(q,r){ return [q,r,-q-r]; }
