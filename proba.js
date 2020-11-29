@@ -865,35 +865,20 @@ function computeArmy() {
     $(".armee-table").html("");
     // REDO 
     let ii=1,i;
-    let text="";
     for (i in a) {
         let x=a[i];
-        text+=listeCartesJSON(ii,{nom:"Armée "+ii,faction:i,liste:x},true)+"<br/>";
-        /*for (j in x) {
-            let u = x[j];
-            let t="class='perso-img'";
-            if (troupes[u.id].troupe==true) t="class='troupe-img' ";
-            text+="<figure>";   
-            text+="<img "+t+" src='"+u.src+"'>";
-            if (troupes[u.id].troupe==true)
-                text+="<figcaption>"+u.no+"x"+troupes[u.id].getName();
-            else  text+="<figcaption>"+troupes[u.id].getName();
-            text+="<div class='moralv text-muted'>moral:"+(u.no*u.moral)+" pts:"+(u.no*u.points)+"</div></figcaption>";
-            text+="</figure>";
-        }
-        text=text+"</div>";*/
+        $(".armee-table").append(listeCartesJSON(ii,{nom:"Armée "+ii,faction:i,liste:x},true)+"<br/>");
         ii++;
     }
-    $(".armee-table").append(text);
     $(".sum").html(s);
-    let r="";
+    /*let r="";
     let mm=Math.ceil(2*m/3);
     for (i=0;i<mm-4;i+=5) {
         r+="&#9633;".repeat(5)+"&nbsp;&nbsp;";
     }
     r+="&#9633;".repeat(mm-i);
-    $(".moralshield").html(r+" (<span>"+mm+"</span> max)");
-    /*$(".moral").html(Math.ceil(2*m/3));*/
+    $(".moralshield").html(r+" (<span>"+mm+"</span> max)");*/
+    $(".moral").html(Math.ceil(2*m/3));
 }
 
 function allowDrop(ev) {
@@ -920,27 +905,18 @@ function listeCartesC(s,v) {
     console.log("Loading joueur");
     let d=$("<div>");
     let w,e;
-    vv=d.html(v).text();
-    try {
-//    console.log(JSONC.unpack(localStorage["joueur"+v]));
-        w=JSONC.unpack(sessionStorage.getItem("joueur"+vv));
-        return listeCartesJSON(vv,w,false);
-    } catch(e) {
-        try {
-            let tt="tt"+(new Date().getUTCMilliseconds());
-            fetch('https://tinyurl.com/'+vv,{redirect:"follow"})
-                .then(response => {
-                    w=JSONC.unpack(response.url.substring(60));
-                    $("#"+tt).html(listeCartesJSON(vv,w,false));
-                })
-                .catch(err => {
-                    console.log(err); // gestion des erreurs
-                });
-            return "<div id='"+tt+"'></div>";
-        } catch(e) {
-            return "";
-        }
-    }
+    let hash=d.html(v).text();
+    let tt="tt"+hash;
+    JSON.load(hash,function(vv,w) {
+        $("#"+tt).html(listeCartesJSON(vv,w,false));
+    });
+    return "<div id='"+tt+"'></div>";
+}
+
+function carte(s,hash) {
+    let tt="tt"+hash;
+    HexMap.load(hash,tt);
+    return "<div id='"+tt+"'></div>";
 }
 
 function storeJSON(t) {
@@ -948,21 +924,27 @@ function storeJSON(t) {
     let jc=t.attr("data-json");
     let json=JSONC.unpack(jc);
     json.nom=$("#getname"+n).val();
-    console.log("Storing joueur"+$("#getname"+n).val()+" = (n="+n+") "+JSON.stringify(json));
-    $.get("https://tinyurl.com/api-create.php",{url:"https://xws-bench.github.io/joan-of-arc-helper/index.html?h="+JSONC.pack(json)}).done(function(data) {
-        console.log("code:"+data.substring(20));
-        $("#code").html(data.substring(20));
-    });
-   
+    if (json.nom=="") {
+        alert("Give an army name first");
+    } else {
+        console.log("Storing joueur"+$("#getname"+n).val()+" = (n="+n+") "+JSON.stringify(json));
+        JSON.save(json).done(function(data) {
+            console.log("code:"+data);
+            $("#code").html(data);
+        });
+    }
     //localStorage["joueur"+$("#getname"+n).val()]=JSON.stringify(JSONC.pack(json));
 }
 function listeCartesJSON(n,vv,b) {
     let ii=1,j;
-    let text="<div class='row d-inline-block'>";
+    let text="<div class='row d-inline-block p-2'>";
     if (!b) {
-        text+="<div class='d-inline-block align-middle p-2'><div>"+vv.nom+"</div><div class='blason-xlarge "+vv.faction+"'></div></div>";
+        text+="<div class='d-inline-block align-middle p-2'><div style='width:10em'>"+vv.nom+"</div><div class='blason-xlarge "+vv.faction+"'></div></div>";
     } else {
-        text+="<div class='d-inline-block align-middle p-2'><input type='text' id='getname"+n+"' placeholder='"+vv.nom+"'><button class='btn btn-secondary  fa fa-save' data-n='"+n+"' data-json='"+JSONC.pack(vv)+"' onclick='storeJSON($(this))'></button><div class='text-muted'><span id='code'></span><span class='fa fa-link'></span></div><div class='blason-xlarge "+vv.faction+"'></div></div>";
+        text+="<div class='d-block align-middle p-2'>";
+        text+="<div class='btn-group mr-2'><span class='blason-large "+vv.faction+"'></span><input type='text' id='getname"+n+"' placeholder='"+vv.nom+"'></div>";
+        text+="<div class='btn-group mr-2'><button type='button' class='savehexmap fas fa-hashtag btn btn-secondary' data-n='"+n+"' data-json='"+JSONC.pack(vv)+"' onclick='storeJSON($(this))'></button><span id='code' class='hashhexmap text-center text-muted'></span></div>";
+        text+="</div>";
     }
     for (j in vv.liste) {
         let u = vv.liste[j];
@@ -998,15 +980,15 @@ function drop(ev) {
  
     // Add a new unit
     var data = troupes[id];
-    let img,html;
+    let img=null,html;
     let h=parseInt($(".navbar").css("height").split("p")[0],10);
-    let hh=0; //64;
+    let hh=20; //64;
     let ll=0;
     let g="";
     console.log("id="+id);
+    faction=$("#"+s).attr("data-faction");
     if (typeof data!="undefined"&&s.startsWith("un")) {
         html=data.toHTML();
-        faction=$("#"+s).attr("data-faction");
         if (data.grand) { g="class='grand'"; hh=64; }
         else if (data.gigantesque) { g="class='gigantesque'"; hh=80;ll=40;}
         if (s=="unit"+id) {
@@ -1017,22 +999,28 @@ function drop(ev) {
         } else {
             img=$("#"+s);
         }
-    } else {
-        console.log("plante decor "+id);
+    } else if (s.startsWith("d")) {
         data=liste_decors[id];
         if (data.grand) { g="class='grand'"; hh=64; }
+        if (data.medium) { g="class='medium'"; hh=30; ll=10; }
         else if (data.gigantesque) { g="class='gigantesque'"; hh=80;ll=40;}
-        img=$("<img draggable='true' "+g+" data-original-title='"+data.text+"' data-toggle='tooltip' ondragstart='dragstart_handler(event)' id='"+s+"' class='deco' src='decors/"+data.i+".png'>");
-        
+        if (s=="deco"+id) {
+            s="dr"+("0" + dropped).slice(-2)+id;
+            dropped++;
+            img=$("<img draggable='true' "+g+" data-original-title='"+data.text+"' data-toggle='tooltip' ondragstart='dragstart_handler(event)' id='"+s+"' class='deco' src='decors/"+data.i+".png'>");
+        } else {
+            img=$("#"+s);
+        }
     }
-    let off=100/parent.parent()[0].clientWidth;
-    console.log("###"+h+"###");
-    img.css("top",((ev.pageY-h-hh-$("#scenario").scrollTop()))+"px ")
-    img.css({"left":(ev.pageX-ll)+"px", position:'absolute'});
         
-    $("#hexmap-9").append(img);
+    let off=100/parent.parent()[0].clientWidth;
+    if (img!=null) {
+        img.css("top",((ev.pageY-h-hh-$("#scenario").scrollTop()))+"px ")
+        img.css({"left":(ev.pageX-ll)+"px", position:'absolute'});
+        $("#hexmap-9").append(img);
+    }
     /* Remove units from all zones */
-    if (!s.startsWith("deco")) 
+    if (s.startsWith("un")||s.startsWith("dr")) 
         for (i=0;i<hexmap.hexes.length;i++)
             hexmap.hexes[i].removeUnit(s);
     /* Now add unit to its zone */
@@ -1149,30 +1137,24 @@ $( document ).ready(function() {
     for (i=0;i<6; i++) {
         $("#armee"+i).change(function() {
             let vv=($(this).val());
-            try {
-                fetch('https://tinyurl.com/'+vv,{redirect:"follow"})
-                    .then(response => {
-                        w=JSONC.unpack(response.url.substring(60));
-                        let id=$(this).attr("id").substring(5);
-                        let td=$("#mini"+id);
-                        for (let j in w.liste) {
-                            $(".nom"+id).html(w.nom);
-                            $(".bl"+id).removeClass(["bien","mal", "francais", "ecossais","ottoman", "anglais", "bourguignon", "valaque", "mercenaire", "lituanien", "polonais" ,"teutonique"]);
-                            $(".bl"+id).addClass(w.faction);
-                            for (let k=0;k<w.liste[j].no;k++) 
-                                td.unitimg({u:troupes[w.liste[j].id],
-                                            id:"un"+("0" + k).slice(-2)+w.liste[j].id,
-                                            faction:w.faction,
-                                            dir:"mini-small"});
-                        }
-                        $('[data-toggle="tooltip"]').tooltip()
-                    })
-                    .catch(err => {
-                        console.log(err); // gestion des erreurs
-                    });
-            } catch(e) {
-                return "";
-            }
+            let id=$(this).attr("id").substring(5);
+            let td=$("#mini"+id);
+            JSON.load(vv,function(hash,json) {
+                for (let j in json.liste) {
+                    $(".nom"+id).html(json.nom);
+                    $(".bl"+id).html("");
+                    /*
+                    $(".bl"+id).removeClass(["bien","mal", "francais", "ecossais","ottoman", "anglais", "bourguignon", "valaque", "mercenaire", "lituanien", "polonais" ,"teutonique"]);
+                    $(".bl"+id).addClass(json.faction);*/
+                    $(".bl"+id).unitimg({u:{i:json.faction,text:""},id:"blaso"+j,dir:"images/icon",faction:json.faction});
+                    for (let k=0;k<json.liste[j].no;k++) 
+                        td.unitimg({u:troupes[json.liste[j].id],
+                                    id:"un"+("0" + k).slice(-2)+json.liste[j].id,
+                                    faction:json.faction,
+                                    dir:"mini-small"});
+                }
+                $('[data-toggle="tooltip"]').tooltip()
+            });
         });
     }
     //var u = touslesduels(troupes.filter((x)=>x.troupe));
@@ -1211,17 +1193,22 @@ $( document ).ready(function() {
 
     armySize(1);
     armySiege(0);
-    $("#ex13").bootstrapSlider({
+    /*$("#ex13").bootstrapSlider({
         ticks: [1, 2, 3],
         ticks_labels: ['<span lang="fr">petite</span><span lang="en">small</span>', '<span lang="fr">moyenne</span><span lang="en">medium</span>', '<span lang="fr">grande</span><span lang="en">large</span>'],
         ticks_snap_bounds: 1,
-    });
+    });*/
     $("#ex7").bootstrapSlider();
     Unite.changeLang();
 
     let q,r,ball=[];
-    setHexmap(3);
-
+    //setHexmap(7);
+    /*let lword="H8KLCABXW8OCXwIDwo3ClcOLTsODQAxFw79lw5ZFw7IjaUp2w4lvIMOECgk2IFAlFsKIf8KnVTPCncOcecOZwqtKw43CiX19Mho/w73ChsKvMD8MwofDsH3Du8O5CHPDuHl7P8K/wobDi1/Cn8OnMMOTw58BGHUww6Jgw5hmw4hGHFUcYcK6M8Kpw4PCjTrDnCjCuBnDlwhoBsKwAWxWZHnCkUjCjEjDsMKdw5AGIXbDkMOuLMOicCLDoMOkwrQUUQTChBzDi3kFwoTDsMK0wptnQCY5w6FGGzbCumwpw7jCuCbCrVnCk8KuEXYYYTDDssK4wrbCgC3Di8K0FEHCuDAiDcKGEsOCDSRWwpF7H0ZAw7JPwpcVw5DDpMKsw6hBw6DCg8K1wpLClEAHD8K7wqTCjMKIFEnCsxpxwpRTw6XCiBDDuBh3WQkITsKEw5QJaX04Ah3CtMOkw48dwocDw4/DhsOVV8KhFE/Dh8OVwpfDpMK+wrjDkCHDtSrClMKIRh82wqbDmWIMFcKfcDouwoDDpsKAw6PDusOAw5tjKm4Pwrw8dGnCvB/Cp2g8wqfDvmPDrldPCsKkDsO0bgzDh1pxbBXCtRfCrsOaw7tWw411wqvDpsK2wrUXS2/CrzzDvwPClivDrsKxwokIAAA=";
+    $.get("https://tinyurl.com/api-create.php",{url:"https://xws-bench.github.io/joan-of-arc-helper/index.html?h="+lword}).done(function(data) {
+        console.log("Battlefield "+data.substring(20));
+    });*/
+    HexMap.load("y3qv52ps","hexmap-9");
+    
     $("#hex1").hexchooser({list:tex1,top:"5%",left:"2%"});
     $("#hex2").hexchooser({list:tex2,top:"15%",left:"8%",leftt:"10%",topt:"50%"});
     $("#hex3").hexchooser({list:tex3,top:"15%",left:"10%",topt:"50%",leftt:"28%",suff:"A"});
@@ -1229,7 +1216,7 @@ $( document ).ready(function() {
     var zones = $('.zone');
     for (i=0;i<zones.length;i++) {
         zones[i].id=i;
-        zones[i].attributes["title"].value="<b>Unités</b>";
+        //zones[i].attributes["title"].value="<b>Unités</b>";
         zones[i].onclick=function(e){
             let z=this.attributes["data-z"].value;
             $(".zone").removeClass("active");
@@ -1241,7 +1228,7 @@ $( document ).ready(function() {
         let l=liste_decors[i];
         $("#houses").unitimg({u:l,dir:"decors",id:"deco"+i});
     }
-    let civil=troupes.filter((x)=>x.civil==true);
+    let civil=troupes.filter((x)=>x.civil==true&&x.box[0]!=SE);
     for (let j in civil) {
         let u=civil[j];
         $("#houses").unitimg({u:u,id:"unit"+u.id});
@@ -1260,6 +1247,7 @@ $( document ).ready(function() {
 		delay: 1000,
 	        },*/
         spellChecker:false,
+        autoDownloadFontAwesome:false,
         shortcuts: {
             "toggleSideBySide":"Ctrl-S",
 	    "toggleFullScreen": "Ctrl-F",
@@ -1271,6 +1259,10 @@ $( document ).ready(function() {
     /*simplemde.previewRender=function(plainText) {
 	    return Unite.replace(this.markdown(plainText)); // Returns HTML from a custom parser
     };*/
+    $(".savehexmap").click(function() {
+        hexmap.save().done((data) => $("#codemap").html(data));
+    });
+
     
     $("a.nav-link").click(function() {
         console.log(this);
@@ -1279,16 +1271,37 @@ $( document ).ready(function() {
     });
 });
 
-function setHexmap(ray) {
+function setHexmap(diam) {
     let q,r,ball=[];
-    for (q=-ray;q<=ray;q++)
-        for (r=-ray;r<=ray;r++) 
+    up=diam-Math.floor(diam/2);
+    for (q=-Math.floor(diam/2);q<up;q++)
+        for (r=-Math.floor(diam/2);r<up;r++) 
             ball.push({n:"white",q:q,r:r});
-    hexmap= new HexMap($("#hexmap-9"),{
+    hexmap= new HexMap("hexmap-9",{
         "layout":"odd-q",
         "hexes": ball
     });
 }
-function saveHexmap() {
-    console.log((JSONC.pack(hexmap.save())));
+
+JSON.save=function (json) {
+    let deferred = $.Deferred();
+    $.get("https://tinyurl.com/api-create.php",{url:"https://xws-bench.github.io/joan-of-arc-helper/index.html?h="+JSONC.pack(json)}).done(function(data) {
+        deferred.resolve(data.substring(20));
+    });
+    return deferred.promise();
+}
+JSON.load=function(hash,f) {
+    try {
+        fetch('https://tinyurl.com/'+hash,{redirect:"follow"})
+            .then(response => {
+                let hh=response.url.substring(60)
+                json=JSONC.unpack(hh);
+                console.log("packing");
+                console.log(hh);
+                console.log(json);
+                f(hash,json);
+            })
+    } catch(e) {
+        console.log(e);
+    }
 }

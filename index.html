@@ -24,7 +24,7 @@
   <link href="vendor/bootstrap/css/bootstrap-slider.min.css" rel="stylesheet">
   <link href="css/datatables.min.css" rel="stylesheet">
   <link href="css/jquery-ui.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/fas.css">
+  <link rel="stylesheet" href="css/fontawesome.min.css">
   <link rel="stylesheet" href="css/flags.min.css"/>
   <!-- <link href="css/datatables.min.css" rel="stylesheet"> -->
   <!-- Custom styles for this template -->
@@ -69,24 +69,8 @@
   <section id="troupes" class="bg-light noshow">
     <div class="container-fluid p-2">
       <div class="row no-gutters">
-        <div lang="fr" class="text-justify">
-          <h3>Liste des troupes</h3>
-          <p class="lead text-muted">Caractéristiques de combat des unités de Joan of Arc.
-          </p>
-          <p>La description des traits a été réécrite pour être plus compacte.  Les notations sont décrites dans l'aide: 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-              ?
-          </button></p>
-        </div>
-        <div lang="en" class="text-justify">
-          <h3>List of Troops</h3>
-          <p class="lead text-muted">Features of troops in Joan of Arc.
-          </p>
-          <p>The description of traits is written in a more compact way than the original one. Notations are described in the Help.
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-              ?
-          </button></p>
-        </div>
+        <h4 lang="fr">Liste des troupes <span class="small fas fa-question-circle" type="button" data-toggle="modal" data-target="#myModal"></span></h4>
+        <h3 lang="en">List of Troops <span class="small fas fa-question-circle" type="button" data-toggle="modal" data-target="#myModal"></span></h3>
       </div>
       <div class="row no-gutters">
         <div class="col-12 p-0 mx-0">
@@ -108,23 +92,11 @@
           </table>
         </div>
       </div>
-
+      <hr/>
+      
       <div class="row no-gutters">
-        <div class="text-justify" lang="fr">
-          <h3>Liste des Personnages</h3>
-          <p class="lead text-muted">Caractéristiques de jeu et historiques des personnages de Joan of Arc.</p>
-          <p>Pour chaque personnage, la table reprend ses caractéristiques, ses dates historiques d'activité, son blason historique s'il est connu. Les dates fournissent un lien vers la page concernant le personnage. La description des traits a été réécrite pour être plus compacte. Les notations sont les suivantes:
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-              ?
-          </button></p>
-        </div>
-        <div class="text-justify" lang="en">
-          <h3>List of Characters</h3>
-          <p class="lead text-muted">Traits and historical information on characters.</p>
-          <p>For each character, the table lists its traits, its historical dates of activity, his coat of arm if any. The dates are a link to a webpage with more information on the character. The description of traits is written in a more compact way than the original one. Notations are described in the Help.
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-              ?
-          </button></p>
+          <h4 lang="fr">Liste des Personnages <span class="small fas fa-question-circle" type="button" data-toggle="modal" data-target="#myModal"></span></h4>
+          <h4 lang="en">List of Characters <span class="small fas fa-question-circle" type="button" data-toggle="modal" data-target="#myModal"></span></h4>
         </div>
       </div>
 
@@ -152,15 +124,15 @@
           
         </div>
       </div>
-
+      <hr/>
 
       <div class="row no-gutters">
         <div class="text-justify col-12" lang="fr">
-          <h3>Liste des figurines</h3>
+          <h4>Liste des figurines</h3>
           <p>Pour chaque figurine, la table liste les unités associées aux figurines ainsi que leur nombre par extension. Vous pouvez directement chercher l'abbréviation d'une extension, pour obtenir la liste de ses figurines. La liste des abbréviations pour les boites sont:</p>
         </div>
         <div class="text-justify col-12" lang="en">
-          <h3>List of Minis</h3>
+          <h4>List of Minis</h4>
           <p>For each mini, the table lists the units with this mini and their number for each extension. You can directly search for the abbreviation of a box to obtain its minis. List of box abbreviations:</p>
         </div>
         <div class="col-4">
@@ -267,70 +239,80 @@
       
   <section id="armee" class="bg-light noshow">
     <div class="container-fluid p-2">
-      <div class="row no-gutters">
-        <div class="text-justify">
-          <p class="lead text-muted" lang='fr'>Pour construire son armée avec les règles Joan of Arc. L'armée peut comporter 1 à 3 listes, complémentée avec l'Apocalypse. Pas de règle imposée sur le mélange de listes. 
-          <p class="lead text-muted" lang='en'>To build an army according to the rules of Joan of Arc. The army can contain 1-3 lists, complemented with Apocalypse. No restriction here on how to mix lists.
-          </p>
+      
+      <div class="row" >
+        <div class="btn-group switch-toggle ml-2">
+          <span class="m-2" lang='fr'>Bataille</span>
+          <span class="m-2" lang='en'>Battle</span>
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn active btn-secondary" onclick="armySize(1)">
+              <span lang="fr">petite</span>
+              <span lang="en">small</span>
+              <input type="radio" name="size" id="size1" autocomplete="off" checked>
+            </label>
+            <label class="btn btn-secondary" onclick="armySize(2)">
+              <span lang="fr">moyenne</span>
+              <span lang="en">medium</span>
+              <input type="radio" name="size" id="size2" autocomplete="off">
+            </label>
+            <label class="btn btn-secondary" onclick="armySize(3)">
+              <span lang="fr">grande</span>
+              <span lang="en">large</span>
+              <input type="radio" name="size" id="size3" autocomplete="off">
+            </label>
+          </div>
+          <span class="m-2" lang='fr'>Siège</span>
+          <span class="m-2" lang='en'>Siege</span>
+          <div class="btn-group" data-toggle="buttons">      
+            <label class="btn active btn-secondary" onclick="armySiege(0)">
+              <span lang="fr">non</span>
+              <span lang="en">no</span>
+              <input id="siege1" name="stateb" type="radio"  autocomplete="off" checked>
+            </label>
+            <label class="btn btn-secondary" onclick="armySiege(1)">
+              <span lang="fr">assiégeant</span>
+              <span lang="en">besieging</span>
+              <input id="siege2" name="stateb" type="radio" autocomplete="off">
+            </label>
+            <label class="btn btn-secondary" onclick="armySiege(2)">
+              <span lang="fr">assiégé</span>
+              <span lang="en">besieged</span>
+              <input id="siege3" name="stateb" type="radio" autocomplete="off">
+            </label>
+          </div>
+          <span class="m-2" lang='fr'>En équipe</span>
+          <span class="m-2" lang='en'>Team battle</span>
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn active btn-secondary" onclick="armyTeam(false)">
+              <span lang="fr">non</span>
+              <span lang="en">no</span>
+              <input id="team1" name="statet" type="radio" autocomplete="off" checked>
+            </label>
+            <label class="btn btn-secondary" onclick="armyTeam(true)">
+              <span lang="fr">oui</span>
+              <span lang="en">yes</span>
+              <input id="team2" name="statet" type="radio" autocomplete="off">
+            </label>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4"><span lang='fr'>Taille de la bataille</span><span lang='en'>Battle size</span></div>
-        <div class="col-6">
-          <input id="ex13" class="w-100" type="text" data-slider-tooltip="hide" data-slider-ticks="[1, 2, 3]" data-slider-ticks-snap-bounds="1" data-slider-ticks-labels='["small", "medium", "large"]' onchange="armySize(this.value)" data-slider-value="1"/>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <button type="button" class="btn btn-secondary dropdown-toggle" id="list1" val="a1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">---</button>
+      <div class="row m-auto">
+        <div class="dropdown col-4">
+          <button type="button" class="btn btn-secondary dropdown-toggle w-100" id="list1" val="a1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">---</button>
           <ul class="dropdown-menu trouvearmee1" role="menu" aria-labelledby="list1"></ul>
 
         </div>
-        <div class="col-4">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="list2" val="">---</button>
+        <div class="dropdown col-4">
+          <button class="btn btn-secondary dropdown-toggle w-100" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="list2" val="">---</button>
           <ul class="dropdown-menu trouvearmee2" role="menu" aria-labelledby="list2"></ul>
         </div>
         <div class="dropdown col-4">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="list3" val="">---</button>
+          <button class="btn btn-secondary dropdown-toggle w-100" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="list3" val="">---</button>
           <ul class="dropdown-menu trouvearmee3" role="menu" aria-labelledby="list3"></ul>
         </div>
       </div>
-      
-      <div class="row">
-        <div class="col-4"><span lang='fr'>Siège</span><span lang='en'>Besieged</span></div>
 
-        <div class="col-2 m-1 form-check">
-          <input checked="" type="radio" id="nosiege" class="form-check-input" name="siege" onchange="armySiege(0)"></input><label class="form-check-label" for="nosiege"><span lang='fr'>non</span><span lang='en'>no</span></label>
-        </div>
-        <div class="col-2 m-1 form-check">
-          <input id="attsiege" type="radio" class="form-check-input" name="siege" onchange="armySiege(1)"></input><label class="form-check-label" for="attsiege"><span lang='fr'>Attaquant</span><span lang='en'>Attacker</span></label>
-        </div>
-        <div class="col-2 m-1 form-check">
-          <input id="defsiege" type="radio" class="form-check-input" name="siege" onchange="armySiege(2)"></input><label class="form-check-label" for="defsiege"><span lang='fr'>Défenseur</span><span lang='en'>Defender</span></label>
-        </div>
-        <div class="col-2"></div>
-      </div>
-
-      <div class="row">
-        <div class="col-4"><span lang='fr'>Bataille en équipe (2+2)</span><span lang='en'>Team battle (2+2)</span></div>
-        <div class="col-1 m-1 form-check">
-          <input checked="" type="radio" id="groupeno" class="form-check-input" name="groupe" onchange="armyTeam(false)"></input><label lang='fr' class="form-check-label" for="groupeno" >non</label><label lang='en' class="form-check-label" for="groupeno">no</label>
-        </div>
-        <div class="col-1 m-1 form-check">
-          <input id="groupeyes" type="radio" class="form-check-input" name="groupe" onchange="armyTeam(true)"></input><label lang='fr' class="form-check-label" for="groupeyes">oui</label><label lang='en' class="form-check-label" for="groupeyes">yes</label>
-        </div>
-        <div class="col-6"></div>
-      </div>
-      
-      <hr/>
-     
-
-      <div class="row no-gutters">
+      <div class="row no-gutters mt-2">
         <div class="col-4 reverse font-weight-bold p-1">
           <input id="yearfilter" type="checkbox" onchange="changeyear(1340)"/>
           <label for="yearfilter"><span lang='fr'>Année</span><span lang='en'>Year</span> <span class='year'>1340</span></label>
@@ -338,7 +320,6 @@
         </div>
         <div class="col-4 font-weight-bold reverse"><span lang='fr'>Points : </span><span lang='en'>Points: </span><span class='sum'></span> / <span class='total'></span></div>
         <div class="col-4 font-weight-bold reverse"><span lang='fr'>Seuil de déroute : </span><span lang='en'>Breaking Point : </span><span class='moral'></span></div>
-
       </div>
       <div class="row no-gutters">
         <div class="col-12">
@@ -362,41 +343,42 @@
         </div>
       </div>
     </div>
-    <hr/>
 
     <div class="row m-3">
       <div class="col-12 text-justify">
-        <div class="armee-table">
+        <div class="armee-table d-inline-block">
         </div>
       </div>
-    </div>
-    <div class="row no-gutters">
-      <div class="col-12 m-3 "><span lang='fr'>Perte de moral</span><span lang='en'>Morale loss:</span>
-        <span class="moralshield"></span>
-      </div>
-    </div>
-    <div style="display:none">
-      <code id="joueur1"></code>
-      <code id="joueur2"></code>
-      <code id="joueur3"></code>
-      <code id="joueur4"></code>
-      <code id="joueur5"></code>
-      <code id="joueur6"></code>
     </div>
   </section>
 
   <section id="map" class="noshow">
     <div class="row">
-        <div id="hexmap-9" class="col-8"></div>
-        <div class="btn-toolbar" role="toolbar" style="position:fixed;top:3em;z-index:1050;color:white;left:0em;">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-          <button type="button" class="btn btn-secondary" onclick="setHexmap(2)">5x5</button>
-          <button type="button" class="btn btn-secondary" onclick="setHexmap(3)">7x7</button>
-          <button type="button" class="btn btn-secondary" onclick="setHexmap(4)">9x9</button>
-          <button type="button" class="btn btn-secondary" onclick="setHexmap(5)">11x11</button>
+        <div id="hexmap-9" class="col-8 mt-4"></div>
+        <div id="tools" class="btn-toolbar" role="toolbar">
+        <div class="switch-toggle btn-group mr-2" data-toggle="buttons">
+          <label class="btn m-0 btn-secondary" onclick="setHexmap(5)">5x5
+            <input id="m5x5" name="hexmap" type="radio"  autocomplete="off" checked>
+          </label>
+          <label class="btn m-0 btn-secondary" onclick="setHexmap(6)">6x6
+            <input id="m6x6" name="hexmap" type="radio" autocomplete="off">
+          </label>
+          <label class="btn m-0 btn-secondary" onclick="setHexmap(7)">7x7
+            <input id="m7x7" name="hexmap" type="radio" autocomplete="off">
+          </label>
+          <label class="btn m-0 btn-secondary" onclick="setHexmap(8)">8x8
+            <input id="m8x8" name="hexmap" type="radio" autocomplete="off">
+          </label>
+          <label class="btn m-0 btn-secondary" onclick="setHexmap(9)">9x9
+            <input id="m9x9" name="hexmap" type="radio" autocomplete="off">
+          </label>
+          <label class="btn m-0 btn-secondary" onclick="setHexmap(11)">11x11
+            <input id="m11x11" name="hexmap" type="radio" autocomplete="off">
+          </label>
         </div>
         <div class="btn-group mr-2">
-          <button type="button" class="fa fa-save btn btn-secondary" onclick="saveHexmap()"></button>
+          <button type="button" class="savehexmap fas fa-hashtag btn btn-secondary"></button>
+          <span id="codemap" class="hashhexmap text-center text-muted"></span>
         </div>
 
       </div>
@@ -437,7 +419,7 @@
           <div class="card-header p-0">
             <h5 class="m-0">
               <button class="btn btn-link openbutton dropdown-toggle" data-target="houses" type="button" onclick="$('#houses').toggleClass('noshow');">
-                House
+                <span class='fr'>Décors/Civils</span><span class='en'>Scenery/Civils</span>
               </button>
             </h5>
           </div>
@@ -456,53 +438,65 @@
           </div>
           <div class="card-body p-0">
 
-            <div class="card-columns" id="tableunites">
-              <div class="card">
-                <h5 class="card-title"><span class="bl1 blason"></span>Army #1</h5>
-                <h6 class="card-subtitle nom1 mb-2 text-muted"></h6>
-                <div class="card-body">
+            <div id="tableunites">
+              <div class="card border">
+                <h6 class="card-header"><span class="bl1 blason"></span><span class="nom1 text-muted"><i class="fas fa-user"></i></span></h6>
+                <div class="card-body p-1">
                   <p class="card-text" id="mini1"></p>
-                  <span class="fa fa-link"></span><input id="armee1" class="w-75 small text-muted" type="text">
+                  <div class="btn-group mr-2">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
+                    <input id="armee1" class="w-75 small text-muted" type="text">
+                  </div>
                 </div>
               </div>
-              <div class="card">
-                <h5 class="card-title"><span class="bl2 blason"></span>Army #2</h5>
-                <h6 class="card-subtitle nom2 mb-2 text-muted"></h6>
-                <div class="card-body">
+              <div class="card border">
+                <h6 class="card-header"><span class="bl2 blason"></span><span class="nom2 text-muted"><i class="fas fa-user"></i></span></h6>
+                <div class="card-body p-1">
                   <p class="card-text" id="mini2"></p>
-                  <span class="fa fa-link"></span><input id="armee2" class="w-75 small text-muted" type="text">
+                  <div class="btn-group mr-2">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
+                    <input id="armee2" class="w-75 small text-muted" type="text">
+                  </div>
                 </div>
               </div>
-              <div class="card">
-                <h5 class="card-title"><span class="bl3 blason"></span>Army #3</h5>
-                <h6 class="card-subtitle nom3 mb-2 text-muted"></h6>
-                <div class="card-body">
+              <div class="card border">
+                <h6 class="card-header"><span class="bl3 blason"></span><span class="nom3 text-muted"><i class="fas fa-user"></i></span></h6>
+                <div class="card-body p-1">
                   <p class="card-text" id="mini3"></p>
-                  <span class="fa fa-link"></span><input id="armee3" class="w-75 small text-muted" type="text">
+                  <div class="btn-group mr-2">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
+                    <input id="armee3" class="w-75 small text-muted" type="text">
+                  </div>
                 </div>
               </div>
-              <div class="card">
-                <h5 class="card-title"><span class="bl4 blason"></span>Army #4</h5>
-                <h6 class="card-subtitle mb-2 nom4 text-muted"></h6>
-                <div class="card-body">
+              <div class="card border">
+                <h6 class="card-header"><span class="bl4 blason"></span><span class="nom4 text-muted"><i class="fas fa-user"></i></span></h6>
+                <div class="card-body p-1">
                   <p class="card-text" id="mini4"></p>
-                  <span class="fa fa-link"></span><input id="armee4" class="w-75 small text-muted" type="text">
+                  <div class="btn-group mr-2">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
+                    <input id="armee4" class="w-75 small text-muted" type="text">
+                  </div>
                 </div>
               </div>
-              <div class="card">
-                <h5 class="card-title"><span class="bl5 blason"></span>Army #5</h5>
-                <h6 class="card-subtitle nom5 mb-2 text-muted"></h6>
-                <div class="card-body">
+              <div class="card border">
+                <h6 class="card-header"><span class="bl5 blason"></span><span class="nom5 text-muted"><i class="fas fa-user"></i></span></h6>
+                <div class="card-body p-1">
                   <p class="card-text" id="mini5"></p>
-                  <span class="fa fa-link"></span><input id="armee5" class="w-75 small text-muted" type="text">
+                  <div class="btn-group mr-2">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
+                    <input id="armee5" class="w-75 small text-muted" type="text">
+                  </div>
                 </div>
               </div>
-              <div class="card">
-                <h5 class="card-title"><span class="bl6 blason"></span>Army #6</h5>
-                <h6 class="card-subtitle mb-2 nom6 text-muted"></h6>
-                <div class="card-body">
+              <div class="card border">
+                <h6 class="card-header"><span class="bl6 blason"></span><span class="nom6 text-muted"><i class="fas fa-user"></i></span></h6>
+                <div class="card-body p-1">
                   <p class="card-text" id="mini6"></p>
-                  <span class="fa fa-link"></span><input id="armee6" class="w-75 small text-muted" type="text">
+                  <div class="btn-group mr-2">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
+                    <input id="armee6" class="w-75 small text-muted" type="text">
+                  </div>
                 </div>
               </div>
             </div>
@@ -526,8 +520,13 @@
 
 *Tout à coup, l'audacieux seigneur d'Azincourt fait une incursion dans le camp anglais et menace le butin. Il est accompagné d'une nouvelle vague de chevaliers français qui chargent les Anglais. Pris entre deux attaques, Henry V affolé donne l'ordre d'égorger les seigneurs prisonniers, de peur qu'ils ne soient libérés...*
 
-%ARMEE(y2pq3cum)%
+%ARMEE(y4d7o7zf)%
+%ARMEE(yxsbxsd8)%
+%ARMEE(y3dqlbdy)%
+%ARMEE(yymsa4j4)%
+%ARMEE(yypbhncv)%
 
+%CARTE(y3qv52ps)%
 
 ## Conditions de victoire
 Le camp français gagne automatiquement la partie dès qu' Henry V est détruit ou s'il est Hors de combat à la fin du 8e round, ou si 15 unités anglaises sont mises Hors de combat ou détruites à la fin du 8e round.
@@ -568,12 +567,10 @@ Tout autre résultat à  la fin du 8e round indique un match nul.
 Henry V, Edouard d'York, Charles d'Albret, Boucicaut et Ysembart d'Azincourt.
 
 **ALLIANCES**
-Aucun joueur ne peut mélanger ses unités avec celles d'un autre joueur, même s'ils font
- partie du même camp. De la même manière, ils ne peuvent pas partager leurs ressources, car
-tes Légende et jetons de Relance.
+Aucun joueur ne peut mélanger ses unités avec celles d'un autre joueur, même s'ils font partie du même camp. De la même manière, ils ne peuvent pas partager leurs ressources, car tes Légende et jetons de Relance.
 
 **PRISONNIERS**
-(Note : Les règles optionnelles de Rançon ne peuvent pas être utilisées dans ce scénario.) Une unité prisonnière est considér ée comme un élément de décor qui occupe un espace. Elle ne peut pas se déplacer, ni f aire d'action et peut cohabiter avec une unité ennemie. Si le Point de Ralliement est déplacé durant la partie, déplacez aussi les prisonniers si cela est possible. Les prisonniers ne pouvant se déplacer sont immédiatement détruits. Si le Point de Ralliement est occupé par des unités ennemies, toutes les unités situées dans la zone Hors de Combat de l'infirmerie sont immédiatement détruites.
+(Note : Les règles optionnelles de Rançon ne peuvent pas être utilisées dans ce scénario.) Une unité prisonnière est considér ée comme un élément de décor qui occupe un espace. Elle ne peut pas se déplacer, ni faire d'action et peut cohabiter avec une unité ennemie. Si le Point de Ralliement est déplacé durant la partie, déplacez aussi les prisonniers si cela est possible. Les prisonniers ne pouvant se déplacer sont immédiatement détruits. Si le Point de Ralliement est occupé par des unités ennemies, toutes les unités situées dans la zone Hors de Combat de l'infirmerie sont immédiatement détruites.
 
 **LIBERER LES PRISONNIERS**
 Si une unité française entre dans une zone où se trouvent des prisonniers, tous les prisonniers de la zone sont libérés, et sont dirigés par le joueur qui les a libérés.
@@ -753,8 +750,8 @@ Ctrl-F / Cmd-F (mac): toggle full screen
   <script src="hex.js"></script>
   <script src="js/dateline.org.js"></script>
   <script src="js/select2.min.js"></script>
-  <script src="js/d3.v3.min.js"></script>
-  <script src="js/topojson.min.js"></script>
+<!--  <script src="js/d3.v3.min.js"></script>
+  <script src="js/topojson.min.js"></script> -->
   <script src="consts.js"></script>
   <script src="liste_unites.js"></script>
   <script src="liste_decors.js"></script>
@@ -763,7 +760,6 @@ Ctrl-F / Cmd-F (mac): toggle full screen
   <script src="hexchooser.js"></script>
   <script src="unitimg.js"></script>
   <script src="proba.js"></script>
-  <script src="hexa.js"></script>
 </body>
 
 </html>

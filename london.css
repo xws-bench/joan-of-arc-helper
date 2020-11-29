@@ -11,6 +11,20 @@
   margin-top: 2em;
   text-align: center; }
 
+#tools.btn-toolbar {
+  position: fixed;
+  top: 7ex;
+  z-index: 1050;
+  color: white;
+  left: 0;
+  opacity: 0.8; }
+
+.hashhexmap {
+  width: 6em;
+  border: 1px solid #6c757d;
+  background-color: #dbd5ca;
+  opacity: 0.8; }
+
 #hexmap-9 {
   position: relative;
   float: left;
@@ -22,6 +36,13 @@
     height:20em !important;*/
   /*border-radius: 100%;
     border: 2px solid rgba(0,0,0,0.5);*/ }
+  #hexmap-9 .hexname {
+    position: absolute;
+    left: 35%;
+    top: 80%;
+    color: #dbd5ca;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px #000; }
   #hexmap-9 .hex {
     background-color: #dbd5ca;
     /*#212529;//#656058;
