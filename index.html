@@ -69,8 +69,8 @@
   <section id="troupes" class="bg-light noshow">
     <div class="container-fluid p-2">
       <div class="row no-gutters">
-        <h4 lang="fr">Liste des troupes <span class="small fas fa-question-circle" type="button" data-toggle="modal" data-target="#myModal"></span></h4>
-        <h3 lang="en">List of Troops <span class="small fas fa-question-circle" type="button" data-toggle="modal" data-target="#myModal"></span></h3>
+        <h4 lang="fr">Liste des troupes <span class="small fas fa-question-circle" data-toggle="modal" data-target="#myModal"></span></h4>
+        <h4 lang="en">List of Troops <span class="small fas fa-question-circle" data-toggle="modal" data-target="#myModal"></span></h4>
       </div>
       <div class="row no-gutters">
         <div class="col-12 p-0 mx-0">
@@ -95,8 +95,8 @@
       <hr/>
       
       <div class="row no-gutters">
-          <h4 lang="fr">Liste des Personnages <span class="small fas fa-question-circle" type="button" data-toggle="modal" data-target="#myModal"></span></h4>
-          <h4 lang="en">List of Characters <span class="small fas fa-question-circle" type="button" data-toggle="modal" data-target="#myModal"></span></h4>
+          <h4 lang="fr">Liste des Personnages <span class="small fas fa-question-circle" data-toggle="modal" data-target="#myModal"></span></h4>
+          <h4 lang="en">List of Characters <span class="small fas fa-question-circle" data-toggle="modal" data-target="#myModal"></span></h4>
         </div>
       </div>
 
@@ -128,7 +128,7 @@
 
       <div class="row no-gutters">
         <div class="text-justify col-12" lang="fr">
-          <h4>Liste des figurines</h3>
+          <h4>Liste des figurines</h4>
           <p>Pour chaque figurine, la table liste les unités associées aux figurines ainsi que leur nombre par extension. Vous pouvez directement chercher l'abbréviation d'une extension, pour obtenir la liste de ses figurines. La liste des abbréviations pour les boites sont:</p>
         </div>
         <div class="text-justify col-12" lang="en">
@@ -139,7 +139,7 @@
           <ul>
             <li>Core: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3074#/">the core box</a></li>
             <li>Rel.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3074#/">reliquary extension</a></li>
-            <li>Apo.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3078#/">apocalypse extension</li>
+            <li>Apo.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3078#/">apocalypse extension</a></li>
             <li>Dra.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3076#/">legendary dragon extension</a></li>
             <li>Hel.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3081#/">unleash hell extension</a></li>
             <li>Leg.: <a href="https://gamefound.com/projects/mythic-games/time-of-legends-joan-of-arc-15/products/details/3079#/">legendary battles extension</a></li>
@@ -178,8 +178,7 @@
           </table>
         </div>
       </div>
-    </div>
-
+      
   </section>
 
       <!-- The Modal -->
@@ -221,7 +220,7 @@
       <div class="modal" id="card">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
-            <img id="mycard" class="card-img-top" src="">
+            <img id="mycard" class="card-img-top" src="badimage" alt="card">
           </div>
         </div>
       </div>
@@ -231,7 +230,7 @@
       <div class="modal" id="card-troop">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
-            <img id="mycardtroop" class="card-img-top" src="">
+            <img id="mycardtroop" class="card-img-top" src="badimage" alt="card">
           </div>
         </div>
       </div>
@@ -242,56 +241,51 @@
       
       <div class="row" >
         <div class="btn-group switch-toggle ml-2">
-          <span class="m-2" lang='fr'>Bataille</span>
-          <span class="m-2" lang='en'>Battle</span>
+          <span class="m-2" lang='fr'>Bataille :</span>
+          <span class="m-2" lang='en'>Battle:</span>
           <div class="btn-group" data-toggle="buttons">
             <label class="btn active btn-secondary" onclick="armySize(1)">
               <span lang="fr">petite</span>
               <span lang="en">small</span>
-              <input type="radio" name="size" id="size1" autocomplete="off" checked>
+              <input type="radio" name="size" id="size1" checked>
             </label>
             <label class="btn btn-secondary" onclick="armySize(2)">
               <span lang="fr">moyenne</span>
               <span lang="en">medium</span>
-              <input type="radio" name="size" id="size2" autocomplete="off">
+              <input type="radio" name="size" id="size2" >
             </label>
             <label class="btn btn-secondary" onclick="armySize(3)">
               <span lang="fr">grande</span>
               <span lang="en">large</span>
-              <input type="radio" name="size" id="size3" autocomplete="off">
+              <input type="radio" name="size" id="size3" >
             </label>
           </div>
-          <span class="m-2" lang='fr'>Siège</span>
-          <span class="m-2" lang='en'>Siege</span>
+          <span class="m-2" lang='fr'>Siège :</span>
+          <span class="m-2" lang='en'>Siege:</span>
           <div class="btn-group" data-toggle="buttons">      
             <label class="btn active btn-secondary" onclick="armySiege(0)">
-              <span lang="fr">non</span>
-              <span lang="en">no</span>
-              <input id="siege1" name="stateb" type="radio"  autocomplete="off" checked>
+              <span class="fas fa-ban"></span>
+              <input id="siege1" name="stateb" type="radio"  checked>
             </label>
             <label class="btn btn-secondary" onclick="armySiege(1)">
-              <span lang="fr">assiégeant</span>
-              <span lang="en">besieging</span>
-              <input id="siege2" name="stateb" type="radio" autocomplete="off">
+              <img src="images/icon/catapult.png" style="height:3ex" alt="catapult">
+              <input id="siege2" name="stateb" type="radio" >
             </label>
             <label class="btn btn-secondary" onclick="armySiege(2)">
-              <span lang="fr">assiégé</span>
-              <span lang="en">besieged</span>
-              <input id="siege3" name="stateb" type="radio" autocomplete="off">
+              <img src="images/icon/tower.png"  style="height:3ex" alt="tower">
+              <input id="siege3" name="stateb" type="radio" >
             </label>
           </div>
-          <span class="m-2" lang='fr'>En équipe</span>
-          <span class="m-2" lang='en'>Team battle</span>
+          <span class="m-2" lang='fr'>En équipe :</span>
+          <span class="m-2" lang='en'>Team battle:</span>
           <div class="btn-group" data-toggle="buttons">
             <label class="btn active btn-secondary" onclick="armyTeam(false)">
-              <span lang="fr">non</span>
-              <span lang="en">no</span>
-              <input id="team1" name="statet" type="radio" autocomplete="off" checked>
+              <span class="fas fa-ban"></span>
+              <input id="team1" name="statet" type="radio" checked>
             </label>
             <label class="btn btn-secondary" onclick="armyTeam(true)">
-              <span lang="fr">oui</span>
-              <span lang="en">yes</span>
-              <input id="team2" name="statet" type="radio" autocomplete="off">
+              <span class="fas fa-check"></span>
+              <input id="team2" name="statet" type="radio" >
             </label>
           </div>
         </div>
@@ -354,60 +348,66 @@
 
   <section id="map" class="noshow">
     <div class="row">
-        <div id="hexmap-9" class="col-8 mt-4"></div>
+      <div class="col-8 mt-4">
+        <div id="hexmap-9"></div>
         <div id="tools" class="btn-toolbar" role="toolbar">
-        <div class="switch-toggle btn-group mr-2" data-toggle="buttons">
-          <label class="btn m-0 btn-secondary" onclick="setHexmap(5)">5x5
-            <input id="m5x5" name="hexmap" type="radio"  autocomplete="off" checked>
-          </label>
-          <label class="btn m-0 btn-secondary" onclick="setHexmap(6)">6x6
-            <input id="m6x6" name="hexmap" type="radio" autocomplete="off">
-          </label>
-          <label class="btn m-0 btn-secondary" onclick="setHexmap(7)">7x7
-            <input id="m7x7" name="hexmap" type="radio" autocomplete="off">
-          </label>
-          <label class="btn m-0 btn-secondary" onclick="setHexmap(8)">8x8
-            <input id="m8x8" name="hexmap" type="radio" autocomplete="off">
-          </label>
-          <label class="btn m-0 btn-secondary" onclick="setHexmap(9)">9x9
-            <input id="m9x9" name="hexmap" type="radio" autocomplete="off">
-          </label>
-          <label class="btn m-0 btn-secondary" onclick="setHexmap(11)">11x11
-            <input id="m11x11" name="hexmap" type="radio" autocomplete="off">
-          </label>
+          <div class="switch-toggle btn-group mr-2" data-toggle="buttons">
+            <label class="btn m-0 btn-secondary" onclick="setHexmap(4)">4x4
+              <input id="m4x4" name="hexmap" type="radio"   checked>
+            </label>
+            <label class="btn m-0 btn-secondary" onclick="setHexmap(5)">5x5
+              <input id="m5x5" name="hexmap" type="radio"   checked>
+            </label>
+            <label class="btn m-0 btn-secondary" onclick="setHexmap(6)">6x6
+              <input id="m6x6" name="hexmap" type="radio" >
+            </label>
+            <label class="btn m-0 btn-secondary" onclick="setHexmap(7)">7x7
+              <input id="m7x7" name="hexmap" type="radio" >
+            </label>
+            <label class="btn m-0 btn-secondary" onclick="setHexmap(8)">8x8
+              <input id="m8x8" name="hexmap" type="radio" >
+            </label>
+            <label class="btn m-0 btn-secondary" onclick="setHexmap(11)">11x11
+              <input id="m11x11" name="hexmap" type="radio" >
+            </label>
+            <input id="prefabradio" name="hexmap" type="radio" >
+          </div>
+          <div class="dropdown mr-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="prefabbutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prefabs</button>
+            <div class="dropdown-menu" id="prefabs" aria-labelledby="prefabbutton"></div>
+          </div>
+          <div class="btn-group mr-2">
+            <button type="button" class="savehexmap fas fa-hashtag btn btn-secondary"></button>
+            <span id="codemap" class="hashhexmap text-center text-muted"></span>
+          </div>
         </div>
-        <div class="btn-group mr-2">
-          <button type="button" class="savehexmap fas fa-hashtag btn btn-secondary"></button>
-          <span id="codemap" class="hashhexmap text-center text-muted"></span>
-        </div>
-
       </div>
 
       <div class="col-4 pr-0">
         <div class="card bordered w-100">
           <div class="card-header p-0">
             <h2 class="m-0">
-              <button class="btn btn-link openbutton dropdown-toggle" data-target="hex1" type="button" onclick="$('#hex1').toggleClass('noshow');">Terrain x1</button>
+              <button class="btn openbutton dropdown-toggle" data-target="hex1" type="button" onclick="$('#hex1').toggleClass('noshow');">Terrain x1</button>
             </h2>
           </div>
           <div class="card-body p-0">
             <div id="hex1" class="noshow mt-5"></div>
           </div>
         </div>
-       <div class="card bordered w-100">
+        <div class="card bordered w-100">
           <div class="card-header p-0">
             <h5 class="m-0">
-              <button class="btn btn-link openbutton dropdown-toggle" data-target="hex2" type="button" onclick="$('#hex2').toggleClass('noshow');">Terrain x2 </button>
+              <button class="btn openbutton dropdown-toggle" data-target="hex2" type="button" onclick="$('#hex2').toggleClass('noshow');">Terrain x2 </button>
             </h5>
           </div>
           <div class="card-body p-0">
             <div id="hex2" class="noshow mt-5"></div>
           </div>
         </div>
-       <div class="card bordered w-100">
+        <div class="card bordered w-100">
           <div class="card-header p-0">
             <h5 class="m-0">
-              <button class="btn btn-link openbutton dropdown-toggle" data-target="hex3" type="button" onclick="$('#hex3').toggleClass('noshow');">Terrain x3</button>
+              <button class="btn openbutton dropdown-toggle" data-target="hex3" type="button" onclick="$('#hex3').toggleClass('noshow');">Terrain x3</button>
             </h5>
           </div>
           <div class="card-body p-0">
@@ -418,93 +418,90 @@
         <div class="card bordered w-100">
           <div class="card-header p-0">
             <h5 class="m-0">
-              <button class="btn btn-link openbutton dropdown-toggle" data-target="houses" type="button" onclick="$('#houses').toggleClass('noshow');">
+              <button class="btn openbutton dropdown-toggle" data-target="houses" type="button" onclick="$('#houses').toggleClass('noshow');">
                 <span class='fr'>Décors/Civils</span><span class='en'>Scenery/Civils</span>
               </button>
             </h5>
           </div>
-            <div class="card-body p-0">
-              <div id="houses" class="noshow mt-5"></div>
-            </div>
+          <div class="card-body p-0">
+            <div id="houses" class="noshow mt-5"></div>
+          </div>
         </div>
         
         <div class="card bordered w-100">
           <div class="card-header p-0">
             <h5 class="m-0">
-              <button class="btn btn-link openbutton dropdown-toggle" type="button" data-target="tableunites" onclick="$('#tableunites').toggleClass('noshow');">
+              <button class="btn openbutton dropdown-toggle" type="button" data-target="tableunites" onclick="$('#tableunites').toggleClass('noshow');">
                 <span class='fr'>Armées</span><span class='en'>Armies</span>
               </button>
             </h5>
           </div>
           <div class="card-body p-0">
 
-            <div id="tableunites">
+            <div id="tableunites" class="card-columns">
               <div class="card border">
-                <h6 class="card-header"><span class="bl1 blason"></span><span class="nom1 text-muted"><i class="fas fa-user"></i></span></h6>
+                <h6 class="card-header p-1"><span class="bl1 blason"></span><span class="nom1 text-muted"><i class="fas fa-user">#1</i></span></h6>
                 <div class="card-body p-1">
                   <p class="card-text" id="mini1"></p>
                   <div class="btn-group mr-2">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                     <input id="armee1" class="w-75 small text-muted" type="text">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                   </div>
                 </div>
               </div>
               <div class="card border">
-                <h6 class="card-header"><span class="bl2 blason"></span><span class="nom2 text-muted"><i class="fas fa-user"></i></span></h6>
+                <h6 class="card-header p-1"><span class="bl2 blason"></span><span class="nom2 text-muted"><i class="fas fa-user">#2</i></span></h6>
                 <div class="card-body p-1">
                   <p class="card-text" id="mini2"></p>
                   <div class="btn-group mr-2">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                     <input id="armee2" class="w-75 small text-muted" type="text">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                   </div>
                 </div>
               </div>
               <div class="card border">
-                <h6 class="card-header"><span class="bl3 blason"></span><span class="nom3 text-muted"><i class="fas fa-user"></i></span></h6>
+                <h6 class="card-header p-1"><span class="bl3 blason"></span><span class="nom3 text-muted"><i class="fas fa-user">#3</i></span></h6>
                 <div class="card-body p-1">
                   <p class="card-text" id="mini3"></p>
                   <div class="btn-group mr-2">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                     <input id="armee3" class="w-75 small text-muted" type="text">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                   </div>
                 </div>
               </div>
               <div class="card border">
-                <h6 class="card-header"><span class="bl4 blason"></span><span class="nom4 text-muted"><i class="fas fa-user"></i></span></h6>
+                <h6 class="card-header p-1"><span class="bl4 blason"></span><span class="nom4 text-muted"><i class="fas fa-user">#4</i></span></h6>
                 <div class="card-body p-1">
                   <p class="card-text" id="mini4"></p>
                   <div class="btn-group mr-2">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                     <input id="armee4" class="w-75 small text-muted" type="text">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                   </div>
                 </div>
               </div>
               <div class="card border">
-                <h6 class="card-header"><span class="bl5 blason"></span><span class="nom5 text-muted"><i class="fas fa-user"></i></span></h6>
+                <h6 class="card-header p-1"><span class="bl5 blason"></span><span class="nom5 text-muted"><i class="fas fa-user">#5</i></span></h6>
                 <div class="card-body p-1">
                   <p class="card-text" id="mini5"></p>
                   <div class="btn-group mr-2">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                     <input id="armee5" class="w-75 small text-muted" type="text">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                   </div>
                 </div>
               </div>
               <div class="card border">
-                <h6 class="card-header"><span class="bl6 blason"></span><span class="nom6 text-muted"><i class="fas fa-user"></i></span></h6>
+                <h6 class="card-header p-1"><span class="bl6 blason"></span><span class="nom6 text-muted"><i class="fas fa-user">#6</i></span></h6>
                 <div class="card-body p-1">
                   <p class="card-text" id="mini6"></p>
                   <div class="btn-group mr-2">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                     <input id="armee6" class="w-75 small text-muted" type="text">
+                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
-      </div>
       </div>
     </div>
   </section>
@@ -520,13 +517,6 @@
 
 *Tout à coup, l'audacieux seigneur d'Azincourt fait une incursion dans le camp anglais et menace le butin. Il est accompagné d'une nouvelle vague de chevaliers français qui chargent les Anglais. Pris entre deux attaques, Henry V affolé donne l'ordre d'égorger les seigneurs prisonniers, de peur qu'ils ne soient libérés...*
 
-%ARMEE(y4d7o7zf)%
-%ARMEE(yxsbxsd8)%
-%ARMEE(y3dqlbdy)%
-%ARMEE(yymsa4j4)%
-%ARMEE(yypbhncv)%
-
-%CARTE(y3qv52ps)%
 
 ## Conditions de victoire
 Le camp français gagne automatiquement la partie dès qu' Henry V est détruit ou s'il est Hors de combat à la fin du 8e round, ou si 15 unités anglaises sont mises Hors de combat ou détruites à la fin du 8e round.
@@ -629,7 +619,7 @@ Ctrl-F / Cmd-F (mac): toggle full screen
     </div>
   </header>
 
-  <section id="home">
+  <section id="homestart">
     <p  lang="fr">Ce site web est fait par un de fan du jeu "Time of Legends: Joan of Arc", et n'est pas lié aux auteurs ou éditeurs du jeu. Il propose des aides de jeu pour faire ses propres batailles, constituer ses armées ou même juste se documenter sur la guerre de Cent ans.</p>
     <p lang="en">This website is made by a fan of the game "Time of Legends: Joan of Arc", and is not related to the authors or publishers of the game. It offers game aids for making your own battles, building armies, or even just learning about the Hundred Years War.
     <br/>
@@ -648,39 +638,131 @@ Ctrl-F / Cmd-F (mac): toggle full screen
       <h2 class="featurette-heading"><a href="#troupes"><span lang="fr" class="text-muted">Unités</span><span lang="en" class="text-muted">Units</span></a></h2>
       <p lang="fr" class="lead">La liste des troupes, des personnages et des figurines de JoA.</p>
       <p lang="fr">Les règles sont décrites de façon plus compacte. Pour les personnages, leur blason historique est donné, ainsi que les dates où ils ont été actifs. Plusieurs intervalles sont possibles, notamment pour les titres (comme le comte d'Oxford), où plusieurs personnes l'ont porté. Cliquer sur le nom permet de voir l'image de la carte. Cliquer sur les dates permet de voir sa page wikipedia.</p>
-      <p lang="fr">Vous pouvez chercher la figurine pour une carte en particulier, ou voir quelles figurines sont disponibles dans quelle boite, et en quelles quantités.</p>
+      <p lang="fr">Vous pouvez chercher la figurine pour une carte en particulier, ou voir quelles figurines sont disponibles dans quelle boite, et en quelles quantités.
+      </p>
       <p lang="en" class="lead">The list of troops and characters of JoA.</p>
       <p lang="en">The rules are described in a more compact way. For characters, their coat of arms is provided (for painting for instance), the time where they were active. Multiple intervals are possible for titles beared by multiple persons (Earl of Oxford for instance). The card can be seen by clicking on their name. The dates can be clicked to access to the wikipedia page (in French, just pick your language on wikipedia page)</p>
-      <p lang="en">You can search for the figurine corresponding to a card, and find in which box it is, or see what are the figurines in an extension, and how many of them there are.</p>
+      <p lang="en">You can search for the figurine corresponding to a card, and find in which box it is, or see what are the figurines in an extension, and how many of them there are.
+      </p>
     </div>
+
+    
     <hr class="featurette-divider"/>
     <br/><br/>
     
     <div class="featurette">
       <img class="featurette-image img-responsive pull-right" src="css/armées.png" alt="armées">
       <h2 class="featurette-heading"><a href="#armee"><span lang="fr" class="text-muted">Constructeur d'armées</span><span lang="en" class="text-muted">Army builder</span></a></h2>
-      <p lang="fr">Sélectionnez les listes d'armées, puis les unités. Les contraintes sur les figurines, les personnages, la composition de l'armée sont prises en compte automatiquement. Vous pouvez cliquer sur tout les boutons, l'armée respectera les règles de composition. Les personnages mercenaires ont été ajoutés, ainsi qu'une armée bouguignonne.</p>
-      <p lang="fr">Vous pouvez aussi choisir des listes d'armées sans contrainte "Toute l'armée", ou filtrer les personnages en fonction de l'année de la bataille.</p>
-      <p lang="en">Select the army lists, then the units. Constraints on miniatures, characters, army composition are automatically taken into account. You can click on any button, the army will respect the composition rules. Mercenary characters have been added, as well as a burgundian army.</p>
-      <p lang="en">You can also choose unconstrained army lists "All Army", or filter characters according to the year of the battle.</p>
+      <p lang="fr">Sélectionnez les listes d'armées, puis les unités. Les contraintes sur les figurines, les personnages, la composition de l'armée sont prises en compte automatiquement. Vous pouvez cliquer sur tout les boutons, l'armée respectera les règles de composition. Les personnages mercenaires ont été ajoutés, ainsi qu'une armée bouguignonne, ottomane, valaque et tous les personnages peuvent maintenant être ajoutés dans les armées françaises et anglaises. Les nouveaux coûts pour ces unités sont indicatifs.</p>
+      <p lang="fr">
+        <img class="featurette-image img-responsive pull-left" style="width:300px" alt="date selection" src="images/dateselection.png">
+        Vous pouvez aussi choisir des listes d'armées sans contrainte avec "Toute l'armée", et filtrer les personnages en fonction de l'année de la bataille en cliquant sur "Année" et en bougeant le curseur sur l'année de votre choix. Vous êtes sûrs d'avoir les personnages vivants à cette année, parfait pour les scénarios historiques.
+        </p>
+      <p lang="fr">
+      <img class="featurette-image img-responsive pull-right" src="images/cartesarmees.png" alt="army display" style="width:300px">
+        En bas de page vous avez une présentation des armées que vous avez construit, une ligne par faction. Vous pouvez créer un hashtag identifiant votre armée de façon unique en cliquant sur  <span class="btn btn-secondary fas fa-hashtag"></span>. Par exemple, sur la figure à droite par exemple, c'est <code>y6lcztq8</code>. Ce hashtag sera utile dans la suite pour répartir les unités sur une carte et pour les scénarios, gardez le.</p>
+      <p lang="en">Select the army lists, then the units. Constraints on miniatures, characters, army composition are automatically taken into account. You can click on any button, the army will respect the composition rules. Mercenary characters have been added, as well as a burgundian army, valach, ottoman, and all characters can be added from French and English armies. New costs are just hints.</p>
+      <p lang="en">
+                <img class="featurette-image img-responsive pull-left" alt="date selection" style="width:300px" src="images/dateselection.png">     
+You can also choose unconstrained army lists with "All Army" composition, and filter characters according to the year of the battle by clicking on "Year" and by moving the slider to the year of your choice. With this, you are sure to have only the characters alive during this year, perfect for historical scenarios.
+      </p>
+      
+      <p lang="en">
+              <img class="featurette-image img-responsive pull-right" alt="army display" src="images/cartesarmees.png" style="width:300px">
+At the bottom of the page, you see the armies you have built, one line per faction. You can create a hashtag identifying  your army by clicking on <span class="btn btn-secondary fas fa-hashtag"></span>. For instance, in the figure at the right, it's <code>y6lcztq8</code>. This hashtag can be used when creating maps and scenarios, keep it.
+</p>
+      
     </div>
     <hr class="featurette-divider"/>
 
     <div class="featurette">
-      <img class="featurette-image img-responsive pull-right" src="css/stats.png" alt="stats">
-      <h2 class="featurette-heading"><a href="#compare"><span class="text-muted">Stats</span></a></h2>
-      <p lang="fr" class="lead">Calculateur des probas lors des combats</p>
-      <p lang="en" class="lead">Computing probabilities</p>
+      <img class="featurette-image img-responsive pull-left" src="images/mapcreation.png" alt="map creation">
+      <h2 class="featurette-heading"><span lang="fr" class="text-muted">Constructeur de cartes</span><span lang="en" class="text-muted">Map builder</span></h2>
       <p lang="fr">
-        C'est une aide simple, qui ne prend en compte qu'une action de combat effectuée par une unité ou un groupe d'unité contre une autre. On voit les points de vie moyens, la probabilité des unités de mourir, d'être hors de combat, d'esquiver, d'être repoussée ou les effets de la riposte. La plupart des effets des cartes sont pris en compte. Les effets du terrain sont aussi pris en compte.</p>
+        Le constructeur de carte vous permet de créer vos cartes, avec le décor et le placement des unités que vous souhaitez.
+      </p>
+      <p lang="fr">
+        En haut une barre d'outil sur le haut avec différentes tailles de grilles hexagonales permet de créer des cartes vierges, ou des prefabs. Les prefabs sont des cartes préconstruites, prêtes à être utilisées. Les éléments de décors des prefabs ne peuvent plus être édités. Les trois derniers prefabs, Azincourt, Meaux et l'Enfant sont juste des cartes de terrain, sans décor.
+      </p>
+      <p lang="fr">
+        Sur la droite, une série d'outils rangés en accordéon servent à construire et à décorer la carte. Toutes les images peuvent être glissées/déposées sur les hexagones. Il vaut mieux commencer d'abord par le terrain, puis placer sur le terrain, dans les zones d'un terrain, le décor et les unités.
+      </p>
+      <p lang="fr">Les tuiles peuvent être tournées avant d'être glissés/déposés, à l'aide du bouton central à l'image. Lorsque la tuile est glissée, le curseur est placé sur l'hexagone qui va servir de point d'ancrage, utile notamment dans le cas de tuiles à plusieurs hexagones.
+      </p>
+      <p lang="fr">Les éléments de décor, les civils et les jetons (points de ralliement, autre), peuvent être glissés/déposés également sur les cartes. Une fois sur la carte, ils peuvent être redéplacés si besoin.
+      </p>
+      <p lang="fr">
+        <img src="images/armeeselection.png" style="width:200px" alt="army selection" class="featurette-image img-responsive pull-right">Les unités des armées apparaissent lorsqu'on recopie un hashtag dans l'une des 6 fenêtres correspondant aux 6 joueurs max. Les unités peuvent alors être glissées/déposées en position. Chaque armée a sa propre couleur, dépendant de sa faction, et son motif sur la carte. On peut également faire glisser/déposer le blason de l'armée pour indiquer une zone de deploiement initiale, sans y mettre d'armée. 6 blasons sont disponibles initialement, sans avoir besoin de mettre un hashtag. Par exemple, sur la droite, l'armée dont le hashtag est <code>y6lcztq8</code> apparait lorsque le hashtag est rentré. Les unités peuvent ensuite être glissées sur les zones de la carte.
+      </p>
+      <p lang="fr"><img src="images/cartehash.png" style="width:400px" alt="hash army" class="featurette-image img-responsive pull-left">
+        Dans la barre d'outils en haut, vous pouvez créer un hashtag identifiant votre carte de façon unique en cliquant sur  <span class="btn btn-secondary fas fa-hashtag"></span>. Seule la carte, avec les décors, les troupes et les civils qui sont posés dessus est sauvée. Par exemple, sur la figure à gauche par exemple, c'est <code>yxslm7nj</code>. Ce hashtag sera utile dans la suite pour utiliser la carte dans les scénarios. Pour les cartes préfabriquées, le hashtag apparait directement. Vous pouvez soit completer ces cartes en placant des unités dessus, soit les utiliser directement dans un scenario.
+      </p>
+      <p lang="fr">La carte 11x11 préconstruite "Meaux" vient du scénario <a href="https://boardgamegeek.com/filepage/200509/new-4-player-scenario-siege-meaux">a siege of Meaux</a> sur BGG, par Bill Koff. Merci à lui !
+      </p>
       <p lang="en">
-        This is a simple helper, that takes into account only one combat action achieved by a unit or group of the same units.</p>
-      <p lang="en">Mean life points, probability to be killed, injured or pushed are shown for the defender and the attacker (in case of counterstrike or retaliation) Most of the traits are taken into account. Terrain effects are also taken into account. </p>
+        The card builder allows you to create your cards, with the decor and placement of the units you want.
+      </p>
+      <p lang="en">
+        A toolbar on the top with different sizes of hexagonal grids allows you to create blank cards, or prefabs. Prefabs are pre-built cards, ready to be used. The decor elements of the prefabs can no longer be edited. The last three prefabs, Azincourt, Meaux and l'Enfant are just field maps, without decorations.
+      </p>
+      <p lang="en">
+        On the right, a series of tools arranged in an accordion shape are used to build and decorate the card. All images can be dragged and dropped onto the hexagons. It is best to start with the terrain first, and then place the decoration and units on the terrain.
+      </p>
+      <p lang="en">Tiles can be rotated before being dragged and dropped, using the central button on the image. When the tile is dragged, the cursor is placed on the hexagon that will be used as an anchor point, useful especially in the case of tiles with several hexagons.
+      </p>
+      <p lang="en">Buildings, civilians and tokens (rally points, other), can be dragged and dropped on the maps as well. Once on the map, they can be moved again if needed.
+      </p>
+      <p lang="en">
+        <img src="images/armeeselection.png" style="width:200px" alt="army selection" class="featurette-image img-responsive pull-right">Army units appear when you copy a hashtag in one of the 6 windows corresponding to the 6 players max. The units can then be dragged and dropped into position. Each army has its own color, depending on its faction, and its pattern on the map. You can also drag and drop the army's coat of arms to indicate an initial deployment area, without putting an army on it. 6 coats of arms are available initially, without the need to put a hashtag. For example, on the right, the army whose hashtag is <code>y6lcztq8</code> appears when the hashtag is entered. The units can then be dragged over the areas of the map.
+      </p>
+      <p lang="en"><img src="images/cartehash.png" style="width:400px" alt="hasharmy" class="featurette-image img-responsive pull-left">
+        In the toolbar in the top, a hashtag associated to the map can be created by clicking on  <span class="btn btn-secondary fas fa-hashtag"></span>. Only the map, its buildings, tokens and troops on it will be saved. For instance, in the figure on the left, the hashtag is <code>yxslm7nj</code>. This hashtag will be used in scenario description. For the prefab maps, the hashtag appears directly. You can either fill these maps with units, or use them directly in scenarios.
+      </p>
+      <p lang="en">The prefab map 11x11 "Meaux" comes from the scenario <a href="https://boardgamegeek.com/filepage/200509/new-4-player-scenario-siege-meaux">a siege of Meaux</a> on BGG, by Bill Koff. Thanks to him!
+      </p>
     </div>
-    
+
+
+    <hr class="featurette-divider"/>
+
+    <div class="featurette">
+      <img class="featurette-image img-responsive pull-right" src="images/scenarioedit.png" alt="scenariobuilder">
+      <h2 class="featurette-heading"><span lang="fr" class="text-muted">Constructeur de scénario</span><span lang="en" class="text-muted">Scenario builder</span></h2>
+      <p lang="fr">
+        Le constructeur de scénario utilise un éditeur Markdown, <a href="https://simplemde.com/">simpleMDE</a>, augmenté pour créer des scénarios Joan of Arc. L'éditeur vient avec un exemple de scénario (la bataille d'Azincourt) permettant de voir comment les différents éléments sont édités. 
+      </p>
+      <p lang="fr">
+        En haut, la rangée de bouton permet de créer un style d'édition. La même chose est réalisable en tapant directement du markdown. Les boutons <span class="fas fa-eye btn btn-secondary"></span>, <span class="fas fa-columns btn btn-secondary"></span> et  <span class="fas fa-arrows-alt btn btn-secondary"></span> permettent de voir le rendu de la page (preview), de voir le rendu et en même temps continuer à l'éditer, et de passer en plein écran respectivement. 
+      </p>
+      <p lang="fr">
+        Les commandes spécifiques pour JoA commencent et finissent par <code>%</code>. A la fin du scénario par défaut, vous trouverez les commandes permettant de créer quelques icones apparaissant dans le jeu. Par exemple <code>%CAVALERIE%</code> est transformé en <span class="type cavalerie"></span>, <code>%DEROUGE%</code> par <span class="derouge"></span>. 2 commandes spéciales permettent d'intégrer des armées et des cartes définies précédemment:<br/>
+        <code>%CARTE(hashtag)%</code>: affiche une carte dont le hashtag est entre parenthèses.<br/>
+        <code>%ARMEE(hashtag)%</code>: affiche une armée dont le hashtag est entre parenthèses.
+        <br/>
+        Le scénario d'exemple illustre ces utilisations.
+      </p>
+      <p lang="fr">Après avoir obtenu le hashtag d'un scénario, vous pouvez créer un permalink vers ce scénario, pour l'insérer sur des forums. Le bouton <span class="btn btn-secondary fas fa-link"></span> change l'URL de votre page pour devenir un permalink. Vous pouvez alors utiliser votre navigateur pour exporter cette adresse, ou la copier ailleurs.
+      </p>
+
+      <p lang="en">
+        The scenario builder uses a Markdown editor, <a href="https://simplemde.com/">simpleMDE</a>, augmented to create Joan of Arc scenarios. The editor comes with an example scenario (the battle of Azincourt) to see how the different elements are edited. 
+      </p>
+      <p lang="en">
+        At the top, the row of buttons allows you to create an editing style. The same can be done by typing directly from the markdown. The buttons <span class="fas fa-eye btn btn-secondary"></span>, <span class="fas fa-columns btn btn-secondary"></span> and <span class="fas fa-arrows-alt btn btn-secondary"></span> allow to see the page rendering (preview), to see the rendering and at the same time to continue editing it, and to switch to full screen respectively.
+      </p>
+      <p lang="en">
+        JoA specific commands start and end with <code>%</code>. At the end of the default scenario you will find commands to create some icons appearing in the game. For example <code>%CAVALERY%</code> is changed to <span class="type cavalerie"></span>, <code>%DEROUGE%</code> by <span class="derouge"></span>. 2 special commands allow to integrate armies and maps previously defined:
+        <code>%CARTE(hashtag)%</code>: displays a map defined by the hashtag.<br/>
+        <code>%ARMEE(hashtag)%</code>: displays an army defined by the hashtag.<br/>
+        The scenario example illustrates this.
+      </p>
+      <p lang="en">After you obtained a hashtag for a scenario, you can create a permalink to this scenario, in order to publish it in forums for instance. The button <span class="btn btn-secondary fas fa-link"></span> in the toolbar changes the URL of your page to become a permalink. You can then you your browser to bookmark this address, or copy it for using it in other places.
+      </p>
+
+    </div>
+      <img src="images/scenariopreview.png" style="width:600px" alt="preview" class="featurette-image img-responsive pull-left">
   </section>
     
-  </section>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="navbar-brand" style="position:absolute;right:0">Scenario Builder<div class="small text-muted">Time of Legends: Joan of Arc</div></div>
@@ -703,13 +785,13 @@ Ctrl-F / Cmd-F (mac): toggle full screen
             <a class="nav-link" href="#armee"><span class='fr'>Armées</span><span class='en'>Armies</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#map"><span class='fr'>Carte</span><spn class='en'>Map</span></a>
+            <a class="nav-link" href="#map"><span class='fr'>Cartes</span><span class='en'>Maps</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#scenario">Scenario</a>
+            <a class="nav-link" href="#scenario">Scenarios</a>
           </li>
            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag flag-fr" lang="fr"></span><span class="flag flag-gb" lang="en"></span></a>
+            <span class="nav-link dropdown-toggle" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag flag-fr" lang="fr"></span><span class="flag flag-gb" lang="en"></span></span>
             <div class="dropdown-menu" aria-labelledby="dropdown09">
 	      <a href="#" class="dropdown-item" onclick="document.documentElement.lang='en'; Unite.changeLang();"><span class="flag flag-gb"> </span> English</a>
 	      <a href="#" class="dropdown-item" onclick="document.documentElement.lang='fr'; Unite.changeLang();"><span class="flag flag-fr"> </span> Français</a>
@@ -729,8 +811,8 @@ Ctrl-F / Cmd-F (mac): toggle full screen
       <p class="m-0 text-center" lang='en'>All rights reserved for the game to Mythic Games</p>
       <p class="m-0 text-center" lang='fr'>Contenu Wikipedia soumis à <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">la licence CC-BY-SA</a></p>
       <p class="m-0 text-center" lang='en'>Wikipedia content on <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">CC-BY-SA licence</a></p>
-      <p class="m-0 text-center" lang='en'>Latest update: 28/11/2020</p>
-      <p class="m-0 text-center" lang='fr'>Dernière maj: 28/11/2020</p>
+      <p class="m-0 text-center" lang='en'>Latest update: 06/12/2020</p>
+      <p class="m-0 text-center" lang='fr'>Dernière maj: 06/12/2020</p>
     </div>
     <!-- /.container -->
   </footer>

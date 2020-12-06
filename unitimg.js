@@ -8,7 +8,9 @@ $.fn.unitimg = function(options) {
     let img=$("<img>");
     img.attr("draggable","true");
     img.on("dragstart",dragstart_handler);
+    if (settings.u.small) img.addClass("small");
     if (settings.u.grand) img.addClass("grand");
+    if (settings.u.medium) img.addClass("medium");
     if (settings.u.gigantesque) img.addClass("gigantesque");
     img.attr("id",settings.id);
     img.attr("data-original-title",settings.u.text);

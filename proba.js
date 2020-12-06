@@ -5,11 +5,11 @@ var k,kk,i=0,j;
 var nom;
 var f=FRANCAIS;
 var anti=ANGLAIS;
-    let full=["1A","2B_1","3A","8A","9B","10A","11B","12B","15B_2","16B_2","S1B","V3B","white"];
+let full=["1A","2B_1","3A","8A","9B","10B","11B","12B","15B_2","16B_2","S1B","V3B","white"];
 
-    let tex1=["10A","11A","11B","12A","12B","1A","1B","3A","5A","5B","6A","6B","7A","7B","8A","8B","9A","9B","S1A","S1B","S2A","S2B","S3A","S3B","V1A","V1B","V2B","V3A","V3B","white"];
-    let tex2=["13A","13B","14A","14B","15A","15B","16A","16B"];
-    let tex3=["17","18","2","4"];
+let tex1=["10A","10B","11A","11B","12A","12B","1A","1B","3A","3B","5A","5B","6A","6B","7A","7B","8A","8B","9A","9B","S1A","S1B","S2A","S2B","S3A","S3B","V1A","V1B","V2B","V3A","V3B","white"];
+let tex2=["13A","13B","14A","14B","15A","15B","16A","16B"];
+let tex3=["17","18","2","4"];
 
 unbouclier.toHTML=(()=>"<span class='bouclier'></span>");
 untue.toHTML=(()=>"<span class='facerouge tue'></span>");
@@ -700,21 +700,21 @@ function changeArmee() {
     }
     let card="";
     button="<button class='btn btn-sm btn-outline-light' onclick='resetgroup("+PERSONNAGE+",1,2)'>&#x21ba;</button>";
-    let head="<div class='card shadow'><div class='card-header p-1'>"+button+"<b lang='fr'>"+LISTE_CATEGORIES[PERSONNAGE]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[PERSONNAGE]+"</b> <span style='float:right'>";
-    let min=1,max=2;
+    let head="<div class='card shadow'><div class='card-header p-1'>"+button+"<b lang='fr'>"+LISTE_CATEGORIES[PERSONNAGE]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[PERSONNAGE]+"</b> <span style='float:right' class='blason-large";
+    let min=1,max=2; // Changed for mercenaries 
     if (nbarmee==2) max=4;
     if (nbarmee==3) { min=2; max=6; }
     for (at in army) {
         if (at=="apocalypse") continue;
         groups=army[at].g;
         groups[0].sort((a,b)=>b[at][0]-a[at][0]);
-        head+=army[at].f;
+        head+=" "+NOM_FACTION[army[at].f];
         for (j=0;j<groups[0].length;j++) {
             let g=groups[0][j];
             card+=g.toArmy(at,min,max);
         }
     }
-    if (card!="") card=head+"</div><div class='card-body p-0 m-0'><table class='armee w-100'>"+card+"</table></div></div>";
+    if (card!="") card=head+"'></span></div><div class='card-body p-0 m-0'><table class='armee w-100'>"+card+"</table></div></div>";
     $("#deck").html(card+s);
     
     computeArmy();
@@ -890,7 +890,6 @@ function dragstart_handler(ev) {
     let dt=ev.dataTransfer;
     if (typeof ev.originalEvent!="undefined") dt=ev.originalEvent.dataTransfer;
     dt.setData("id", ev.target.id);
-    console.log(dt);
     if (typeof ev.target.attributes.rot!="undefined") 
         dt.setData("rot", ev.target.attributes.rot.value);
 }
@@ -902,7 +901,6 @@ var dropped=0;
 var hexmap;
 
 function listeCartesC(s,v) {
-    console.log("Loading joueur");
     let d=$("<div>");
     let w,e;
     let hash=d.html(v).text();
@@ -915,21 +913,42 @@ function listeCartesC(s,v) {
 
 function carte(s,hash) {
     let tt="tt"+hash;
-    HexMap.load(hash,tt);
-    return "<div id='"+tt+"'></div>";
+    let wyn="wyn"+hash;
+    let i;
+    HexMap.load(hash,tt).done(function(hm) {
+        let wy=[];
+        /*for (i=0;i<hm.hexes.length;i++) {
+            let h=hm.hexes[i];
+            if (h.n=="white") continue;
+            if (h.n.endsWith("_2")||h.n.endsWith("_3")) continue;
+            if (h.n.endsWith("_1")) wy.push(h.n.slice(0,h.n.length-2));
+            else wy.push(h.n);
+        }
+        wy.sort();
+        let w={}
+        for (i=0;i<wy.length;i++) {
+            if (typeof w[wy[i]]=="undefined") w[wy[i]]=1;
+            else w[wy[i]]++;
+        }
+        let s=[];
+        for (i in w)
+            s.push(w[i]+"x"+i);
+        $("#"+wyn).html("Hex:"+s.join(", "));*/
+    });
+    return "<div class='col-8 mt-4'><div style='margin-right:2em' id='"+tt+"'></div></div>";
 }
 
 function storeJSON(t) {
     let n=t.attr("data-n");
     let jc=t.attr("data-json");
-    let json=JSONC.unpack(jc);
+    let d=$("<div>");
+    d.html(jc);
+    let json=JSONC.unpack(d.text(),true);
     json.nom=$("#getname"+n).val();
     if (json.nom=="") {
         alert("Give an army name first");
     } else {
-        console.log("Storing joueur"+$("#getname"+n).val()+" = (n="+n+") "+JSON.stringify(json));
         JSON.save(json).done(function(data) {
-            console.log("code:"+data);
             $("#code").html(data);
         });
     }
@@ -941,9 +960,11 @@ function listeCartesJSON(n,vv,b) {
     if (!b) {
         text+="<div class='d-inline-block align-middle p-2'><div style='width:10em'>"+vv.nom+"</div><div class='blason-xlarge "+vv.faction+"'></div></div>";
     } else {
+        let d=$("<div>");
+        d.text(JSONC.pack(vv,true));
         text+="<div class='d-block align-middle p-2'>";
         text+="<div class='btn-group mr-2'><span class='blason-large "+vv.faction+"'></span><input type='text' id='getname"+n+"' placeholder='"+vv.nom+"'></div>";
-        text+="<div class='btn-group mr-2'><button type='button' class='savehexmap fas fa-hashtag btn btn-secondary' data-n='"+n+"' data-json='"+JSONC.pack(vv)+"' onclick='storeJSON($(this))'></button><span id='code' class='hashhexmap text-center text-muted'></span></div>";
+        text+="<div class='btn-group mr-2'><button type='button' class='fas fa-hashtag btn btn-secondary' data-n='"+n+"' data-json='"+(d.html())+"' onclick='storeJSON($(this))'></button><span id='code' class='hashhexmap text-center text-muted'></span></div>";
         text+="</div>";
     }
     for (j in vv.liste) {
@@ -977,15 +998,14 @@ function drop(ev) {
     let zone=parseInt(target.attr("data-z"),10);
     let faction=null;
     console.log("s="+s);
- 
+    console.log(ev);
     // Add a new unit
     var data = troupes[id];
     let img=null,html;
     let h=parseInt($(".navbar").css("height").split("p")[0],10);
     let hh=20; //64;
-    let ll=0;
+    let ll=20;
     let g="";
-    console.log("id="+id);
     faction=$("#"+s).attr("data-faction");
     if (typeof data!="undefined"&&s.startsWith("un")) {
         html=data.toHTML();
@@ -995,15 +1015,17 @@ function drop(ev) {
             s="un"+("0" + dropped).slice(-2)+data.id;
             img=$("<img draggable='true' "+g+" data-original-title='"+data.text+"' data-toggle='tooltip' ondragstart='dragstart_handler(event)' id='"+s+"' src='images/"+html[10][0]+"'>");        
             dropped++;
-            
         } else {
             img=$("#"+s);
         }
     } else if (s.startsWith("d")) {
         data=liste_decors[id];
-        if (data.grand) { g="class='grand'"; hh=64; }
-        if (data.medium) { g="class='medium'"; hh=30; ll=10; }
-        else if (data.gigantesque) { g="class='gigantesque'"; hh=80;ll=40;}
+        hh=data.hh;
+        ll=data.ll;
+        if (data.grand) { g="class='grand'"; }
+        else if (data.gigantesque) { g="class='gigantesque'"; }
+        else if (data.medium) {g="class='medium'";}
+        else if (data.small) {g="class='small'";}
         if (s=="deco"+id) {
             s="dr"+("0" + dropped).slice(-2)+id;
             dropped++;
@@ -1013,11 +1035,16 @@ function drop(ev) {
         }
     }
         
-    let off=100/parent.parent()[0].clientWidth;
     if (img!=null) {
-        img.css("top",((ev.pageY-h-hh-$("#scenario").scrollTop()))+"px ")
-        img.css({"left":(ev.pageX-ll)+"px", position:'absolute'});
-        $("#hexmap-9").append(img);
+        let ggparent=parent.parent().parent();
+        console.log(ggparent.width()/ggparent.height());
+        let offset=ggparent.offset();
+        let ttop=offset.top;
+        let top =(ev.pageY-hh-ttop) / ggparent.height() * 100;
+        let tleft=offset.left;
+        let left=(ev.pageX-ll-tleft) / ggparent.width() * 100;
+        img.css({top:top+"%",left:left+"%", position:"absolute"});
+        ggparent.append(img);
     }
     /* Remove units from all zones */
     if (s.startsWith("un")||s.startsWith("dr")) 
@@ -1134,29 +1161,45 @@ $( document ).ready(function() {
 
     $('[data-toggle="tooltip"]').tooltip()
 
-    for (i=0;i<6; i++) {
+
+    for (i=0;i<6;i++) 
+        $(".bl"+(i+1)).unitimg({u:{i:NOM_FACTION[i],text:""},id:"blaso"+(i+1),dir:"images/icon",faction:NOM_FACTION[i]+""+(i)});
+
+    
+    for (i=1;i<=6; i++) {
+        (function(i) {
         $("#armee"+i).change(function() {
             let vv=($(this).val());
             let id=$(this).attr("id").substring(5);
+            let obj={id:id,i:i};
             let td=$("#mini"+id);
-            JSON.load(vv,function(hash,json) {
-                for (let j in json.liste) {
-                    $(".nom"+id).html(json.nom);
-                    $(".bl"+id).html("");
-                    /*
-                    $(".bl"+id).removeClass(["bien","mal", "francais", "ecossais","ottoman", "anglais", "bourguignon", "valaque", "mercenaire", "lituanien", "polonais" ,"teutonique"]);
-                    $(".bl"+id).addClass(json.faction);*/
-                    $(".bl"+id).unitimg({u:{i:json.faction,text:""},id:"blaso"+j,dir:"images/icon",faction:json.faction});
-                    for (let k=0;k<json.liste[j].no;k++) 
-                        td.unitimg({u:troupes[json.liste[j].id],
-                                    id:"un"+("0" + k).slice(-2)+json.liste[j].id,
-                                    faction:json.faction,
-                                    dir:"mini-small"});
-                }
-                $('[data-toggle="tooltip"]').tooltip()
-            });
+            td.removeClass();
+            (function(iii,iiid) {
+                JSON.load(vv,function(hash,json) {
+                    $("#mini"+iii).addClass(json.faction+""+(iii-1));
+                    for (let j in json.liste) {
+                        $(".nom"+iiid).html(json.nom);
+                        $(".bl"+iiid).html("");
+                        /*
+                          $(".bl"+id).removeClass(["bien","mal", "francais", "ecossais","ottoman", "anglais", "bourguignon", "valaque", "mercenaire", "lituanien", "polonais" ,"teutonique"]);
+                          $(".bl"+id).addClass(json.faction);*/
+                        $(".bl"+id).unitimg({u:{i:json.faction,text:""},id:"blaso"+json.faction+""+i,dir:"images/icon",faction:json.faction+""+(iii-1)});
+                        for (let k=0;k<json.liste[j].no;k++) 
+                            td.unitimg({u:troupes[json.liste[j].id],
+                                        id:"un"+(iii+"" + k).slice(-2)+json.liste[j].id,
+                                        faction:json.faction+""+(iii-1),
+                                        dir:"mini-small"});
+                    }
+                    $('[data-toggle="tooltip"]').tooltip()
+                }.bind(obj));
+            })(i,id);
+                         
         });
-    }
+        })(i);
+    }/*
+    yxuo3wo7
+    y5gtjnee
+*/
     //var u = touslesduels(troupes.filter((x)=>x.troupe));
     $("#tabletroupes tbody").append(troupes.filter((x)=>x.troupe).join(''));
     $("#tabletroupes").DataTable({
@@ -1207,7 +1250,8 @@ $( document ).ready(function() {
     $.get("https://tinyurl.com/api-create.php",{url:"https://xws-bench.github.io/joan-of-arc-helper/index.html?h="+lword}).done(function(data) {
         console.log("Battlefield "+data.substring(20));
     });*/
-    HexMap.load("y3qv52ps","hexmap-9");
+    HexMap.load("y4adhpa9","hexmap-9").done(function(data) { hexmap = data; console.log("hexmap");console.log(hexmap); });
+    HexMap.setPrefabs();
     
     $("#hex1").hexchooser({list:tex1,top:"5%",left:"2%"});
     $("#hex2").hexchooser({list:tex2,top:"15%",left:"8%",leftt:"10%",topt:"50%"});
@@ -1237,17 +1281,37 @@ $( document ).ready(function() {
 
     
     // $(".player input").change(a);
-    
+    var replacemde = function(hash) {
+        JSON.load(hash/*"yyw9gfsj"*/,function(h,json) {
+            simplemde.value(json.txt);
+            $("#scenariohash").html(h);
+            if (!simplemde.isPreviewActive()) simplemde.togglePreview();
+        });
+    }
+    var savemde = function() {
+        //console.log(simplemde.value());
+        JSON.save({txt:simplemde.value()}).done(function(data) {
+            $("#scenariohash").html(data);
+	})
+    }
     var simplemde = new SimpleMDE({ 
         element: document.getElementById("editor"),
-        status: ["autosave", "lines", "words", "cursor"], // Optional usage
-       /* autosave: {
+        autosave: {
 		enabled: true,
 		uniqueId: "MyUniqueID",
 		delay: 1000,
-	        },*/
+	        },
+        status: ["autosave", "lines", "words", "cursor"], // Optional usage
         spellChecker:false,
         autoDownloadFontAwesome:false,
+        toolbar: ["bold","italic","heading","unordered-list","ordered-list","link","image","preview","side-by-side","fullscreen",
+	    {//yxetymuo
+		name: "hash",
+		action: savemde,
+		className: "btn btn-secondary prehashmap fas fa-hashtag",
+		title: "Creates a hashtag",
+	    },
+	],
         shortcuts: {
             "toggleSideBySide":"Ctrl-S",
 	    "toggleFullScreen": "Ctrl-F",
@@ -1262,13 +1326,52 @@ $( document ).ready(function() {
     $(".savehexmap").click(function() {
         hexmap.save().done((data) => $("#codemap").html(data));
     });
-
-    
+    let dd=$("<div>");
+    dd.addClass("hashhexmap");
+    dd.attr("id","scenariohash");
+    dd.insertAfter("#scenario .prehashmap");
+    dd=$("<div>");
+    dd.attr("id","scenariopermalink");
+    dd.addClass("btn btn-secondary fas fa-link");
+    dd.insertAfter("#scenario #scenariohash");
+    dd=$("<div class='dropdown mr-2 ml-2'><button class='btn btn-secondary dropdown-toggle' type='button' id='prefabbutton2' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Prefabs</button><div class='dropdown-menu' id='prefabs2' aria-labelledby='dropdownMenuButton'></div></div>");
+    dd.insertBefore("#scenario .prehashmap");
     $("a.nav-link").click(function() {
-        console.log(this);
         $(".nav-link").css({color:"rgba(255,255,255,0.5)"});
         $(this).css({ color:"white" });
     });
+
+    let scenarios=[{h:"y2pd8pye",nom:"La bataille d'Azincourt <span class='blason francais'></span><span class='blason anglais'></span>",name:"Battle of Agincourt"}];
+    
+    for (i=0;i<scenarios.length;i++) {
+        let c=scenarios[i];
+        let s=$("<div>");
+        s.addClass("drop-item");
+        s.html("<span lang='fr'>"+c.nom+"</span><span lang='en'>"+c.name+"</span>");
+        s.click(function() {
+            $("#prefabbutton2").html("<span lang='fr'>"+c.nom+"</span><span lang='en'>"+c.name+"</span>");
+            replacemde(h);
+        });
+        $("#prefabs2").append(s);
+    }
+    $("#scenariopermalink").click(function() {
+        let k=$("#scenariohash").html();
+        if (k!="") document.location.search="?s="+k;
+    });
+
+    var $_GET = {};
+
+    document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+        function decode(s) {
+            return decodeURIComponent(s.split("+").join(" "));
+        }
+        $_GET[decode(arguments[1])] = decode(arguments[2]);
+    });
+    if (typeof $_GET["s"]!="undefined") {
+        document.location.hash="scenario";
+        replacemde($_GET["s"]);
+    }
+
 });
 
 function setHexmap(diam) {
@@ -1285,7 +1388,7 @@ function setHexmap(diam) {
 
 JSON.save=function (json) {
     let deferred = $.Deferred();
-    $.get("https://tinyurl.com/api-create.php",{url:"https://xws-bench.github.io/joan-of-arc-helper/index.html?h="+JSONC.pack(json)}).done(function(data) {
+    $.get("https://tinyurl.com/api-create.php",{url:"https://xws-bench.github.io/joan-of-arc-helper/index.html?h="+JSONC.pack(json,true)}).done(function(data) {
         deferred.resolve(data.substring(20));
     });
     return deferred.promise();
@@ -1295,13 +1398,9 @@ JSON.load=function(hash,f) {
         fetch('https://tinyurl.com/'+hash,{redirect:"follow"})
             .then(response => {
                 let hh=response.url.substring(60)
-                json=JSONC.unpack(hh);
-                console.log("packing");
-                console.log(hh);
-                console.log(json);
-                f(hash,json);
+                f(hash,JSONC.unpack(hh,true));
             })
     } catch(e) {
-        console.log(e);
+        console.error(e);
     }
 }

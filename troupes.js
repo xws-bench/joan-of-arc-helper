@@ -61,6 +61,7 @@ class Unite {
         return dd.replace(/%LEGENDE%/g,"<span class='jetonlegende jeton'></span>")
             .replace(/%CARTE\(([^)]+)\)%/g,carte)
             .replace(/%ARMEE\(([^)]+)\)%/g,listeCartesC)
+            .replace(/%QUESTION%/g,"<span class='jeton jetonquestion'> </span>")
             .replace(/%FRANCAIS%/g,"<span class='blason-large francais'></span>")
             .replace(/%ANGLAIS%/g,"<span class='blason-large anglais'></span>")
             .replace(/%ECOSSAIS%/g,"<span class='blason-large ecossais'></span>")
@@ -307,7 +308,7 @@ class Unite {
             } else {
                 console.log("No dict for "+n+" "+u.faction);
             }
-            if (u.niv==1&&!(u.B1||u.o1||u.a1||u.a2||u.a3||u.f1||u.f2||u.s1||u.s2||u.f3||u.b1||u.b2||u.b3||u.m1||u.m2||u.m3||u.e1)) console.log("cannot buy:"+n);
+            if (u.niv==1&&!(u.B1||u.o1||u.a1||u.a2||u.a3||u.f1||u.f2||u.s1||u.s2||u.f3||u.b1||u.b2||u.b3||u.m1||u.m2||u.m3||u.e1||u.v1||u.f0||u.m0||u.a0||u.b0)) console.log("cannot buy:"+n);
             let tl=["f","a","m","b"];
             for (k in tl) {
                 let kk=tl[k];

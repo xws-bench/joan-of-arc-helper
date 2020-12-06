@@ -44,7 +44,12 @@
     color: white;
     text-decoration: none;
 }
-
+.rotate60 {
+    transform:rotate(60deg);
+}
+.rotate-120 {
+    transform:rotate(-120deg);
+}
 .hexmap.pointy .hex, .hexmap.pointy .hexinner {
     -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
     clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
@@ -111,6 +116,26 @@
 .hexmap.flat .third3h {
     clip-path: polygon(20% 10%, 25% 0%, 75% 0%, 100% 50%,95% 60%);
 }
+.hexmap.flat .third1c {
+    clip-path: polygon(38% 100%, 38% 42%, 85% 12%, 97% 35%,63% 60%,63% 100%);
+}
+.hexmap.flat .third2c {
+    clip-path: polygon(38% 100%, 25% 100%, 0% 50%, 25% 0%,75% 0%,85% 12%,38% 42%);
+}
+.hexmap.flat .third3c {
+    clip-path: polygon(63% 100%,63% 60%, 97% 35%,100% 50%,75% 100%);
+}
+
+.hexmap.flat .third2d {
+    clip-path: polygon(20% 10%, 75% 50%, 75% 65%, 10% 80%,25% 100%,75% 100%,100% 50%,75% 0%,25% 0%);
+}
+.hexmap.flat .third1d {
+    clip-path: polygon(20% 10%, 75% 50%, 75% 65%, 10% 80%,5% 60%,55% 55%,5% 30%);
+}
+.hexmap.flat .third3d {
+    clip-path: polygon(5% 60%,55% 55%, 5% 30%,0% 50%);
+}
+
 .hexcontent { margin-top:10ex;padding: 0.25em; font-size: 0.6em; line-height: 1.2em;}
 .when-selected { display: none;}
 /*.hex:hover .when-selected, .hex:focus .when-selected { display: block; font-size: 1em;; }*/

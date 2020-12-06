@@ -7,21 +7,17 @@ class Hex {
         $.extend(this,me,attr);
 	this.s = -this.q - this.r;
         if (typeof this.zones=="undefined") this.zones=[];
+        if (typeof this.n!="undefined") this.setClass(this.n);
  	return this;
     }
-    
-    position(x,y,w,h){
-	/*this.el.css({
-	    'left':x+'px',
-	    'bottom':y+'px',
-	    'width':w+'px',
-	    'height':h+'px'
-	});*/
-	return this;
-    }
     addUnit(x,z,f) {
-        console.log("pushing "+x+" in zone "+z+" of hex "+this.q+" "+this.r);
-        if (typeof f!="undefined") this.zones[z].addClass(f);
+        console.log("pushing "+x+" in zone "+z+" of hex "+this.q+" "+this.r+" "+f);
+        if (typeof f!="undefined") {
+            console.log("adding faction "+f+" to zone "+z);
+            console.log(this.zones[z].el);
+            this.zones[z].el.addClass(f);
+            this.zones[z].faction=f;
+        }
         if (!x.startsWith("blaso")) {
             this.units[z].push(x);
             this.makeTitle(z);
@@ -38,14 +34,18 @@ class Hex {
         return false;
     }
     save() {
-        return {q:this.q,r:this.r,n:this.n,rot:this.rot,units:this.units};
+        let z=[];
+        for (let i=0;i<this.zones.length;i++)
+            z[i]={faction:this.zones[i].faction,el:null};
+        return {q:this.q,r:this.r,n:this.n,rot:this.rot,zones:z,units:this.units};
     }
     makeTitle(z) {
         let p={};
         let i,s="",d="";
         if (this.units[z].length==0) {
-            this.zones[z].attr("data-original-title","empty");
-            this.zones[z].removeClass(["bien","mal", "francais", "ecossais","ottoman", "anglais", "bourguignon", "valaque", "mercenaire", "lituanien", "polonais" ,"teutonique"]);
+            this.zones[z].el.attr("data-original-title","empty");
+            this.zones[z].el.removeClass(["bien","mal", "francais", "ecossais","ottoman", "anglais", "bourguignon", "valaque", "mercenaire", "lituanien", "polonais" ,"teutonique"]);
+            this.zones[z].faction=null;
         } else {
             console.log("found "+this.units[z].length+" in units" + z);
             for (i in this.units[z]) {
@@ -66,14 +66,10 @@ class Hex {
                 console.log("found in p:"+n);  
             }
             
-            if(s!="") {
-                this.zones[z].addClass(NOM_FACTION[$(".player select").val()]);
-                s="<b>Unités</b><br/>"+s;
-            }
             if (d!="") {
-                s+="<b>Décors</b><br/>"+d;
+                s+=d;
             }
-            this.zones[z].attr("data-original-title",s);
+            this.zones[z].el.attr("data-original-title",s);
             //this.zones[z].attr("title",s);
         }
 
@@ -99,14 +95,16 @@ class Hex {
         return this.parent.find(this.q+hex2_qe[rot],this.r+hex2_re[rot]);
     }
     setClass(c) {
-        let terrain1=["1A","2B_1","3A","8A","9B","10A","11B","12B","15B_2","16B_2","S1B","V3B","white"];
+        let terrain1=["1A","2B_1","3A","8A","9B","10B","11B","12B","15B_2","16B_2","S1B","V3B","white"];
         let terrain2r=["2B_2","2B_3","4A_1","4A_3","4B_1","4B_2","13A_1","13A_2","13B_1","13B_2","14A_2","14B_1","15A_1","15B_1","16A_2","16B_1","17A_1","17A_2","17A_3","17B_1","17B_2","17B_3"];
-        let terrain2=["5A","6A","6B","7B","11A","S3A","V3A"];
+        let terrain2=["10A","5A","6A","6B","7B","11A","S3A","V3A"];
         let terrain2h=["7A","14B_2"];
-        let terrain3=["1B","2A_1","2A_3","4B_3","5B","8B","9A","12A","18B_1","18B_2","18B_3","S3B"];
+        let terrain3=["1B","2A_1","2A_3","3B","4B_3","5B","8B","9A","12A","18B_1","18B_2","18B_3","S3B"];
         let terrain3r=["2A_2","4A_2","14A_1","15A_2","16A_1","18A_1","18A_2","18A_3"];
-        let other=["S1A","S2A","S2B","V1A","V1B","V2B"];
-        let terrain3h=["S1A","V1A"];
+        let terrain3h=["V1A","S1A"];
+        let terrain3c=["S2A","S2B","V1B"];
+        let special=["V2B"];
+
         this.el.removeClass(terrain1.map(x=>"h"+x));
         this.el.removeClass(terrain2r.map(x=>"h"+x));
         this.el.removeClass(terrain2.map(x=>"h"+x));
@@ -114,8 +112,9 @@ class Hex {
         this.el.removeClass(terrain3.map(x=>"h"+x));
         this.el.removeClass(terrain3r.map(x=>"h"+x));
         this.el.removeClass(terrain3h.map(x=>"h"+x));
+        this.el.removeClass(terrain3c.map(x=>"h"+x));
+        this.el.removeClass("V2B");
         this.el.addClass("h"+c);
-        
         this.el.removeClass(terrain1.map((x)=>"h"+x));
         this.el.addClass("h"+c);
         this.el.empty();
@@ -155,22 +154,25 @@ class Hex {
             zone[i].on("dragover",allowDrop);
             //zone[i].attr("title","empty");
             zone[i].addClass("zone");
-            this.zones[i]=zone[i];
-            if (this.units.length>i)
-                for (let j=0;j<this.units[i].length;j++) {
-                    let u=this.units[i][j];
-                    if (this.removeUnit(u)) {
-                        console.log("trying to remove "+u);
-                        $("#"+u).remove();
-                    }
-                }
-            this.units[i]=[];
+            if (typeof this.zones[i]=="undefined") this.zones[i]={el:null,faction:null};
+            this.zones[i].el=zone[i];
+            if (c=="white") this.zones[i].faction=null;
+            if (this.zones[i].faction!=null) {
+                console.log("zone faction :"+this.zones[i].faction);
+                zone[i].addClass(this.zones[i].faction);
+            }
+            if (typeof this.units[i]=="undefined") this.units[i]=[];
         }
-        if (terrain1.includes(c))
+        for (i=0;i<this.units.length;i++) {
+            if (this.units[i].length>0) this.makeTitle(i);
+        }
+        if (terrain1.includes(c)) {
             cls=["fullhex"];
-        else if (terrain2.includes(c))
+            //if (c=="V3B") cls[0]=null;
+        } else if (terrain2.includes(c)) {
             cls=["half1","half2"];
-        else if (terrain2r.includes(c))
+            if (c=="V3A") cls[1]=null;
+        }  else if (terrain2r.includes(c))
             cls=["half1r","half2r"];
         else if (terrain2h.includes(c))
             cls=["half1h","half2h"];
@@ -178,11 +180,26 @@ class Hex {
             cls=["third1","third2","third3"];
         else if (terrain3r.includes(c))
             cls=["third1r","third2r","third3r"];
-        else if (terrain3h.includes(c))
+        else if (terrain3h.includes(c)) {
             cls=["third1h","third2h","third3h"];
+            //if (c=="V1A") cls[0]=null;
+            if (c=="S1A") cls[1]=null;
+        } 
+        else if (terrain3c.includes(c)) {
+            cls=["third1c","third2c","third3c"];
+            //if (c=="V1B") cls[0]=null;
+            if (c=="S2B") cls[2]=null;
+            if (c=="S2A") cls[1]=null;   
+        } else if (c=="V2B") {
+            cls=["third1d","third2d","third3d"];
+        }
         for (i=0;i<cls.length;i++) {
-            zone[i].addClass(cls[i]);
-            this.el.append(zone[i]);
+            if (cls[i]!=null) {
+                zone[i].addClass(cls[i]);
+                if (c=="S2B") zone[i].addClass("rotate60");
+                if (c=="S2A") zone[i].addClass("rotate-120");
+                this.el.append(zone[i]);
+            }
         }
         if (c!="white"&&(c.endsWith("_1")||c.indexOf("_")==-1)) {
             if (c.endsWith("_1")) c=c.slice(0,-2);
