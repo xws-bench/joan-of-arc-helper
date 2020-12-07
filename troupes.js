@@ -658,7 +658,10 @@ class Unite {
    
         if (!this.troupe) {
             let t=this.text.replace(/'/,"_");
-            n="<a href='#card' data-src='cards/persos/"+nn+".png' data-id='"+this.id+"' data-toggle='modal' data-target='#card' data-embed='#mycard' onclick=\"document.getElementById('mycard').setAttribute('src','cards/persos/"+nn+".png')\">"+n+"</a>";
+            if (this.gigantesque) 
+                n="<a href='#card-gigantesque' data-src='cards/persos/"+nn+".png' data-id='"+this.id+"' data-toggle='modal' data-target='#card-gigantesque' data-embed='#mylargecard' onclick=\"document.getElementById('mylargecard').setAttribute('src','cards/persos/"+nn+".png')\">"+n+"</a>";
+            else
+                n="<a href='#card' data-src='cards/persos/"+nn+".png' data-id='"+this.id+"' data-toggle='modal' data-target='#card' data-embed='#mycard' onclick=\"document.getElementById('mycard').setAttribute('src','cards/persos/"+nn+".png')\">"+n+"</a>";
         } else {
             n="<a href='#card-troop' data-src='cards/troupes/"+nn+".png' data-id='"+this.id+"' data-toggle='modal' data-target='#card-troop' data-embed='#mycardtroop' onclick=\"document.getElementById('mycardtroop').setAttribute('src','cards/troupes/"+nn+".png')\">"+n+"</a>";
         }

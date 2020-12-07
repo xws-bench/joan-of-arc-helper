@@ -701,7 +701,7 @@ function changeArmee() {
     let card="";
     button="<button class='btn btn-sm btn-outline-light' onclick='resetgroup("+PERSONNAGE+",1,2)'>&#x21ba;</button>";
     let head="<div class='card shadow'><div class='card-header p-1'>"+button+"<b lang='fr'>"+LISTE_CATEGORIES[PERSONNAGE]+"</b><b lang='en'>"+LISTE_CATEGORIES_EN[PERSONNAGE]+"</b> <span style='float:right' class='blason-large";
-    let min=1,max=2; // Changed for mercenaries 
+    let min=0,max=2; // Changed for mercenaries 
     if (nbarmee==2) max=4;
     if (nbarmee==3) { min=2; max=6; }
     for (at in army) {
@@ -971,6 +971,7 @@ function listeCartesJSON(n,vv,b) {
         let u = vv.liste[j];
         let t="class='perso-img'";
         if (troupes[u.id].troupe==true) t="class='troupe-img' ";
+        if (troupes[u.id].gigantesque==true) t="class='perso-huge' ";
         text+="<div class='d-inline-block align-top'>";   
         text+="<img "+t+" src='"+u.src+"'>";
         if (troupes[u.id].troupe==true)
@@ -1010,13 +1011,21 @@ function drop(ev) {
     if (typeof data!="undefined"&&s.startsWith("un")) {
         html=data.toHTML();
         if (data.grand) { g="class='grand'"; hh=64; }
-        else if (data.gigantesque) { g="class='gigantesque'"; hh=80;ll=40;}
+        else if (data.gigantesque) {
+            hh=200;
+            ll=120;
+            g="class='gigantesque'";
+        }
         if (s=="unit"+id) {
             s="un"+("0" + dropped).slice(-2)+data.id;
             img=$("<img draggable='true' "+g+" data-original-title='"+data.text+"' data-toggle='tooltip' ondragstart='dragstart_handler(event)' id='"+s+"' src='images/"+html[10][0]+"'>");        
             dropped++;
         } else {
             img=$("#"+s);
+            if (data.i=="Dragon") {
+                hh=300;
+                img.addClass("Dragon");
+            }
         }
     } else if (s.startsWith("d")) {
         data=liste_decors[id];

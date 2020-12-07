@@ -83,16 +83,16 @@
   opacity: 1; }
 
 #mini1.ecossais0 {
-  background-color: #a50;
+  background-color: #ff8C00;
   opacity: 1; }
 
 #mini1.ecossais1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #a50 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff8C00 20px 40px);
   opacity: 1; }
 
 #mini1.ecossais2 {
-  background: -moz-radial-gradient(#a50 35%, transparent 16%), -moz-radial-gradient(#a50 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#a50 35%, transparent 16%), -webkit-radial-gradient(#a50 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#ff8C00 35%, transparent 16%), -moz-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#ff8C00 35%, transparent 16%), -webkit-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -100,15 +100,15 @@
   opacity: 1; }
 
 #mini1.ecossais3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #a50 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff8C00 35px 40px);
   opacity: 1; }
 
 #mini1.ecossais4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #a50 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff8C00 10px 40px);
   opacity: 1; }
 
 #mini1.ecossais5 {
-  background-color: #442200;
+  background-color: #995400;
   opacity: 1; }
 
 #mini1.ottoman0 {
@@ -141,16 +141,16 @@
   opacity: 1; }
 
 #mini1.bien0 {
-  background-color: #5a0;
+  background-color: #A5D3D8;
   opacity: 1; }
 
 #mini1.bien1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #5a0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #A5D3D8 20px 40px);
   opacity: 1; }
 
 #mini1.bien2 {
-  background: -moz-radial-gradient(#5a0 35%, transparent 16%), -moz-radial-gradient(#5a0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#5a0 35%, transparent 16%), -webkit-radial-gradient(#5a0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#A5D3D8 35%, transparent 16%), -moz-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -158,28 +158,28 @@
   opacity: 1; }
 
 #mini1.bien3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #5a0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #A5D3D8 35px 40px);
   opacity: 1; }
 
 #mini1.bien4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #5a0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #A5D3D8 10px 40px);
   opacity: 1; }
 
 #mini1.bien5 {
-  background-color: #224400;
+  background-color: #5eb0b9;
   opacity: 1; }
 
 #mini1.mal0 {
-  background-color: #0a5;
+  background-color: #8A0303;
   opacity: 1; }
 
 #mini1.mal1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #0a5 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A0303 20px 40px);
   opacity: 1; }
 
 #mini1.mal2 {
-  background: -moz-radial-gradient(#0a5 35%, transparent 16%), -moz-radial-gradient(#0a5 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#0a5 35%, transparent 16%), -webkit-radial-gradient(#0a5 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A0303 35%, transparent 16%), -moz-radial-gradient(#8A0303 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A0303 35%, transparent 16%), -webkit-radial-gradient(#8A0303 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -187,28 +187,28 @@
   opacity: 1; }
 
 #mini1.mal3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #0a5 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A0303 35px 40px);
   opacity: 1; }
 
 #mini1.mal4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #0a5 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A0303 10px 40px);
   opacity: 1; }
 
 #mini1.mal5 {
-  background-color: #004422;
+  background-color: #260101;
   opacity: 1; }
 
 #mini1.valaque0 {
-  background-color: #ff0;
+  background-color: #000;
   opacity: 1; }
 
 #mini1.valaque1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #000 20px 40px);
   opacity: 1; }
 
 #mini1.valaque2 {
-  background: -moz-radial-gradient(#ff0 35%, transparent 16%), -moz-radial-gradient(#ff0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#ff0 35%, transparent 16%), -webkit-radial-gradient(#ff0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#000 35%, transparent 16%), -moz-radial-gradient(#000 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#000 35%, transparent 16%), -webkit-radial-gradient(#000 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -216,28 +216,28 @@
   opacity: 1; }
 
 #mini1.valaque3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #000 35px 40px);
   opacity: 1; }
 
 #mini1.valaque4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #000 10px 40px);
   opacity: 1; }
 
 #mini1.valaque5 {
-  background-color: #999900;
+  background-color: black;
   opacity: 1; }
 
 #mini1.bourguignon0 {
-  background-color: #f0f;
+  background-color: #8A2BE2;
   opacity: 1; }
 
 #mini1.bourguignon1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #f0f 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A2BE2 20px 40px);
   opacity: 1; }
 
 #mini1.bourguignon2 {
-  background: -moz-radial-gradient(#f0f 35%, transparent 16%), -moz-radial-gradient(#f0f 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#f0f 35%, transparent 16%), -webkit-radial-gradient(#f0f 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A2BE2 35%, transparent 16%), -moz-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -245,15 +245,15 @@
   opacity: 1; }
 
 #mini1.bourguignon3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #f0f 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A2BE2 35px 40px);
   opacity: 1; }
 
 #mini1.bourguignon4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #f0f 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A2BE2 10px 40px);
   opacity: 1; }
 
 #mini1.bourguignon5 {
-  background-color: #990099;
+  background-color: #561493;
   opacity: 1; }
 
 #mini2.anglais0 {
@@ -315,16 +315,16 @@
   opacity: 1; }
 
 #mini2.ecossais0 {
-  background-color: #a50;
+  background-color: #ff8C00;
   opacity: 1; }
 
 #mini2.ecossais1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #a50 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff8C00 20px 40px);
   opacity: 1; }
 
 #mini2.ecossais2 {
-  background: -moz-radial-gradient(#a50 35%, transparent 16%), -moz-radial-gradient(#a50 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#a50 35%, transparent 16%), -webkit-radial-gradient(#a50 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#ff8C00 35%, transparent 16%), -moz-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#ff8C00 35%, transparent 16%), -webkit-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -332,15 +332,15 @@
   opacity: 1; }
 
 #mini2.ecossais3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #a50 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff8C00 35px 40px);
   opacity: 1; }
 
 #mini2.ecossais4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #a50 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff8C00 10px 40px);
   opacity: 1; }
 
 #mini2.ecossais5 {
-  background-color: #442200;
+  background-color: #995400;
   opacity: 1; }
 
 #mini2.ottoman0 {
@@ -373,16 +373,16 @@
   opacity: 1; }
 
 #mini2.bien0 {
-  background-color: #5a0;
+  background-color: #A5D3D8;
   opacity: 1; }
 
 #mini2.bien1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #5a0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #A5D3D8 20px 40px);
   opacity: 1; }
 
 #mini2.bien2 {
-  background: -moz-radial-gradient(#5a0 35%, transparent 16%), -moz-radial-gradient(#5a0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#5a0 35%, transparent 16%), -webkit-radial-gradient(#5a0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#A5D3D8 35%, transparent 16%), -moz-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -390,28 +390,28 @@
   opacity: 1; }
 
 #mini2.bien3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #5a0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #A5D3D8 35px 40px);
   opacity: 1; }
 
 #mini2.bien4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #5a0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #A5D3D8 10px 40px);
   opacity: 1; }
 
 #mini2.bien5 {
-  background-color: #224400;
+  background-color: #5eb0b9;
   opacity: 1; }
 
 #mini2.mal0 {
-  background-color: #0a5;
+  background-color: #8A0303;
   opacity: 1; }
 
 #mini2.mal1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #0a5 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A0303 20px 40px);
   opacity: 1; }
 
 #mini2.mal2 {
-  background: -moz-radial-gradient(#0a5 35%, transparent 16%), -moz-radial-gradient(#0a5 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#0a5 35%, transparent 16%), -webkit-radial-gradient(#0a5 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A0303 35%, transparent 16%), -moz-radial-gradient(#8A0303 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A0303 35%, transparent 16%), -webkit-radial-gradient(#8A0303 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -419,28 +419,28 @@
   opacity: 1; }
 
 #mini2.mal3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #0a5 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A0303 35px 40px);
   opacity: 1; }
 
 #mini2.mal4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #0a5 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A0303 10px 40px);
   opacity: 1; }
 
 #mini2.mal5 {
-  background-color: #004422;
+  background-color: #260101;
   opacity: 1; }
 
 #mini2.valaque0 {
-  background-color: #ff0;
+  background-color: #000;
   opacity: 1; }
 
 #mini2.valaque1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #000 20px 40px);
   opacity: 1; }
 
 #mini2.valaque2 {
-  background: -moz-radial-gradient(#ff0 35%, transparent 16%), -moz-radial-gradient(#ff0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#ff0 35%, transparent 16%), -webkit-radial-gradient(#ff0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#000 35%, transparent 16%), -moz-radial-gradient(#000 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#000 35%, transparent 16%), -webkit-radial-gradient(#000 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -448,28 +448,28 @@
   opacity: 1; }
 
 #mini2.valaque3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #000 35px 40px);
   opacity: 1; }
 
 #mini2.valaque4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #000 10px 40px);
   opacity: 1; }
 
 #mini2.valaque5 {
-  background-color: #999900;
+  background-color: black;
   opacity: 1; }
 
 #mini2.bourguignon0 {
-  background-color: #f0f;
+  background-color: #8A2BE2;
   opacity: 1; }
 
 #mini2.bourguignon1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #f0f 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A2BE2 20px 40px);
   opacity: 1; }
 
 #mini2.bourguignon2 {
-  background: -moz-radial-gradient(#f0f 35%, transparent 16%), -moz-radial-gradient(#f0f 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#f0f 35%, transparent 16%), -webkit-radial-gradient(#f0f 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A2BE2 35%, transparent 16%), -moz-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -477,15 +477,15 @@
   opacity: 1; }
 
 #mini2.bourguignon3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #f0f 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A2BE2 35px 40px);
   opacity: 1; }
 
 #mini2.bourguignon4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #f0f 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A2BE2 10px 40px);
   opacity: 1; }
 
 #mini2.bourguignon5 {
-  background-color: #990099;
+  background-color: #561493;
   opacity: 1; }
 
 #mini3.anglais0 {
@@ -547,16 +547,16 @@
   opacity: 1; }
 
 #mini3.ecossais0 {
-  background-color: #a50;
+  background-color: #ff8C00;
   opacity: 1; }
 
 #mini3.ecossais1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #a50 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff8C00 20px 40px);
   opacity: 1; }
 
 #mini3.ecossais2 {
-  background: -moz-radial-gradient(#a50 35%, transparent 16%), -moz-radial-gradient(#a50 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#a50 35%, transparent 16%), -webkit-radial-gradient(#a50 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#ff8C00 35%, transparent 16%), -moz-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#ff8C00 35%, transparent 16%), -webkit-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -564,15 +564,15 @@
   opacity: 1; }
 
 #mini3.ecossais3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #a50 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff8C00 35px 40px);
   opacity: 1; }
 
 #mini3.ecossais4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #a50 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff8C00 10px 40px);
   opacity: 1; }
 
 #mini3.ecossais5 {
-  background-color: #442200;
+  background-color: #995400;
   opacity: 1; }
 
 #mini3.ottoman0 {
@@ -605,16 +605,16 @@
   opacity: 1; }
 
 #mini3.bien0 {
-  background-color: #5a0;
+  background-color: #A5D3D8;
   opacity: 1; }
 
 #mini3.bien1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #5a0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #A5D3D8 20px 40px);
   opacity: 1; }
 
 #mini3.bien2 {
-  background: -moz-radial-gradient(#5a0 35%, transparent 16%), -moz-radial-gradient(#5a0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#5a0 35%, transparent 16%), -webkit-radial-gradient(#5a0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#A5D3D8 35%, transparent 16%), -moz-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -622,28 +622,28 @@
   opacity: 1; }
 
 #mini3.bien3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #5a0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #A5D3D8 35px 40px);
   opacity: 1; }
 
 #mini3.bien4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #5a0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #A5D3D8 10px 40px);
   opacity: 1; }
 
 #mini3.bien5 {
-  background-color: #224400;
+  background-color: #5eb0b9;
   opacity: 1; }
 
 #mini3.mal0 {
-  background-color: #0a5;
+  background-color: #8A0303;
   opacity: 1; }
 
 #mini3.mal1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #0a5 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A0303 20px 40px);
   opacity: 1; }
 
 #mini3.mal2 {
-  background: -moz-radial-gradient(#0a5 35%, transparent 16%), -moz-radial-gradient(#0a5 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#0a5 35%, transparent 16%), -webkit-radial-gradient(#0a5 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A0303 35%, transparent 16%), -moz-radial-gradient(#8A0303 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A0303 35%, transparent 16%), -webkit-radial-gradient(#8A0303 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -651,28 +651,28 @@
   opacity: 1; }
 
 #mini3.mal3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #0a5 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A0303 35px 40px);
   opacity: 1; }
 
 #mini3.mal4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #0a5 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A0303 10px 40px);
   opacity: 1; }
 
 #mini3.mal5 {
-  background-color: #004422;
+  background-color: #260101;
   opacity: 1; }
 
 #mini3.valaque0 {
-  background-color: #ff0;
+  background-color: #000;
   opacity: 1; }
 
 #mini3.valaque1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #000 20px 40px);
   opacity: 1; }
 
 #mini3.valaque2 {
-  background: -moz-radial-gradient(#ff0 35%, transparent 16%), -moz-radial-gradient(#ff0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#ff0 35%, transparent 16%), -webkit-radial-gradient(#ff0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#000 35%, transparent 16%), -moz-radial-gradient(#000 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#000 35%, transparent 16%), -webkit-radial-gradient(#000 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -680,28 +680,28 @@
   opacity: 1; }
 
 #mini3.valaque3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #000 35px 40px);
   opacity: 1; }
 
 #mini3.valaque4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #000 10px 40px);
   opacity: 1; }
 
 #mini3.valaque5 {
-  background-color: #999900;
+  background-color: black;
   opacity: 1; }
 
 #mini3.bourguignon0 {
-  background-color: #f0f;
+  background-color: #8A2BE2;
   opacity: 1; }
 
 #mini3.bourguignon1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #f0f 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A2BE2 20px 40px);
   opacity: 1; }
 
 #mini3.bourguignon2 {
-  background: -moz-radial-gradient(#f0f 35%, transparent 16%), -moz-radial-gradient(#f0f 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#f0f 35%, transparent 16%), -webkit-radial-gradient(#f0f 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A2BE2 35%, transparent 16%), -moz-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -709,15 +709,15 @@
   opacity: 1; }
 
 #mini3.bourguignon3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #f0f 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A2BE2 35px 40px);
   opacity: 1; }
 
 #mini3.bourguignon4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #f0f 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A2BE2 10px 40px);
   opacity: 1; }
 
 #mini3.bourguignon5 {
-  background-color: #990099;
+  background-color: #561493;
   opacity: 1; }
 
 #mini4.anglais0 {
@@ -779,16 +779,16 @@
   opacity: 1; }
 
 #mini4.ecossais0 {
-  background-color: #a50;
+  background-color: #ff8C00;
   opacity: 1; }
 
 #mini4.ecossais1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #a50 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff8C00 20px 40px);
   opacity: 1; }
 
 #mini4.ecossais2 {
-  background: -moz-radial-gradient(#a50 35%, transparent 16%), -moz-radial-gradient(#a50 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#a50 35%, transparent 16%), -webkit-radial-gradient(#a50 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#ff8C00 35%, transparent 16%), -moz-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#ff8C00 35%, transparent 16%), -webkit-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -796,15 +796,15 @@
   opacity: 1; }
 
 #mini4.ecossais3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #a50 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff8C00 35px 40px);
   opacity: 1; }
 
 #mini4.ecossais4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #a50 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff8C00 10px 40px);
   opacity: 1; }
 
 #mini4.ecossais5 {
-  background-color: #442200;
+  background-color: #995400;
   opacity: 1; }
 
 #mini4.ottoman0 {
@@ -837,16 +837,16 @@
   opacity: 1; }
 
 #mini4.bien0 {
-  background-color: #5a0;
+  background-color: #A5D3D8;
   opacity: 1; }
 
 #mini4.bien1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #5a0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #A5D3D8 20px 40px);
   opacity: 1; }
 
 #mini4.bien2 {
-  background: -moz-radial-gradient(#5a0 35%, transparent 16%), -moz-radial-gradient(#5a0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#5a0 35%, transparent 16%), -webkit-radial-gradient(#5a0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#A5D3D8 35%, transparent 16%), -moz-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -854,28 +854,28 @@
   opacity: 1; }
 
 #mini4.bien3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #5a0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #A5D3D8 35px 40px);
   opacity: 1; }
 
 #mini4.bien4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #5a0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #A5D3D8 10px 40px);
   opacity: 1; }
 
 #mini4.bien5 {
-  background-color: #224400;
+  background-color: #5eb0b9;
   opacity: 1; }
 
 #mini4.mal0 {
-  background-color: #0a5;
+  background-color: #8A0303;
   opacity: 1; }
 
 #mini4.mal1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #0a5 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A0303 20px 40px);
   opacity: 1; }
 
 #mini4.mal2 {
-  background: -moz-radial-gradient(#0a5 35%, transparent 16%), -moz-radial-gradient(#0a5 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#0a5 35%, transparent 16%), -webkit-radial-gradient(#0a5 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A0303 35%, transparent 16%), -moz-radial-gradient(#8A0303 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A0303 35%, transparent 16%), -webkit-radial-gradient(#8A0303 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -883,28 +883,28 @@
   opacity: 1; }
 
 #mini4.mal3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #0a5 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A0303 35px 40px);
   opacity: 1; }
 
 #mini4.mal4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #0a5 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A0303 10px 40px);
   opacity: 1; }
 
 #mini4.mal5 {
-  background-color: #004422;
+  background-color: #260101;
   opacity: 1; }
 
 #mini4.valaque0 {
-  background-color: #ff0;
+  background-color: #000;
   opacity: 1; }
 
 #mini4.valaque1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #000 20px 40px);
   opacity: 1; }
 
 #mini4.valaque2 {
-  background: -moz-radial-gradient(#ff0 35%, transparent 16%), -moz-radial-gradient(#ff0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#ff0 35%, transparent 16%), -webkit-radial-gradient(#ff0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#000 35%, transparent 16%), -moz-radial-gradient(#000 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#000 35%, transparent 16%), -webkit-radial-gradient(#000 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -912,28 +912,28 @@
   opacity: 1; }
 
 #mini4.valaque3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #000 35px 40px);
   opacity: 1; }
 
 #mini4.valaque4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #000 10px 40px);
   opacity: 1; }
 
 #mini4.valaque5 {
-  background-color: #999900;
+  background-color: black;
   opacity: 1; }
 
 #mini4.bourguignon0 {
-  background-color: #f0f;
+  background-color: #8A2BE2;
   opacity: 1; }
 
 #mini4.bourguignon1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #f0f 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A2BE2 20px 40px);
   opacity: 1; }
 
 #mini4.bourguignon2 {
-  background: -moz-radial-gradient(#f0f 35%, transparent 16%), -moz-radial-gradient(#f0f 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#f0f 35%, transparent 16%), -webkit-radial-gradient(#f0f 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A2BE2 35%, transparent 16%), -moz-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -941,15 +941,15 @@
   opacity: 1; }
 
 #mini4.bourguignon3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #f0f 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A2BE2 35px 40px);
   opacity: 1; }
 
 #mini4.bourguignon4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #f0f 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A2BE2 10px 40px);
   opacity: 1; }
 
 #mini4.bourguignon5 {
-  background-color: #990099;
+  background-color: #561493;
   opacity: 1; }
 
 #mini5.anglais0 {
@@ -1011,16 +1011,16 @@
   opacity: 1; }
 
 #mini5.ecossais0 {
-  background-color: #a50;
+  background-color: #ff8C00;
   opacity: 1; }
 
 #mini5.ecossais1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #a50 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff8C00 20px 40px);
   opacity: 1; }
 
 #mini5.ecossais2 {
-  background: -moz-radial-gradient(#a50 35%, transparent 16%), -moz-radial-gradient(#a50 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#a50 35%, transparent 16%), -webkit-radial-gradient(#a50 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#ff8C00 35%, transparent 16%), -moz-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#ff8C00 35%, transparent 16%), -webkit-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -1028,15 +1028,15 @@
   opacity: 1; }
 
 #mini5.ecossais3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #a50 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff8C00 35px 40px);
   opacity: 1; }
 
 #mini5.ecossais4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #a50 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff8C00 10px 40px);
   opacity: 1; }
 
 #mini5.ecossais5 {
-  background-color: #442200;
+  background-color: #995400;
   opacity: 1; }
 
 #mini5.ottoman0 {
@@ -1069,16 +1069,16 @@
   opacity: 1; }
 
 #mini5.bien0 {
-  background-color: #5a0;
+  background-color: #A5D3D8;
   opacity: 1; }
 
 #mini5.bien1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #5a0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #A5D3D8 20px 40px);
   opacity: 1; }
 
 #mini5.bien2 {
-  background: -moz-radial-gradient(#5a0 35%, transparent 16%), -moz-radial-gradient(#5a0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#5a0 35%, transparent 16%), -webkit-radial-gradient(#5a0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#A5D3D8 35%, transparent 16%), -moz-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -1086,28 +1086,28 @@
   opacity: 1; }
 
 #mini5.bien3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #5a0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #A5D3D8 35px 40px);
   opacity: 1; }
 
 #mini5.bien4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #5a0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #A5D3D8 10px 40px);
   opacity: 1; }
 
 #mini5.bien5 {
-  background-color: #224400;
+  background-color: #5eb0b9;
   opacity: 1; }
 
 #mini5.mal0 {
-  background-color: #0a5;
+  background-color: #8A0303;
   opacity: 1; }
 
 #mini5.mal1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #0a5 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A0303 20px 40px);
   opacity: 1; }
 
 #mini5.mal2 {
-  background: -moz-radial-gradient(#0a5 35%, transparent 16%), -moz-radial-gradient(#0a5 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#0a5 35%, transparent 16%), -webkit-radial-gradient(#0a5 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A0303 35%, transparent 16%), -moz-radial-gradient(#8A0303 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A0303 35%, transparent 16%), -webkit-radial-gradient(#8A0303 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -1115,28 +1115,28 @@
   opacity: 1; }
 
 #mini5.mal3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #0a5 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A0303 35px 40px);
   opacity: 1; }
 
 #mini5.mal4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #0a5 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A0303 10px 40px);
   opacity: 1; }
 
 #mini5.mal5 {
-  background-color: #004422;
+  background-color: #260101;
   opacity: 1; }
 
 #mini5.valaque0 {
-  background-color: #ff0;
+  background-color: #000;
   opacity: 1; }
 
 #mini5.valaque1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #000 20px 40px);
   opacity: 1; }
 
 #mini5.valaque2 {
-  background: -moz-radial-gradient(#ff0 35%, transparent 16%), -moz-radial-gradient(#ff0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#ff0 35%, transparent 16%), -webkit-radial-gradient(#ff0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#000 35%, transparent 16%), -moz-radial-gradient(#000 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#000 35%, transparent 16%), -webkit-radial-gradient(#000 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -1144,28 +1144,28 @@
   opacity: 1; }
 
 #mini5.valaque3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #000 35px 40px);
   opacity: 1; }
 
 #mini5.valaque4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #000 10px 40px);
   opacity: 1; }
 
 #mini5.valaque5 {
-  background-color: #999900;
+  background-color: black;
   opacity: 1; }
 
 #mini5.bourguignon0 {
-  background-color: #f0f;
+  background-color: #8A2BE2;
   opacity: 1; }
 
 #mini5.bourguignon1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #f0f 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A2BE2 20px 40px);
   opacity: 1; }
 
 #mini5.bourguignon2 {
-  background: -moz-radial-gradient(#f0f 35%, transparent 16%), -moz-radial-gradient(#f0f 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#f0f 35%, transparent 16%), -webkit-radial-gradient(#f0f 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A2BE2 35%, transparent 16%), -moz-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -1173,15 +1173,15 @@
   opacity: 1; }
 
 #mini5.bourguignon3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #f0f 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A2BE2 35px 40px);
   opacity: 1; }
 
 #mini5.bourguignon4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #f0f 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A2BE2 10px 40px);
   opacity: 1; }
 
 #mini5.bourguignon5 {
-  background-color: #990099;
+  background-color: #561493;
   opacity: 1; }
 
 #mini6.anglais0 {
@@ -1243,16 +1243,16 @@
   opacity: 1; }
 
 #mini6.ecossais0 {
-  background-color: #a50;
+  background-color: #ff8C00;
   opacity: 1; }
 
 #mini6.ecossais1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #a50 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff8C00 20px 40px);
   opacity: 1; }
 
 #mini6.ecossais2 {
-  background: -moz-radial-gradient(#a50 35%, transparent 16%), -moz-radial-gradient(#a50 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#a50 35%, transparent 16%), -webkit-radial-gradient(#a50 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#ff8C00 35%, transparent 16%), -moz-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#ff8C00 35%, transparent 16%), -webkit-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -1260,15 +1260,15 @@
   opacity: 1; }
 
 #mini6.ecossais3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #a50 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff8C00 35px 40px);
   opacity: 1; }
 
 #mini6.ecossais4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #a50 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff8C00 10px 40px);
   opacity: 1; }
 
 #mini6.ecossais5 {
-  background-color: #442200;
+  background-color: #995400;
   opacity: 1; }
 
 #mini6.ottoman0 {
@@ -1301,16 +1301,16 @@
   opacity: 1; }
 
 #mini6.bien0 {
-  background-color: #5a0;
+  background-color: #A5D3D8;
   opacity: 1; }
 
 #mini6.bien1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #5a0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #A5D3D8 20px 40px);
   opacity: 1; }
 
 #mini6.bien2 {
-  background: -moz-radial-gradient(#5a0 35%, transparent 16%), -moz-radial-gradient(#5a0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#5a0 35%, transparent 16%), -webkit-radial-gradient(#5a0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#A5D3D8 35%, transparent 16%), -moz-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -1318,28 +1318,28 @@
   opacity: 1; }
 
 #mini6.bien3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #5a0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #A5D3D8 35px 40px);
   opacity: 1; }
 
 #mini6.bien4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #5a0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #A5D3D8 10px 40px);
   opacity: 1; }
 
 #mini6.bien5 {
-  background-color: #224400;
+  background-color: #5eb0b9;
   opacity: 1; }
 
 #mini6.mal0 {
-  background-color: #0a5;
+  background-color: #8A0303;
   opacity: 1; }
 
 #mini6.mal1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #0a5 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A0303 20px 40px);
   opacity: 1; }
 
 #mini6.mal2 {
-  background: -moz-radial-gradient(#0a5 35%, transparent 16%), -moz-radial-gradient(#0a5 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#0a5 35%, transparent 16%), -webkit-radial-gradient(#0a5 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A0303 35%, transparent 16%), -moz-radial-gradient(#8A0303 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A0303 35%, transparent 16%), -webkit-radial-gradient(#8A0303 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -1347,28 +1347,28 @@
   opacity: 1; }
 
 #mini6.mal3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #0a5 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A0303 35px 40px);
   opacity: 1; }
 
 #mini6.mal4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #0a5 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A0303 10px 40px);
   opacity: 1; }
 
 #mini6.mal5 {
-  background-color: #004422;
+  background-color: #260101;
   opacity: 1; }
 
 #mini6.valaque0 {
-  background-color: #ff0;
+  background-color: #000;
   opacity: 1; }
 
 #mini6.valaque1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff0 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #000 20px 40px);
   opacity: 1; }
 
 #mini6.valaque2 {
-  background: -moz-radial-gradient(#ff0 35%, transparent 16%), -moz-radial-gradient(#ff0 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#ff0 35%, transparent 16%), -webkit-radial-gradient(#ff0 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#000 35%, transparent 16%), -moz-radial-gradient(#000 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#000 35%, transparent 16%), -webkit-radial-gradient(#000 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -1376,28 +1376,28 @@
   opacity: 1; }
 
 #mini6.valaque3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff0 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #000 35px 40px);
   opacity: 1; }
 
 #mini6.valaque4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff0 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #000 10px 40px);
   opacity: 1; }
 
 #mini6.valaque5 {
-  background-color: #999900;
+  background-color: black;
   opacity: 1; }
 
 #mini6.bourguignon0 {
-  background-color: #f0f;
+  background-color: #8A2BE2;
   opacity: 1; }
 
 #mini6.bourguignon1 {
-  background: repeating-linear-gradient(-45deg, transparent 0 20px, #f0f 20px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A2BE2 20px 40px);
   opacity: 1; }
 
 #mini6.bourguignon2 {
-  background: -moz-radial-gradient(#f0f 35%, transparent 16%), -moz-radial-gradient(#f0f 35%, transparent 16%), transparent;
-  background: -webkit-radial-gradient(#f0f 35%, transparent 16%), -webkit-radial-gradient(#f0f 35%, transparent 16%), transparent;
+  background: -moz-radial-gradient(#8A2BE2 35%, transparent 16%), -moz-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
+  background: -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
   background-position: 0 0, 16px 16px;
   -webkit-background-size: 32px 32px;
   -moz-background-size: 32px 32px;
@@ -1405,15 +1405,15 @@
   opacity: 1; }
 
 #mini6.bourguignon3 {
-  background: repeating-linear-gradient(-45deg, transparent 0 35px, #f0f 35px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A2BE2 35px 40px);
   opacity: 1; }
 
 #mini6.bourguignon4 {
-  background: repeating-linear-gradient(-45deg, transparent 0 10px, #f0f 10px 40px);
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A2BE2 10px 40px);
   opacity: 1; }
 
 #mini6.bourguignon5 {
-  background-color: #990099;
+  background-color: #561493;
   opacity: 1; }
 
 .hexmap {
@@ -1518,27 +1518,27 @@
     background-color: #000099;
     opacity: 0.3; }
   .hexmap .hex .zone.ecossais0 {
-    background-color: #fa0;
+    background-color: #ff8C00;
     opacity: 0.3; }
   .hexmap .hex .zone.ecossais1 {
-    background: repeating-linear-gradient(-45deg, transparent 0 20px, #fa0 20px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff8C00 20px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.ecossais2 {
-    background: -moz-radial-gradient(#fa0 35%, transparent 16%), -moz-radial-gradient(#fa0 35%, transparent 16%), transparent;
-    background: -webkit-radial-gradient(#fa0 35%, transparent 16%), -webkit-radial-gradient(#fa0 35%, transparent 16%), transparent;
+    background: -moz-radial-gradient(#ff8C00 35%, transparent 16%), -moz-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
+    background: -webkit-radial-gradient(#ff8C00 35%, transparent 16%), -webkit-radial-gradient(#ff8C00 35%, transparent 16%), transparent;
     background-position: 0 0, 16px 16px;
     -webkit-background-size: 32px 32px;
     -moz-background-size: 32px 32px;
     background-size: 32px 32px;
     opacity: 0.3; }
   .hexmap .hex .zone.ecossais3 {
-    background: repeating-linear-gradient(-45deg, transparent 0 35px, #fa0 35px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff8C00 35px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.ecossais4 {
-    background: repeating-linear-gradient(-45deg, transparent 0 10px, #fa0 10px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff8C00 10px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.ecossais5 {
-    background-color: #996600;
+    background-color: #995400;
     opacity: 0.3; }
   .hexmap .hex .zone.ottoman0 {
     background-color: #0f0;
@@ -1564,96 +1564,96 @@
     background-color: #009900;
     opacity: 0.3; }
   .hexmap .hex .zone.bien0 {
-    background-color: #af0;
+    background-color: #A5D3D8;
     opacity: 0.3; }
   .hexmap .hex .zone.bien1 {
-    background: repeating-linear-gradient(-45deg, transparent 0 20px, #af0 20px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 20px, #A5D3D8 20px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.bien2 {
-    background: -moz-radial-gradient(#af0 35%, transparent 16%), -moz-radial-gradient(#af0 35%, transparent 16%), transparent;
-    background: -webkit-radial-gradient(#af0 35%, transparent 16%), -webkit-radial-gradient(#af0 35%, transparent 16%), transparent;
+    background: -moz-radial-gradient(#A5D3D8 35%, transparent 16%), -moz-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
+    background: -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), -webkit-radial-gradient(#A5D3D8 35%, transparent 16%), transparent;
     background-position: 0 0, 16px 16px;
     -webkit-background-size: 32px 32px;
     -moz-background-size: 32px 32px;
     background-size: 32px 32px;
     opacity: 0.3; }
   .hexmap .hex .zone.bien3 {
-    background: repeating-linear-gradient(-45deg, transparent 0 35px, #af0 35px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 35px, #A5D3D8 35px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.bien4 {
-    background: repeating-linear-gradient(-45deg, transparent 0 10px, #af0 10px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 10px, #A5D3D8 10px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.bien5 {
-    background-color: #669900;
+    background-color: #5eb0b9;
     opacity: 0.3; }
   .hexmap .hex .zone.mal0 {
-    background-color: #0fa;
+    background-color: #8A0303;
     opacity: 0.3; }
   .hexmap .hex .zone.mal1 {
-    background: repeating-linear-gradient(-45deg, transparent 0 20px, #0fa 20px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A0303 20px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.mal2 {
-    background: -moz-radial-gradient(#0fa 35%, transparent 16%), -moz-radial-gradient(#0fa 35%, transparent 16%), transparent;
-    background: -webkit-radial-gradient(#0fa 35%, transparent 16%), -webkit-radial-gradient(#0fa 35%, transparent 16%), transparent;
+    background: -moz-radial-gradient(#8A0303 35%, transparent 16%), -moz-radial-gradient(#8A0303 35%, transparent 16%), transparent;
+    background: -webkit-radial-gradient(#8A0303 35%, transparent 16%), -webkit-radial-gradient(#8A0303 35%, transparent 16%), transparent;
     background-position: 0 0, 16px 16px;
     -webkit-background-size: 32px 32px;
     -moz-background-size: 32px 32px;
     background-size: 32px 32px;
     opacity: 0.3; }
   .hexmap .hex .zone.mal3 {
-    background: repeating-linear-gradient(-45deg, transparent 0 35px, #0fa 35px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A0303 35px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.mal4 {
-    background: repeating-linear-gradient(-45deg, transparent 0 10px, #0fa 10px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A0303 10px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.mal5 {
-    background-color: #009966;
+    background-color: #260101;
     opacity: 0.3; }
   .hexmap .hex .zone.valaque0 {
-    background-color: #ff0;
+    background-color: #000;
     opacity: 0.3; }
   .hexmap .hex .zone.valaque1 {
-    background: repeating-linear-gradient(-45deg, transparent 0 20px, #ff0 20px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 20px, #000 20px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.valaque2 {
-    background: -moz-radial-gradient(#ff0 35%, transparent 16%), -moz-radial-gradient(#ff0 35%, transparent 16%), transparent;
-    background: -webkit-radial-gradient(#ff0 35%, transparent 16%), -webkit-radial-gradient(#ff0 35%, transparent 16%), transparent;
+    background: -moz-radial-gradient(#000 35%, transparent 16%), -moz-radial-gradient(#000 35%, transparent 16%), transparent;
+    background: -webkit-radial-gradient(#000 35%, transparent 16%), -webkit-radial-gradient(#000 35%, transparent 16%), transparent;
     background-position: 0 0, 16px 16px;
     -webkit-background-size: 32px 32px;
     -moz-background-size: 32px 32px;
     background-size: 32px 32px;
     opacity: 0.3; }
   .hexmap .hex .zone.valaque3 {
-    background: repeating-linear-gradient(-45deg, transparent 0 35px, #ff0 35px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 35px, #000 35px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.valaque4 {
-    background: repeating-linear-gradient(-45deg, transparent 0 10px, #ff0 10px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 10px, #000 10px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.valaque5 {
-    background-color: #999900;
+    background-color: black;
     opacity: 0.3; }
   .hexmap .hex .zone.bourguignon0 {
-    background-color: #f0f;
+    background-color: #8A2BE2;
     opacity: 0.3; }
   .hexmap .hex .zone.bourguignon1 {
-    background: repeating-linear-gradient(-45deg, transparent 0 20px, #f0f 20px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 20px, #8A2BE2 20px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.bourguignon2 {
-    background: -moz-radial-gradient(#f0f 35%, transparent 16%), -moz-radial-gradient(#f0f 35%, transparent 16%), transparent;
-    background: -webkit-radial-gradient(#f0f 35%, transparent 16%), -webkit-radial-gradient(#f0f 35%, transparent 16%), transparent;
+    background: -moz-radial-gradient(#8A2BE2 35%, transparent 16%), -moz-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
+    background: -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), -webkit-radial-gradient(#8A2BE2 35%, transparent 16%), transparent;
     background-position: 0 0, 16px 16px;
     -webkit-background-size: 32px 32px;
     -moz-background-size: 32px 32px;
     background-size: 32px 32px;
     opacity: 0.3; }
   .hexmap .hex .zone.bourguignon3 {
-    background: repeating-linear-gradient(-45deg, transparent 0 35px, #f0f 35px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 35px, #8A2BE2 35px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.bourguignon4 {
-    background: repeating-linear-gradient(-45deg, transparent 0 10px, #f0f 10px 40px);
+    background: repeating-linear-gradient(-45deg, transparent 0 10px, #8A2BE2 10px 40px);
     opacity: 0.3; }
   .hexmap .hex .zone.bourguignon5 {
-    background-color: #990099;
+    background-color: #561493;
     opacity: 0.3; }
   .hexmap .zone img {
     /*visibility:visible;*/

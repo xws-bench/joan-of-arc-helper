@@ -88,6 +88,9 @@ img[draggable] {
 .perso-img {
   width: 6em; }
 
+.perso-huge {
+  width: 36em; }
+
 /*.mini .img {
     position:absolute;
     bottom:0;
@@ -231,6 +234,9 @@ embed .toolbar {
 
 #card .modal-lg, #card-troop .modal-lg {
   max-width: 15em; }
+
+#card-gigantesque .modal-lg {
+  max-width: 52em; }
 
 .img-circle, .img-circle2 {
   width: 2em; }
@@ -1654,7 +1660,10 @@ h1 {
   width: 64px; }
 
 #tableunites img.gigantesque, .hexmap img.gigantesque, #houses img.gigantesque {
-  width: 128px; }
+  width: 256px; }
+
+#tableunites img.Dragon, .hexmap img.Dragon, #houses img.Dragon {
+  width: 512px; }
 
 section img {
   padding: 1px;
