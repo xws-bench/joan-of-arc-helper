@@ -1359,7 +1359,7 @@ $( document ).ready(function() {
         s.html("<span lang='fr'>"+c.nom+"</span><span lang='en'>"+c.name+"</span>");
         s.click(function() {
             $("#prefabbutton2").html("<span lang='fr'>"+c.nom+"</span><span lang='en'>"+c.name+"</span>");
-            replacemde(h);
+            replacemde(c.h);
         });
         $("#prefabs2").append(s);
     }
