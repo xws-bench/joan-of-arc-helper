@@ -14,7 +14,8 @@ const cartes=[{h:"y3n7d4oe",nom:"Les harengs",name:"The herrings"},
               {h:"y5l5rq7t",nom:"Assault coordonné",name:"Coordinated assault"},
               {h:"y5dsmq2o",nom:"Azincourt",name:"Agincourt"},
               {h:"y6epu3ph",nom:"Meaux",name:"Meaux"},//yxstbz2w
-              {h:"yxhk658x",nom:"L'Enfant",name:"The child"}
+              {h:"yxhk658x",nom:"L'Enfant",name:"The child"},
+              {h:"y5caobga",nom:"La bataille de Pourrière",name:"The Battle of Pourrière"},
              ];
 
 const FACTOR=1.4;

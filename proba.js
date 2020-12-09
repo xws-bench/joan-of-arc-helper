@@ -1350,7 +1350,11 @@ $( document ).ready(function() {
         $(this).css({ color:"white" });
     });
 
-    let scenarios=[{h:"y2pd8pye",nom:"La bataille d'Azincourt <span class='blason francais'></span><span class='blason anglais'></span>",name:"Battle of Agincourt"}];
+    let scenarios=[
+        {h:"y2pd8pye",nom:"La bataille d'Azincourt <span class='blason francais'></span><span class='blason anglais'></span>",name:"Battle of Agincourt <span class='blason francais'></span><span class='blason anglais'></span>"},
+        {h:"y339yz5h",nom:"La bataille de Pourrières  <span class='blason francais'></span><span class='blason anglais'></span>",name:"Battle of Pourrières <span class='blason francais'></span><span class='blason anglais'></span>"},
+        {h:"y5xmyldq",nom:"L'attaque des Tourelles  <span class='blason francais'></span><span class='blason anglais'></span>",name:"The attack of the Tourelles  <span class='blason francais'></span><span class='blason anglais'></span>"}
+    ];
     
     for (i=0;i<scenarios.length;i++) {
         let c=scenarios[i];
@@ -1413,3 +1417,17 @@ JSON.load=function(hash,f) {
         console.error(e);
     }
 }
+/*
+y3gcrbmt : joueur 1
+yysd6b2r : joueur 2
+y699th2g : joueur 3
+y6mxqdlw : joueur 4
+
+Carte:
+y4t5ll9v
+y5qbe6ec
+
+Joueur 1: y5m7qwp3
+Renforts: y5wj3paq
+Joueur 2: y3ezokx9
+*/

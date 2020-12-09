@@ -7,6 +7,7 @@ var liste_decors=[
     {text:"puits",i:"puits",hh:20,ll:20},
     {text:"moulin",i:"moulin",hh:58,ll:20,grand:true},
     {text:"pont de pierre",i:"pont_pierre",hh:30,ll:20,grand:true},
+    {text:"pont de bois",i:"pont_bois",hh:30,ll:20,grand:true},
     {text:"ruine",i:"ruine",hh:30,ll:20,medium:true},
     {text:"tente",i:"tente",hh:20,ll:20},
     {text:"église",i:"eglise",hh:40,ll:20,medium:true},
