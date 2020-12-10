@@ -1353,7 +1353,7 @@ $( document ).ready(function() {
     let scenarios=[
         {h:"y2pd8pye",nom:"La bataille d'Azincourt <span class='blason francais'></span><span class='blason anglais'></span>",name:"Battle of Agincourt <span class='blason francais'></span><span class='blason anglais'></span>"},
         {h:"y339yz5h",nom:"La bataille de Pourrières  <span class='blason francais'></span><span class='blason anglais'></span>",name:"Battle of Pourrières <span class='blason francais'></span><span class='blason anglais'></span>"},
-        {h:"y5xmyldq",nom:"L'attaque des Tourelles  <span class='blason francais'></span><span class='blason anglais'></span>",name:"The attack of the Tourelles  <span class='blason francais'></span><span class='blason anglais'></span>"}
+        //{h:"y5xmyldq",nom:"L'attaque des Tourelles  <span class='blason francais'></span><span class='blason anglais'></span>",name:"The attack of the Tourelles  <span class='blason francais'></span><span class='blason anglais'></span>"}
     ];
     
     for (i=0;i<scenarios.length;i++) {
