@@ -32,10 +32,9 @@
   <link href="css/scrolling-nav.css" rel="stylesheet">
   <link href="css/dateline.css" rel="stylesheet">
   <link href="css/select2.min.css" rel="stylesheet">
-  <link href="css/page.css" rel="stylesheet">
   <link rel="stylesheet" href="css/stuquery.hexmap.css">
-  <link rel="stylesheet" href="london.css">
-<link rel="stylesheet" href="css/simplemde.min.css">
+  <link rel="stylesheet" href="css/simplemde.min.css">
+  <link href="css/page.css" rel="stylesheet">
 
   </head>
 <body id="page-top">
@@ -182,68 +181,236 @@
       
   </section>
 
-      <!-- The Modal -->
-      <div class="modal" id="myModal">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
 
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">Aide sur les notations</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <section id="listscenario" class="bg-light noshow">
+    <div class="container-fluid p-2">
+      <div class="row no-gutters">
+        <h4 lang="fr">Liste de scénarios</h4>
+        <h4 lang="en">List of scenarios</h4>
+      </div>
+      <div class="row no-gutters">
+        <div class="col-12 p-0 mx-0">
+          <table id="tablescenarios" class="table-sm table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th class="th-sm">Nom</th>
+                <th class="th-sm"><span lang='fr'>Joueurs</span><span lang='en'>Players</span></th>
+                <th class="th-sm">Factions</th> <!-- lang -->
+                <th class="th-sm">Date</th> <!-- date -->
+                <th class="th-sm"></th> <!-- user -->
+                <th class="th-sm"></th> <!-- Cartes -->
+                <th class="th-sm"></th> <!-- lang -->
+                <th class="th-sm"></th> <!-- load -->
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Modal -->
+  <div class="modal" id="scenariosubmit">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Publication de scénario</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+          <form>
+            <div class="form-row">
+              <div class="col-md-8 mb-3">
+                <label for="scenarioname">Titre du scénario</label>
+                <input type="text" class="form-control" id="scenarioname" placeholder="Azincourt" value="" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="scenariodate">Date</label>
+                <input type="date" class="form-control" id="scenariodate" placeholder="1415-10-25" value="1415-10-25" required>
+              </div>
             </div>
-
-            <div>
-              <table class="compact troupes  table table-striped table-bordered">
-                <tr><td><span class="hereandthere type"></span> / <span class="there type"></span></td><td>dans la zone ou une zone adjacente / juste dans les zones adjacentes</td></tr>
-                <tr><td>légendaire</td><td>réduit le coût des cartes légendaires de 1</td></tr>
-                <tr><td><span class="poursuiteaprescombat type"></span></td><td>poursuite après combat</td></tr>
-                <tr><td><span class="troupe type"></span> / <span class="personnage type"></span></td><td>troupe / personnage</td></tr>
-                <tr><td><span class="melee type"></span><span class="cavalerie combat-cond"></span> / <span class="melee type"></span><span class="blason mal combat-cond"></span> </td><td>attaque de mélée sur une unité de cavalerie / sur une unité du mal</td></tr>
-                <tr><td><span class="melee type"></span><span class="plaine combat-cond"></span> / <span class="melee type"></span><span class="ble combat-cond"></span> </td><td>attaque de mélée à partie d'une plaine / d'un champ</td></tr>
-                <tr><td><span class="rallie type"></span><span class="troupe combat-cond"></span><span class='here combat-cond'></span></td><td>rallie une troupe dans la zone de l'unité</td></tr>
-                <tr><td><span class="actionbleue type"></span><span class="here combat-cond"></span></td><td>un ordre d'opportunisme joué sur la zone de l'unité</td></tr>
-
-              </table>
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label for="scenarionbjoueurs">Nb joueurs</label>
+                <input type="text" class="form-control" id="scenarionbjoueurs" placeholder="2" value="2" required>
+              </div>
+              <div class="col-md-2 mb-3">
+                <div>Langue</div>
+                <button class="btn mt-2 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span id="scenariolang" class="flag flag-fr"></span></button>
+                <div class="dropdown-menu">
+                  <div  onclick="document.getElementById('scenariolang').className='flag flag-gb';" class="dropdown-item"><span class="flag flag-gb"> </span> English</div>
+                  <div  onclick="document.getElementById('scenariolang').className='flag flag-fr';" class="dropdown-item"><span class="flag flag-fr"> </span> Français</div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label lang="fr" for="scenariousername">Votre nom</label>
+                <label lang="en" for="scenariousername">Your name</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                  </div>
+                  <input type="text" class="form-control" id="scenariousername" placeholder="deniswings" aria-describedby="inputGroupPrepend2" required>
+                </div>
+              </div>
             </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-            </div>
-
-          </div>
+            <button class="scenariosubmit btn btn-primary" type="submit"><span lang="fr" onclick="savemde()">Publier</span><span lang="en">Upload</span></button>
+          </form>
+        </div>
+        <div class="modal-footer">
         </div>
       </div>
+    </div>
+  </div>
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
 
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Aide sur les notations</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-      <!-- The Modal -->
-      <div class="modal" id="card">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <img id="mycard" class="card-img-top" src="badimage" alt="card">
-          </div>
+        <div class="modal-body">
+          <table class="compact troupes  table table-striped table-bordered">
+            <tr><td><span class="hereandthere type"></span> / <span class="there type"></span></td><td>dans la zone ou une zone adjacente / juste dans les zones adjacentes</td></tr>
+            <tr><td>légendaire</td><td>réduit le coût des cartes légendaires de 1</td></tr>
+            <tr><td><span class="poursuiteaprescombat type"></span></td><td>poursuite après combat</td></tr>
+            <tr><td><span class="troupe type"></span> / <span class="personnage type"></span></td><td>troupe / personnage</td></tr>
+            <tr><td><span class="melee type"></span><span class="cavalerie combat-cond"></span> / <span class="melee type"></span><span class="blason mal combat-cond"></span> </td><td>attaque de mélée sur une unité de cavalerie / sur une unité du mal</td></tr>
+            <tr><td><span class="melee type"></span><span class="plaine combat-cond"></span> / <span class="melee type"></span><span class="ble combat-cond"></span> </td><td>attaque de mélée à partie d'une plaine / d'un champ</td></tr>
+            <tr><td><span class="rallie type"></span><span class="troupe combat-cond"></span><span class='here combat-cond'></span></td><td>rallie une troupe dans la zone de l'unité</td></tr>
+            <tr><td><span class="actionbleue type"></span><span class="here combat-cond"></span></td><td>un ordre d'opportunisme joué sur la zone de l'unité</td></tr>
+
+          </table>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+   
+  <!-- The Modal -->
+  <div class="modal" id="guide">
+    <div class="modal-dialog modal-lg">
+      <div lang="fr" class="modal-content">
+        <div class="modal-header">
+          <h4>Guide pour l'éditeur</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h6>Emphase</h6>
+          <pre>
+            **<strong>bold</strong>**
+            *<em>italics</em>*
+            ~~<strike>rayé</strike>~~</pre>
+          <h6>Titres</h6>
+          <pre>
+            # Titre du scénario
+            ## Règles
+            ### Sous section
+            #### Paragraphe</pre>
+          <h6>Listes</h6>
+          <pre>
+            * Item générique
+            * Item générique
+            * Item générique 
+
+            1. Item de liste numérotée
+            2. Item de liste numérotée
+            3. Item de liste numérotée
+          </pre>
+          <h6>Liens/Images</h6>
+          <pre>[Texte](http://www.example.com)</pre>
+          <pre>![Texte image](http://www.example.com/image.jpg)</pre>
+          <h6>Citations</h6>
+          <pre>
+            > Ceci est une citation
+            > sur plusieurs lignes</pre>
+          <h6>Tables</h6>
+          <pre>
+            | Colonne 1 | Colonne 2 | Colonne 3 |
+            | --------- | --------- | --------- |
+            | John      | Doe       | Male      |
+            | Mary      | Smith     | Female    |
+
+            <em>ou sans alignement</em>
+
+            | Colonne 1 | Colonne 2 | Colonne 3 |
+            | -------- | -------- | -------- |
+            | John | Doe | Male |
+            | Mary | Smith | Female |
+          </pre>
+          <h6>Armées</h6>
+          Pour placer une armée avec ses cartes, il faut avoir défini au préalable une armée, avec "construire armée". Il suffit ensuite de la référencer par son nom:
+          <pre>
+            %ARMEE(nom de l'armée)%
+          </pre>
+          Plusieurs armées peuvent apparaître dans le texte. Chaque armée prend une ligne entière.
+          <h6>Cartes</h6>
+          Pour placer une carte de terrain, il faut avoir défini au préalable une carte, avec "construire carte". Il suffit ensuite de la référencer par son nom:
+          <pre>
+            %CARTE(nom de la carte)%
+          </pre>
+          Plusieurs cartes peuvent être référencées.
+          <h6>Icones pour JoA</h6>
+          <p><b>Dés :</b> 
+              %DEJAUNE%: <span class='dejaune'></span>, %DEBLANC%: <span class='deblanc'></span>, %DEROUGE%: <span class='derouge'></span>, %DENOIR%: <span class='denoir'></span>, 
+              %TUE%: <span class="tue"></span>, %BOUCLIER%: <span class="bouclier"></span>, %TOUCHE%: <span class="touche"></span>, %RECUL%: <span class="recul"></span><br>
+              %MORT%: <span class="mort"></span>, %RETARDE%: <span class="retarde"></span>, %RALLIE%: <span class="rallie"></span><br>
+            </p><p><b>Ordres :</b> 
+              %VERT%: <span class='actionverte action'></span>,  %GRIS%: <span class='actiongrise action'></span>, %BLEU%:<span class='actionbleue action'></span>,  %JAUNE%: <span class='actionjaune action'></span></p>
+            <p><b>Cartes :</b> 
+              %CARTELEGENDE%: <span class='cartelegende carte'></span>, %CARTERIVIERE%: <span class='carteriviere carte'></span></p>
+            <p><b>Tokens : </b>
+              %XP%: <span class='jetonxp jeton'></span>, %RUMEUR%: <span class='jetonrumeur jeton'></span>, %LEGENDE%: <span class='jetonlegende jeton'></span>, %BLESSURE%: <span class='jetonblessure jeton'></span>, %DETRUIT%: <span class='jetondetruit jeton'></span>, %INCENDIE%: <span class='jetonincendie jeton'></span>, %RALLIEMENT%: <span class='ralliement jeton'></span>, %QUESTION%: <span class='jetonquestion jeton'></span>, %CIVIL%: <span class='jetoncivil jeton'></span>, 
+            </p><p><b>Types d'unités :</b>
+              %CAVALERIE%: <span class='type cavalerie'></span>, %INFANTERIE%: <span class='type infanterie'></span>, %TROUPE%: <span class='type troupe'></span>, %PERSONNAGE%: <span class='type personnage'></span>
+            </p><p><b>Blasons :</b>
+              %FRANCAIS%: <span class='blason-large francais'></span>, %ANGLAIS%: <span class='blason-large anglais'></span>, %ECOSSAIS%: <span class='blason-large ecossais'></span>, %BOURGUIGNON%: <span class='blason-large bourguignon'></span>, %VALAQUE%: <span class='blason-large valaque'></span>, %MAL%: <span class='blason-large mal></span>, %BIEN%: <span class='blason-large bien></span>, %MERCENAIRE%: <span class='blason-large mercenaire'></span> %NEUTRE%: <span class='blason-large neutre'></span> (Civil)
+          </ul>
         </div>
       </div>
-     <div class="modal" id="card-gigantesque">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <img id="mylargecard" class="card-img-top" src="badimage" alt="card">
-          </div>
-        </div>
+    </div>
+  </div>
+
+    <!-- The Modal -->
+  <div class="modal" id="card">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <img id="mycard" class="card-img-top" src="badimage" alt="card">
       </div>
-
-
-      <!-- The Modal -->
-      <div class="modal" id="card-troop">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <img id="mycardtroop" class="card-img-top" src="badimage" alt="card">
-          </div>
-        </div>
+    </div>
+  </div>
+  <div class="modal" id="card-gigantesque">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <img id="mylargecard" class="card-img-top" src="badimage" alt="card">
       </div>
+    </div>
+  </div>
 
-      
+
+  <!-- The Modal -->
+  <div class="modal" id="card-troop">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <img id="mycardtroop" class="card-img-top" src="badimage" alt="card">
+      </div>
+    </div>
+  </div>
+
+  
   <section id="armee" class="bg-light noshow">
     <div class="container-fluid p-2">
       
@@ -358,24 +525,24 @@
     <div class="row">
       <div class="col-8 mt-4">
         <div id="hexmap-9"></div>
-        <div id="tools" class="btn-toolbar" role="toolbar">
+        <div id="tools" class="btn-toolbar col-8" role="toolbar">
           <div class="switch-toggle btn-group mr-2" data-toggle="buttons">
-            <label class="btn m-0 btn-secondary" onclick="setHexmap(4)">4x4
+            <label class="btn m-0 btn-secondary" onclick="hexmap=HexMap.setBall(4)">4x4
               <input id="m4x4" name="hexmap" type="radio"   checked>
             </label>
-            <label class="btn m-0 btn-secondary" onclick="setHexmap(5)">5x5
+            <label class="btn m-0 btn-secondary" onclick="hexmap=HexMap.setBall(5)">5x5
               <input id="m5x5" name="hexmap" type="radio"   checked>
             </label>
-            <label class="btn m-0 btn-secondary" onclick="setHexmap(6)">6x6
+            <label class="btn m-0 btn-secondary" onclick="hexmap=HexMap.setBall(6)">6x6
               <input id="m6x6" name="hexmap" type="radio" >
             </label>
-            <label class="btn m-0 btn-secondary" onclick="setHexmap(7)">7x7
+            <label class="btn m-0 btn-secondary" onclick="hexmap=HexMap.setBall(7)">7x7
               <input id="m7x7" name="hexmap" type="radio" >
             </label>
-            <label class="btn m-0 btn-secondary" onclick="setHexmap(8)">8x8
+            <label class="btn m-0 btn-secondary" onclick="hexmap=HexMap.setBall(8)">8x8
               <input id="m8x8" name="hexmap" type="radio" >
             </label>
-            <label class="btn m-0 btn-secondary" onclick="setHexmap(11)">11x11
+            <label class="btn m-0 btn-secondary" onclick="hexmap=HexMap.setBall(11)">11x11
               <input id="m11x11" name="hexmap" type="radio" >
             </label>
             <input id="prefabradio" name="hexmap" type="radio" >
@@ -384,16 +551,17 @@
             <button class="btn btn-secondary dropdown-toggle" type="button" id="prefabbutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prefabs</button>
             <div class="dropdown-menu" id="prefabs" aria-labelledby="prefabbutton"></div>
           </div>
-          <div class="btn-group mr-2">
-            <button type="button" class="savehexmap fas fa-hashtag btn btn-secondary"></button>
-            <span id="codemap" class="hashhexmap text-center text-muted"></span>
-          </div>
+          <form class="btn-group mr-2">
+            <input type="text" id="codemap" placeholder="Map name" class="hashhexmap" required pattern="[A-Z][A-Za-z0-9éàèùïëâôêçÉÈ*' -]+"></input>
+            <button type="submit" class="savehexmap fas fa-save btn btn-primary"></button>
+          </form>
         </div>
+
       </div>
 
-      <div class="col-4 pr-0">
+      <div id="terraintoolbar" class="col-4 pr-0 pt-2">
         <div class="card bordered w-100">
-          <div class="card-header p-0">
+          <div class="card-header reverse p-0">
             <h2 class="m-0">
               <button class="btn openbutton dropdown-toggle" data-target="hex1" type="button" onclick="$('#hex1').toggleClass('noshow');">Terrain x1</button>
             </h2>
@@ -403,7 +571,7 @@
           </div>
         </div>
         <div class="card bordered w-100">
-          <div class="card-header p-0">
+          <div class="card-header reverse p-0">
             <h5 class="m-0">
               <button class="btn openbutton dropdown-toggle" data-target="hex2" type="button" onclick="$('#hex2').toggleClass('noshow');">Terrain x2 </button>
             </h5>
@@ -413,7 +581,7 @@
           </div>
         </div>
         <div class="card bordered w-100">
-          <div class="card-header p-0">
+          <div class="card-header reverse p-0">
             <h5 class="m-0">
               <button class="btn openbutton dropdown-toggle" data-target="hex3" type="button" onclick="$('#hex3').toggleClass('noshow');">Terrain x3</button>
             </h5>
@@ -424,7 +592,7 @@
         </div>
         
         <div class="card bordered w-100">
-          <div class="card-header p-0">
+          <div class="card-header reverse p-0">
             <h5 class="m-0">
               <button class="btn openbutton dropdown-toggle" data-target="houses" type="button" onclick="$('#houses').toggleClass('noshow');">
                 <span class='fr'>Décors/Civils</span><span class='en'>Scenery/Civils</span>
@@ -432,12 +600,12 @@
             </h5>
           </div>
           <div class="card-body p-0">
-            <div id="houses" class="noshow mt-5"></div>
+            <div id="houses" class="noshow mt-5 mr-2"></div>
           </div>
         </div>
         
         <div class="card bordered w-100">
-          <div class="card-header p-0">
+          <div class="card-header reverse p-0">
             <h5 class="m-0">
               <button class="btn openbutton dropdown-toggle" type="button" data-target="tableunites" onclick="$('#tableunites').toggleClass('noshow');">
                 <span class='fr'>Armées</span><span class='en'>Armies</span>
@@ -447,76 +615,134 @@
           <div class="card-body p-0">
 
             <div id="tableunites" class="d-inline-block">
+              
               <div class="card border">
-                <h6 class="card-header p-1"><span class="bl1 blason"></span><span class="nom1 text-muted"><i class="fas fa-user">#1</i></span></h6>
-                <div class="card-body p-1">
-                  <p class="card-text" id="mini1"></p>
-                  <div class="btn-group mr-2">
-                    <input id="armee1" class="w-75 small text-muted" type="text">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
-                  </div>
+                <div class="card-header p-1">
+                  <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                      <div class="dropdown">
+                        <button class="ml-2 btn dropdown-toggle text-muted fas fa-user" type="button" id="dropdownMenuButtona1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                        <div data-target=1 class="dropdown-menu dd-armies" aria-labelledby="dropdownMenuButtona1">
+                          <i class="dropdown-item">vide</i>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                     <h6 class="pt-1 text-muted nom1" style="min-width:10em">#1</h6>
+                    </li>
+                  </ul>
                 </div>
+                <div class="card-body p-1" id="mini1"></div>
+                <footer class="blockquote-footer" id="footer1"></footer>
+              </div>
+
+              <div class="card border">
+                <div class="card-header p-1">
+                  <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                      <div class="dropdown">
+                        <button class="ml-2 btn dropdown-toggle text-muted fas fa-user" type="button" id="dropdownMenuButtona2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                        <div data-target=2 class="dropdown-menu dd-armies" aria-labelledby="dropdownMenuButtona2">
+                          <i class="dropdown-item">vide</i>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                     <h6 class="pt-1 text-muted nom2" style="min-width:10em">#2</h6>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-body p-1" id="mini2"></div>
+                <footer class="blockquote-footer" id="footer2"></footer>
               </div>
               <div class="card border">
-                <h6 class="card-header p-1"><span class="bl2 blason"></span><span class="nom2 text-muted"><i class="fas fa-user">#2</i></span></h6>
-                <div class="card-body p-1">
-                  <p class="card-text" id="mini2"></p>
-                  <div class="btn-group mr-2">
-                    <input id="armee2" class="w-75 small text-muted" type="text">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
-                  </div>
+                <div class="card-header p-1">
+                  <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                      <div class="dropdown">
+                        <button class="ml-2 btn dropdown-toggle text-muted fas fa-user" type="button" id="dropdownMenuButtona3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                        <div data-target=3 class="dropdown-menu dd-armies" aria-labelledby="dropdownMenuButtona3">
+                          <i class="dropdown-item">vide</i>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                     <h6 class="pt-1 text-muted nom3" style="min-width:10em">#3</h6>
+                    </li>
+                  </ul>
                 </div>
+                <div class="card-body p-1" id="mini3"></div>
+                <footer class="blockquote-footer" id="footer3"></footer>
               </div>
               <div class="card border">
-                <h6 class="card-header p-1"><span class="bl3 blason"></span><span class="nom3 text-muted"><i class="fas fa-user">#3</i></span></h6>
-                <div class="card-body p-1">
-                  <p class="card-text" id="mini3"></p>
-                  <div class="btn-group mr-2">
-                    <input id="armee3" class="w-75 small text-muted" type="text">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
-                  </div>
+                <div class="card-header p-1">
+                  <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                      <div class="dropdown">
+                        <button class="ml-2 btn dropdown-toggle text-muted fas fa-user" type="button" id="dropdownMenuButtona4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                        <div data-target=4 class="dropdown-menu dd-armies" aria-labelledby="dropdownMenuButtona4">
+                          <i class="dropdown-item">vide</i>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                     <h6 class="pt-1 text-muted nom4" style="min-width:10em">#4</h6>
+                    </li>
+                  </ul>
                 </div>
+                <div class="card-body p-1" id="mini4"></div>
+                <footer class="blockquote-footer" id="footer4"></footer>
               </div>
               <div class="card border">
-                <h6 class="card-header p-1"><span class="bl4 blason"></span><span class="nom4 text-muted"><i class="fas fa-user">#4</i></span></h6>
-                <div class="card-body p-1">
-                  <p class="card-text" id="mini4"></p>
-                  <div class="btn-group mr-2">
-                    <input id="armee4" class="w-75 small text-muted" type="text">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
-                  </div>
+                <div class="card-header p-1">
+                  <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                      <div class="dropdown">
+                        <button class="ml-2 btn dropdown-toggle text-muted fas fa-user" type="button" id="dropdownMenuButtona5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                        <div data-target=5 class="dropdown-menu dd-armies" aria-labelledby="dropdownMenuButtona5">
+                          <i class="dropdown-item">vide</i>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                     <h6 class="pt-1 text-muted nom5" style="min-width:10em">#5</h6>
+                    </li>
+                  </ul>
                 </div>
+                <div class="card-body p-1" id="mini5"></div>
+                <footer class="blockquote-footer" id="footer5"></footer>
               </div>
-              <div class="card border">
-                <h6 class="card-header p-1"><span class="bl5 blason"></span><span class="nom5 text-muted"><i class="fas fa-user">#5</i></span></h6>
-                <div class="card-body p-1">
-                  <p class="card-text" id="mini5"></p>
-                  <div class="btn-group mr-2">
-                    <input id="armee5" class="w-75 small text-muted" type="text">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
-                  </div>
+                            <div class="card border">
+                <div class="card-header p-1">
+                  <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                      <div class="dropdown">
+                        <button class="ml-2 btn dropdown-toggle text-muted fas fa-user" type="button" id="dropdownMenuButtona6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                        <div data-target=6 class="dropdown-menu dd-armies" aria-labelledby="dropdownMenuButtona6">
+                          <i class="dropdown-item">vide</i>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                     <h6 class="pt-1 text-muted nom6" style="min-width:10em">#6</h6>
+                    </li>
+                  </ul>
                 </div>
+                <div class="card-body p-1" id="mini6"></div>
+                <footer class="blockquote-footer" id="footer6"></footer>
               </div>
-              <div class="card border">
-                <h6 class="card-header p-1"><span class="bl6 blason"></span><span class="nom6 text-muted"><i class="fas fa-user">#6</i></span></h6>
-                <div class="card-body p-1">
-                  <p class="card-text" id="mini6"></p>
-                  <div class="btn-group mr-2">
-                    <input id="armee6" class="w-75 small text-muted" type="text">
-                    <button type="button" class="btn btn-secondary fas fa-hashtag"></button>
-                  </div>
-                </div>
-              </div>
+          
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="text-white mt-2 wyn" style="z-index:1000;position:absolute" id="whatyouneed"></div>
   </section>
-  
+
   <section id="scenario" class="noshow">
     <div class="row">
-      <div class="col-12 mt-2">
+      <div class="col-12">
         <textarea id="editor" class="mt-0">
 
 # La Bataille d'Azincourt **25 octobre 1415**
@@ -622,14 +848,14 @@ Ctrl-F / Cmd-F (mac): toggle full screen
     <div lang="fr" class="head w-screen mx-0 px-0 text-center">
       <h1>Scenario Builder: Joan of Arc</h1>
       <p class="lead">Une page pour le jeu de figurines <a class="text-white" href="https://www.kickstarter.com/projects/1162110258/time-of-legends-joan-of-arc">Time of Legends: Joan of Arc</a></p>
-      <p>Commentaires, bugs sur les forums: <a class="text-white" href="https://boardgamegeek.com/thread/2370927/chronology-wardescription-units-and-combat-probabi"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"> (in English)</a> , <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-batailles-historiques-personnages-et-probas"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"> (en français)</a></p>
+      <p>Commentaires, bugs sur les forums :<a class="text-white" href="https://boardgamegeek.com/thread/2555006/scenario-builder-online"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"> <span class="flag flag-gb"></span></a> , <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-batailles-historiques-personnages-et-probas"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"> <span class="flag flag-fr"></span></a><a class="text-white" href="http://www.toljoa.com/forum/viewtopic.php?f=2&t=30"><img alt="toljoa" src="images/toljoa.png" width="64px">Toljoa forum <span class="flag flag-fr"></span></a></p>
       <a href='https://fr.wikipedia.org/wiki/Bataille_de_Castillon' class='text-white' style='float:right;left:0;font-size:x-small'>la bataille de Castillon</a>
     </div>
     
     <div lang="en" class="head w-screen mx-0 px-0 text-center">
       <h1>Scenario Builder: Joan of Arc</h1>
       <p class="lead">A site for Time of Legends: Joan of Arc</p>
-      <p>Comments, bug reports on forums: <a class="text-white" href="https://boardgamegeek.com/thread/2370927/chronology-wardescription-units-and-combat-probabi"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"> (in English)</a> , <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-batailles-historiques-personnages-et-probas"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"> (en français)</a></p>
+      <p>Comments, bug reports on forums:<a class="text-white" href="https://boardgamegeek.com/thread/2555006/scenario-builder-online"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"> <span class="flag flag-gb"></span></a> , <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-batailles-historiques-personnages-et-probas"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"> <span class="flag flag-fr"></span></a><a class="text-white" href="http://www.toljoa.com/forum/viewtopic.php?f=2&t=30"><img alt="toljoa" src="images/toljoa.png" width="64px">Toljoa forum <span class="flag flag-fr"></span></a></p>
       <a href='https://fr.wikipedia.org/wiki/Bataille_de_Castillon' class='text-white' style='float:right;left:0;font-size:x-small'>the battle of Castillon</a>
     </div>
   </header>
@@ -675,7 +901,7 @@ Ctrl-F / Cmd-F (mac): toggle full screen
         </p>
       <p lang="fr">
       <img class="featurette-image img-responsive pull-right" src="images/cartesarmees.png" alt="army display" style="width:300px">
-        En bas de page vous avez une présentation des armées que vous avez construit, une ligne par faction. Vous pouvez créer un hashtag identifiant votre armée de façon unique en cliquant sur  <span class="btn btn-secondary fas fa-hashtag"></span>. Par exemple, sur la figure à droite par exemple, c'est <code>y6lcztq8</code>. Ce hashtag sera utile dans la suite pour répartir les unités sur une carte et pour les scénarios, gardez le.</p>
+        En bas de page vous avez une présentation des armées que vous avez construit, une ligne par faction. Vous pouvez sauvegarder localement, le temps de votre navigation (rien ne reste sur votre machine) les armées en leur donnant un nom et en cliquant sur  <span class="btn btn-primary fas fa-save"></span>.
       <p lang="en">Select the army lists, then the units. Constraints on miniatures, characters, army composition are automatically taken into account. You can click on any button, the army will respect the composition rules. Mercenary characters have been added, as well as a burgundian army, valach, ottoman, and all characters can be added from French and English armies. New costs are just hints.</p>
       <p lang="en">
                 <img class="featurette-image img-responsive pull-left" alt="date selection" style="width:300px" src="images/dateselection.png">     
@@ -684,7 +910,7 @@ You can also choose unconstrained army lists with "All Army" composition, and fi
       
       <p lang="en">
               <img class="featurette-image img-responsive pull-right" alt="army display" src="images/cartesarmees.png" style="width:300px">
-At the bottom of the page, you see the armies you have built, one line per faction. You can create a hashtag identifying  your army by clicking on <span class="btn btn-secondary fas fa-hashtag"></span>. For instance, in the figure at the right, it's <code>y6lcztq8</code>. This hashtag can be used when creating maps and scenarios, keep it.
+At the bottom of the page, you see the armies you have built, one line per faction. The armies can be saved, just give them a name and click on the icon <span class="btn btn-primary fas fa-save"></span>. The save is just for the duration of your navigation on this page, nothing is saved permanently on your computer. 
 </p>
       
     </div>
@@ -697,43 +923,45 @@ At the bottom of the page, you see the armies you have built, one line per facti
         Le constructeur de carte vous permet de créer vos cartes, avec le décor et le placement des unités que vous souhaitez.
       </p>
       <p lang="fr">
-        En haut une barre d'outil sur le haut avec différentes tailles de grilles hexagonales permet de créer des cartes vierges, ou des prefabs. Les prefabs sont des cartes préconstruites, prêtes à être utilisées. Les éléments de décors des prefabs ne peuvent plus être édités. Les trois derniers prefabs, Azincourt, Meaux et l'Enfant sont juste des cartes de terrain, sans décor.
+        En haut une barre d'outil sur le haut avec différentes tailles de grilles hexagonales permet de créer des cartes vierges, ou des prefabs. Les prefabs sont des cartes préconstruites, prêtes à être utilisées. Les éléments de décors sur certains préfabs peuvent être déplacés. Les trois derniers prefabs, Azincourt, Meaux et l'Enfant sont juste des cartes de terrain, sans décor.
       </p>
       <p lang="fr">
         Sur la droite, une série d'outils rangés en accordéon servent à construire et à décorer la carte. Toutes les images peuvent être glissées/déposées sur les hexagones. Il vaut mieux commencer d'abord par le terrain, puis placer sur le terrain, dans les zones d'un terrain, le décor et les unités.
       </p>
-      <p lang="fr">Les tuiles peuvent être tournées avant d'être glissés/déposés, à l'aide du bouton central à l'image. Lorsque la tuile est glissée, le curseur est placé sur l'hexagone qui va servir de point d'ancrage, utile notamment dans le cas de tuiles à plusieurs hexagones.
+      <p lang="fr">Les tuiles peuvent être tournées avant d'être glissés/déposés, à l'aide du bouton central à l'image. Lorsque la tuile est glissée, le curseur est placé sur l'hexagone qui va servir de point d'ancrage, utile notamment dans le cas de tuiles à plusieurs hexagones. En survolant le terrain, le point ou cet hexagone sera placé est mis en rouge. Il est possible de placer des hexagones à la place d'hexagones existants, pour les effacer. La tuile blanche permet cela. Certaines tuiles, une fois tournées, peuvent empêcher de sélectionner d'autres tuiles, il suffit alors de les remettres droites.
       </p>
       <p lang="fr">Les éléments de décor, les civils et les jetons (points de ralliement, autre), peuvent être glissés/déposés également sur les cartes. Une fois sur la carte, ils peuvent être redéplacés si besoin.
       </p>
       <p lang="fr">
-        <img src="images/armeeselection.png" style="width:200px" alt="army selection" class="featurette-image img-responsive pull-right">Les unités des armées apparaissent lorsqu'on recopie un hashtag dans l'une des 6 fenêtres correspondant aux 6 joueurs max. Les unités peuvent alors être glissées/déposées en position. Chaque armée a sa propre couleur, dépendant de sa faction, et son motif sur la carte. On peut également faire glisser/déposer le blason de l'armée pour indiquer une zone de deploiement initiale, sans y mettre d'armée. 6 blasons sont disponibles initialement, sans avoir besoin de mettre un hashtag. Par exemple, sur la droite, l'armée dont le hashtag est <code>y6lcztq8</code> apparait lorsque le hashtag est rentré. Les unités peuvent ensuite être glissées sur les zones de la carte.
+        <img src="images/armeeselection.png" style="width:200px" alt="army selection" class="featurette-image img-responsive pull-right">Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu déroulant. Vous y retrouverez les armées sauvegardées précédemment, sélectionnables par leur nom (pas de prefab pour les armées). 6 armées, correspondant à 6 joueurs maximum, sont sélectionnables. Les unités peuvent alors être glissées/déposées en position. Chaque armée a sa propre couleur, dépendant de sa faction, et son motif sur la carte. On peut également faire glisser/déposer le blason de l'armée pour indiquer une zone de deploiement initiale, sans y mettre d'armée. 6 blasons sont disponibles initialement, sans avoir besoin sélectionner une armée.
       </p>
       <p lang="fr"><img src="images/cartehash.png" style="width:400px" alt="hash army" class="featurette-image img-responsive pull-left">
-        Dans la barre d'outils en haut, vous pouvez créer un hashtag identifiant votre carte de façon unique en cliquant sur  <span class="btn btn-secondary fas fa-hashtag"></span>. Seule la carte, avec les décors, les troupes et les civils qui sont posés dessus est sauvée. Par exemple, sur la figure à gauche par exemple, c'est <code>yxslm7nj</code>. Ce hashtag sera utile dans la suite pour utiliser la carte dans les scénarios. Pour les cartes préfabriquées, le hashtag apparait directement. Vous pouvez soit completer ces cartes en placant des unités dessus, soit les utiliser directement dans un scenario.
+        Dans la barre d'outils en haut, vous pouvez sauvegarder la carte, avec un nom et en cliquant sur <span class="fas fa-save"></span>. Son nom est son identifiant, si vous sauvegardez plusieurs cartes avec le même nom, seule la dernière sauvegarde sera visible. Les sauvegardes ne durent que le temps de la navigation et s'effaceront si vous rechargez la page. Seule la carte, avec les décors, les troupes et les civils qui sont posés dessus est sauvée. Le nom d'une carte doit commencer par une majuscule, et ne peut contenir que des caractères alphanumériques (accents inclus), l'apostrophe et le tiret. Une fois la carte sauvegardée, elle apparaît dans les prefabs.
       </p>
-      <p lang="fr">La carte 11x11 préconstruite "Meaux" vient du scénario <a href="https://boardgamegeek.com/filepage/200509/new-4-player-scenario-siege-meaux">a siege of Meaux</a> sur BGG, par Bill Koff. Merci à lui !
+      <p>En bas de la fenêtre de création de carte, le nombre de boites de jeu nécessaires pour créer ce terrain, avec pour chaque boite le nom des tuiles est indiqué. Cette indication est mise à jour à chaque chargement de carte (prefabs) ou à chaque sauvegarde.</p>
+      <p lang="fr">La carte 11x11 préconstruite "Meaux" vient du scénario <a href="https://boardgamegeek.com/filepage/200509/new-4-player-scenario-siege-meaux">a siege of Meaux</a> sur BGG, par Bill Koff. La carte a été tronquée (dernière ligne en moins) pour correspondre aux tuiles des boites.
       </p>
       <p lang="en">
         The card builder allows you to create your cards, with the decor and placement of the units you want.
       </p>
       <p lang="en">
-        A toolbar on the top with different sizes of hexagonal grids allows you to create blank cards, or prefabs. Prefabs are pre-built cards, ready to be used. The decor elements of the prefabs can no longer be edited. The last three prefabs, Azincourt, Meaux and l'Enfant are just field maps, without decorations.
+        A toolbar on the top with different sizes of hexagonal grids allows you to create blank cards, or prefabs. Prefabs are pre-built cards, ready to be used. The last three prefabs, Azincourt, Meaux and l'Enfant are just field maps, without decorations.
       </p>
       <p lang="en">
         On the right, a series of tools arranged in an accordion shape are used to build and decorate the card. All images can be dragged and dropped onto the hexagons. It is best to start with the terrain first, and then place the decoration and units on the terrain.
       </p>
-      <p lang="en">Tiles can be rotated before being dragged and dropped, using the central button on the image. When the tile is dragged, the cursor is placed on the hexagon that will be used as an anchor point, useful especially in the case of tiles with several hexagons.
+      <p lang="en">Tiles can be rotated before being dragged and dropped, using the central button on the image. When the tile is dragged, the cursor is placed on the hexagon that will be used as an anchor point, useful especially in the case of tiles with several hexagons. It is possible to place hexagons on top of other hexagons, in order to replace them. The white hexagon can be used to remove other hexes in the map. Some multi-hex tiles, once rotated, can prevent from selecting the neighbor tiles. Turn them as they were initially placed to avoid this effect.
       </p>
       <p lang="en">Buildings, civilians and tokens (rally points, other), can be dragged and dropped on the maps as well. Once on the map, they can be moved again if needed.
       </p>
       <p lang="en">
-        <img src="images/armeeselection.png" style="width:200px" alt="army selection" class="featurette-image img-responsive pull-right">Army units appear when you copy a hashtag in one of the 6 windows corresponding to the 6 players max. The units can then be dragged and dropped into position. Each army has its own color, depending on its faction, and its pattern on the map. You can also drag and drop the army's coat of arms to indicate an initial deployment area, without putting an army on it. 6 coats of arms are available initially, without the need to put a hashtag. For example, on the right, the army whose hashtag is <code>y6lcztq8</code> appears when the hashtag is entered. The units can then be dragged over the areas of the map.
+        <img src="images/armeeselection.png" style="width:200px" alt="army selection" class="featurette-image img-responsive pull-right">Army units appear by selecting them in the dropdown menu in one of the 6 windows corresponding to the 6 players max. The armies have to be created and saved before in the previous screen (no prefab for armies). The units can then be dragged and dropped into position. Each army has its own color, depending on its faction, and its pattern on the map. You can also drag and drop the army's coat of arms to indicate an initial deployment area, without putting an army on it. 6 coats of arms are available initially.
       </p>
       <p lang="en"><img src="images/cartehash.png" style="width:400px" alt="hasharmy" class="featurette-image img-responsive pull-left">
-        In the toolbar in the top, a hashtag associated to the map can be created by clicking on  <span class="btn btn-secondary fas fa-hashtag"></span>. Only the map, its buildings, tokens and troops on it will be saved. For instance, in the figure on the left, the hashtag is <code>yxslm7nj</code>. This hashtag will be used in scenario description. For the prefab maps, the hashtag appears directly. You can either fill these maps with units, or use them directly in scenarios.
+        In the toolbar in the top, the map can be saved by giving a name and clicking on <span class="fas fa-save"></span>. The name is the id of the map, saving multiple maps with the same name will only keep the last one. It must start with a upper case and can only be composed of alphanumeric symbols (including French accents), with simple quote and dash. The saves are only visible during one session. Once you reload the page, all saves are lost. A save registers the position of the buildings, tokens and troops on the map as well as the tiles of the map. A save map appears then in prefab.
       </p>
-      <p lang="en">The prefab map 11x11 "Meaux" comes from the scenario <a href="https://boardgamegeek.com/filepage/200509/new-4-player-scenario-siege-meaux">a siege of Meaux</a> on BGG, by Bill Koff. Thanks to him!
+      <p lang="en">At the bottom of the window, the list of boxes and tiles required for building this map is shown. This is updated only when saving the map, or loading it from prefab.</p>
+      <p lang="en">The prefab map 11x11 "Meaux" comes from the scenario <a href="https://boardgamegeek.com/filepage/200509/new-4-player-scenario-siege-meaux">a siege of Meaux</a> on BGG, by Bill Koff. The bottom line of the map has been removed to fit the limit of the tiles in the boxes.
       </p>
     </div>
 
@@ -747,31 +975,31 @@ At the bottom of the page, you see the armies you have built, one line per facti
         Le constructeur de scénario utilise un éditeur Markdown, <a href="https://simplemde.com/">simpleMDE</a>, augmenté pour créer des scénarios Joan of Arc. L'éditeur vient avec un exemple de scénario (la bataille d'Azincourt) permettant de voir comment les différents éléments sont édités. 
       </p>
       <p lang="fr">
-        En haut, la rangée de bouton permet de créer un style d'édition. La même chose est réalisable en tapant directement du markdown. Les boutons <span class="fas fa-eye btn btn-secondary"></span>, <span class="fas fa-columns btn btn-secondary"></span> et  <span class="fas fa-arrows-alt btn btn-secondary"></span> permettent de voir le rendu de la page (preview), de voir le rendu et en même temps continuer à l'éditer, et de passer en plein écran respectivement. 
+        En haut, la rangée de bouton permet de créer un style d'édition. La même chose est réalisable en tapant directement du markdown. Les boutons <span class="fas fa-eye btn btn-secondary"></span>, <span class="fas fa-columns btn btn-secondary"></span> permettent de voir le rendu de la page (preview), ou d'avoir un rendu et en même temps continuer à l'éditer.
       </p>
       <p lang="fr">
-        Les commandes spécifiques pour JoA commencent et finissent par <code>%</code>. A la fin du scénario par défaut, vous trouverez les commandes permettant de créer quelques icones apparaissant dans le jeu. Par exemple <code>%CAVALERIE%</code> est transformé en <span class="type cavalerie"></span>, <code>%DEROUGE%</code> par <span class="derouge"></span>. 2 commandes spéciales permettent d'intégrer des armées et des cartes définies précédemment:<br/>
-        <code>%CARTE(hashtag)%</code>: affiche une carte dont le hashtag est entre parenthèses.<br/>
-        <code>%ARMEE(hashtag)%</code>: affiche une armée dont le hashtag est entre parenthèses.
+        Les commandes spécifiques pour JoA commencent et finissent par <code>%</code>. A la fin du scénario par défaut, vous trouverez les commandes permettant de créer quelques icones apparaissant dans le jeu. Toutes les commandes sont accessibles par le menu <span class="fas fa-question-circle"></span> de la barre d'outils. Par exemple <code>%CAVALERIE%</code> est transformé en <span class="type cavalerie"></span>, <code>%DEROUGE%</code> par <span class="derouge"></span>. 2 commandes spéciales permettent d'intégrer des armées et des cartes définies précédemment:<br/>
+        <code>%CARTE(nom de la carte)%</code>: affiche une carte dont le nom est entre parenthèses.<br/>
+        <code>%ARMEE(nom de l'armée)%</code>: affiche une armée dont le nom est entre parenthèses.<br/>
+        En cas de doutes sur les noms, vous pouvez les consulter dans l'onglet de Cartes, via les prefabs pour les cartes et le menu déroulant pour les armées. Le mode preview permet de voir si les armées et cartes sont bien chargées. Une fois le scénario écrit, les armées et cartes peuvent continuer d'être mis à jour, le scénario les prendra en compte.
         <br/>
-        Le scénario d'exemple illustre ces utilisations.
       </p>
-      <p lang="fr">Après avoir obtenu le hashtag d'un scénario, vous pouvez créer un permalink vers ce scénario, pour l'insérer sur des forums. Le bouton <span class="btn btn-secondary fas fa-link"></span> change l'URL de votre page pour devenir un permalink. Vous pouvez alors utiliser votre navigateur pour exporter cette adresse, ou la copier ailleurs.
+      <p lang="fr">Vous pouvez sauvegarder les scénarios de façon permanente. Ces scénarios sont alors consultables par tous dans l'onglet "Scénario" du menu principal. En cliquant sur <span class="btn btn-primary fas fa-cloud-upload-alt"></span>, une fenêtre s'ouvre et vous permet de rentrer le nom du scénario, le nombre de joueurs, la langue du scénario, l'année où il se passe et votre nom. Choisissez toujours le même nom pour tous les scénarios que vous allez créer. Pas encore d'identification pour cette phase de test, mais je me reserve le droit de supprimer tout scénario avec un contenu inapproprié, sans préavis. <i>Les scénarios sauvegardés ne peuvent plus être changés</i>. Si vous voulez mettre à jour un scénario, numérotez les versions en leur donnant des noms: "Azincourt v1", "Azincourt v1.1", ...  
       </p>
 
       <p lang="en">
         The scenario builder uses a Markdown editor, <a href="https://simplemde.com/">simpleMDE</a>, augmented to create Joan of Arc scenarios. The editor comes with an example scenario (the battle of Azincourt) to see how the different elements are edited. 
       </p>
       <p lang="en">
-        At the top, the row of buttons allows you to create an editing style. The same can be done by typing directly from the markdown. The buttons <span class="fas fa-eye btn btn-secondary"></span>, <span class="fas fa-columns btn btn-secondary"></span> and <span class="fas fa-arrows-alt btn btn-secondary"></span> allow to see the page rendering (preview), to see the rendering and at the same time to continue editing it, and to switch to full screen respectively.
+        At the top, the row of buttons allows you to create an editing style. The same can be done by typing directly from the markdown. The buttons <span class="fas fa-eye btn btn-secondary"></span> and <span class="fas fa-columns btn btn-secondary"></span> allow to see the page rendering (preview) and to see the rendering and at the same time to continue editing it.
       </p>
       <p lang="en">
-        JoA specific commands start and end with <code>%</code>. At the end of the default scenario you will find commands to create some icons appearing in the game. For example <code>%CAVALERY%</code> is changed to <span class="type cavalerie"></span>, <code>%DEROUGE%</code> by <span class="derouge"></span>. 2 special commands allow to integrate armies and maps previously defined:
+        JoA specific commands start and end with <code>%</code>. At the end of the default scenario you will find commands to create some icons appearing in the game. All special commands are listed in the popup menu <span class="fas fa-question-circle"></span>. For example <code>%CAVALERY%</code> is changed to <span class="type cavalerie"></span>, <code>%DEROUGE%</code> by <span class="derouge"></span>. 2 special commands allow to integrate armies and maps previously defined:
         <code>%CARTE(hashtag)%</code>: displays a map defined by the hashtag.<br/>
         <code>%ARMEE(hashtag)%</code>: displays an army defined by the hashtag.<br/>
-        The scenario example illustrates this.
+        Names of available armies and maps can be found in the map editor page, looking at the prefabs (for map names), and to dropdown menus for armies. Once a scenario refers to maps and armies, they can still be updated and edited, the scenario includes the latest version.
       </p>
-      <p lang="en">After you obtained a hashtag for a scenario, you can create a permalink to this scenario, in order to publish it in forums for instance. The button <span class="btn btn-secondary fas fa-link"></span> in the toolbar changes the URL of your page to become a permalink. You can then you your browser to bookmark this address, or copy it for using it in other places.
+      <p lang="en">Scenarios can be saved permanently. This scenarios are then accessible to all through the lastest menu, "scenario". By selecting  <span class="btn btn-primary fas fa-cloud-upload-alt"></span>, a popup appears and you have to fill the name, date, number of players for the scenario, as well as your name. Choose always the same name for all scenarios you upload. No identification so far, for this beta test, but I will remove any scenario with inappropriate content, without warning. <i>The saved scenario cannot be modified anymore</i>. If you want to update a scenario, give a number for each version with their names: "Azincourt v1", "Azincourt v1.1", ...
       </p>
 
     </div>
@@ -796,16 +1024,20 @@ At the bottom of the page, you see the armies you have built, one line per facti
           <li class="nav-item">
             <a class="nav-link" href="#troupes"><span class='fr'>Unités</span><span class='en'>Units</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#armee"><span class='fr'>Armées</span><span class='en'>Armies</span></a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span lang="fr">Construire</span><span lang="en">Build</span>
+            </a>
+            <div class="dropdown-menu bg-secondary" aria-labelledby="navbarDropdown">
+              <a class="nav-link" href="#armee"><span class='fr'>Armées</span><span class='en'>Armies</span></a>
+              <a class="nav-link" href="#map"><span class='fr'>Cartes</span><span class='en'>Maps</span></a>
+              <a class="nav-link" href="#scenario">Scenarios</a>
+            </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#map"><span class='fr'>Cartes</span><span class='en'>Maps</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#scenario">Scenarios</a>
-          </li>
-           <li class="nav-item dropdown">
+            <a class="nav-link" href="#listscenario"><span class='fr'>Scenarios</span><span class='en'>Scenarios</span></a>
+          </li>            
+          <li class="nav-item dropdown">
             <span class="nav-link dropdown-toggle" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag flag-fr" lang="fr"></span><span class="flag flag-gb" lang="en"></span></span>
             <div class="dropdown-menu" aria-labelledby="dropdown09">
 	      <a href="#" class="dropdown-item" onclick="document.documentElement.lang='en'; Unite.changeLang();"><span class="flag flag-gb"> </span> English</a>
@@ -826,62 +1058,36 @@ At the bottom of the page, you see the armies you have built, one line per facti
       <p class="m-0 text-center" lang='en'>All rights reserved for the game to Mythic Games</p>
       <p class="m-0 text-center" lang='fr'>Contenu Wikipedia soumis à <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">la licence CC-BY-SA</a></p>
       <p class="m-0 text-center" lang='en'>Wikipedia content on <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">CC-BY-SA licence</a></p>
-      <p class="m-0 text-center" lang='en'>Latest update: 10/12/2020</p>
-      <p class="m-0 text-center" lang='fr'>Dernière maj: 10/12/2020</p>
+      <p class="m-0 text-center" lang='en'>Latest update: 20/12/2020</p>
+      <p class="m-0 text-center" lang='fr'>Dernière maj: 20/12/2020</p>
     </div>
     <!-- /.container -->
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-
-<!-- The core Firebase JS SDK is always required and must be listed first 
-<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries 
-<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyBRk-hR9sOeNlOovpFGs1aD77bhX3d3cWs",
-    authDomain: "joan-of-arc-helper.firebaseapp.com",
-    projectId: "joan-of-arc-helper",
-    storageBucket: "joan-of-arc-helper.appspot.com",
-    messagingSenderId: "584541976205",
-    appId: "1:584541976205:web:97c87eab0b51cadca694c4",
-    measurementId: "G-K3RQ9SKMEL"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
-  -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="js/jquery-ui.min.js"></script>
 
   <script src="js/datatables.min.js"></script>
   <script src="js/jsonc.min.js"></script>
+  <script src="js/lz-string.min.js"></script>
 <script src="js/simplemde.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap-slider.min.js"></script>
   <!-- Plugin JavaScript -->
-  
-  <script src="hexmap.js"></script>
-  <script src="hex.js"></script>
-  <script src="js/dateline.org.js"></script>
+<!--  <script src="js/dateline.org.js"></script>
   <script src="js/select2.min.js"></script>
-<!--  <script src="js/d3.v3.min.js"></script>
-  <script src="js/topojson.min.js"></script> -->
-  <script src="consts.js"></script>
+  <script src="consts.js"></script>  
+<script src="hexmap.js"></script>
+  <script src="hex.js"></script>
   <script src="liste_unites.js"></script>
   <script src="liste_decors.js"></script>
   <script src="troupes.js"></script>
   <script src="evenements.js"></script>
   <script src="hexchooser.js"></script>
   <script src="unitimg.js"></script>
-  <script src="proba.js"></script>
+  <script src="proba.js"></script>-->
+<script src="js/all.min.js"></script>
 </body>
 
 </html>
