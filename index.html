@@ -41,7 +41,7 @@
 
 
 
-  <section id="chrono" class="noshow">
+  <section id="chrono" class="mt-2 noshow">
     <div class="container-fluid p-2">
       <div class="row no-gutters">
         <div class="text-justify">
@@ -66,7 +66,7 @@
     </div>
   </section>
 
-  <section id="troupes" class="bg-light noshow">
+  <section id="troupes" class="bg-light mt-2 noshow">
     <div class="container-fluid p-2">
       <div class="row no-gutters">
         <h4 lang="fr">Liste des troupes <span class="small fas fa-question-circle" data-toggle="modal" data-target="#myModal"></span></h4>
@@ -182,7 +182,7 @@
   </section>
 
 
-  <section id="listscenario" class="bg-light noshow">
+  <section id="listscenario" class="bg-light mt-2 noshow">
     <div class="container-fluid p-2">
       <div class="row no-gutters">
         <h4 lang="fr">Liste de scénarios</h4>
@@ -193,13 +193,13 @@
           <table id="tablescenarios" class="table-sm table table-striped table-bordered">
             <thead>
               <tr>
-                <th class="th-sm">Nom</th>
-                <th class="th-sm"><span lang='fr'>Joueurs</span><span lang='en'>Players</span></th>
-                <th class="th-sm">Factions</th> <!-- lang -->
-                <th class="th-sm">Date</th> <!-- date -->
-                <th class="th-sm"></th> <!-- user -->
-                <th class="th-sm"></th> <!-- Cartes -->
                 <th class="th-sm"></th> <!-- lang -->
+                <th class="th-sm"><span lang='fr'>Titre</span><span lang='en'>Title</span></th>
+                <th class="th-sm">Factions</th> 
+                <th class="th-sm">Date</th> <!-- date -->
+                <th class="th-sm"><span lang='fr'>Nb. joueurs</span><span lang='en'>#Players</span></th>
+                <th class="th-sm"><span lang='fr'>Auteur</span><span lang='en'>Author</span></th> <!-- user -->
+                <th class="th-sm"><span lang='fr'>Boites requises</span><span lang='en'>Required boxes</span></th> <!-- Cartes -->
                 <th class="th-sm"></th> <!-- load -->
               </tr>
             </thead>
@@ -226,7 +226,8 @@
           <form>
             <div class="form-row">
               <div class="col-md-8 mb-3">
-                <label for="scenarioname">Titre du scénario</label>
+                <label lang="fr" for="scenarioname">Titre du scénario</label>
+                <label lang="en" for="scenarioname">Title of scenario</label>
                 <input type="text" class="form-control" id="scenarioname" placeholder="Azincourt" value="" required>
               </div>
               <div class="col-md-4 mb-3">
@@ -235,9 +236,15 @@
               </div>
             </div>
             <div class="form-row">
-              <div class="col-md-6 mb-3">
-                <label for="scenarionbjoueurs">Nb joueurs</label>
+              <div class="col-md-3 mb-3">
+                <label lang="fr" for="scenarionbjoueurs">Nb joueurs</label>
+                <label lang="en" for="scenarionbjoueurs"># of players</label>
                 <input type="text" class="form-control" id="scenarionbjoueurs" placeholder="2" value="2" required>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label lang="fr" for="scenariodiff">Difficulté</label>
+                <label lang="en" for="scenariodiff">Difficulty</label>
+                <input type="number" class="form-control" id="scenariodiff" placeholder="1" min="1" max="3" value="1" required>
               </div>
               <div class="col-md-2 mb-3">
                 <div>Langue</div>
@@ -248,8 +255,8 @@
                 </div>
               </div>
               <div class="col-md-4 mb-3">
-                <label lang="fr" for="scenariousername">Votre nom</label>
-                <label lang="en" for="scenariousername">Your name</label>
+                <label lang="fr" for="scenariousername">Auteur</label>
+                <label lang="en" for="scenariousername">Author</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroupPrepend2">@</span>
@@ -258,7 +265,7 @@
                 </div>
               </div>
             </div>
-            <button class="scenariosubmit btn btn-primary" type="submit"><span lang="fr" onclick="savemde()">Publier</span><span lang="en">Upload</span></button>
+            <button class="scenariosubmit btn btn-primary" type="submit"><span lang="fr" onclick="savemde()">Publier</span><span lang="en">Publish</span></button>
           </form>
         </div>
         <div class="modal-footer">
@@ -388,14 +395,22 @@
   <div class="modal" id="card">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <img id="mycard" class="card-img-top" src="badimage" alt="card">
+        <picture id="mycard" class="card-img-top">
+          <source srcset="badimage" type="image/webp"/>
+          <source srcset="badimage" type="image/png"/>
+          <img class="card-img-top" src="badimage" alt="card">
+        </picture>
       </div>
     </div>
   </div>
   <div class="modal" id="card-gigantesque">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <img id="mylargecard" class="card-img-top" src="badimage" alt="card">
+        <picture id="mylargecard" class="card-img-top">
+          <source srcset="badimage" type="image/webp"/>
+          <source srcset="badimage" type="image/png"/>
+          <img class="card-img-top" src="badimage" alt="card">
+        </picture>
       </div>
     </div>
   </div>
@@ -405,14 +420,18 @@
   <div class="modal" id="card-troop">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <img id="mycardtroop" class="card-img-top" src="badimage" alt="card">
+        <picture id="mycardtroop" class="card-img-top">
+          <source srcset="badimage" type="image/webp"/>
+          <source srcset="badimage" type="image/png"/>
+          <img class="card-img-top" src="badimage" alt="card">
+        </picture>
       </div>
     </div>
   </div>
 
   
-  <section id="armee" class="bg-light noshow">
-    <div class="container-fluid p-2">
+  <section id="armee" class="bg-light mt-2 noshow">
+    <div class="container-fluid p-2 pt-3">
       
       <div class="row" >
         <div class="btn-group switch-toggle ml-2">
@@ -740,7 +759,7 @@
     <div class="text-white mt-2 wyn" style="z-index:1000;position:absolute" id="whatyouneed"></div>
   </section>
 
-  <section id="scenario" class="noshow">
+  <section id="scenario" class="mt-2 noshow">
     <div class="row">
       <div class="col-12">
         <textarea id="editor" class="mt-0">
@@ -924,7 +943,7 @@ At the bottom of the page, you see the armies you have built, one line per facti
     
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <div class="navbar-brand" style="position:absolute;right:0">Scenario Builder<div class="small text-muted">Time of Legends: Joan of Arc</div></div>
+    <div class="navbar-brand" style="position:absolute;right:0"><span class="title">Scenario Builder</span><div class="small text-muted">Time of Legends: Joan of Arc</div></div>
     <div class="container m-0 p-0">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
