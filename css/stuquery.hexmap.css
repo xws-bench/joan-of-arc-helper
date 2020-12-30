@@ -59,74 +59,158 @@
     opacity:0;
     visibility:visible;
 }
-.hexmap .fullhex {
+.hexmap .dot {
+    position:relative;
+    width:1em;
+    height:1em;
+    background:#f00;
+    border-radius:50%;
+    opacity:0;
+}
+.hexmap .zone.fullhex {
     clip-path: polygon(25% 0, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0 50%);
 }
-.hexmap .half1 {
+.hexmap .dot.fullhex {
+    top:42%; left:44%;
+}
+.hexmap .zone.half1 {
     clip-path: polygon(25% 0, 75% 0%, 25% 100%, 0 50%);
 }
-.hexmap .half2 {
+.hexmap .dot.half1 {
+    top:37%; left:27%;
+}
+.hexmap .zone.half2 {
     clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 25% 100%);
 }
-.hexmap .half1r {
+.hexmap .dot.half2 {
+    top:46%; left:69%;
+}
+.hexmap .zone.half1r {
     clip-path: polygon(25% 0, 75% 0%, 100% 50%, 75% 100%);
 }
-.hexmap .half2r {
+.hexmap .dot.half1r {
+    top:20%; left:65%;
+}
+.hexmap .zone.half2r {
     clip-path: polygon(25% 0%, 75% 100%, 25% 100%, 0% 50%);
 }
-.hexmap .half1h {
+.hexmap .dot.half2r {
+    top:55%; left:30%;
+}
+.hexmap .zone.half1h {
     clip-path: polygon(25% 0, 75% 0%, 100% 50%, 0% 50%);
 }
-.hexmap .half2h {
+.hexmap .dot.half1h {
+    top:69%; left:43%;
+}
+.hexmap .zone.half2h {
     clip-path: polygon(25% 100%, 0% 50%, 100% 50%, 75% 100%);
 }
-.hexmap .third1 {
+.hexmap .dot.half2h {
+    top:8%; left:45%;
+}
+.hexmap .zone.third1 {
     clip-path: polygon(25% 0, 50% 50%, 25% 100%, 0 50%);
 }
-.hexmap .third2 {
+.hexmap .zone.third2 {
     clip-path: polygon(25% 0, 50% 50%, 100% 50%, 75% 0);
 }
-.hexmap .third3 {
+.hexmap .zone.third3 {
     clip-path: polygon(25% 100%, 50% 50%, 100% 50%, 75% 100%);
 }
-.hexmap .third1r {
+.hexmap .dot.third1 {
+    top:43%; left:19%;
+}
+.hexmap .dot.third2 {
+    top:-10%; left:57%;
+}
+.hexmap .dot.third3 {
+    top:55%; left:57%;
+}
+.hexmap .zone.third1r {
     clip-path: polygon(0% 50%, 50% 50%, 75% 0%, 25% 0%);
 }
-.hexmap .third2r {
+.hexmap .zone.third2r {
     clip-path: polygon(0% 50%, 50% 50%, 75% 100%, 25% 100%);
 }
-.hexmap .third3r {
+.hexmap .zone.third3r {
     clip-path: polygon(75% 0, 100% 50%, 75% 100%, 50% 50%);
 }
-.hexmap .third1h {
+.hexmap .dot.third1r {
+    top:15%; left:37%;
+}
+.hexmap .dot.third2r {
+    top:54%; left:30%;
+}
+.hexmap .dot.third3r {
+    top:25%; left:73%;
+}
+.hexmap .zone.third1h {
     clip-path: polygon(5% 40%, 20% 10%, 95% 60%, 80% 90%);
 }
-.hexmap .third2h {
+.hexmap .zone.third2h {
     clip-path: polygon(5% 40%, 80% 90%, 75% 100%, 25% 100%,0 50%);
 }
-.hexmap .third3h {
+.hexmap .zone.third3h {
     clip-path: polygon(20% 10%, 25% 0%, 75% 0%, 100% 50%,95% 60%);
 }
-.hexmap .third1c {
+.hexmap .dot.third1h {
+    top:44%; left:48%;
+}
+.hexmap .dot.third2h {
+    top:64%; left:35%;
+}
+.hexmap .dot.third3h {
+    top:-2%; left:62%;
+}
+
+.hexmap .zone.third1c {
     clip-path: polygon(38% 100%, 38% 42%, 85% 12%, 97% 35%,63% 60%,63% 100%);
 }
-.hexmap .third2c {
+.hexmap .zone.third2c {
     clip-path: polygon(38% 100%, 25% 100%, 0% 50%, 25% 0%,75% 0%,85% 12%,38% 42%);
 }
-.hexmap .third3c {
+.hexmap .zone.third3c {
     clip-path: polygon(63% 100%,63% 60%, 97% 35%,100% 50%,75% 100%);
 }
+.hexmap .dot.third1c {
+    top:44%; left:48%;
+}
+.hexmap .dot.third2c {
+    top:14%; left:22%;
+}
+.hexmap .dot.third3c {
+    top:37%; left:70%;
+}
+.hexmap .dot.third3c.S2A {
+    top:67%; left:40%;
+}
+.hexmap .dot.third2c.S2B {
+    top:-1%; left:42%;
+}
 
-.hexmap .third2d {
+.hexmap .zone.third2d {
     clip-path: polygon(20% 10%, 75% 50%, 75% 65%, 10% 80%,25% 100%,75% 100%,100% 50%,75% 0%,25% 0%);
 }
-.hexmap .third1d {
+.hexmap .zone.third1d {
     clip-path: polygon(20% 10%, 75% 50%, 75% 65%, 10% 80%,5% 60%,55% 55%,5% 30%);
 }
-.hexmap .third3d {
+.hexmap .zone.third3d {
     clip-path: polygon(5% 60%,55% 55%, 5% 30%,0% 50%);
 }
-
+.hexmap .dot.third1d {
+    top:48%; left:80%;
+}
+.hexmap .dot.third2d {
+    top:36%; left:60%;
+}
+.hexmap .dot.third3d {
+    top:28%; left:11%;
+}
 .hexcontent { margin-top:10ex;padding: 0.25em; font-size: 0.6em; line-height: 1.2em;}
 .when-selected { display: none;}
 .hex .when-selected .value { font-size: 2em; font-weight: 700; }
+
+.tooltip-inner {
+    font-size:smaller;
+}
