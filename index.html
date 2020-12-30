@@ -24,6 +24,7 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="vendor/bootstrap/css/bootstrap-slider.min.css" rel="stylesheet">
   <link href="css/datatables.min.css" rel="stylesheet">
+  <link href="css/rowGroup.dataTables.min.css" rel="stylesheet">
   <link href="css/jquery-ui.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/fontawesome.min.css">
   <link rel="stylesheet" href="css/flags.min.css"/>
@@ -74,6 +75,8 @@
       </div>
       <div class="row no-gutters">
         <div class="col-12 p-0 mx-0">
+          <!--<div id="tabletroupes" class="card-columns"></div>-->
+        
           <table id="tabletroupes" class="table-sm troupes table table-striped table-bordered">
             <thead>
               <tr>
@@ -104,6 +107,8 @@
       
       <div class="row no-gutters">
         <div class="col-12">
+<!--          <div id="tablepersos" class="card-columns"></div>-->
+
           <table id="tablepersos" class="table-sm troupes  table table-striped table-bordered">
             <thead>
               <tr>
@@ -121,7 +126,6 @@
             <tbody>
             </tbody>
           </table>         
-          
         </div>
       </div>
       <hr/>
@@ -200,7 +204,7 @@
                 <th class="th-sm"><span lang='fr'>Nb. joueurs</span><span lang='en'>#Players</span></th>
                 <th class="th-sm"><span lang='fr'>Difficulté</span><span lang='en'>Difficulty</span></th>
                 <th class="th-sm"><span lang='fr'>Auteur</span><span lang='en'>Author</span></th> <!-- user -->
-                <th class="th-sm"><span lang='fr'>Boites requises</span><span lang='en'>Required boxes</span></th> <!-- Cartes -->
+                <th class="th-sm"><span lang='fr'>Boites requises (terrain seul)</span><span lang='en'>Required boxes (land only)</span></th> <!-- Cartes -->
                 <th class="th-sm"></th> <!-- load -->
               </tr>
             </thead>
@@ -801,7 +805,11 @@ Pour un exemple complet de scenario, aller sur "scenario", voir l'un de ceux dé
     <p lang="en">This website is made by a fan of the game "Time of Legends: Joan of Arc", and is not related to the authors or publishers of the game. It offers game aids for making your own battles, building armies, or even just learning about the Hundred Years War.
     <br/>
     <div class="featurette">
-      <img class="featurette-image img-responsive pull-right" src="css/chronologie.png" alt="chronologie">
+      <picture class="featurette-image img-responsive pull-right">
+        <source srcset="css/chronologie.webp" type="image/webp"/>
+        <source srcset="css/chronologie.png" type="image/png"/>
+        <img class="featurette-image img-responsive pull-right" src="css/chronologie.png" alt="chronologie">
+      </picture>
       <h2 class="featurette-heading"><a href="#chrono"><span lang="fr" class="text-muted">Chronologie</span><span lang="en" class="text-muted">Chronology</span></a></h2>
       <p lang="fr" class="lead">Une frise historique de la plupart des batailles de la guerre de cent ans</p>
       <p lang="fr">Chaque bataille liste avec les personnages contemporains du jeu Joan of Arc, ceux qui y ont participés. On peut y chercher une bataille parmi les 180+ événements listés, ou un personnage particulier. Le lien vers wikipedia ou d'autres ressources historiques est indiqué. Un court résumé de la bataille historique est donné, dans la plupart des cas (il y a beaucoup de batailles !)</p>
@@ -811,7 +819,11 @@ Pour un exemple complet de scenario, aller sur "scenario", voir l'un de ceux dé
     <hr class="featurette-divider"/>
 
     <div class="featurette">
-      <img class="featurette-image img-responsive pull-left" src="css/unités.png" alt="unités">
+      <picture class="featurette-image img-responsive pull-left" >
+        <source srcset="css/unités.webp" type="image/webp"/>
+        <source srcset="css/unités.png" type="image/png"/>
+        <img class="featurette-image img-responsive pull-left" src="css/unités.png" alt="unités">
+      </picture>
       <h2 class="featurette-heading"><a href="#troupes"><span lang="fr" class="text-muted">Unités</span><span lang="en" class="text-muted">Units</span></a></h2>
       <p lang="fr" class="lead">La liste des troupes, des personnages et des figurines de JoA.</p>
       <p lang="fr">Les règles sont décrites de façon plus compacte. Pour les personnages, leur blason historique est donné, ainsi que les dates où ils ont été actifs. Plusieurs intervalles sont possibles, notamment pour les titres (comme le comte d'Oxford), où plusieurs personnes l'ont porté. Cliquer sur le nom permet de voir l'image de la carte. Cliquer sur les dates permet de voir sa page wikipedia.</p>
@@ -828,24 +840,42 @@ Pour un exemple complet de scenario, aller sur "scenario", voir l'un de ceux dé
     <br/><br/>
     
     <div class="featurette">
-      <img class="featurette-image img-responsive pull-right" src="css/armées.png" alt="armées">
+      <picture class="featurette-image img-responsive pull-right" >
+        <source srcset="css/armées.webp" type="image/webp"/>
+        <source srcset="css/armées.png" type="image/png"/>
+        <img class="featurette-image img-responsive pull-right" src="css/armées.png" alt="armées">
+      </picture>
       <h2 class="featurette-heading"><a href="#armee"><span lang="fr" class="text-muted">Constructeur d'armées</span><span lang="en" class="text-muted">Army builder</span></a></h2>
-      <p lang="fr">Sélectionnez les listes d'armées, puis les unités. Les contraintes sur les figurines, les personnages, la composition de l'armée sont prises en compte automatiquement. Vous pouvez cliquer sur tout les boutons, l'armée respectera les règles de composition. Les personnages mercenaires ont été ajoutés, ainsi qu'une armée bouguignonne, ottomane, valaque et tous les personnages peuvent maintenant être ajoutés dans les armées françaises et anglaises. Les nouveaux coûts pour ces unités sont indicatifs.</p>
       <p lang="fr">
-        <img class="featurette-image img-responsive pull-left" style="width:300px" alt="date selection" src="images/dateselection.png">
-        Vous pouvez aussi choisir des listes d'armées sans contrainte avec "Toute l'armée", et filtrer les personnages en fonction de l'année de la bataille en cliquant sur "Année" et en bougeant le curseur sur l'année de votre choix. Vous êtes sûrs d'avoir les personnages vivants à cette année, parfait pour les scénarios historiques.
-        </p>
-      <p lang="fr">
-      <img class="featurette-image img-responsive pull-right" src="images/cartesarmees.png" alt="army display" style="width:300px">
-        En bas de page vous avez une présentation des armées que vous avez construit, une ligne par faction. Vous pouvez sauvegarder localement, le temps de votre navigation (rien ne reste sur votre machine) les armées en leur donnant un nom et en cliquant sur  <span class="btn btn-primary fas fa-save"></span>.
-      <p lang="en">Select the army lists, then the units. Constraints on miniatures, characters, army composition are automatically taken into account. You can click on any button, the army will respect the composition rules. Mercenary characters have been added, as well as a burgundian army, valach, ottoman, and all characters can be added from French and English armies. New costs are just hints.</p>
-      <p lang="en">
-                <img class="featurette-image img-responsive pull-left" alt="date selection" style="width:300px" src="images/dateselection.png">     
-You can also choose unconstrained army lists with "All Army" composition, and filter characters according to the year of the battle by clicking on "Year" and by moving the slider to the year of your choice. With this, you are sure to have only the characters alive during this year, perfect for historical scenarios.
+        Sélectionnez les listes d'armées, puis les unités. Les contraintes sur les figurines, les personnages, la composition de l'armée sont prises en compte automatiquement. Vous pouvez cliquer sur tout les boutons, l'armée respectera les règles de composition. Les personnages mercenaires ont été ajoutés, ainsi qu'une armée bouguignonne, ottomane, valaque et tous les personnages peuvent maintenant être ajoutés dans les armées françaises et anglaises. Les nouveaux coûts pour ces unités sont indicatifs.
       </p>
+      <p lang="en">
+        Select the army lists, then the units. Constraints on miniatures, characters, army composition are automatically taken into account. You can click on any button, the army will respect the composition rules. Mercenary characters have been added, as well as a burgundian army, valach, ottoman, and all characters can be added from French and English armies. New costs are just hints.</p>
+
+      <picture class="featurette-image img-responsive pull-left" >
+        <source srcset="images/dataselection.webp" type="image/webp"/>
+        <source srcset="images/dateselection.png" type="image/png"/>
+        <img class="featurette-image img-responsive pull-left" style="width:300px" alt="date selection" src="images/dateselection.png">
+      </picture>
+
+      <p lang="fr">
+      Vous pouvez aussi choisir des listes d'armées sans contrainte avec "Toute l'armée", et filtrer les personnages en fonction de l'année de la bataille en cliquant sur "Année" et en bougeant le curseur sur l'année de votre choix. Vous êtes sûrs d'avoir les personnages vivants à cette année, parfait pour les scénarios historiques.
+      </p>
+
+      <p lang="en">
+        You can also choose unconstrained army lists with "All Army" composition, and filter characters according to the year of the battle by clicking on "Year" and by moving the slider to the year of your choice. With this, you are sure to have only the characters alive during this year, perfect for historical scenarios.
+      </p>
+
+      <picture class="featurette-image img-responsive pull-left" >
+        <source srcset="images/cartesarmees.webp" type="image/webp"/>
+        <source srcset="images/cartesarmees.png" type="image/png"/>
+        <img class="featurette-image img-responsive pull-right" src="images/cartesarmees.png" alt="army display" style="width:300px">
+      </picture>
+
+      <p lang="fr">
+        En bas de page vous avez une présentation des armées que vous avez construit, une ligne par faction. Vous pouvez sauvegarder localement, le temps de votre navigation (rien ne reste sur votre machine) les armées en leur donnant un nom et en cliquant sur  <span class="btn btn-primary fas fa-save"></span>.
       
       <p lang="en">
-              <img class="featurette-image img-responsive pull-right" alt="army display" src="images/cartesarmees.png" style="width:300px">
 At the bottom of the page, you see the armies you have built, one line per faction. The armies can be saved, just give them a name and click on the icon <span class="btn btn-primary fas fa-save"></span>. The save is just for the duration of your navigation on this page, nothing is saved permanently on your computer. 
 </p>
       
@@ -853,7 +883,12 @@ At the bottom of the page, you see the armies you have built, one line per facti
     <hr class="featurette-divider"/>
 
     <div class="featurette">
-      <img class="featurette-image img-responsive pull-left" src="images/mapcreation.png" alt="map creation">
+      
+      <picture class="featurette-image img-responsive pull-left" >
+        <source srcset="images/mapcreation.webp" type="image/webp"/>
+        <source srcset="images/mapcreation.png" type="image/png"/>
+        <img class="featurette-image img-responsive pull-left" src="images/mapcreation.png" alt="map creation">
+      </picture>
       <h2 class="featurette-heading"><span lang="fr" class="text-muted">Constructeur de cartes</span><span lang="en" class="text-muted">Map builder</span></h2>
       <p lang="fr">
         Le constructeur de carte vous permet de créer vos cartes, avec le décor et le placement des unités que vous souhaitez.
@@ -868,16 +903,7 @@ At the bottom of the page, you see the armies you have built, one line per facti
       </p>
       <p lang="fr">Les éléments de décor, les civils et les jetons (points de ralliement, autre), peuvent être glissés/déposés également sur les cartes. Une fois sur la carte, ils peuvent être redéplacés si besoin.
       </p>
-      <p lang="fr">
-        <img src="images/armeeselection.png" style="width:200px" alt="army selection" class="featurette-image img-responsive pull-right">Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu déroulant. Vous y retrouverez les armées sauvegardées précédemment, sélectionnables par leur nom (pas de prefab pour les armées). 6 armées, correspondant à 6 joueurs maximum, sont sélectionnables. Les unités peuvent alors être glissées/déposées en position. Chaque armée a sa propre couleur, dépendant de sa faction, et son motif sur la carte. On peut également faire glisser/déposer le blason de l'armée pour indiquer une zone de deploiement initiale, sans y mettre d'armée. 6 blasons sont disponibles initialement, sans avoir besoin sélectionner une armée.
-      </p>
-      <p lang="fr"><img src="images/cartehash.png" style="width:400px" alt="hash army" class="featurette-image img-responsive pull-left">
-        Dans la barre d'outils en haut, vous pouvez sauvegarder la carte, avec un nom et en cliquant sur <span class="btn btn-primary fas fa-save"></span>. Son nom est son identifiant, si vous sauvegardez plusieurs cartes avec le même nom, seule la dernière sauvegarde sera visible. Les sauvegardes ne durent que le temps de la navigation et s'effaceront si vous rechargez la page. Seule la carte, avec les décors, les troupes et les civils qui sont posés dessus est sauvée. Le nom d'une carte doit commencer par une majuscule, et ne peut contenir que des caractères alphanumériques (accents inclus), l'apostrophe et le tiret. Une fois la carte sauvegardée, elle apparaît dans les prefabs.
-      </p>
-      <p>En bas de la fenêtre de création de carte, le nombre de boites de jeu nécessaires pour créer ce terrain, avec pour chaque boite le nom des tuiles est indiqué. Cette indication est mise à jour à chaque chargement de carte (prefabs) ou à chaque sauvegarde.</p>
-      <p lang="fr">La carte 11x11 préconstruite "Meaux" vient du scénario <a href="https://boardgamegeek.com/filepage/200509/new-4-player-scenario-siege-meaux">a siege of Meaux</a> sur BGG, par Bill Koff. La carte a été tronquée (dernière ligne en moins) pour correspondre aux tuiles des boites.
-      </p>
-      <p lang="en">
+            <p lang="en">
         The card builder allows you to create your cards, with the decor and placement of the units you want.
       </p>
       <p lang="en">
@@ -890,12 +916,34 @@ At the bottom of the page, you see the armies you have built, one line per facti
       </p>
       <p lang="en">Buildings, civilians and tokens (rally points, other), can be dragged and dropped on the maps as well. Once on the map, they can be moved again if needed.
       </p>
-      <p lang="en">
-        <img src="images/armeeselection.png" style="width:200px" alt="army selection" class="featurette-image img-responsive pull-right">Army units appear by selecting them in the dropdown menu in one of the 6 windows corresponding to the 6 players max. The armies have to be created and saved before in the previous screen (no prefab for armies). The units can then be dragged and dropped into position. Each army has its own color, depending on its faction, and its pattern on the map. You can also drag and drop the army's coat of arms to indicate an initial deployment area, without putting an army on it. 6 coats of arms are available initially.
+
+      <picture class="featurette-image img-responsive pull-right" >
+        <source srcset="images/armeeselection.webp" type="image/webp"/>
+        <source srcset="images/armeeselection.png" type="image/png"/>
+        <img src="images/armeeselection.png" style="width:200px" alt="army selection" class="featurette-image img-responsive pull-right">
+      </picture>
+      <p lang="fr">
+Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu déroulant. Vous y retrouverez les armées sauvegardées précédemment, sélectionnables par leur nom (pas de prefab pour les armées). 6 armées, correspondant à 6 joueurs maximum, sont sélectionnables. Les unités peuvent alors être glissées/déposées en position. Chaque armée a sa propre couleur, dépendant de sa faction, et son motif sur la carte. On peut également faire glisser/déposer le blason de l'armée pour indiquer une zone de deploiement initiale, sans y mettre d'armée. 6 blasons sont disponibles initialement, sans avoir besoin sélectionner une armée.
       </p>
-      <p lang="en"><img src="images/cartehash.png" style="width:400px" alt="hasharmy" class="featurette-image img-responsive pull-left">
+      <p lang="en">
+        Army units appear by selecting them in the dropdown menu in one of the 6 windows corresponding to the 6 players max. The armies have to be created and saved before in the previous screen (no prefab for armies). The units can then be dragged and dropped into position. Each army has its own color, depending on its faction, and its pattern on the map. You can also drag and drop the army's coat of arms to indicate an initial deployment area, without putting an army on it. 6 coats of arms are available initially.
+      </p>
+      <picture class="featurette-image img-responsive pull-left" >
+        <source srcset="images/cartehash.webp" type="image/webp"/>
+        <source srcset="images/cartehash.png" type="image/png"/>
+        <img src="images/cartehash.png" style="width:400px" alt="hash army" class="featurette-image img-responsive pull-left">
+      </picture>
+        <p lang="fr">
+        Dans la barre d'outils en haut, vous pouvez sauvegarder la carte, avec un nom et en cliquant sur <span class="btn btn-primary fas fa-save"></span>. Son nom est son identifiant, si vous sauvegardez plusieurs cartes avec le même nom, seule la dernière sauvegarde sera visible. Les sauvegardes ne durent que le temps de la navigation et s'effaceront si vous rechargez la page. Seule la carte, avec les décors, les troupes et les civils qui sont posés dessus est sauvée. Le nom d'une carte doit commencer par une majuscule, et ne peut contenir que des caractères alphanumériques (accents inclus), l'apostrophe et le tiret. Une fois la carte sauvegardée, elle apparaît dans les prefabs.
+      </p>
+       <p lang="en">
         In the toolbar in the top, the map can be saved by giving a name and clicking on <span class="fas fa-save"></span>. The name is the id of the map, saving multiple maps with the same name will only keep the last one. It must start with a upper case and can only be composed of alphanumeric symbols (including French accents), with simple quote and dash. The saves are only visible during one session. Once you reload the page, all saves are lost. A save registers the position of the buildings, tokens and troops on the map as well as the tiles of the map. A save map appears then in prefab.
       </p>
+      <p>En bas de la fenêtre de création de carte, le nombre de boites de jeu nécessaires pour créer ce terrain, avec pour chaque boite le nom des tuiles est indiqué. Cette indication est mise à jour à chaque chargement de carte (prefabs) ou à chaque sauvegarde.</p>
+      <p lang="fr">La carte 11x11 préconstruite "Meaux" vient du scénario <a href="https://boardgamegeek.com/filepage/200509/new-4-player-scenario-siege-meaux">a siege of Meaux</a> sur BGG, par Bill Koff. La carte a été tronquée (dernière ligne en moins) pour correspondre aux tuiles des boites.
+      </p>
+
+     
       <p lang="en">At the bottom of the window, the list of boxes and tiles required for building this map is shown. This is updated only when saving the map, or loading it from prefab.</p>
       <p lang="en">The prefab map 11x11 "Meaux" comes from the scenario <a href="https://boardgamegeek.com/filepage/200509/new-4-player-scenario-siege-meaux">a siege of Meaux</a> on BGG, by Bill Koff. The bottom line of the map has been removed to fit the limit of the tiles in the boxes.
       </p>
@@ -905,7 +953,11 @@ At the bottom of the page, you see the armies you have built, one line per facti
     <hr class="featurette-divider"/>
 
     <div class="featurette">
-      <img class="featurette-image img-responsive pull-right" src="images/scenarioedit.png" alt="scenariobuilder">
+      <picture class="featurette-image img-responsive pull-right" >
+        <source srcset="images/scenarioedit.webp" type="image/webp"/>
+        <source srcset="images/scenarioedit.png" type="image/png"/>
+        <img class="featurette-image img-responsive pull-right" src="images/scenarioedit.png" alt="scenariobuilder">
+      </picture>
       <h2 class="featurette-heading"><span lang="fr" class="text-muted">Constructeur de scénario</span><span lang="en" class="text-muted">Scenario builder</span></h2>
       <p lang="fr">
         Le constructeur de scénario utilise un éditeur Markdown, <a href="https://simplemde.com/">simpleMDE</a>, augmenté pour créer des scénarios Joan of Arc. L'éditeur vient avec un exemple de scénario (la bataille d'Azincourt) permettant de voir comment les différents éléments sont édités. 
@@ -939,17 +991,22 @@ At the bottom of the page, you see the armies you have built, one line per facti
       </p>
 
     </div>
-      <img src="images/scenariopreview.png" style="width:600px" alt="preview" class="featurette-image img-responsive pull-left">
+       <picture class="featurette-image img-responsive pull-left" >
+        <source srcset="images/scenariopreview.webp" type="image/webp"/>
+        <source srcset="images/scenariopreview.png" type="image/png"/>
+   
+        <img src="images/scenariopreview.png" style="width:600px" alt="preview" class="featurette-image img-responsive pull-left">
+       </picture>
   </section>
     
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <div class="navbar-brand" style="position:absolute;right:0"><span class="title">Scenario Builder</span><div class="small text-muted">Time of Legends: Joan of Arc</div></div>
-    <div class="container m-0 p-0">
+    <div class="navbar-brand" style="position:absolute;right:0"><span class="title">Scenario Builder</span></div>
+    <div class="container m-0 p-0" style="width:11em">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+      <div class="collapse bg-dark navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav">         
           <li class="nav-item">
             <a class="nav-link" href="#home"><span class="fas fa-home"></span></a>
@@ -1005,6 +1062,7 @@ At the bottom of the page, you see the armies you have built, one line per facti
   <script src="js/jquery-ui.min.js"></script>
 
   <script src="js/datatables.min.js"></script>
+  <script src="js/datatables.rowgroup.min.js"></script>
   <script src="js/jsonc.min.js"></script>
   <script src="js/lz-string.min.js"></script>
 <script src="js/simplemde.min.js"></script>
