@@ -18,7 +18,7 @@
   <meta name="description" content="Time of Legends: Joan of Arc scenario builder">
   <meta name="author" content="Denis Wings">
    <meta name="keywords" content="Time of Legends: Joan of Arc, scenario builder, Hundred Years war, guerre de Cent ans">
-  <title>Joan of Arc Scenario Helper</title>
+  <title>Joan of Arc Scenario Builder</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -273,7 +273,60 @@
             <button class="scenariosubmit btn btn-primary" type="submit"><span lang="fr" onclick="savemde()">Publier</span><span lang="en">Publish</span></button>
           </form>
         </div>
-        <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+  <!-- The Modal -->
+  <div class="modal" id="iplayedit">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"><span lang='fr'>J'y ai joué !</span><span lang='en'>I played it!</span></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+          <form>
+            <div class="form-row">
+              <div class="col-md-7 mb-3">
+                <label lang="fr" for="scenarioname2">Titre du scénario</label>
+                <label lang="en" for="scenarioname2">Title of scenario</label>
+                <input type="text" readonly class="form-control" id="scenarioname2" value="">
+              </div>
+              <div class="col-md-5 mb-3">
+                <label lang="fr" for="scenarioname">Campagne</label>
+                <label lang="en" for="scenarioname">Campaign</label>
+                <input type="text" readonly class="form-control" id="campaign2" value="">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-3 mb-3">
+                <label lang="fr" for="winner">Qui a gagné?</label>
+                <label lang="en" for="winner">Who was the winner?</label>
+                <input type="text" class="form-control" id="scenarionbjoueurs" placeholder="2" value="2" required>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label lang="fr" for="scenariodiff">Nombre de rounds</label>
+                <label lang="en" for="scenariodiff"># rounds</label>
+                <input type="number" class="form-control" id="scenariodiff" placeholder="1" min="1" max="10" value="1" required>
+              </div>
+              <div class="col-md-2 mb-3">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label lang="fr" for="scenariousername">Votre nom</label>
+                <label lang="en" for="scenariousername">Your name</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                  </div>
+                  <input type="text" class="form-control" id="username" aria-describedby="inputGroupPrepend3" required>
+                </div>
+              </div>
+            </div>
+            <button class="scenariosubmit btn btn-primary" type="submit">Coming soon, not yet functional</button>
+          </form>
         </div>
       </div>
     </div>
@@ -786,16 +839,16 @@ Pour un exemple complet de scenario, aller sur "scenario", voir l'un de ceux dé
 
   <header id="home" class="text-white">
     <div lang="fr" class="head w-screen mx-0 px-0 text-center">
-      <h1>Scenario Builder: Joan of Arc</h1>
-      <p class="lead">Une page pour le jeu de figurines <a class="text-white" href="https://www.kickstarter.com/projects/1162110258/time-of-legends-joan-of-arc">Time of Legends: Joan of Arc</a></p>
-      <p>Commentaires, bugs sur les forums :<a class="text-white" href="https://boardgamegeek.com/thread/2555006/scenario-builder-online"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"> <span class="flag flag-gb"></span></a> , <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-batailles-historiques-personnages-et-probas"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"> <span class="flag flag-fr"></span></a><a class="text-white" href="http://www.toljoa.com/forum/viewtopic.php?f=2&t=30"><img alt="toljoa" src="images/toljoa.png" width="64px">Toljoa forum <span class="flag flag-fr"></span></a></p>
+      <h1>Scenario Builder</h1>
+      <p class="lead"><a class="text-white" href="https://www.kickstarter.com/projects/1162110258/time-of-legends-joan-of-arc">Time of Legends: Joan of Arc</a></p>
+      <p>Commentaires, bugs sur :<a class="text-white" href="https://boardgamegeek.com/thread/2555006/scenario-builder-online"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"> </a> <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-construction-de-scenario-en-ligne"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"></a><a class="text-white" href="http://www.toljoa.com/forum/viewtopic.php?f=2&t=30"><img alt="toljoa" src="images/toljoa.png" width="64px">Toljoa forum</a></p>
       <a href='https://fr.wikipedia.org/wiki/Bataille_de_Castillon' class='text-white' style='float:right;left:0;font-size:x-small'>la bataille de Castillon</a>
     </div>
     
     <div lang="en" class="head w-screen mx-0 px-0 text-center">
-      <h1>Scenario Builder: Joan of Arc</h1>
-      <p class="lead">A site for Time of Legends: Joan of Arc</p>
-      <p>Comments, bug reports on forums:<a class="text-white" href="https://boardgamegeek.com/thread/2555006/scenario-builder-online"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"> <span class="flag flag-gb"></span></a> , <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-batailles-historiques-personnages-et-probas"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"> <span class="flag flag-fr"></span></a><a class="text-white" href="http://www.toljoa.com/forum/viewtopic.php?f=2&t=30"><img alt="toljoa" src="images/toljoa.png" width="64px">Toljoa forum <span class="flag flag-fr"></span></a></p>
+      <h1>Scenario Builder</h1>
+      <p class="lead"><a class="text-white" href="https://www.kickstarter.com/projects/1162110258/time-of-legends-joan-of-arc">Time of Legends: Joan of Arc</a></p>
+      <p>Comments, bug reports on :<a class="text-white" href="https://boardgamegeek.com/thread/2555006/scenario-builder-online"><img aria-hidden="true" alt="BoardGameGeek" src="images/bgg.png"></a> <a class="text-white" href="https://www.trictrac.net/forum/sujet/joan-of-arc-construction-de-scenario-en-ligne"><img aria-hidden="true" alt="TricTrac" src="images/trictrac.png"></a><a class="text-white" href="http://www.toljoa.com/forum/viewtopic.php?f=2&t=30"><img alt="toljoa" src="images/toljoa.png" width="64px">Toljoa forum</a></p>
       <a href='https://fr.wikipedia.org/wiki/Bataille_de_Castillon' class='text-white' style='float:right;left:0;font-size:x-small'>the battle of Castillon</a>
     </div>
   </header>
@@ -853,7 +906,7 @@ Pour un exemple complet de scenario, aller sur "scenario", voir l'un de ceux dé
         Select the army lists, then the units. Constraints on miniatures, characters, army composition are automatically taken into account. You can click on any button, the army will respect the composition rules. Mercenary characters have been added, as well as a burgundian army, valach, ottoman, and all characters can be added from French and English armies. New costs are just hints.</p>
 
       <picture class="featurette-image img-responsive pull-left" >
-        <source srcset="images/dataselection.webp" type="image/webp"/>
+        <source srcset="images/dateselection.webp" type="image/webp"/>
         <source srcset="images/dateselection.png" type="image/png"/>
         <img class="featurette-image img-responsive pull-left" style="width:300px" alt="date selection" src="images/dateselection.png">
       </picture>
@@ -866,7 +919,7 @@ Pour un exemple complet de scenario, aller sur "scenario", voir l'un de ceux dé
         You can also choose unconstrained army lists with "All Army" composition, and filter characters according to the year of the battle by clicking on "Year" and by moving the slider to the year of your choice. With this, you are sure to have only the characters alive during this year, perfect for historical scenarios.
       </p>
 
-      <picture class="featurette-image img-responsive pull-left" >
+      <picture class="featurette-image img-responsive pull-right" >
         <source srcset="images/cartesarmees.webp" type="image/webp"/>
         <source srcset="images/cartesarmees.png" type="image/png"/>
         <img class="featurette-image img-responsive pull-right" src="images/cartesarmees.png" alt="army display" style="width:300px">
@@ -965,16 +1018,19 @@ Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu dé
       <p lang="fr">
         En haut, la rangée de bouton permet de créer un style d'édition. La même chose est réalisable en tapant directement du markdown. Les boutons <span class="fas fa-eye btn btn-secondary"></span>, <span class="fas fa-columns btn btn-secondary"></span> permettent de voir le rendu de la page (preview), ou d'avoir un rendu et en même temps continuer à l'éditer.
       </p>
+      
       <p lang="fr">
         Les commandes spécifiques pour JoA commencent et finissent par <code>%</code>. A la fin du scénario par défaut, vous trouverez les commandes permettant de créer quelques icones apparaissant dans le jeu. Toutes les commandes sont accessibles par le menu <span class="fas fa-question-circle"></span> de la barre d'outils. Par exemple <code>%CAVALERIE%</code> est transformé en <span class="type cavalerie"></span>, <code>%DEROUGE%</code> par <span class="derouge"></span>. 2 commandes spéciales permettent d'intégrer des armées et des cartes définies précédemment:<br/>
         <code>%CARTE(nom de la carte)%</code>: affiche une carte dont le nom est entre parenthèses.<br/>
         <code>%ARMEE(nom de l'armée)%</code>: affiche une armée dont le nom est entre parenthèses.<br/>
         En cas de doutes sur les noms, vous pouvez les consulter dans l'onglet de Cartes, via les prefabs pour les cartes et le menu déroulant pour les armées. Le mode preview permet de voir si les armées et cartes sont bien chargées. Une fois le scénario écrit, les armées et cartes peuvent continuer d'être mis à jour, le scénario les prendra en compte.
-        <br/>
       </p>
-      <p lang="fr">Vous pouvez sauvegarder les scénarios de façon permanente. Ces scénarios sont alors consultables par tous dans l'onglet "Scénario" du menu principal. En cliquant sur <span class="btn btn-primary fas fa-cloud-upload-alt"></span>, une fenêtre s'ouvre et vous permet de rentrer le nom du scénario, le nombre de joueurs, la langue du scénario, l'année où il se passe et votre nom. Choisissez toujours le même nom pour tous les scénarios que vous allez créer. Pas encore d'identification pour cette phase de test, mais je me reserve le droit de supprimer tout scénario avec un contenu inapproprié, sans préavis. <i>Les scénarios sauvegardés ne peuvent plus être changés</i>. Si vous voulez mettre à jour un scénario, numérotez les versions en leur donnant des noms: "Azincourt v1", "Azincourt v1.1", ...  
+      
+      <p lang="fr">
+        Vous pouvez sauvegarder les scénarios de façon permanente. Ces scénarios sont alors consultables par tous dans l'onglet "Scénario" du menu principal. En cliquant sur <span class="btn btn-primary fas fa-cloud-upload-alt"></span>, une fenêtre s'ouvre et vous permet de rentrer le nom du scénario, le nombre de joueurs, la langue du scénario, l'année où il se passe et votre nom. Choisissez toujours le même nom pour tous les scénarios que vous allez créer. Pas encore d'identification pour cette phase de test, mais je me reserve le droit de supprimer tout scénario avec un contenu inapproprié, sans préavis. <i>Les scénarios sauvegardés ne peuvent plus être changés</i>. Si vous voulez mettre à jour un scénario, numérotez les versions en leur donnant des noms: "Azincourt v1", "Azincourt v1.1", ...  
       </p>
 
+      
       <p lang="en">
         The scenario builder uses a Markdown editor, <a href="https://simplemde.com/">simpleMDE</a>, augmented to create Joan of Arc scenarios. The editor comes with an example scenario (the battle of Azincourt) to see how the different elements are edited. 
       </p>
@@ -989,14 +1045,31 @@ Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu dé
       </p>
       <p lang="en">Scenarios can be saved permanently. This scenarios are then accessible to all through the lastest menu, "scenario". By selecting  <span class="btn btn-primary fas fa-cloud-upload-alt"></span>, a popup appears and you have to fill the name, date, number of players for the scenario, as well as your name. Choose always the same name for all scenarios you upload. No identification so far, for this beta test, but I will remove any scenario with inappropriate content, without warning. <i>The saved scenario cannot be modified anymore</i>. If you want to update a scenario, give a number for each version with their names: "Azincourt v1", "Azincourt v1.1", ...
       </p>
-
-    </div>
        <picture class="featurette-image img-responsive pull-left" >
         <source srcset="images/scenariopreview.webp" type="image/webp"/>
         <source srcset="images/scenariopreview.png" type="image/png"/>
    
         <img src="images/scenariopreview.png" style="width:600px" alt="preview" class="featurette-image img-responsive pull-left">
        </picture>
+      <p lang="fr">
+        Pour écrire un scénario, il est recommandé de procéder comme suit:
+        <ol>
+          <li>Construire les armées nécessaires au scénario. Pour avoir le moins de contraintes sur la composition, choisir "Toute l'armée" et une date de bataille. Il est possible de choisir plusieurs fois la même armée pour avoir davantage de héros présents. Cette étape vous permettra de voir si vous pouvez construire l'armée de votre choix.</li>
+          <li>Construire la carte. Placer les hexagones, le décors, les unités et marqueurs. Sauvegarder la carte.</li>
+          <li>Écrire le scénario, en utilisant les armées précédemment définies et la carte précédente. S'il manque des unités dans une armée, vous pouvez redéfinir une armée avec le même nom. Pour la carte, vous pouvez continuer à éditer la carte en même temps que le scénario. Sauvegardez le scénario.Si la sauvegarde est réussie, vous devriez le voir dans la liste des scénarios.</li>
+        </ol>
+      </p>
+
+      <p lang="en">
+        To write a scenario, it is recommended to proceed as follows:<ol lang="en">
+          <li>Build the armies needed for the scenario. To have the least constraints on the composition, choose "All armies" and a battle date. It is possible to choose several times the same army to have more heroes present. This step will allow you to see if you can build the army of your choice.</li>
+          <li>Build the map. Place the hexes, scenery, units and markers. Save the map.</li>
+          <li>Write the scenario, using the previously defined armies and the previous map. If there are missing units in an army, you can redefine an army with the same name. For the map, you can continue to edit the map at the same time as the scenario. If the upload is successful, you should see it in the scenario list.</li>
+        </ol>
+      </p>
+
+    </div>
+
   </section>
     
   <!-- Navigation -->
@@ -1051,8 +1124,8 @@ Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu dé
       <p class="m-0 text-center" lang='en'>All rights reserved for the game to Mythic Games</p>
       <p class="m-0 text-center" lang='fr'>Contenu Wikipedia soumis à <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">la licence CC-BY-SA</a></p>
       <p class="m-0 text-center" lang='en'>Wikipedia content on <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">CC-BY-SA licence</a></p>
-      <p class="m-0 text-center" lang='en'>Latest update: 23/12/2020</p>
-      <p class="m-0 text-center" lang='fr'>Dernière maj: 23/12/2020</p>
+      <p class="m-0 text-center" lang='en'>Latest update: 31/12/2020</p>
+      <p class="m-0 text-center" lang='fr'>Dernière maj: 31/12/2020</p>
     </div>
     <!-- /.container -->
   </footer>
