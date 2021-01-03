@@ -228,14 +228,19 @@
         </div>
         
         <div class="modal-body">
-          <form>
+          <form onsubmit="savemde(event)">
             <div class="form-row">
-              <div class="col-md-8 mb-3">
+              <div class="col-md-5 mb-3">
                 <label lang="fr" for="scenarioname">Titre du scénario</label>
                 <label lang="en" for="scenarioname">Title of scenario</label>
                 <input type="text" class="form-control" id="scenarioname" placeholder="Azincourt" value="" required>
               </div>
               <div class="col-md-4 mb-3">
+                <label lang="fr" for="scenariocampaign">Campagne</label>
+                <label lang="en" for="scenariocampaign">Campaign</label>
+                <input type="text" class="form-control" id="scenariocampaign" placeholder="Individual scenario" value="">
+              </div>
+              <div class="col-md-3 mb-3">
                 <label for="scenariodate">Date</label>
                 <input type="date" class="form-control" id="scenariodate" placeholder="1415-10-25" value="1415-10-25" required>
               </div>
@@ -252,7 +257,7 @@
                 <input type="number" class="form-control" id="scenariodiff" placeholder="1" min="1" max="3" value="1" required>
               </div>
               <div class="col-md-2 mb-3">
-                <div>Langue</div>
+                <div><span lang="fr">Langue</span><span lang="en">Language</span></div>
                 <button class="btn mt-2 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span id="scenariolang" class="flag flag-fr"></span></button>
                 <div class="dropdown-menu">
                   <div  onclick="document.getElementById('scenariolang').className='flag flag-gb';" class="dropdown-item"><span class="flag flag-gb"> </span> English</div>
@@ -270,8 +275,8 @@
                 </div>
               </div>
             </div>
-            <button class="scenariosubmit btn btn-primary" type="submit"><span lang="fr" onclick="savemde()">Publier</span><span lang="en">Publish</span></button>
-          </form>
+            <button class="scenariosubmit btn btn-primary" type="submit"><span lang="fr" >Publier</span><span lang="en">Publish</span></button>
+          </form><span class='stored' style='display:none'><span lang='fr'>sauvegardé</span><span lang='en'>stored</span></span>
         </div>
       </div>
     </div>
@@ -634,10 +639,10 @@
             <button class="btn btn-secondary dropdown-toggle" type="button" id="prefabbutton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Prefabs</button>
             <div class="dropdown-menu" id="prefabs" aria-labelledby="prefabbutton"></div>
           </div>
-          <form class="btn-group mr-2">
-            <input type="text" id="codemap" placeholder="Map name" class="hashhexmap" required pattern="[A-Z][A-Za-z0-9éàèùïëâôêçÉÈ*' -]+"></input>
-            <button type="submit" class="savehexmap fas fa-save btn btn-primary"></button>
-          </form>
+          <form class="savehexmap btn-group mr-2">
+            <input type="text" id="codemap" placeholder="Map name" class="hashhexmap" required="true" pattern="[A-Z][A-Za-z0-9éàèùïëâôêçÉÈ*' -]+"></input>
+            <button type="submit" class="fas fa-save btn btn-primary"></button>
+          </form><span class='stored text-dark' style='display:none'><span lang='fr'>sauvegardé</span><span lang='en'>stored</span></span>
         </div>
 
       </div>
@@ -889,8 +894,8 @@ Pour un exemple complet de scenario, aller sur "scenario", voir l'un de ceux dé
       <p lang="fr">Vous pouvez chercher la figurine pour une carte en particulier, ou voir quelles figurines sont disponibles dans quelle boite, et en quelles quantités.
       </p>
       <p lang="en" class="lead">The list of troops and characters of JoA.</p>
-      <p lang="en">The rules are described in a more compact way. For characters, their coat of arms is provided (for painting for instance), the time where they were active. Multiple intervals are possible for titles beared by multiple persons (Earl of Oxford for instance). The card can be seen by clicking on their name. The dates can be clicked to access to the wikipedia page (in French, just pick your language on wikipedia page)</p>
-      <p lang="en">You can search for the figurine corresponding to a card, and find in which box it is, or see what are the figurines in an extension, and how many of them there are.
+      <p lang="en">The rules are described in a more compact way. For characters, their coat of arms is provided (for painting for instance), the time where they were active. Multiple intervals are possible for titles beared by multiple persons (Earl of Oxford for instance). The card can be seen by clicking on its name. The dates can be clicked to access to the wikipedia page (in French, just pick your language on wikipedia page)</p>
+      <p lang="en">You can search for the mini corresponding to a card, and find in which box it is, or see what are the minis in an extension, and how many of them there are.
       </p>
     </div>
 
@@ -909,7 +914,7 @@ Pour un exemple complet de scenario, aller sur "scenario", voir l'un de ceux dé
         Sélectionnez les listes d'armées, puis les unités. Les contraintes sur les figurines, les personnages, la composition de l'armée sont prises en compte automatiquement. Vous pouvez cliquer sur tout les boutons, l'armée respectera les règles de composition. Les personnages mercenaires ont été ajoutés, ainsi qu'une armée bouguignonne, ottomane, valaque et tous les personnages peuvent maintenant être ajoutés dans les armées françaises et anglaises. Les nouveaux coûts pour ces unités sont indicatifs.
       </p>
       <p lang="en">
-        Select the army lists, then the units. Constraints on miniatures, characters, army composition are automatically taken into account. You can click on any button, the army will respect the composition rules. Mercenary characters have been added, as well as a burgundian army, valach, ottoman, and all characters can be added from French and English armies. New costs are just hints.</p>
+        Select the army lists, then the units. Constraints on miniatures, characters, army composition are automatically taken into account. You can click on any button, the army will comply to the composition rules. Mercenary characters have been added, as well as a burgundian army, valach, ottoman, and all characters can be added from French and English armies. New costs are just hints.</p>
 
       <picture class="featurette-image img-responsive pull-left" >
         <source srcset="images/dateselection.webp" type="image/webp"/>
@@ -963,13 +968,13 @@ At the bottom of the page, you see the armies you have built, one line per facti
       <p lang="fr">Les éléments de décor, les civils et les jetons (points de ralliement, autre), peuvent être glissés/déposés également sur les cartes. Une fois sur la carte, ils peuvent être redéplacés si besoin.
       </p>
             <p lang="en">
-        The card builder allows you to create your cards, with the decor and placement of the units you want.
+        The map builde makes possible the creation of original maps, with the decor and the units you choose.
       </p>
       <p lang="en">
-        A toolbar on the top with different sizes of hexagonal grids allows you to create blank cards, or prefabs. Prefabs are pre-built cards, ready to be used. The last three prefabs, Azincourt, Meaux and l'Enfant are just field maps, without decorations.
+        A toolbar on the top with different sizes of hexagonal grids allows you to create blank maps, or prefabs. Prefabs are pre-built maps, ready to be used. The last three prefabs, Azincourt, Meaux and l'Enfant are just field maps, without decorations.
       </p>
       <p lang="en">
-        On the right, a series of tools arranged in an accordion shape are used to build and decorate the card. All images can be dragged and dropped onto the hexagons. It is best to start with the terrain first, and then place the decoration and units on the terrain.
+        On the right panel, several tools arranged in an accordion  are designed to build and decorate the map. All images can be dragged and dropped onto the hexagons. It is best to start with the terrain first, and then place the building, tokens and units on the terrain.
       </p>
       <p lang="en">Tiles can be rotated before being dragged and dropped, using the central button on the image. When the tile is dragged, the cursor is placed on the hexagon that will be used as an anchor point, useful especially in the case of tiles with several hexagons. It is possible to place hexagons on top of other hexagons, in order to replace them. The white hexagon can be used to remove other hexes in the map. Some multi-hex tiles, once rotated, can prevent from selecting the neighbor tiles. Turn them as they were initially placed to avoid this effect.
       </p>
@@ -996,7 +1001,7 @@ Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu dé
         Dans la barre d'outils en haut, vous pouvez sauvegarder la carte, avec un nom et en cliquant sur <span class="btn btn-primary fas fa-save"></span>. Son nom est son identifiant, si vous sauvegardez plusieurs cartes avec le même nom, seule la dernière sauvegarde sera visible. Les sauvegardes ne durent que le temps de la navigation et s'effaceront si vous rechargez la page. Seule la carte, avec les décors, les troupes et les civils qui sont posés dessus est sauvée. Le nom d'une carte doit commencer par une majuscule, et ne peut contenir que des caractères alphanumériques (accents inclus), l'apostrophe et le tiret. Une fois la carte sauvegardée, elle apparaît dans les prefabs.
       </p>
        <p lang="en">
-        In the toolbar in the top, the map can be saved by giving a name and clicking on <span class="fas fa-save"></span>. The name is the id of the map, saving multiple maps with the same name will only keep the last one. It must start with a upper case and can only be composed of alphanumeric symbols (including French accents), with simple quote and dash. The saves are only visible during one session. Once you reload the page, all saves are lost. A save registers the position of the buildings, tokens and troops on the map as well as the tiles of the map. A save map appears then in prefab.
+        In the toolbar in the top, the map can be saved by giving a name and clicking on <span class="btn btn-primary fas fa-save"></span>. The name is the id of the map, saving multiple maps with the same name will only keep the last one. The name <b>must start with a upper case</b> and can only be composed of alphanumeric symbols including French accents, with simple quote and dash. The saves are only visible during one session. Once you reload the page, all saves are lost. A save registers the position of the buildings, tokens and troops on the map as well as the tiles of the map. A saved map appears in the prefab list.
       </p>
       <p>En bas de la fenêtre de création de carte, le nombre de boites de jeu nécessaires pour créer ce terrain, avec pour chaque boite le nom des tuiles est indiqué. Cette indication est mise à jour à chaque chargement de carte (prefabs) ou à chaque sauvegarde.</p>
       <p lang="fr">La carte 11x11 préconstruite "Meaux" vient du scénario <a href="https://boardgamegeek.com/filepage/200509/new-4-player-scenario-siege-meaux">a siege of Meaux</a> sur BGG, par Bill Koff. La carte a été tronquée (dernière ligne en moins) pour correspondre aux tuiles des boites.
@@ -1019,26 +1024,26 @@ Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu dé
       </picture>
       <h2 class="featurette-heading"><span lang="fr" class="text-muted">Constructeur de scénario</span><span lang="en" class="text-muted">Scenario builder</span></h2>
       <p lang="fr">
-        Le constructeur de scénario utilise un éditeur Markdown, <a href="https://simplemde.com/">simpleMDE</a>, augmenté pour créer des scénarios Joan of Arc. L'éditeur vient avec un exemple de scénario (la bataille d'Azincourt) permettant de voir comment les différents éléments sont édités. 
+        Le constructeur de scénario utilise un éditeur Markdown, <a href="https://simplemde.com/">simpleMDE</a>, augmenté pour créer des scénarios Joan of Arc. 
       </p>
       <p lang="fr">
         En haut, la rangée de bouton permet de créer un style d'édition. La même chose est réalisable en tapant directement du markdown. Les boutons <span class="fas fa-eye btn btn-secondary"></span>, <span class="fas fa-columns btn btn-secondary"></span> permettent de voir le rendu de la page (preview), ou d'avoir un rendu et en même temps continuer à l'éditer.
       </p>
       
       <p lang="fr">
-        Les commandes spécifiques pour JoA commencent et finissent par <code>%</code>. A la fin du scénario par défaut, vous trouverez les commandes permettant de créer quelques icones apparaissant dans le jeu. Toutes les commandes sont accessibles par le menu <span class="fas fa-question-circle"></span> de la barre d'outils. Par exemple <code>%CAVALERIE%</code> est transformé en <span class="type cavalerie"></span>, <code>%DEROUGE%</code> par <span class="derouge"></span>. 2 commandes spéciales permettent d'intégrer des armées et des cartes définies précédemment:<br/>
+        Les commandes spécifiques pour JoA commencent et finissent par <code>%</code>. Toutes les commandes sont répertoriées dans l'aide <span class='fas fa-question-circle btn btn-secondary'></span>. de la barre d'outils. Par exemple <code>%CAVALERIE%</code> est transformé en <span class="type cavalerie"></span>, <code>%DEROUGE%</code> par <span class="derouge"></span>. 2 commandes spéciales permettent d'intégrer des armées et des cartes définies précédemment:<br/>
         <code>%CARTE(nom de la carte)%</code>: affiche une carte dont le nom est entre parenthèses.<br/>
         <code>%ARMEE(nom de l'armée)%</code>: affiche une armée dont le nom est entre parenthèses.<br/>
-        En cas de doutes sur les noms, vous pouvez les consulter dans l'onglet de Cartes, via les prefabs pour les cartes et le menu déroulant pour les armées. Le mode preview permet de voir si les armées et cartes sont bien chargées. Une fois le scénario écrit, les armées et cartes peuvent continuer d'être mis à jour, le scénario les prendra en compte.
+        En cas de doutes sur les noms, vous pouvez les consulter dans l'onglet de Cartes, via les prefabs pour les cartes et le menu déroulant pour les armées. Le mode preview permet de voir si les armées et cartes sont bien chargées. Une fois le scénario écrit, les armées et cartes peuvent continuer à être mises à jour, le scénario les prendra en compte.
       </p>
       
       <p lang="fr">
-        Vous pouvez sauvegarder les scénarios de façon permanente. Ces scénarios sont alors consultables par tous dans l'onglet "Scénario" du menu principal. En cliquant sur <span class="btn btn-primary fas fa-cloud-upload-alt"></span>, une fenêtre s'ouvre et vous permet de rentrer le nom du scénario, le nombre de joueurs, la langue du scénario, l'année où il se passe et votre nom. Choisissez toujours le même nom pour tous les scénarios que vous allez créer. Pas encore d'identification pour cette phase de test, mais je me reserve le droit de supprimer tout scénario avec un contenu inapproprié, sans préavis. <i>Les scénarios sauvegardés ne peuvent plus être changés</i>. Si vous voulez mettre à jour un scénario, numérotez les versions en leur donnant des noms: "Azincourt v1", "Azincourt v1.1", ...  
+        Vous pouvez sauvegarder les scénarios de façon permanente. Ces scénarios sont alors consultables par tous dans l'onglet "Scénario" du menu principal. En cliquant sur <span class="btn btn-primary fas fa-cloud-upload-alt"></span>, une fenêtre s'ouvre et vous permet de rentrer le nom du scénario, le nombre de joueurs, la langue du scénario, l'année où il se passe et votre nom. Choisissez toujours le même nom d'auteur pour tous les scénarios que vous allez créer. Pas encore d'identification pour cette phase de test, mais je me reserve le droit de supprimer tout scénario avec un contenu inapproprié, sans préavis. <i>Les scénarios sauvegardés ne peuvent plus être changés</i>. Si vous voulez mettre à jour un scénario, numérotez les versions en leur donnant des noms: "Azincourt v1", "Azincourt v1.1", ...  
       </p>
 
       
       <p lang="en">
-        The scenario builder uses a Markdown editor, <a href="https://simplemde.com/">simpleMDE</a>, augmented to create Joan of Arc scenarios. The editor comes with an example scenario (the battle of Azincourt) to see how the different elements are edited. 
+        The scenario builder uses a Markdown editor, <a href="https://simplemde.com/">simpleMDE</a>, augmented to create Joan of Arc scenarios. 
       </p>
       <p lang="en">
         At the top, the row of buttons allows you to create an editing style. The same can be done by typing directly from the markdown. The buttons <span class="fas fa-eye btn btn-secondary"></span> and <span class="fas fa-columns btn btn-secondary"></span> allow to see the page rendering (preview) and to see the rendering and at the same time to continue editing it.
@@ -1049,7 +1054,7 @@ Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu dé
         <code>%ARMEE(hashtag)%</code>: displays an army defined by the hashtag.<br/>
         Names of available armies and maps can be found in the map editor page, looking at the prefabs (for map names), and to dropdown menus for armies. Once a scenario refers to maps and armies, they can still be updated and edited, the scenario includes the latest version.
       </p>
-      <p lang="en">Scenarios can be saved permanently. This scenarios are then accessible to all through the lastest menu, "scenario". By selecting  <span class="btn btn-primary fas fa-cloud-upload-alt"></span>, a popup appears and you have to fill the name, date, number of players for the scenario, as well as your name. Choose always the same name for all scenarios you upload. No identification so far, for this beta test, but I will remove any scenario with inappropriate content, without warning. <i>The saved scenario cannot be modified anymore</i>. If you want to update a scenario, give a number for each version with their names: "Azincourt v1", "Azincourt v1.1", ...
+      <p lang="en">Scenarios can be saved permanently. This scenarios are then accessible to all through the lastest menu, "scenario". By selecting  <span class="btn btn-primary fas fa-cloud-upload-alt"></span>, a popup appears and you have to fill the name, date, number of players for the scenario, as well as your name. Choose always the same author name for all scenarios you upload. No identification so far, for this beta test, but I will remove any scenario with inappropriate content, without warning. <i>The saved scenario cannot be modified anymore</i>. If you want to update a scenario, give a number for each version with their names: "Azincourt v1", "Azincourt v1.1", ...
       </p>
        <picture class="featurette-image img-responsive pull-left" >
         <source srcset="images/scenariopreview.webp" type="image/webp"/>
@@ -1069,7 +1074,7 @@ Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu dé
       <p lang="en">
         To write a scenario, it is recommended to proceed as follows:<ol lang="en">
           <li>Build the armies needed for the scenario. To have the least constraints on the composition, choose "All armies" and a battle date. It is possible to choose several times the same army to have more heroes present. This step will allow you to see if you can build the army of your choice.</li>
-          <li>Build the map. Place the hexes, scenery, units and markers. Save the map.</li>
+          <li>Build the map. Place the hexes, buidlings, units and markers. Save the map.</li>
           <li>Write the scenario, using the previously defined armies and the previous map. If there are missing units in an army, you can redefine an army with the same name. For the map, you can continue to edit the map at the same time as the scenario. If the upload is successful, you should see it in the scenario list.</li>
         </ol>
       </p>
