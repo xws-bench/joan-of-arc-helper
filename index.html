@@ -69,10 +69,10 @@
   <section id="troupes" class="bg-light mt-2 noshow">
     <div class="container-fluid p-2">
       <div lang="en" class="row no-gutters">
-        Search the list of units with the categories of icons (<span class="fas btn btn-secondary small bg-dark fa-star-of-life"></span> resets the filter) or with the text field.
+        Search the list of units with the categories of icons or with the text field. <span class="fas btn btn-secondary small bg-dark fa-star-of-life"></span> resets the filter. Characters have names beginning with ".". 
       </div>
       <div lang="fr" class="row no-gutters">
-        Rechercher des unités dans la liste en utilisant les icons par catégories (<span class="fas btn btn-secondary small bg-dark fa-star-of-life"></span> remet à zero le filtre), ou le champ texte.
+        Rechercher des unités dans la liste en utilisant les icons par catégories ou le champ texte. <span class="fas btn btn-secondary small bg-dark fa-star-of-life"></span> remet à zero le filtre. Les noms des personnages commencent par ".". 
       </div>
       <div class="row no-gutters">      
         <div class="col-12 p-0 mx-0">
@@ -776,9 +776,9 @@
 
       <div class="row no-gutters mt-2">
         <div class="col-4 reverse font-weight-bold p-1">
-          <input id="yearfilter" type="checkbox" onchange="changeyear(1340)"/>
+          <input id="yearfilter" type="checkbox" onchange="$('#ex8').prop('disabled', function (_, val) { return ! val; });" />
           <label for="yearfilter"><span lang='fr'>Année</span><span lang='en'>Year</span> <span class='year'>1340</span></label>
-          <input id="ex7" type="text" data-slider-min="1297" data-slider-max="1475" data-slider-step="1" data-slider-value="1340" onchange="changeyear(this.value)"/>
+          <input type="range" disabled class="align-middle form-range" min="1297" max="1475" id="ex8" oninput="changeyear(this.value)">
         </div>
         <div class="col-4 font-weight-bold reverse"><span lang='fr'>Points : </span><span lang='en'>Points: </span><span class='sum'></span> / <span class='total'></span></div>
         <div class="col-4 font-weight-bold reverse"><span lang='fr'>Seuil de déroute : </span><span lang='en'>Breaking Point : </span><span class='moral'></span></div>
@@ -1333,8 +1333,8 @@ Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu dé
   <footer class="py-2 bg-dark text-muted">
     <div class="container">
       <p class="m-0 text-center">Copyright &copy; Denis Wings 2019-2021</p>
-      <p class="m-0 text-center" lang='fr'>Le jeu Time of Legends: Joan of Arc a été publié par Mythic Games</p>
-      <p class="m-0 text-center" lang='en'>The game Time of Legends: Joan of Arc has been published by Mythic Games</p>
+      <p class="m-0 text-center" lang='fr'>Le jeu Time of Legends: Joan of Arc a été publié par <a href="https://mythicgames.net/">Mythic Games</a></p>
+      <p class="m-0 text-center" lang='en'>The game Time of Legends: Joan of Arc has been published by <a href="https://mythicgames.net/">Mythic Games</a></p>
       <p class="m-0 text-center" lang='fr'>Contenu Wikipedia soumis à <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">la licence CC-BY-SA</a></p>
       <p class="m-0 text-center" lang='en'>Wikipedia content on <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr">CC-BY-SA licence</a></p>
       <p class="m-0 text-center" lang='en'>Latest update: 05/01/2021</p>
@@ -1352,7 +1352,6 @@ Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu dé
   <script src="js/lz-string.min.js"></script>
 <script src="js/simplemde.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap-slider.min.js"></script>
   <script src="https://cdn.auth0.com/js/auth0-spa-js/1.12/auth0-spa-js.production.js"></script>
 <!--  <script src="js/lock.min.js"></script>-->
   <!-- Plugin JavaScript -->
