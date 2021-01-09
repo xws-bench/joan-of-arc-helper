@@ -67,12 +67,12 @@
   </section>
 
   <section id="troupes" class="bg-light mt-2 noshow">
-    <div class="container-fluid p-2">
+    <div class="container-fluid pt-3">
       <div lang="en" class="row no-gutters">
-        Search the list of units with the categories of icons or with the text field. <span class="fas btn btn-secondary small bg-dark fa-star-of-life"></span> resets the filter. Characters have names beginning with ".". 
+        Search the list of units with the categories of icons or with the text field. The filter is reset with <span class="fas btn btn-secondary small bg-dark fa-star-of-life"></span>. Characters have names beginning with ".". 
       </div>
       <div lang="fr" class="row no-gutters">
-        Rechercher des unités dans la liste en utilisant les icons par catégories ou le champ texte. <span class="fas btn btn-secondary small bg-dark fa-star-of-life"></span> remet à zero le filtre. Les noms des personnages commencent par ".". 
+        Rechercher des unités dans la liste en utilisant les icones par catégories ou le champ texte. Le filtre est remis à zéro avec <span class="fas btn btn-secondary small bg-dark fa-star-of-life"></span>. Les noms des personnages commencent par ".". 
       </div>
       <div class="row no-gutters">      
         <div class="col-12 p-0 mx-0">
@@ -856,11 +856,19 @@
         <div class="card bordered w-100">
           <div class="card-header reverse p-0">
             <h2 class="m-0">
-              <button class="btn openbutton dropdown-toggle" data-target="hex1" type="button" onclick="$('#hex1').toggleClass('noshow');">Terrain x1</button>
+              <button class="btn openbutton dropdown-toggle" data-target="hex1" type="button" onclick="$('.hex1card').toggleClass('noshow');">Terrain x1</button>
+       
             </h2>
           </div>
-          <div class="card-body p-0">
-            <div id="hex1" class="noshow mt-5"></div>
+          <div class="card-body p-0 hex1card Apo Dra Sie Vil AN noshow">
+            <div class='d-flex tileboxes'>
+              <button class="align-middle Apo" onclick="$('.hex1card').toggleClass('Apo')">Apo</button>
+              <button class="align-middle Dra" onclick="$('.hex1card').toggleClass('Dra')">Dra</button>
+              <button class="align-middle Sie" onclick="$('.hex1card').toggleClass('Sie')">Sie</button>
+              <button class="align-middle Vil" onclick="$('.hex1card').toggleClass('Vil')">Vill</button>
+              <button class="align-middle AN" onclick="$('.hex1card').toggleClass('AN')">AN</button>
+            </div>
+            <div id="hex1" class="mt-5"></div>
           </div>
         </div>
         <div class="card bordered w-100">
@@ -1357,7 +1365,8 @@ Les unités des armées apparaissent lorsqu'on les sélectionne dans le menu dé
   <!-- Plugin JavaScript -->
   <script src="js/dateline.org.js"></script>
   <script src="js/select2.min.js"></script>
-<!--  <script src="consts.js"></script>  
+  <script src="consts.js"></script>
+<!--  <script src="modernizr-custom.js"></script>
 <script src="hexmap.js"></script>
   <script src="hex.js"></script>
   <script src="liste_unites.js"></script>
